@@ -22,6 +22,7 @@ import fr.imag.adele.cadse.core.attribute.StringAttributeType;
 import fr.imag.adele.cadse.core.attribute.URLAttributeType;
 import fr.imag.adele.cadse.core.internal.delta.InternalItemDelta;
 import fr.imag.adele.cadse.core.key.ISpaceKey;
+import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 
 /**
  * It is a virtual item (not in logical workspace) representing all operations
@@ -125,6 +126,20 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	 */
 	public LinkDelta getOutgoingLink(Item item);
 
+	/**
+	 * Returns the link of <code>linkType</code> type coming from this item.
+	 * Link type maximum cardinality must be equal to one. Returns null if link
+	 * does not exist.
+	 * 
+	 * @param linkType
+	 *            a link type
+	 * 
+	 * @return the link delta of <code>linkType</code> type coming from this item.
+	 * 
+	 * @throws CadseException
+	 *             if the max cardinality of <code>linkType</code> link type
+	 *             is not equal to one.
+	 */
 	public LinkDelta getOutgoingLink(LinkType linkType);
 
 	public LinkDelta getOutgoingLink(LinkType lt, CompactUUID destId);
@@ -217,8 +232,6 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public boolean isFinishLoad();
 
-	public boolean isPersistentCacheLoaded();
-
 	public boolean isUpdate();
 
 	public void loadAttribute(IAttributeType<?> key, Object value) throws CadseException;
@@ -254,27 +267,20 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public void refresh();
 
-	public void remove(LinkDelta linkOperation);
 
 	public void resetContentIsChanged();
 
 	public void setAttribute(IAttributeType<?> key, String attributeName, Object newCurrentValue, boolean loaded)
 			throws CadseException;
 
-	public void setInfo(String info) throws CadseException;
-
 	public void setModified(boolean value) throws CadseException;
 
 	public void setModified(boolean value, boolean loaded) throws CadseException;
 
-	@Deprecated
-	public void setOpen(boolean flag) throws CadseException;
-
 	/**
 	 */
 
-	public LinkType setParentAndLinkType(ItemDelta parent, LinkType lt) throws CadseException;
-
+	
 	public void setReadOnly(boolean readOnly, boolean loaded) throws CadseException;
 
 	@Deprecated
@@ -298,5 +304,13 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	public void toString(StringBuilder sb, String tab);
 
 	public void toStringShort(StringBuilder sb);
+	
+	public <T> T getAdapter(Class<T> clazz);
+
+	public void setParent(ItemDelta parent, LinkType lt, boolean createLinkIfNeed,
+			boolean notify);
+
+	
+	public LogicalWorkspaceTransaction getCopy();
 
 }

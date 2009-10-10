@@ -9,6 +9,9 @@ import fr.imag.adele.cadse.core.internal.InternalCadseRuntime;
  */
 public interface CadseRuntime extends Item, InternalCadseRuntime {
 
+	/** The Constant RESOURCE_SUFFIX. */
+	public final static String	CADSE_NAME_SUFFIX	= "Model.Workspace.";
+
 	/**
 	 * Returns the list of all the CADSE which have to be executed, to get a
 	 * valid execution of the current CADSE.
@@ -23,6 +26,13 @@ public interface CadseRuntime extends Item, InternalCadseRuntime {
 	 * @return null if no errors
 	 */
 	public abstract String[] getErrors();
+	
+	
+	/**
+	 * True if all dependencies are resolved and canbeExecuted
+	 * @return
+	 */
+	public boolean canBeExecuted() ;
 
 	/**
 	 * Test if this CADSE is executed.
@@ -48,4 +58,17 @@ public interface CadseRuntime extends Item, InternalCadseRuntime {
 	 */
 	public abstract boolean isRequired(CadseRuntime cr);
 
+	/**
+	 * 
+	 * @return the id of the cadse definition in CadseG
+	 */
+	public CompactUUID getIdCadseDefinition() ;
+
+	/**
+	 * the qualified Class Name
+	 * @return the qualified Class Name where is defined java constante
+	 */
+	public String getCstQualifiedClassName();
+
+	
 }

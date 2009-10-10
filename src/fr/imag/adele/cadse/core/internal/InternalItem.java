@@ -3,6 +3,7 @@ package fr.imag.adele.cadse.core.internal;
 import java.util.Iterator;
 
 import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemState;
@@ -86,7 +87,7 @@ public interface InternalItem {
 
 	public Iterator<Item> propagateValue(String key);
 
-	public void loadContent();
+	//public void loadContent(CompactUUID id);
 
 	public void setParent(Item parent, LinkType lt);
 

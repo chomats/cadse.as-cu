@@ -216,7 +216,7 @@ public interface IItemManager extends ContributionToMenuAction {
 	 * 
 	 * @return computed unique name of specified item.
 	 */
-	public String computeUniqueName(Item item, String shortName, Item parent, LinkType linkType);
+	public String computeQualifiedName(Item item, String shortName, Item parent, LinkType linkType);
 
 	/**
 	 * Returns default short name for a newly item managed by this manager.
@@ -233,31 +233,12 @@ public interface IItemManager extends ContributionToMenuAction {
 	@Deprecated
 	public void contributeMenuNewAction(Menu menu, Item parent);
 
-	/**
-	 * @see {@link ContributionToMenuAction Deprecated. Use
-	 *      {@link IActionContributor} or cadesg editor
-	 */
-	@Deprecated
-	public void contributeMenuAction(Menu menu, IItemNode[] selection);
+	
 
 	@Deprecated
 	public boolean hasNotification();
 
-	/**
-	 * DON'T USE IT.
-	 * 
-	 * Notify.
-	 * 
-	 * @param item
-	 *            the item
-	 * @param wd
-	 *            the wd
-	 * 
-	 * @throws CadseException
-	 *             a CADSE exception
-	 */
-	@Deprecated
-	public void notifie(Item item, ImmutableWorkspaceDelta wd) throws CadseException;
+	
 
 	/**
 	 * Returns an error message if creation of a child item (using a part link
@@ -308,29 +289,6 @@ public interface IItemManager extends ContributionToMenuAction {
 	 */
 	public String canDeleteItem(Item item);
 
-	/**
-	 * Throws an exception if creation of specified item is disallowed.
-	 * 
-	 * @param item
-	 *            item to create
-	 * 
-	 * @throws CadseException
-	 *             a CADSE exception.
-	 */
-	@Deprecated
-	public void createdItem(Item item) throws CadseException;
-
-	/**
-	 * Throws an exception if deletion of specified item is disallowed.
-	 * 
-	 * @param item
-	 *            item to delete
-	 * 
-	 * @throws CadseException
-	 *             a CADSE exception.
-	 */
-	@Deprecated
-	public void deletedItem(Item item) throws CadseException;
 
 	/**
 	 * Returns an error message if rename specified item is disallowed. Rename
@@ -476,4 +434,7 @@ public interface IItemManager extends ContributionToMenuAction {
 	 */
 	@Deprecated
 	public void doubleClick(Item item);
+	
+	
+	public ContentItem getParentContentItemWherePutMyContent(ContentItem cm) ;
 }

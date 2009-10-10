@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Set;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CadseRootCST;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.DerivedLinkDescription;
 import fr.imag.adele.cadse.core.ItemDescriptionRef;
@@ -332,11 +332,11 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 
 	public ItemDescriptionRef toHeadDesc() {
 		ItemDescriptionRef ret = new ItemDescriptionRef(id, type);
-		String shortName = getHeadAttributeValue(String.class, CadseRootCST.ITEM_TYPE_at_NAME);
+		String shortName = getHeadAttributeValue(String.class, CadseGCST.ITEM_at_NAME );
 		if (shortName != null) {
 			ret.setShortname(shortName);
 		}
-		String uniqueName = getHeadAttributeValue(String.class, CadseRootCST.ITEM_TYPE_at_QUALIFIED_NAME);
+		String uniqueName = getHeadAttributeValue(String.class, CadseGCST.ITEM_at_QUALIFIED_NAME);
 		if (uniqueName != null) {
 			ret.setUniqueName(uniqueName);
 		}
@@ -457,7 +457,7 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	}
 
 	public String getUniqueName() {
-		AttributeRevisionDelta delta = attributes.get(CadseRootCST.ITEM_TYPE_at_QUALIFIED_NAME);
+		AttributeRevisionDelta delta = attributes.get(CadseGCST.ITEM_at_QUALIFIED_NAME);
 		if (delta.getCurrentValue() != null && delta.getCurrentValue() != AttributeRevisionDelta.NOT_PRESENT) {
 			return (String) delta.getCurrentValue();
 		}
@@ -471,7 +471,7 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	}
 
 	public String getShortName() {
-		AttributeRevisionDelta delta = attributes.get(CadseRootCST.ITEM_TYPE_at_NAME);
+		AttributeRevisionDelta delta = attributes.get(CadseGCST.ITEM_at_NAME);
 		if (delta.getCurrentValue() != null && delta.getCurrentValue() != AttributeRevisionDelta.NOT_PRESENT) {
 			return (String) delta.getCurrentValue();
 		}

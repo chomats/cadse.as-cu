@@ -55,7 +55,7 @@ public final class LinkKey {
 	public LinkKey(LinkDelta lt) {
 		super();
 		this.lt = lt.getLinkTypeName();
-		this.dest = lt.getDestinationDescription().getId();
+		this.dest = lt.getDestination().getId();
 	}
 
 	@Override

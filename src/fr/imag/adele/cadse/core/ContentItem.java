@@ -42,9 +42,19 @@ public interface ContentItem extends Item {
 	 * Returns the item which has as content this item.
 	 * 
 	 * @return the item which has as content this item.
+	 * @deprecated use getOwnerItem()
 	 */
 	public Item getItem();
 
+	
+	/**
+	 * Returns the item which has as content this item.
+	 * 
+	 * @return the item which has as content this item.
+	 */
+	public Item getOwnerItem();
+	
+	
 	/**
 	 * Initialize this content. This method is called only once during a CADSE
 	 * execution. Loading an item loads the associated content item and then
@@ -184,25 +194,25 @@ public interface ContentItem extends Item {
 	 */
 	public void delete() throws CadseException;
 
-	/**
-	 * Returns its parent content item. Note that it is not parent of the
-	 * logical item but the direct parent content item of this content item. For
-	 * example, a content item representing a source directory may have a
-	 * content item representing the project as parent. Content items are
-	 * organized hierarchically. If it has no parent, returns null.
-	 * 
-	 * If there is no associated resource and the item is part of another item,
-	 * it is possible to request the resource associated with the first
-	 * containing ancestor having one.
-	 * 
-	 * @param includeContainers
-	 *            recursif
-	 * 
-	 * @return its parent content item.
-	 * 
-	 */
-	@Deprecated
-	public ContentItem getParentPartContentManager(boolean includeContainers);
+//	/**
+//	 * Returns its parent content item. Note that it is not parent of the
+//	 * logical item but the direct parent content item of this content item. For
+//	 * example, a content item representing a source directory may have a
+//	 * content item representing the project as parent. Content items are
+//	 * organized hierarchically. If it has no parent, returns null.
+//	 * 
+//	 * If there is no associated resource and the item is part of another item,
+//	 * it is possible to request the resource associated with the first
+//	 * containing ancestor having one.
+//	 * 
+//	 * @param includeContainers
+//	 *            recursif
+//	 * 
+//	 * @return its parent content item.
+//	 * 
+//	 */
+//	@Deprecated
+//	public ContentItem getParentPartContentManager(boolean includeContainers);
 
 	/**
 	 * Migrates a content of <code>ownerItem</code> item from a context to
@@ -275,31 +285,31 @@ public interface ContentItem extends Item {
 	@Deprecated
 	public ContentItem getParentPartContentManager();
 
-	/**
-	 * Returns its children content items. Note that it is not children of the
-	 * logical item but the direct children content items of this content item.
-	 * For example, a content item representing a project may have children
-	 * content items representing the source directories. Content items are
-	 * organized hierarchically.
-	 * 
-	 * @return its children content items.
-	 * @deprecated uses {@link #getPartChildrenContents()}
-	 */
-	@Deprecated
-	public ContentItem[] getChildrenContentManager();
+//	/**
+//	 * Returns its children content items. Note that it is not children of the
+//	 * logical item but the direct children content items of this content item.
+//	 * For example, a content item representing a project may have children
+//	 * content items representing the source directories. Content items are
+//	 * organized hierarchically.
+//	 * 
+//	 * @return its children content items.
+//	 * @deprecated uses {@link #getPartChildrenContents()}
+//	 */
+//	@Deprecated
+//	public ContentItem[] getChildrenContentManager();
 
-	/**
-	 * Returns its children content items. Note that it is not children of the
-	 * logical item but the direct children content items of this content item.
-	 * For example, a content item representing a project may have children
-	 * content items representing the source directories. Content items are
-	 * organized hierarchically.
-	 * 
-	 * @return its children content items.
-	 * @deprecated uses {@link #getPartChildrenContents()}
-	 */
-	@Deprecated
-	public ContentItem[] getChildrenPropreContentManager();
+//	/**
+//	 * Returns its children content items. Note that it is not children of the
+//	 * logical item but the direct children content items of this content item.
+//	 * For example, a content item representing a project may have children
+//	 * content items representing the source directories. Content items are
+//	 * organized hierarchically.
+//	 * 
+//	 * @return its children content items.
+//	 * @deprecated uses {@link #getPartChildrenContents()}
+//	 */
+//	@Deprecated
+//	public ContentItem[] getChildrenPropreContentManager();
 
 	/**
 	 * Generates a string content represented by this item.
@@ -398,6 +408,7 @@ public interface ContentItem extends Item {
 	 * 
 	 * @return name of IDE resource represented by this item.
 	 */
+	@Deprecated
 	public String getResourceName();
 
 	/**
@@ -407,6 +418,14 @@ public interface ContentItem extends Item {
 	 * @param resourceName
 	 *            represented resource name
 	 */
+	@Deprecated
 	public void setResourceName(String resourceName);
+
+
+	/* internale */
+
+	public void addChild(ContentItem contentItem);
+	
+	public void removeChild(ContentItem contentItem);
 
 }

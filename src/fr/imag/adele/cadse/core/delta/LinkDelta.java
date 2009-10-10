@@ -2,7 +2,7 @@ package fr.imag.adele.cadse.core.delta;
 
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CompactUUID;
-import fr.imag.adele.cadse.core.ItemDescriptionRef;
+import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
@@ -11,8 +11,6 @@ import fr.imag.adele.cadse.core.internal.delta.InternalWLWCOperation;
 public interface LinkDelta extends Link, ItemOrLinkDelta, InternalWLWCOperation {
 
 	String getLinkTypeName();
-
-	ItemDescriptionRef getDestinationDescription();
 
 	boolean equals(Object obj);
 
@@ -157,5 +155,9 @@ public interface LinkDelta extends Link, ItemOrLinkDelta, InternalWLWCOperation 
 	Link getBaseLink();
 
 	boolean isStatic();
+
+	void changeDestination(Item att);
+
+	
 
 }

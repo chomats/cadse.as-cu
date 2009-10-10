@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import fr.imag.adele.cadse.core.attribute.StringAttributeType;
 import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.internal.InternalItem;
 import fr.imag.adele.cadse.core.key.ISpaceKey;
@@ -44,7 +45,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	/**
 	 * TODO version dec 2009 remove this lines
 	 * 
-	 * @deprecated use {@link CadseRootCST#ITEM_TYPE_at_QUALIFIED_NAME_}
+	 * @deprecated use {@link CadseGCST#ITEM_TYPE_at_QUALIFIED_NAME_}
 	 */
 	@Deprecated
 	public static final String	ATTR_LONG_NAME							= "ws::private::name";					;
@@ -58,7 +59,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public static final String	IS_VALID_KEY							= "#is-valid";
 
 	/**
-	 * @deprecated use {@link CadseRootCST#ITEM_TYPE_at_READ_ONLY_}
+	 * @deprecated use {@link CadseGCST#ITEM_TYPE_at_READ_ONLY_}
 	 */
 	@Deprecated
 	public static final String	IS_READ_ONLY_KEY						= "#is-read-only";
@@ -1239,5 +1240,13 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return true if it is considered as modified by versionning system.
 	 */
 	public boolean isRevModified();
+
+	/** return the base item or this if no
+	 * 
+	 * @return
+	 */
+	public Item getBaseItem();
+
+	public boolean exist();
 
 }

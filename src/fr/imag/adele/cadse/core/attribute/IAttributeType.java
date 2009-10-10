@@ -30,7 +30,7 @@ public interface IAttributeType<T> extends Item, INamed {
 
 	/**
 	 * TODO soit ItemType soit IAttributeType pour les types composer"
-	 * 
+	 * get
 	 * @return the parent
 	 */
 	public Item getParent();

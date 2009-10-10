@@ -38,24 +38,24 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	/** The Constant DOMAIN_NAME. */
 	public static final String		DOMAIN_NAME			= "Workspace";
 
-	public static final CompactUUID	META_LINK_ID		= new CompactUUID(-6545371884280260901L, 1328766321966205240L);	// 1270b9ee-024c-4938-a52a-2af33aa556db
+	public static final CompactUUID	META_LINK_ID		= new CompactUUID(7525975296182863367L, -6733988287527508841L);	// 6871a2a8-5558-4607-a28c-1154a8482497
 
 	/** The Constant ANY_ID. */
-	public static final CompactUUID	ITEM_TYPE_ID		= new CompactUUID(-8319073587239432622L, -6158067025215123703L);	// "8c8cb6a6-1442-4e52-aa8a-26aadb018f09"
+	public static final CompactUUID	ITEM_ID		= new CompactUUID(1481067329060227563L, -6059699345038497928L);	// "148dcee3-8512-49eb-abe7-9f8d25502778"
 
-	/**
-	 * The Constant ANY_ID.
-	 * 
-	 * @deprecated use ITEM_TYPE_ID
-	 */
-	@Deprecated
-	public static final CompactUUID	ANY_ID				= ITEM_TYPE_ID;													// "8c8cb6a6-1442-4e52-aa8a-26aadb018f09"
 
+	static public CompactUUID EXT_ITEM_ID = new CompactUUID("d72bd5b1-cf11-4fa6-84f1-c12582dc5989");
+
+	
 	/** The Constant META_ITEMTYPE_ID. */
-	public static final CompactUUID	META_ITEMTYPE_ID	= new CompactUUID(-1425540810463033436L, -4910210400093615868L);	// "ec37762f-8b87-47a4-bbdb-6da811fdc904"
+	public static final CompactUUID	ITEMTYPE_ID	= new CompactUUID(4864028770172945040L, -5928200930686985311L);
+	// "43808065-4f70-4290-adba-cca999431ba1"
+	
+	
+	
 
 	/** The Constant CADSE_ROOT_MODEL. */
-	public static final String		CADSE_ROOT_MODEL	= "Model.Workspace.CadseRoot";
+	public static final String		CADSE_ROOT_MODEL	= "Model.Workspace.CadseG";
 
 	/** The Constant ID_ITEM_TYPE_ANY. */
 	public static final int			ID_ITEM_TYPE_ANY	= -2;
@@ -175,5 +175,8 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	public void log(Item item, int errorcode, String type, String message, Throwable e);
 
 	public void log(String type, String message, Throwable e);
+
+	public Item createUnresolvedItem(ItemType itemType, String name,
+			CompactUUID id) throws CadseException;
 
 }

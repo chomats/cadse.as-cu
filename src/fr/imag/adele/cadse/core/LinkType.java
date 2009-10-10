@@ -231,5 +231,48 @@ public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTr
 	 */
 	public void setInverseLinkType(LinkType lt);
 
-	// public void setDestinationType(ItemType destType);
+	/**
+	 * Returns true if it is used for annotations. This flag is inherited from
+	 * its link type. If a destination of an annotation link is deleted, then
+	 * link source is also deleted.
+	 * 
+	 * @return true if it is used for annotations.
+	 */
+	public boolean isAnnotation();
+
+	/**
+	 * Returns true if it is an aggregation link. This flag is inherited from
+	 * its link type. Aggregation annotations are used to structure CADSE views.
+	 * 
+	 * @return true if it is an aggregation link.
+	 */
+	public boolean isAggregation();
+
+	/**
+	 * Returns true if it is a part link. This flag is inherited from its link
+	 * type. If a source of a part link is deleted, then link destination is
+	 * also deleted.
+	 * 
+	 * @return true if it is a part link.
+	 */
+	public boolean isPart();
+
+	/**
+	 * Returns true if it is a composition link. This flag is inherited from its
+	 * link type. Composition annotations are used to transfer data from
+	 * destination to source for builders.
+	 * 
+	 * @return true if it is a composition link.
+	 */
+	public boolean isComposition();
+
+	/**
+	 * Returns true if it is a require link. This flag is inherited from its
+	 * link type. If a source of a require link is imported, then link
+	 * destination is also imported.
+	 * 
+	 * @return true if it is a require link.
+	 */
+	public boolean isRequire();
+
 }

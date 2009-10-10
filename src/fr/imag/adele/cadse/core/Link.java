@@ -169,7 +169,9 @@ public interface Link extends InternalLink {
 	 * link source is also deleted.
 	 * 
 	 * @return true if it is used for annotations.
+	 * @deprecated use getLinkType().isAnnotation()
 	 */
+	@Deprecated
 	public boolean isAnnotation();
 
 	/**
@@ -177,17 +179,21 @@ public interface Link extends InternalLink {
 	 * its link type. Aggregation annotations are used to structure CADSE views.
 	 * 
 	 * @return true if it is an aggregation link.
+	 * @deprecated use getLinkType().isAggregation()
 	 */
+	@Deprecated
 	public boolean isAggregation();
 
-	/**
-	 * Returns true if it is a part link. This flag is inherited from its link
-	 * type. If a source of a part link is deleted, then link destination is
-	 * also deleted.
-	 * 
-	 * @return true if it is a part link.
-	 */
-	public boolean isPart();
+//	/**
+//	 * Returns true if it is a part link. This flag is inherited from its link
+//	 * type. If a source of a part link is deleted, then link destination is
+//	 * also deleted.
+//	 * 
+//	 * @return true if it is a part link.
+//	* @deprecated use getLinkType().isPart()
+//	 */
+//	@Deprecated
+//	public boolean isLinkPart();
 
 	/**
 	 * Returns true if it is a composition link. This flag is inherited from its
@@ -195,7 +201,9 @@ public interface Link extends InternalLink {
 	 * destination to source for builders.
 	 * 
 	 * @return true if it is a composition link.
+	 * @deprecated use getLinkType().isComposition()
 	 */
+	@Deprecated
 	public boolean isComposition();
 
 	/**
@@ -204,7 +212,9 @@ public interface Link extends InternalLink {
 	 * destination is also imported.
 	 * 
 	 * @return true if it is a require link.
+	 * @deprecated use getLinkType().isRequire()
 	 */
+	@Deprecated
 	public boolean isRequire();
 
 	/**

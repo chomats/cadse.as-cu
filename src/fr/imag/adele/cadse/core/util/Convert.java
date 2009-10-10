@@ -78,6 +78,17 @@ public class Convert {
 		}
 		throw new ClassCastException("Can't convert to primive boolean value the type " + value.getClass());
 	}
+	
+	public static boolean toBoolean(String value,
+			boolean defaultValue) {
+		if (value == null || "".equals(value)) {
+			return defaultValue;
+		}
+		if (value instanceof String) {
+			return "true".equalsIgnoreCase((String) value);
+		}
+		throw new ClassCastException("Can't convert to primive boolean value the type " + value.getClass());
+	}
 
 	public static boolean toBooleanFalseIfNull(Object value) {
 		return toBoolean(value, false);
@@ -180,6 +191,20 @@ public class Convert {
 
 	}
 
+	public static long toLong(Object value, long defaultValue) {
+		if (value == null || "".equals(value)) {
+			return defaultValue;
+		}
+		if (value instanceof String) {
+			return Long.valueOf((String) value);
+		}
+		if (value instanceof Long) {
+			return (Long) (value);
+		}
+		throw new ClassCastException("Can't convert to Long value the type " + value.getClass());
+
+	}
+	
 	public static long toLong(Object value, LongAttributeType type, long defaultValue) {
 		if (value == null || "".equals(value)) {
 			if (type != null && type.getDefaultValue() != null) {
@@ -315,5 +340,7 @@ public class Convert {
 		}
 		return false;
 	}
+
+	
 
 }

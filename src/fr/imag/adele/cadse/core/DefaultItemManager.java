@@ -31,7 +31,7 @@ import fr.imag.adele.cadse.core.delta.ItemDelta;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.ui.Pages;
 
-public class DefaultItemManager implements IItemManager {
+public class DefaultItemManager implements IItemManager, IContentItemFactory {
 	public static final String	CANNOT_RENAME		= "Cannot rename";
 	public static final String	CANNOT_DELETE		= "Cannot delete";
 
@@ -93,7 +93,7 @@ public class DefaultItemManager implements IItemManager {
 	 * 0: item-name 1: parent-id 2: parent-name 3: parent-type-name 4:
 	 * item-type-name 5: lynk-type 6: item-id
 	 */
-	public String computeUniqueName(Item item, String shortid, Item parent, LinkType lt) {
+	public String computeQualifiedName(Item item, String shortid, Item parent, LinkType lt) {
 		String parent_id = "";
 		String parent_name = "";
 		String parent_type = "";
@@ -231,28 +231,8 @@ public class DefaultItemManager implements IItemManager {
 		this._valid_pattern = Pattern.compile(pattern_valid_id).matcher("");
 	}
 
-	/**
-	 * use getContentItemFactory
-	 * 
-	 * @param item
-	 * @return
-	 * @throws CadseException
-	 */
-	@Deprecated
-	public ContentItem createContentManager(Item item) throws CadseException {
-		return null;
-	}
-
 	public IContentItemFactory getContentItemFactory() {
-		return null;
-	}
-
-	@Deprecated
-	public void createdItem(Item item) throws CadseException {
-	}
-
-	@Deprecated
-	public void deletedItem(Item item) throws CadseException {
+		return this;
 	}
 
 	@Deprecated
@@ -268,10 +248,7 @@ public class DefaultItemManager implements IItemManager {
 		return false;
 	}
 
-	@Deprecated
-	public void notifie(Item item, ImmutableWorkspaceDelta wd) throws CadseException {
-
-	}
+	
 
 	@Deprecated
 	public boolean hasContent(Item item) {
@@ -304,14 +281,48 @@ public class DefaultItemManager implements IItemManager {
 		return true;
 	}
 
-	public void contributeMenuAction(Menu menu, IItemNode[] selection) {
-	}
-
+	
 	public void contributeMenuNewAction(Menu menu, Item parent) {
 	}
 
 	public String getDisplayCreate(LinkType lt, ItemType destItemType) {
 		return null; // the default value (is itemDestType.getDsiplayName();
 	}
+
+	public ContentItem createContentItem(CompactUUID id) throws CadseException {
+		return ContentItem.NO_CONTENT;
+	}
+
+	@Override
+	@Deprecated
+	public void contributeMenuAction(Menu menu, IItemNode[] selection) {
+		
+	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.imag.adele.cadse.core.ContentItem#getParentPartContentManager(boolean)
+	 */
+	public ContentItem getParentContentItemWherePutMyContent(ContentItem cm) {
+		
+		Item ownerItem = cm.getOwnerItem();
+		Item parentItem =ownerItem.getPartParent(false);
+		if (parentItem == null) {
+			return null;
+		}
+		if (parentItem.getContentItem() != null) {
+			return parentItem.getContentItem();
+		}
+
+		cm = null;
+		while (cm == null && parentItem != null) {
+			cm = parentItem.getContentItem();
+			parentItem = parentItem.getPartParent(false);
+		}
+		return cm;
+	}
+	
 
 }

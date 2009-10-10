@@ -263,7 +263,7 @@ public class LinkDescription implements Serializable {
 		type = l.getLinkType().getName();
 		destination = new ItemDescriptionRef(l.getDestination(false));
 		state = (l.isAggregation() ? AGGREGATION : 0) + (l.isComposition() ? ANNOTATION : 0)
-				+ (l.isAnnotation() ? COMPOSITION : 0) + (l.isPart() ? PART : 0) + (l.isRequire() ? REQUIRE : 0)
+				+ (l.isAnnotation() ? COMPOSITION : 0) + (l.getLinkType().isPart() ? PART : 0) + (l.isRequire() ? REQUIRE : 0)
 				+ (l.isDerived() ? DERIBED : 0) + (l.isHidden() ? HIDDEN : 0) + (l.isReadOnly() ? READ_ONLY : 0);
 		attributes = new HashMap<String, Object>();
 		version = l.getVersion();

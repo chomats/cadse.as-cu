@@ -1,6 +1,7 @@
 package fr.imag.adele.cadse.core.internal;
 
 import fr.imag.adele.cadse.core.CadseRuntime;
+import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.ItemType;
 
 public interface InternalCadseRuntime extends InternalItem {
@@ -23,5 +24,12 @@ public interface InternalCadseRuntime extends InternalItem {
 	abstract void setDisplayName(String displayName);
 
 	public abstract void addError(String msg);
+	
+	/**
+	 * @param idCadseDefintiion
+	 */
+	public void setIdCadseDefinition(CompactUUID idCadseDefintiion);
 
+	
+	public abstract void setCstQualifiedClassName(String cstClass);
 }

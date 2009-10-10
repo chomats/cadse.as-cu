@@ -57,7 +57,7 @@ public abstract class WLWCOperationImpl implements InternalWLWCOperation, WLWCOp
 	 * 
 	 * @see fede.workspace.domain.delta.InternalWLWCOperation#addInParent()
 	 */
-	public void addInParent() throws CadseException {
+	public void addInParent()  {
 		getWorkingCopy().actionAddOperation(this);
 	}
 

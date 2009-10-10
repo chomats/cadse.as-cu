@@ -22,7 +22,7 @@ package fr.imag.adele.cadse.core.var;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.imag.adele.cadse.core.CadseRootCST;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 
@@ -141,7 +141,7 @@ public class ContextVariable {
 	 * @return short name of <code>item</code> item defined in this context.
 	 */
 	public String getName(Item item) {
-		String ret = _values.get(item.getId().toString() + CadseRootCST.ITEM_TYPE_at_NAME);
+		String ret = _values.get(item.getId().toString() + CadseGCST.ITEM_at_NAME);
 		if (ret != null) {
 			return ret;
 		}
@@ -175,7 +175,7 @@ public class ContextVariable {
 	 */
 
 	public String getQualifiedName(Item item) {
-		String ret = _values.get(item.getId().toString() + CadseRootCST.ITEM_TYPE_at_NAME);
+		String ret = _values.get(item.getId().toString() + CadseGCST.ITEM_at_NAME);
 		if (ret != null) {
 			return ret;
 		}

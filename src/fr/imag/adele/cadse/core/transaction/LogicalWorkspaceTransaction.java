@@ -211,11 +211,13 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	public ItemDelta loadItem(ItemDescriptionRef itemRef) throws CadseException;
 
 	/**
+	 * Giving a reference to an item
 	 * Loads from persistence an item and returns it. A load operation is
 	 * composed of - an item create operation and - many set attribute
 	 * operations - many create link operations Transaction listeners are not
 	 * notified of this load operation until method loadItems(...) is called and
 	 * are not notified about these set attribute and create link operations.
+	 * must call finishLoaded and setLoaded()
 	 * 
 	 * @param id
 	 *            id of the item to load
@@ -491,4 +493,6 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 *             if the link is not found
 	 */
 	public LinkDelta getLink(Link link) throws CadseException;
+
+	public ItemDelta loadItem(Item item);
 }

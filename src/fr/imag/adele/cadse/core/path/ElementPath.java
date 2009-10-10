@@ -46,7 +46,7 @@ public abstract class ElementPath {
 	 * @return the element path[]
 	 */
 	public ElementPath[] available() {
-		List<LinkType> lts = getItemType().getOugoingLinkTypes();
+		List<LinkType> lts = getItemType().getOutgoingLinkTypes();
 		int closure = 0;
 		for (LinkType lt : lts) {
 			if (lt.getDestination().equals(getItemType()))

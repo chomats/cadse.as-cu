@@ -128,7 +128,7 @@ public class LinkRevisionDelta extends ObjectTeamChange implements ITeamChangeOb
 		destination = null;// new ItemDescriptionRef(l.getDestination());
 		state = (l.isAggregation() ? LinkDescription.AGGREGATION : 0)
 				+ (l.isComposition() ? LinkDescription.ANNOTATION : 0)
-				+ (l.isAnnotation() ? LinkDescription.COMPOSITION : 0) + (l.isPart() ? LinkDescription.PART : 0)
+				+ (l.isAnnotation() ? LinkDescription.COMPOSITION : 0) + (l.getLinkType().isPart() ? LinkDescription.PART : 0)
 				+ (l.isRequire() ? LinkDescription.REQUIRE : 0) + (l.isDerived() ? LinkDescription.DERIBED : 0)
 				+ (l.isHidden() ? LinkDescription.HIDDEN : 0) + (l.isReadOnly() ? LinkDescription.READ_ONLY : 0);
 

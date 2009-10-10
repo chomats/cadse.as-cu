@@ -156,4 +156,6 @@ public interface IPage extends Item, IEventListener, IPageObject, IValidateContr
 	abstract boolean runCreationPage();
 
 	abstract void setItem(Item item);
+
+	abstract boolean isEmpty();
 }

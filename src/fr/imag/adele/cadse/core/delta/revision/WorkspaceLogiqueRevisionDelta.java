@@ -28,7 +28,7 @@ import java.util.Stack;
 import java.util.logging.Logger;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CadseRootCST;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemDescriptionRef;
@@ -334,7 +334,7 @@ public class WorkspaceLogiqueRevisionDelta {
 			headValue = head.getQualifiedName();
 		}
 		AttributeRevisionDelta uniqueAttribute = new AttributeRevisionDelta(delta,
-				CadseRootCST.ITEM_TYPE_at_QUALIFIED_NAME, baseValue, headValue, currentValue);
+				CadseGCST.ITEM_at_QUALIFIED_NAME, baseValue, headValue, currentValue);
 		if (!uniqueAttribute.currentValueEqualsHeadValue()) {
 			if (headValue != null && headValue != AttributeRevisionDelta.NOT_PRESENT) {
 				this.headUniqueName.put((String) headValue, delta);
@@ -355,7 +355,7 @@ public class WorkspaceLogiqueRevisionDelta {
 		if (head != null) {
 			headValue = head.getName();
 		}
-		delta.addAttribute(new AttributeRevisionDelta(delta, CadseRootCST.ITEM_TYPE_at_NAME, baseValue, headValue,
+		delta.addAttribute(new AttributeRevisionDelta(delta, CadseGCST.ITEM_at_NAME, baseValue, headValue,
 				currentValue));
 
 		// is ReadOnly
@@ -371,7 +371,7 @@ public class WorkspaceLogiqueRevisionDelta {
 		if (head != null) {
 			headValue = Boolean.toString(head.isReadOnly());
 		}
-		delta.addAttribute(new AttributeRevisionDelta(delta, CadseRootCST.ITEM_TYPE_at_READ_ONLY, baseValue, headValue,
+		delta.addAttribute(new AttributeRevisionDelta(delta, CadseGCST.ITEM_at_ITEM_READONLY, baseValue, headValue,
 				currentValue));
 
 		// is Valid

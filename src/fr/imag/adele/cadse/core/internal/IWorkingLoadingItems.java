@@ -21,14 +21,14 @@ package fr.imag.adele.cadse.core.internal;
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ItemDescriptionRef;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
+import fr.imag.adele.cadse.core.delta.ItemDelta;
 
 public interface IWorkingLoadingItems {
 
 	public abstract Item getItem(CompactUUID id);
 
-	public Item loadItem(ItemDescriptionRef ref) throws CadseException;
+	public Item loadItem(ItemDelta ref) throws CadseException;
 
 	public LogicalWorkspace getLogicalWorkspace();
 }

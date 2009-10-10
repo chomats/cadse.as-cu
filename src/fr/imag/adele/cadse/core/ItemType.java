@@ -24,7 +24,9 @@ package fr.imag.adele.cadse.core;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
+import fr.imag.adele.cadse.core.internal.ItemTypeInternal;
 import fr.imag.adele.cadse.core.key.SpaceKeyType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
 import fr.imag.adele.cadse.core.ui.IActionContributor;
@@ -45,7 +47,7 @@ import fr.imag.adele.cadse.core.ui.Pages;
  * @date 26/09/05
  */
 
-public interface ItemType extends Item, IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster {
+public interface ItemType extends Item, IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster, ItemTypeInternal {
 
 	/** The Constant PART. */
 	public static final int	PART			= 0x0002;
@@ -127,12 +129,12 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * instance's number of this link type is undefined), or either greater than
 	 * <tt>min</tt>.
 	 * 
-	 * @param uuid
-	 *            TODO
+	 * @param id
+	 *            runtime id define in cadseg
 	 * @param intID
 	 *            the int id
-	 * @param id
-	 *            the id
+	 * @param name
+	 *            the name
 	 * @param kind :
 	 *            kind of link type, can be a Aggregation, or a Contaiment, or
 	 *            Other.
@@ -165,18 +167,18 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 *                WorkspaceType.<br/> IllegalArgumentException: Invalid
 	 *                assignment, verify the values min and max.<br/> <br/>
 	 */
-	public abstract LinkType createLinkType(CompactUUID uuid, int intID, String id, int kind, int min, int max,
+	public abstract LinkType createLinkType(CompactUUID id, int intID, String name, int kind, int min, int max,
 			String selection, LinkType inverse) throws CadseException;
 
 	/**
 	 * Creates the link type.
 	 * 
-	 * @param uuid
-	 *            TODO
-	 * @param intID
-	 *            the int id
 	 * @param id
-	 *            the id
+	 *            runtime id define in cadseg
+	 * @param intID
+	 *            the int id (not used) gave 0
+	 * @param name
+	 *            the name
 	 * @param kind
 	 *            the kind
 	 * @param min
@@ -189,19 +191,20 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 *            the destination
 	 * 
 	 * @return the link type
+	 * @throws CadseException 
 	 */
-	public abstract LinkType createLinkType(CompactUUID uuid, int intID, String id, int kind, int min, int max,
-			String selection, ItemType destination);
+	public abstract LinkType createLinkType(CompactUUID id, int intID, String name, int kind, int min, int max,
+			String selection, ItemType destination) throws CadseException;
 
 	/**
-	 * Get an ougoing link type by id.
+	 * Get an outgoing link type by id.
 	 * 
-	 * @param id
-	 *            the id
+	 * @param name
+	 *            the name
 	 * 
 	 * @return a link type if found; null if not found.
 	 */
-	public abstract LinkType getOutgoingLinkType(String id);
+	public abstract LinkType getOutgoingLinkType(String name);
 
 	/**
 	 * Gets the outgoing link type.
@@ -230,20 +233,20 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	/**
 	 * Get an incoming link type by id.
 	 * 
-	 * @param id
-	 *            the id
+	 * @param name
+	 *            the name
 	 * 
 	 * @return a link type if found; null if not found.
 	 */
-	public abstract LinkType getIncomingLinkType(String id);
+	public abstract LinkType getIncomingLinkType(String name);
 
-	/**
-	 * Get all hierarchical outgoing link types.
-	 * 
-	 * @return an unmodifiable list all hierarchical outgoing link types.
-	 */
-	@Deprecated
-	public abstract List<LinkType> getOugoingLinkTypes();
+//	/**
+//	 * Get all hierarchical outgoing link types.
+//	 * 
+//	 * @return an unmodifiable list all hierarchical outgoing link types.
+//	 */
+//	@Deprecated
+//	public abstract List<LinkType> getOugoingLinkTypes();
 
 	/**
 	 * Get all hierarchical outgoing link types.
@@ -378,7 +381,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * @param type
 	 *            the type
 	 * 
-	 * @return the incoming one
+	 * @return the incoming one if found or null if none or more one.
 	 * 
 	 * @throws CadseException
 	 *             the melusine exception
@@ -529,7 +532,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public SpaceKeyType getSpaceKeyType();
 
-	public <T> T getApdapterManager(Class<T> clazz);
+	public <T> T getApdapter(Item instance, Class<T> clazz);
 
 	/**
 	 * Returns factory used to create item of this type.
@@ -556,5 +559,13 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	public IPage getFirstModificationPage();
 
 	public CadseRuntime getCadseRuntime();
+
+	
+/**
+ * true if it a runtime ItemType (children of a RuntimeCadse, not a cadseg IT, not a dynamic IT
+ * @return
+ */
+	public boolean isRuntime();
+
 
 }

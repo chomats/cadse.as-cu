@@ -37,7 +37,7 @@ public interface InternalLogicalWorkspaceTransaction {
 
 	public abstract void actionAddLink(LinkDescription linkDescription) throws CadseException;
 
-	public abstract void actionAddOperation(WLWCOperationImpl operation) throws CadseException;
+	public abstract void actionAddOperation(WLWCOperationImpl operation) ;
 
 	// <T> void actionAddAttribute(CompactUUID itemId, IAttributeType<T> key, T
 	// value) throws CadseException;
@@ -80,25 +80,7 @@ public interface InternalLogicalWorkspaceTransaction {
 
 	Item getBaseItem(CompactUUID id);
 
-	Collection<Item> getIncomingItem(ItemDelta itemOperation, boolean acceptDelete, boolean acceptAdd);
 
-	Collection<Item> getIncomingItem(ItemDelta itemOperation, LinkType lt, boolean acceptDelete, boolean acceptAdd);
-
-	List<LinkDelta> getIncomingLinkOperations(ItemDelta itemOperation);
-
-	List<LinkDelta> getIncomingLinks(ItemDelta itemOperation, boolean acceptDelete, boolean acceptAdd);
-
-	/**
-	 * Return the incomings link of itemOperation (added link, not deleted link)
-	 * which type is lt
-	 * 
-	 * @param itemOperation
-	 *            the item which get the incoming links
-	 * @param lt
-	 *            the type of the link which get
-	 * @return the incomings links of type lt or empty list
-	 */
-	List<Link> getIncomingLinks(ItemDelta itemOperation, LinkType lt, boolean acceptDelete, boolean acceptAdd);
 
 	ItemType getItemType(CompactUUID id, boolean createUnresolvedType);
 

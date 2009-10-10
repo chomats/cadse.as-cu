@@ -20,13 +20,10 @@ package fr.imag.adele.cadse.core.util;
 
 import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.delta.WLWCOperationImpl;
 
 public interface IErrorCollector {
 
 	public void addError(Item item, String msg);
 
 	public void addError(CompactUUID id, String msg);
-
-	public void addError(WLWCOperationImpl id, String msg);
 }

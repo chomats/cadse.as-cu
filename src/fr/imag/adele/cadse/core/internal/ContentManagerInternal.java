@@ -800,28 +800,44 @@ public class ContentManagerInternal implements ContentItem {
 	}
 
 	public String getQualifiedName(boolean recompute) throws CadseException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public String getShortName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<invalid content>";
 	}
 
 	public String getUniqueName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void setName(String name) throws CadseException {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void setQualifiedName(String qualifiedName) throws CadseException {
-		// TODO Auto-generated method stub
+	}
 
+	@Override
+	public Item getOwnerItem() {
+		return null;
+	}
+
+	@Override
+	public Item getBaseItem() {
+		return this;
+	}
+
+	@Override
+	public void addChild(ContentItem contentItem) {
+	}
+
+	@Override
+	public void removeChild(ContentItem contentItem) {
+	}
+
+	@Override
+	public boolean exist() {
+		return false;
 	}
 
 }

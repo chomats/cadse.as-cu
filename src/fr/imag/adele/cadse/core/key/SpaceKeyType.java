@@ -19,8 +19,11 @@
 
 package fr.imag.adele.cadse.core.key;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CadseRootCST;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
@@ -83,6 +86,8 @@ public class SpaceKeyType {
 		ISpaceKey parentKey = null;
 		if (parentSpaceKeyType != null) {
 			parentKey = getParentSpaceKeyFromItem(item);
+			if (parentKey == AbstractSpaceKey.INVALID)
+				return AbstractSpaceKey.INVALID;
 		}
 		return createKey(item, parentKey);
 	}
@@ -113,7 +118,7 @@ public class SpaceKeyType {
 		if (parentSpaceKeyType != null) {
 			parentKey = parentItem != null ? parentItem.getKey() : AbstractSpaceKey.INVALID;
 		}
-		return createKey(name, parentKey, key_attributes);
+		return createKey(convertName(name), parentKey, key_attributes);
 	}
 
 	protected ISpaceKey createKey(String name, ISpaceKey parentKey, Object... key_attributes) {
@@ -135,6 +140,8 @@ public class SpaceKeyType {
 	protected ISpaceKey getParentSpaceKeyFromItem(Item item) {
 		Item partparent = item.getPartParent(parentSpaceKeyType);
 		if (partparent == null) {
+			Logger.getLogger("fr.imag.adele.cadse.key").log(Level.SEVERE, 
+					"Cannot find the parent item for "+item.getType().getName() + "::"+item.getDisplayName());
 			return AbstractSpaceKey.INVALID;
 		}
 		ISpaceKey key = partparent.getKey();
@@ -178,6 +185,6 @@ public class SpaceKeyType {
 	}
 
 	public IAttributeType<?>[] getAttributeTypes() {
-		return new IAttributeType<?>[] { CadseRootCST.ITEM_TYPE_at_NAME_ };
+		return new IAttributeType<?>[] { CadseGCST.ITEM_at_NAME_ };
 	}
 }

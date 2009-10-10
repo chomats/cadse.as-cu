@@ -26,6 +26,7 @@ import fr.imag.adele.cadse.core.oper.annotation.OperParameter;
 import fr.imag.adele.cadse.core.oper.annotation.OperTest;
 import fr.imag.adele.cadse.core.oper.annotation.ParameterKind;
 
+@Deprecated
 @OperTest(testMustBeStopped=true)
 public class WSOCreateLink extends WSOperation {
 	@OperParameter(constructorPosition=0, type = ParameterKind.item_ref)

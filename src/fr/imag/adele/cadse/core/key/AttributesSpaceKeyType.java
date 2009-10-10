@@ -19,6 +19,7 @@
 package fr.imag.adele.cadse.core.key;
 
 import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
@@ -36,7 +37,10 @@ public class AttributesSpaceKeyType extends SpaceKeyType {
 	protected ISpaceKey createKey(Item item, ISpaceKey parentKey) throws CadseException {
 		Object[] values = new Object[attributeTypes.length];
 		for (int i = 0; i < values.length; i++) {
-			values[i] = item.getAttribute(attributeTypes[i]);
+			if (CadseGCST.ITEM_at_NAME_ == attributeTypes[i])
+				values[i] = convertName(getName(item));
+			else
+				values[i] = item.getAttribute(attributeTypes[i]);
 			if (values[i] == null) {
 				throw new CadseException("Invalid key : value for key " + attributeTypes[i].getName() + " is null");
 			}

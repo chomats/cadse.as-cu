@@ -283,6 +283,28 @@ public class Messages extends NLS {
 	/** The no_content. */
 	public static String		no_content;
 
+	
+	public static String attribute_definition_is_null;
+	public static String cannot_add_link_of_dest_is_null;
+	public static String cannot_add_link_of_type_is_null;
+	public static String cannot_create_link_from_deleted_source;
+	public static String cannot_create_link_from_unexisting_source;
+	public static String cannot_create_link_to_an_untyped_item;
+	public static String cannot_create_link_to_deleted_destination;
+	public static String cannot_create_link_to_unexisting_destination;
+	public static String cannot_delete_item_not_modifiable;
+	public static String cannot_find_item;
+	public static String cannot_load_a_static_item;
+	public static String cannot_set_attribute_not_modifiable;
+	public static String link_has_not_same_link_type_or_null;
+	public static String link_has_not_same_source;
+	public static String link_not_found_in_outgoing;
+	public static String parameter_link_one_is_deleted;
+	public static String parameter_link_one_is_null;
+	public static String parameter_link_two_id_deleted;
+	public static String parameter_link_two_is_null;
+	public static String cannot_create_link_bad_link_type;
+	
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
