@@ -128,14 +128,14 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	public Item getItem(CompactUUID id);
 
 	/**
-	 * Get item by id.
+	 * Get item by qualified name.
 	 * 
-	 * @param uniqueName
-	 *            the unique name
+	 * @param qualifiedName
+	 *            the qualified name
 	 * 
 	 * @return an item if found, null if not found.
 	 */
-	public Item getItem(String uniqueName);
+	public Item getItem(String qualifiedName);
 
 	/**
 	 * Gets the item by type and name. Use key to search it.
@@ -267,13 +267,13 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	public Item loadItem(ItemDescriptionRef ref) throws CadseException;
 
 	/**
-	 * Test if an item id exists. This id can be an compostant of a closed
-	 * composite
+	 * Test if an item exists by key or by qualified name.
+	 *  This id can be an compostant of a closed composite
 	 * 
 	 * @param item
 	 *            the item
 	 * 
-	 * @return true an item id if found, false if not found.
+	 * @return true an item if found, false if not found. Found item is not the parameter item.
 	 */
 
 	public boolean existsItem(Item item);

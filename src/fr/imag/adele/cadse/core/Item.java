@@ -1247,6 +1247,6 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 */
 	public Item getBaseItem();
 
-	public boolean exist();
+	public boolean exists();
 
 }

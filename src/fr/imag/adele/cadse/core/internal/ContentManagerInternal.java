@@ -836,7 +836,7 @@ public class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
-	public boolean exist() {
+	public boolean exists() {
 		return false;
 	}
 

@@ -313,7 +313,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * 
 	 * @return true, if successful
 	 */
-	public boolean hasUniqueNameAttribute();
+	public boolean hasQualifiedNameAttribute();
 
 	/**
 	 * Sets the checks for short name attribute.
