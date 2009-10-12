@@ -31,6 +31,7 @@ import fr.imag.adele.cadse.core.ItemState;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.WSEvent;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
+import fr.imag.adele.cadse.core.attribute.StringAttributeType;
 
 /**
  * The Class ItemDelta.
@@ -726,6 +727,11 @@ public class ImmutableItemDelta {
 
 	public void setItemtypedelta(ImmutableItemTypeDelta itemtypedelta) {
 		this._itemtypedelta = itemtypedelta;
+	}
+
+	public boolean hasModifiedAttribute(IAttributeType<?> att) {
+		return hasSetAttributes(att.getName());
+		
 	}
 
 }
