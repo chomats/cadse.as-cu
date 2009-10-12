@@ -253,5 +253,7 @@ public interface Pages extends IPageObject, IContextReference {
 	abstract void setFilterContext(FilterContext filterContext);
 
 	abstract FilterContext getFilterContext();
+	
+	boolean isModificationPages();
 
 }
