@@ -128,6 +128,8 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 	}
 
 	public String canCreateChildItem(Item itemParent, LinkType lt, ItemType destType) {
+		if (itemParent.isStatic())
+			return "cannot change static item";
 		return null;
 	}
 
@@ -137,6 +139,8 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 	}
 
 	public String canDeleteItem(Item item) {
+		if (item.isStatic())
+			return "cannot change static item";
 		return null;
 	}
 
