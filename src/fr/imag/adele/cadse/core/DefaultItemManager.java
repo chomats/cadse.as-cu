@@ -21,6 +21,7 @@ package fr.imag.adele.cadse.core;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -180,7 +181,7 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 
 		// validate Cardinalities
 		for (LinkType linkType : item.getType().getOutgoingLinkTypes()) {
-			List<Link> links = item.getOutgoingLinks(linkType);
+			List<Link> links = filterDerived(item.getOutgoingLinks(linkType));
 			if (links.size() < linkType.getMin()) {
 				reporter.report(item, CODE_CARDINALITY_PROBLEM, "{2}::{0} : Minimum {1} link required  ", linkType
 						.getName(), linkType.getMin(), item.getQualifiedDisplayName());
@@ -192,6 +193,15 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 		}
 
 		return Collections.emptyList();
+	}
+
+	private List<Link> filterDerived(List<Link> outgoingLinks) {
+		ArrayList<Link> ret =new ArrayList<Link>();
+		for (Link link : ret) {
+			if (link.isDerived()) continue;
+			ret.add(link);
+		}
+		return ret;
 	}
 
 	public Pages createCreationPages(Item theItemParent, LinkType theLinkType, ItemType desType) {
