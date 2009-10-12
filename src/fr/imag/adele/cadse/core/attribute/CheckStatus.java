@@ -18,6 +18,8 @@
  */
 package fr.imag.adele.cadse.core.attribute;
 
+import fr.imag.adele.cadse.core.util.NLS;
+
 /**
  * Represents errors attached to an object.
  * 
@@ -31,8 +33,9 @@ package fr.imag.adele.cadse.core.attribute;
  */
 public class CheckStatus {
 	
-	public final int _type;
-	public final String _message;
+	private final int _type;
+	private final String _message;
+	private Object[] _args;
 	
 	/**
 	 * Create an object status representing errors attached to an object.
@@ -40,8 +43,32 @@ public class CheckStatus {
 	 * @param type IPageController.* error types
 	 * @param msg  message explaining this status
 	 */
-	public CheckStatus(int type, String msg) {
+	public CheckStatus(int type, String msg, Object ...args) {
 		this._type = type; 
 		this._message = msg;
+		this._args = args;
 	}
+	
+	public Object[] getArgs() {
+		return _args;
+	}
+	
+	public String getMessage() {
+		return _message;
+	}
+	
+	public String getFormatedMessage() {
+		return NLS.bind(_message, _args);
+	}
+	
+	public int getType() {
+		return _type;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return getFormatedMessage();
+	}
+	
 }
