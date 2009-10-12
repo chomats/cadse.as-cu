@@ -570,7 +570,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	/*
 	 * return the implemented class of the manager
 	 */
-public String getItemManagerClass();
+	public String getItemManagerClass();
 
 
 }
