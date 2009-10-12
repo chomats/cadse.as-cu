@@ -32,4 +32,5 @@ public interface InternalCadseRuntime extends InternalItem {
 
 	
 	public abstract void setCstQualifiedClassName(String cstClass);
+	
 }

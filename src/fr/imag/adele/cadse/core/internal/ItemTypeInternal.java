@@ -24,5 +24,5 @@ public interface ItemTypeInternal {
 	public void computegetGoodCreationPage(Map<String, IPageFactory> map,
 			List<IPageFactory> list);
 
-	
+	public void setCSTName(String cst);
 }

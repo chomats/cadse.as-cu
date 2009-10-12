@@ -572,5 +572,5 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public String getItemManagerClass();
 
-
+	public String getCSTName();
 }

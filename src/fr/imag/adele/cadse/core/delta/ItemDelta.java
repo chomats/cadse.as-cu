@@ -308,7 +308,7 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	public <T> T getAdapter(Class<T> clazz);
 
 	public void setParent(ItemDelta parent, LinkType lt, boolean createLinkIfNeed,
-			boolean notify);
+			boolean notify) throws CadseException;
 
 	
 	public LogicalWorkspaceTransaction getCopy();
