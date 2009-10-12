@@ -45,6 +45,13 @@ public class ContextVariable {
 	/** The values. */
 	protected Map<String, String>		_values	= new HashMap<String, String>();
 
+	public ContextVariable(boolean b) {
+		_generated = b;
+	}
+	
+	public ContextVariable() {
+	}
+
 	/**
 	 * Returns <code>att</code> attribute value of <code>item</code> item
 	 * defined in this context. If it is not defined in this context, return
@@ -182,7 +189,7 @@ public class ContextVariable {
 		return item.getQualifiedName();
 	}
 	
-	boolean _generated;
+	boolean _generated = true;
 	
 	public boolean isGenerated() {
 		return _generated;
