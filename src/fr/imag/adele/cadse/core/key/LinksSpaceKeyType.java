@@ -77,7 +77,7 @@ public class LinksSpaceKeyType extends SpaceKeyType {
 		assert lt_item != item;
 
 		ISpaceKey lt_key = AbstractSpaceKey.INVALID;
-		if (lt_item != null) {
+		if (lt_item != null && lt_item.isResolved()) {
 			lt_key = lt_item.getKey();
 			
 		}
