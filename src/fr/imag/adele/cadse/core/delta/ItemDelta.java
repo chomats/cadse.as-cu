@@ -71,9 +71,9 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public Collection<LinkDelta> getDeletedLinks();
 
-	public Collection<Item> getIncomingItems(boolean acceptDelete, boolean acceptAdd);
+	public Collection<ItemDelta> getIncomingItems(boolean acceptDelete, boolean acceptAdd);
 
-	public Collection<Item> getIncomingItems(LinkType lt, boolean acceptDelete, boolean acceptAdd);
+	public Collection<ItemDelta> getIncomingItems(LinkType lt, boolean acceptDelete, boolean acceptAdd);
 
 	public List<LinkDelta> getIncomingLinkOperations();
 
@@ -97,11 +97,11 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public List<OrderOperation> getOrdersOperation(LinkType lt);
 
-	public Collection<Item> getOutgoingItems(boolean acceptDeletedLink, boolean resovledOnly);
+	public Collection<ItemDelta> getOutgoingItems(boolean acceptDeletedLink, boolean resovledOnly);
 
-	public Collection<Item> getOutgoingItems(boolean acceptDeletedLink, LinkType lt, boolean resovledOnly);
+	public Collection<ItemDelta> getOutgoingItems(boolean acceptDeletedLink, LinkType lt, boolean resovledOnly);
 
-	public Collection<Item> getOutgoingItems(boolean acceptDeletedLink, String linkType, boolean resovledOnly);
+	public Collection<ItemDelta> getOutgoingItems(boolean acceptDeletedLink, String linkType, boolean resovledOnly);
 
 	/*
 	 * (non-Javadoc)
@@ -171,7 +171,7 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public List<LinkDelta> getOutgoingLinkOperations(LinkType linkType);
 
-	public List<Link> getOutgoingLinks(boolean acceptDeleted);
+	public List<LinkDelta> getOutgoingLinks(boolean acceptDeleted);
 
 	public List<LinkDelta> getOutgoingLinks(CompactUUID destId);
 
