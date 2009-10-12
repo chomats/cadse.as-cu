@@ -114,11 +114,18 @@ public class SpaceKeyType {
 	 * @throws CadseException
 	 */
 	public ISpaceKey computeKey(String name, Item parentItem, Object... key_attributes) throws CadseException {
+		ISpaceKey parentKey = getParentKeyFromParentItem(parentItem);
+		if (parentKey == AbstractSpaceKey.INVALID)
+			return AbstractSpaceKey.INVALID;
+		return createKey(convertName(name), parentKey, key_attributes);
+	}
+
+	protected ISpaceKey getParentKeyFromParentItem(Item parentItem) {
 		ISpaceKey parentKey = null;
 		if (parentSpaceKeyType != null) {
-			parentKey = parentItem != null ? parentItem.getKey() : AbstractSpaceKey.INVALID;
+			parentKey = getParentSpaceKeyFromParentItem(parentItem);
 		}
-		return createKey(convertName(name), parentKey, key_attributes);
+		return parentKey;
 	}
 
 	protected ISpaceKey createKey(String name, ISpaceKey parentKey, Object... key_attributes) {
@@ -149,6 +156,26 @@ public class SpaceKeyType {
 		return key;
 	}
 
+	/**
+	 * Gets the parent space key from direct parent of possible item.
+	 * 
+	 * @param item
+	 *            the direct parent of possible item
+	 * 
+	 * @return the parent space key for possible item
+	 */
+	public ISpaceKey getParentSpaceKeyFromParentItem(Item item) {
+		Item partparent = item.getType() == parentSpaceKeyType ? item : item.getPartParent(parentSpaceKeyType);
+		if (partparent == null) {
+			Logger.getLogger("fr.imag.adele.cadse.key").log(Level.SEVERE, 
+					"Cannot find the parent item for "+item.getType().getName() + "::"+item.getDisplayName());
+			return AbstractSpaceKey.INVALID;
+		}
+		ISpaceKey key = partparent.getKey();
+		if (key == null)
+			return AbstractSpaceKey.INVALID;
+		return key;
+	}
 	/**
 	 * Retourn une chaine humainenement lisible indiquant la porter de la cl�.
 	 * 
