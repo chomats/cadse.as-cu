@@ -1209,6 +1209,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String ITEM_TYPE_at_CUSTOM_MANAGER="custom-manager";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType ITEM_TYPE_at_CUSTOM_MANAGER_;
+	/**
+	    @generated
+	*/
 	public final static String ITEM_TYPE_at_HAS_CONTENT="has-content";
 	/**
 	    @generated
