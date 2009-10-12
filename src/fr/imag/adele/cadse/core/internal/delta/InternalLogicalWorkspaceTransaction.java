@@ -134,5 +134,7 @@ public interface InternalLogicalWorkspaceTransaction {
 	void remove(ItemDelta itemOperation);
 
 	void setLog(ILoggableAction log);
+	
+	public void validateDeleteLink(LinkDelta link) throws CadseException;
 
 }

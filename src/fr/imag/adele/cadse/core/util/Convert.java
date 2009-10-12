@@ -153,8 +153,8 @@ public class Convert {
 		if (value instanceof String) {
 			return Double.valueOf((String) value);
 		}
-		if (value instanceof Double) {
-			return (Double) (value);
+		if (value instanceof Number) {
+			return ((Number) (value)).doubleValue();
 		}
 		throw new ClassCastException("Can't convert to Double value the type " + value.getClass());
 
@@ -167,8 +167,8 @@ public class Convert {
 		if (value instanceof String) {
 			return Double.valueOf((String) value);
 		}
-		if (value instanceof Double) {
-			return (Double) (value);
+		if (value instanceof Number) {
+			return ((Number) (value)).doubleValue();
 		}
 		throw new ClassCastException("Can't convert to Double value the type " + value.getClass());
 
@@ -184,8 +184,8 @@ public class Convert {
 		if (value instanceof String) {
 			return Double.valueOf((String) value);
 		}
-		if (value instanceof Double) {
-			return (Double) (value);
+		if (value instanceof Number) {
+			return ((Number) (value)).doubleValue();
 		}
 		throw new ClassCastException("Can't convert to Double value the type " + value.getClass());
 
@@ -198,8 +198,8 @@ public class Convert {
 		if (value instanceof String) {
 			return Long.valueOf((String) value);
 		}
-		if (value instanceof Long) {
-			return (Long) (value);
+		if (value instanceof Number) {
+			return ((Number) (value)).longValue();
 		}
 		throw new ClassCastException("Can't convert to Long value the type " + value.getClass());
 
@@ -215,8 +215,8 @@ public class Convert {
 		if (value instanceof String) {
 			return Long.valueOf((String) value);
 		}
-		if (value instanceof Long) {
-			return (Long) (value);
+		if (value instanceof Number) {
+			return ((Number) (value)).longValue();
 		}
 		throw new ClassCastException("Can't convert to Long value the type " + value.getClass());
 
@@ -229,8 +229,8 @@ public class Convert {
 		if (value instanceof String) {
 			return Integer.valueOf((String) value);
 		}
-		if (value instanceof Integer) {
-			return (Integer) (value);
+		if (value instanceof Number) {
+			return ((Number) (value)).intValue();
 		}
 		throw new ClassCastException("Can't convert to Integer value the type " + value.getClass());
 
