@@ -181,5 +181,15 @@ public class ContextVariable {
 		}
 		return item.getQualifiedName();
 	}
+	
+	boolean _generated;
+	
+	public boolean isGenerated() {
+		return _generated;
+	}
+	
+	public void setGenerated(boolean generated) {
+		_generated = generated;
+	}
 
 }
