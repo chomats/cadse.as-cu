@@ -373,10 +373,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static ItemType CADSEG_CONTENT_ITEM;
-	/**
-	    @generated
-	*/
 	public static ItemType COMPOSER;
 	/**
 	    @generated
@@ -446,14 +442,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType CONFIGURATION_MODEL_lt_BUILD;
-	/**
-	    @generated
-	*/
-	public static ItemType CONTENT_CADSEG_ITEM_TYPE;
-	/**
-	    @generated
-	*/
-	public static LinkType CONTENT_CADSEG_ITEM_TYPE_lt_RUNTIME_TYPE;
 	/**
 	    @generated
 	*/
