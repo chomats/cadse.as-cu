@@ -49,6 +49,16 @@ import fr.imag.adele.cadse.core.delta.SetAttributeOperation;
  */
 public interface LogicalWorkspaceTransactionListener {
 
+	static public int notifyAbortTransaction = 1;
+	static public int notifyAddMappingOperation = 2;
+	static public int notifyBeginTransaction = 3;
+	static public int notifyCancelCreatedItem = 1;
+	static public int notifyCancelCreatedLink = 1;
+	static public int notifyChangeAttribute = 1;
+	static public int notifyCreatedItem = 1;
+	static public int notifyChangedContent = 1;
+	static public int notifyChangeLinkOrder = 1;
+	
 	/*
 	 * Global transaction management methods.
 	 */

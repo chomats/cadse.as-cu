@@ -30,8 +30,7 @@ public class SpaceKey extends AbstractSpaceKey implements ISpaceKey {
 
 	/** The name. */
 	protected String	name;
-	int					_h	= 0;
-
+	
 	/**
 	 * Instantiates a new space key.
 	 * 
@@ -114,7 +113,9 @@ public class SpaceKey extends AbstractSpaceKey implements ISpaceKey {
 	 */
 	@Override
 	public void setName(String shortName) {
-		this.name = shortName;
+		this.name = type.convertName(shortName);
+		_h = 0;
+		
 	}
 
 }

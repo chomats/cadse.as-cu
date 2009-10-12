@@ -304,6 +304,8 @@ public class Messages extends NLS {
 	public static String parameter_link_two_id_deleted;
 	public static String parameter_link_two_is_null;
 	public static String cannot_create_link_bad_link_type;
+
+	public static String error_invalid_assignement_key_allready_exists;
 	
 	static {
 		// initialize resource bundle

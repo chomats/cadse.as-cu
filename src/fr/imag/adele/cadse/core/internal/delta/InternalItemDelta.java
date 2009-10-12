@@ -22,6 +22,7 @@ import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.delta.ItemDelta;
 import fr.imag.adele.cadse.core.internal.IWorkingLoadingItems;
+import fr.imag.adele.cadse.core.key.ISpaceKey;
 import fr.imag.adele.cadse.core.util.IErrorCollector;
 
 public interface InternalItemDelta extends InternalItemOrLinkDelta {
@@ -42,4 +43,14 @@ public interface InternalItemDelta extends InternalItemOrLinkDelta {
 
 	public void loadItem(IWorkingLoadingItems wl, ItemDelta itemOperation, IErrorCollector errorCollector)
 			throws CadseException;
+	
+	/**
+	 * internal validate process set the next valide key
+	 * @param newK
+	 * @throws if the validate is allready exist.
+	 */
+	public void setNextKey(ISpaceKey newK) throws CadseException;
+	
+	
+	public ISpaceKey getNextKey();
 }

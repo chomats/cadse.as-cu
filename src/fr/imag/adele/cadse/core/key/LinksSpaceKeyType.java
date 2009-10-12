@@ -20,9 +20,11 @@
 package fr.imag.adele.cadse.core.key;
 
 import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 
 /**
  * The Class LinksSpaceKeyType.
@@ -64,10 +66,12 @@ public class LinksSpaceKeyType extends SpaceKeyType {
 	 * @see fede.workspace.domain.key.SpaceKeyType#computeKey(fede.workspace.domain.Item)
 	 */
 	@Override
-	public SpaceKey computeKey(Item item) throws CadseException {
+	public ISpaceKey computeKey(Item item) throws CadseException {
 		ISpaceKey parentKey = null;
 		if (parentSpaceKeyType != null) {
 			parentKey = getParentSpaceKeyFromItem(item);
+			if (parentKey == AbstractSpaceKey.INVALID)
+				return AbstractSpaceKey.INVALID;
 		}
 		Item lt_item = item.getOutgoingItem(lt, true);
 		assert lt_item != item;
@@ -75,9 +79,10 @@ public class LinksSpaceKeyType extends SpaceKeyType {
 		ISpaceKey lt_key = AbstractSpaceKey.INVALID;
 		if (lt_item != null) {
 			lt_key = lt_item.getKey();
-			if (lt_key == null) {
-				throw new CadseException("Cannot found key form " + lt_item);
-			}
+			
+		}
+		if (lt_key == null || lt_key == AbstractSpaceKey.INVALID) {
+			return AbstractSpaceKey.INVALID;
 		}
 		return new LinksSpaceKey(this, item.getName(), parentKey, lt_key);
 	}
@@ -97,5 +102,9 @@ public class LinksSpaceKeyType extends SpaceKeyType {
 		assert key_attributes.length == 1 && key_attributes[0] instanceof Item;
 
 		return new LinksSpaceKey(this, name, parentKey, ((Item) key_attributes[0]).getKey());
+	}
+	
+	public IAttributeType<?>[] getAttributeTypes() {
+		return new IAttributeType<?>[] { CadseGCST.ITEM_at_NAME_, lt };
 	}
 }

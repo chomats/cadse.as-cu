@@ -263,7 +263,7 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public Iterator<Item> propagateValue(String key);
 
-	public void setKey(ISpaceKey newkey);
+	public void setKey(ISpaceKey newkey) throws CadseException;
 
 	public void refresh();
 

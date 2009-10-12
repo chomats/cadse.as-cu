@@ -18,6 +18,7 @@
  */
 package fr.imag.adele.cadse.core.delta;
 
+import fr.imag.adele.cadse.core.CadseError;
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.internal.delta.InternalWLWCOperation;
@@ -30,7 +31,7 @@ public abstract class WLWCOperationImpl implements InternalWLWCOperation, WLWCOp
 	protected final WLWCOperation	_parent;
 	long							_commitFlag						= 0;
 	boolean							_loaded;
-	String[]						_errors							= null;
+	CadseError[]					_errors							= null;
 	private long					_timeStamp						= System.nanoTime();
 
 	public static long				beforeDeletingDestinationItem	= 0x00001;
@@ -48,8 +49,13 @@ public abstract class WLWCOperationImpl implements InternalWLWCOperation, WLWCOp
 	 * 
 	 * @see fede.workspace.domain.internal.delta.WLWCOperation#addError(java.lang.String)
 	 */
-	public void addError(String msg) {
-		_errors = ArraysUtil.add(String.class, _errors, msg);
+	public void addError(String msg, Object... args) {
+		addError(new CadseError(msg, args));
+	}
+	
+	@Override
+	public void addError(CadseError e) {
+		_errors = ArraysUtil.add(CadseError.class, _errors, e);
 	}
 
 	/*

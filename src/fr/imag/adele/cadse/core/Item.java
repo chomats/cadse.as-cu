@@ -1195,8 +1195,9 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @param newkey
 	 *            new item key.
+	 * @throws CadseException 
 	 */
-	public void setKey(ISpaceKey newkey);
+	public void setKey(ISpaceKey newkey) throws CadseException;
 
 	/**
 	 * Returns order number of specified link. Outgoing links of a same type are
