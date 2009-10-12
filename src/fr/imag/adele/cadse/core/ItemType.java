@@ -567,5 +567,10 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
  */
 	public boolean isRuntime();
 
+	/*
+	 * return the implemented class of the manager
+	 */
+public String getItemManagerClass();
+
 
 }
