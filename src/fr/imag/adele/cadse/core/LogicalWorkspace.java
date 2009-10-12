@@ -29,6 +29,7 @@ import fr.imag.adele.cadse.core.internal.Nullable;
 import fr.imag.adele.cadse.core.key.ISpaceKey;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
+import fr.imag.adele.cadse.core.var.ContextVariable;
 
 /**
  * Represents the CADSE workspace. A CADSE workspace is IDE workspace extended
@@ -404,5 +405,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	public <T> T getAttribute(Item source, String key, boolean ownerOnly);
 
 	public <T> T getAttribute(Item source, IAttributeType<T> type, boolean ownerOnly);
+
+	public ContextVariable getContext();
 
 }
