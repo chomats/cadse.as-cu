@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import fr.imag.adele.cadse.core.ItemType;
+import fr.imag.adele.cadse.core.Link;
+import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.ui.IPageFactory;
 
 public interface ItemTypeInternal {
@@ -25,4 +27,6 @@ public interface ItemTypeInternal {
 			List<IPageFactory> list);
 
 	public void setCSTName(String cst);
+	
+	public Link addOutgoingLinkType(LinkType ret);
 }

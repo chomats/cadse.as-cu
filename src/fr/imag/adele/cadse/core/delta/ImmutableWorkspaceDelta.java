@@ -373,6 +373,16 @@ public class ImmutableWorkspaceDelta {
 		}
 		return _items.values();
 	}
+	
+	public Collection<ImmutableItemDelta> getItems(ItemType it) {
+		if (_itembytypes == null) {
+			return Collections.emptyList();
+		}
+		ImmutableItemTypeDelta ret = _itembytypes.get(it);
+		if (ret == null)
+			return Collections.emptyList();
+		return ret.getItems();
+	}
 
 	public Collection<ImmutableItemTypeDelta> getItemTypes() {
 		if (_itembytypes == null) {
