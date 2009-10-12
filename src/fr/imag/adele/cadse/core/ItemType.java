@@ -306,7 +306,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * @param val
 	 *            the new checks for unique name attribute
 	 */
-	public void setHasUniqueNameAttribute(boolean val);
+	public void setHasQualifiedNameAttribute(boolean val);
 
 	/**
 	 * Checks for unique name attribute.
@@ -321,7 +321,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * @param val
 	 *            the new checks for short name attribute
 	 */
-	public void setHasShortNameAttribute(boolean val);
+	public void setHasNameAttribute(boolean val);
 
 	/**
 	 * Checks for short name attribute.
