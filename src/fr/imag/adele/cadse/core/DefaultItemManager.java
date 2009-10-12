@@ -197,7 +197,7 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 
 	private List<Link> filterDerived(List<Link> outgoingLinks) {
 		ArrayList<Link> ret =new ArrayList<Link>();
-		for (Link link : ret) {
+		for (Link link : outgoingLinks) {
 			if (link.isDerived()) continue;
 			ret.add(link);
 		}
