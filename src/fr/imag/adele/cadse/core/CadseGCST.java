@@ -645,10 +645,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static LinkType DATA_MODEL_lt_EXT_TYPES;
-	/**
-	    @generated
-	*/
 	public static LinkType DATA_MODEL_lt_TYPES;
 	/**
 	    @generated
