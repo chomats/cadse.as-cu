@@ -937,6 +937,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return all derived links.
 	 */
+	@Deprecated
 	public Set<DerivedLink> getDerivedLinks();
 
 	/**
@@ -947,6 +948,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return A set of derived link description.
 	 */
+	@Deprecated
 	public Set<DerivedLinkDescription> getDerivedLinkDescriptions(ItemDescription source);
 
 	/**
@@ -956,6 +958,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 *            the new derived links
 	 * @Deprecated User workspace logique copy and ItemOperation
 	 */
+	@Deprecated
 	public void setDerivedLinks(Set<DerivedLinkDescription> derivedLinks);
 
 	/**
@@ -981,6 +984,15 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 *         part and aggregation outgoing links.
 	 */
 	public boolean isAncestorOf(Item item);
+	
+	
+	public boolean isMemberOf(Item item);
+	
+	public Item getGroup();
+	public boolean isGroup();
+	public boolean isMember();
+	public List<Item> getMembers();
+	
 
 	/**
 	 * Returns CADSE domain. CADSE Domain is root entry to the current logical

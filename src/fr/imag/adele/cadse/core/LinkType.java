@@ -94,10 +94,16 @@ public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTr
 	 */
 	public static final int	CONTENT			= 0x0800;
 
+	
+	/**
+	 * Bit mask to determine content flag.
+	 */
+	public static final int	GROUP			= 0x1000;
+
 	/**
 	 * Bit mask to determine modified flag.
 	 */
-	public static final int	MODIFIED		= 0x08000;
+	public static final int	MODIFIED		= 0x8000;
 
 	/**
 	 * Cardinality value for unbounded.
