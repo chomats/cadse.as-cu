@@ -281,4 +281,8 @@ public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTr
 	 */
 	public boolean isRequire();
 
+	public void setIsGroup(boolean b);
+	
+	public boolean isGroup(boolean b);
+
 }
