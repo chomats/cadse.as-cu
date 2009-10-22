@@ -240,13 +240,6 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public abstract LinkType getIncomingLinkType(String name);
 
-//	/**
-//	 * Get all hierarchical outgoing link types.
-//	 * 
-//	 * @return an unmodifiable list all hierarchical outgoing link types.
-//	 */
-//	@Deprecated
-//	public abstract List<LinkType> getOugoingLinkTypes();
 
 	/**
 	 * Get all hierarchical outgoing link types.
@@ -254,6 +247,13 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * @return an unmodifiable list all hierarchical outgoing link types.
 	 */
 	public abstract List<LinkType> getOutgoingLinkTypes();
+	
+	/**
+	 * Get all hierarchical outgoing link types.
+	 * 
+	 * @return an unmodifiable list all hierarchical outgoing link types.
+	 */
+	public abstract List<LinkType> getGroupOutgoingLinkTypes();
 
 	/**
 	 * Get all owned outgoing link types, not hierarchical.
