@@ -36,7 +36,15 @@ public abstract class ViewFilter {
 
 	public void acceptNew(FilterContext context, List<NewMenuAction> result) {
 	}
+	
+	public boolean acceptNew(FilterContext context) {
+		return true;
+	}
 
 	public void filterNew(FilterContext context, List<NewMenuAction> result) {
+	}
+	
+	public boolean filterNew(FilterContext context) {
+		return false;
 	}
 }

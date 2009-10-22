@@ -21,6 +21,7 @@ package fr.imag.adele.cadse.core.ui.view;
 import java.util.HashSet;
 import java.util.Set;
 
+import fr.imag.adele.cadse.core.GroupType;
 import fr.imag.adele.cadse.core.IItemNode;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
@@ -37,20 +38,47 @@ import fr.imag.adele.cadse.core.ui.UIField;
  */
 public class FilterContext {
 
-	private Item			_itemSource;
-	private ViewDescription	_view;
-	private IPage			_page;
-	private LinkType		_lt;
-	private UIField			_field;
-	private IItemNode		_node;
-	private Pages			_pages;
+	protected Item			_itemSource;
+	protected ViewDescription	_view;
+	protected IPage			_page;
+	protected LinkType		_lt;
+	protected ItemType		_destType;
+	
+	protected UIField			_field;
+	protected IItemNode		_node;
+	protected Pages			_pages;
 
-	public FilterContext(Item source, LinkType lt, ViewDescription view, IPage page, UIField field, IItemNode node,
+	protected GroupType 		_gt;
+	protected GroupType 		_gh;
+	protected LinkType 		_glt;
+	
+	protected FilterContext() {
+		
+	}
+	
+	public FilterContext(Item source, LinkType lt, ItemType destType, ViewDescription view, IPage page, UIField field, IItemNode node,
+			Pages pages, GroupType gt, GroupType g, LinkType glt) {
+		super();
+		this._node = node;
+		this._itemSource = source;
+		this._lt = lt;
+		this._destType = destType;
+		this._view = view;
+		this._page = page;
+		this._field = field;
+		this._pages = pages;
+		this._gt = gt;
+		this._gh = g;
+		this._glt = glt;
+	}
+	
+	public FilterContext(Item source, LinkType lt, ItemType destType, ViewDescription view, IPage page, UIField field, IItemNode node,
 			Pages pages) {
 		super();
 		this._node = node;
 		this._itemSource = source;
 		this._lt = lt;
+		this._destType = destType;
 		this._view = view;
 		this._page = page;
 		this._field = field;
@@ -62,9 +90,14 @@ public class FilterContext {
 		_view = filterContext._view;
 		_pages = filterContext._pages;
 		_page = page;
+		_destType = filterContext._destType;
 		_lt = filterContext._lt;
 		_field = null;
 		_node = filterContext._node;
+		_gt = filterContext._gt;
+		_gh = filterContext._gh;
+		_glt = filterContext._glt;
+		
 	}
 
 	public FilterContext(FilterContext filterContext, UIField field) {
@@ -73,8 +106,12 @@ public class FilterContext {
 		_pages = filterContext._pages;
 		_page = filterContext._page;
 		_lt = filterContext._lt;
+		_destType = filterContext._destType;
 		_field = field;
 		_node = filterContext._node;
+		_gt = filterContext._gt;
+		_gh = filterContext._gh;
+		_glt = filterContext._glt;
 	}
 
 	public ViewDescription getView() {
@@ -104,9 +141,19 @@ public class FilterContext {
 	public Pages getPages() {
 		return _pages;
 	}
+	
+	public ItemType getGroupHead() {
+		return (ItemType) _gh;
+	}
+	public LinkType getGroupLinkType() {
+		return _glt;
+	}
+	public GroupType getGroupType() {
+		return _gt;
+	}
 
 	public ItemType getDestinationType() {
-		return _lt == null ? null : _lt.getDestinationType();
+		return _destType;
 	}
 
 	public Set<Item> getItemFromContext() {

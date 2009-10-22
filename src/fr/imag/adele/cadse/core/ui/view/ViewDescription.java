@@ -18,6 +18,10 @@
  */
 package fr.imag.adele.cadse.core.ui.view;
 
+import java.util.List;
+import java.util.Set;
+
+import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 
 /**
@@ -63,4 +67,7 @@ public interface ViewDescription {
 	 *            a filter
 	 */
 	public void removeFilter(ViewFilter f);
+	
+
+	public boolean filterNew(FilterContext context) ;
 }
