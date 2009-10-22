@@ -14,16 +14,16 @@ import java.util.List;
 public class Menu extends IMenuAction {
 
 	/** The id. */
-	private String				id;
+	private String				_menuid;
 
 	/** The children. */
-	private List<IMenuAction>	children;
+	private List<IMenuAction>	_children;
 
 	/** The label. */
-	private String				label;
+	private String				_label;
 
 	/** The icon. */
-	private URL					icon;
+	private URL					_icon;
 
 	/**
 	 * Instantiates a new menu.
@@ -38,10 +38,10 @@ public class Menu extends IMenuAction {
 	 *            the children
 	 */
 	public Menu(String id, String label, URL icon, List<IMenuAction> children) {
-		this.id = id;
-		this.children = children;
-		this.label = label;
-		this.icon = icon;
+		this._menuid = id;
+		this._children = children;
+		this._label = label;
+		this._icon = icon;
 	}
 
 	/**
@@ -55,20 +55,20 @@ public class Menu extends IMenuAction {
 	 *            the icon
 	 */
 	public Menu(String id, String label, URL icon) {
-		this.id = id;
-		this.children = new ArrayList<IMenuAction>();
-		this.label = label;
-		this.icon = icon;
+		this._menuid = id;
+		this._children = new ArrayList<IMenuAction>();
+		this._label = label;
+		this._icon = icon;
 	}
 
 	/**
 	 * Instantiates a new menu.
 	 */
 	public Menu() {
-		this.id = null;
-		this.children = new ArrayList<IMenuAction>();
-		this.label = null;
-		this.icon = null;
+		this._menuid = null;
+		this._children = new ArrayList<IMenuAction>();
+		this._label = null;
+		this._icon = null;
 	}
 
 	/**
@@ -84,14 +84,14 @@ public class Menu extends IMenuAction {
 	 *            the children
 	 */
 	public Menu(String id, String label, URL icon, IMenuAction[] children) {
-		this.id = id;
-		this.children = new ArrayList(Arrays.asList(children));
-		this.label = label;
-		this.icon = icon;
+		this._menuid = id;
+		this._children = new ArrayList(Arrays.asList(children));
+		this._label = label;
+		this._icon = icon;
 	}
 
 	public void clear() {
-		this.children.clear();
+		this._children.clear();
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class Menu extends IMenuAction {
 	 */
 	public void addToGroup(String groupName, IMenuAction item, boolean append) {
 		int i;
-		Iterator items = children.iterator();
+		Iterator items = _children.iterator();
 		for (i = 0; items.hasNext(); i++) {
 			IMenuAction o = (IMenuAction) items.next();
 			if (o.isGroup()) {
@@ -122,7 +122,7 @@ public class Menu extends IMenuAction {
 						}
 					}
 
-					children.add(i, item);
+					_children.add(i, item);
 					return;
 				}
 			}
@@ -186,7 +186,7 @@ public class Menu extends IMenuAction {
 	 * @return the i menu action
 	 */
 	public IMenuAction find(String id) {
-		Iterator e = children.iterator();
+		Iterator e = _children.iterator();
 		while (e.hasNext()) {
 			IMenuAction item = (IMenuAction) e.next();
 			String itemId = item.getId();
@@ -204,7 +204,7 @@ public class Menu extends IMenuAction {
 	 */
 	@Override
 	public URL getImage() {
-		return icon;
+		return _icon;
 	}
 
 	/*
@@ -214,7 +214,7 @@ public class Menu extends IMenuAction {
 	 */
 	@Override
 	public String getLabel() {
-		return label;
+		return _label;
 	}
 
 	/*
@@ -253,7 +253,7 @@ public class Menu extends IMenuAction {
 	 */
 	@Override
 	public String getId() {
-		return id;
+		return _menuid;
 	}
 
 	/**
@@ -262,7 +262,7 @@ public class Menu extends IMenuAction {
 	 * @return the list
 	 */
 	public List<IMenuAction> getList() {
-		return children;
+		return _children;
 	}
 
 	/*
@@ -282,7 +282,7 @@ public class Menu extends IMenuAction {
 	 */
 	@Override
 	public IMenuAction[] getChildren() {
-		return (children).toArray(new IMenuAction[(children).size()]);
+		return (_children).toArray(new IMenuAction[(_children).size()]);
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class Menu extends IMenuAction {
 		}
 		sb.append("\n");
 		tab = tab + " ";
-		for (IMenuAction ma : children) {
+		for (IMenuAction ma : _children) {
 			if (ma instanceof Menu) {
 				((Menu) ma).toString(sb, tab);
 			} else {
