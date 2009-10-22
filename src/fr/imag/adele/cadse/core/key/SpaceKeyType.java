@@ -147,8 +147,8 @@ public class SpaceKeyType {
 	protected ISpaceKey getParentSpaceKeyFromItem(Item item) {
 		Item partparent = item.getPartParent(parentSpaceKeyType);
 		if (partparent == null) {
-			Logger.getLogger("fr.imag.adele.cadse.key").log(Level.SEVERE, 
-					"Cannot find the parent item for "+item.getType().getName() + "::"+item.getDisplayName());
+			Logger.getLogger("fr.imag.adele.cadse.key").log(Level.SEVERE,
+					"Cannot find the parent item for " + item.getType().getName() + "::" + item.getDisplayName());
 			return AbstractSpaceKey.INVALID;
 		}
 		ISpaceKey key = partparent.getKey();
@@ -167,8 +167,8 @@ public class SpaceKeyType {
 	public ISpaceKey getParentSpaceKeyFromParentItem(Item item) {
 		Item partparent = item.getType() == parentSpaceKeyType ? item : item.getPartParent(parentSpaceKeyType);
 		if (partparent == null) {
-			Logger.getLogger("fr.imag.adele.cadse.key").log(Level.SEVERE, 
-					"Cannot find the parent item for "+item.getType().getName() + "::"+item.getDisplayName());
+			Logger.getLogger("fr.imag.adele.cadse.key").log(Level.SEVERE,
+					"Cannot find the parent item for " + item.getType().getName() + "::" + item.getDisplayName());
 			return AbstractSpaceKey.INVALID;
 		}
 		ISpaceKey key = partparent.getKey();
@@ -176,6 +176,7 @@ public class SpaceKeyType {
 			return AbstractSpaceKey.INVALID;
 		return key;
 	}
+
 	/**
 	 * Retourn une chaine humainenement lisible indiquant la porter de la cl�.
 	 * 

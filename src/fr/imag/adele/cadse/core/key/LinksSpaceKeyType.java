@@ -63,7 +63,9 @@ public class LinksSpaceKeyType extends SpaceKeyType {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fede.workspace.domain.key.SpaceKeyType#computeKey(fede.workspace.domain.Item)
+	 * @see
+	 * fede.workspace.domain.key.SpaceKeyType#computeKey(fede.workspace.domain
+	 * .Item)
 	 */
 	@Override
 	public ISpaceKey computeKey(Item item) throws CadseException {
@@ -79,7 +81,7 @@ public class LinksSpaceKeyType extends SpaceKeyType {
 		ISpaceKey lt_key = AbstractSpaceKey.INVALID;
 		if (lt_item != null && lt_item.isResolved()) {
 			lt_key = lt_item.getKey();
-			
+
 		}
 		if (lt_key == null || lt_key == AbstractSpaceKey.INVALID) {
 			return AbstractSpaceKey.INVALID;
@@ -87,23 +89,16 @@ public class LinksSpaceKeyType extends SpaceKeyType {
 		return new LinksSpaceKey(this, item.getName(), parentKey, lt_key);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fede.workspace.domain.key.SpaceKeyType#computeKey(java.lang.String,
-	 *      fede.workspace.domain.Item, java.lang.Object[])
-	 */
 	@Override
-	public SpaceKey computeKey(String name, Item parentItem, Object... key_attributes) throws CadseException {
-		ISpaceKey parentKey = null;
-		if (parentSpaceKeyType != null) {
-			parentKey = parentItem != null ? parentItem.getKey() : AbstractSpaceKey.INVALID;
-		}
-		assert key_attributes.length == 2 && key_attributes[1] instanceof Item;
-
-		return new LinksSpaceKey(this, name, parentKey, ((Item) key_attributes[1]).getKey());
+	protected ISpaceKey createKey(String name, ISpaceKey parentKey, Object... keyAttributes) {
+		if (keyAttributes.length != 2 || (!(keyAttributes[1] instanceof Item)))
+			return AbstractSpaceKey.INVALID;
+		ISpaceKey ltKey = ((Item) keyAttributes[1]).getKey();
+		if (ltKey == AbstractSpaceKey.INVALID)
+			return AbstractSpaceKey.INVALID;
+		return new LinksSpaceKey(this, name, parentKey, ltKey);
 	}
-	
+
 	public IAttributeType<?>[] getAttributeTypes() {
 		return new IAttributeType<?>[] { CadseGCST.ITEM_at_NAME_, lt };
 	}

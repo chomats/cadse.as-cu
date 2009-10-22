@@ -44,11 +44,8 @@ public class LinksSpaceKey extends SpaceKey {
 	 *            the lt key
 	 * @throws CadseException
 	 */
-	LinksSpaceKey(LinksSpaceKeyType type, String name, ISpaceKey parentKey, ISpaceKey ltKey) throws CadseException {
+	LinksSpaceKey(LinksSpaceKeyType type, String name, ISpaceKey parentKey, ISpaceKey ltKey) {
 		super(null, type, name, parentKey);
-		if (ltKey == null) {
-			throw new CadseException("The argument ltKey in LinksSpaceKeyType is null");
-		}
 		this.ltKey = ltKey;
 	}
 
