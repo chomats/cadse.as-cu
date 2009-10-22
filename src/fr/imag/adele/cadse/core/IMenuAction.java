@@ -35,6 +35,9 @@ public abstract class IMenuAction {
 	 */
 	private static final IMenuAction[]	NO_CHILDREN		= new IMenuAction[0];
 
+	/** id of the menu new */
+	public static final String NEW_MENU_ID = "new";
+	
 	/** 
 	 * Menu contexts are places where menu actions are show.
 	 * They are separated from each other by a separator.
@@ -82,7 +85,7 @@ public abstract class IMenuAction {
 	 * They are separated from each other by a separator.
 	 * Higher context are shown under a lower one.
 	 */
-	public static final String			NEW_MENU		= CONTEXT_1_MENU + "/new";
+	public static final String			NEW_MENU		= CONTEXT_1_MENU + "/" +NEW_MENU_ID;
 
 	/** 
 	 * Represents a separator of menu actions.
