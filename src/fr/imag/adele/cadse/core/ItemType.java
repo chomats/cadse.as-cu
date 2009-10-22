@@ -47,7 +47,7 @@ import fr.imag.adele.cadse.core.ui.Pages;
  * @date 26/09/05
  */
 
-public interface ItemType extends Item, IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster, ItemTypeInternal {
+public interface ItemType extends Item, IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster, ItemTypeInternal, GroupType {
 
 	/** The Constant PART. */
 	public static final int	PART			= 0x0002;
@@ -248,12 +248,6 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public abstract List<LinkType> getOutgoingLinkTypes();
 	
-	/**
-	 * Get all hierarchical outgoing link types.
-	 * 
-	 * @return an unmodifiable list all hierarchical outgoing link types.
-	 */
-	public abstract List<LinkType> getGroupOutgoingLinkTypes();
 
 	/**
 	 * Get all owned outgoing link types, not hierarchical.

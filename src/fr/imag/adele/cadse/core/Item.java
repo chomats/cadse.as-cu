@@ -988,10 +988,10 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	
 	public boolean isMemberOf(Item item);
 	
-	public Item getGroup();
-	public boolean isGroup();
+	public GroupType getGroup();
+	
 	public boolean isMember();
-	public List<Item> getMembers();
+	
 	
 
 	/**
