@@ -99,7 +99,7 @@ public class LinksSpaceKeyType extends SpaceKeyType {
 		if (parentSpaceKeyType != null) {
 			parentKey = parentItem != null ? parentItem.getKey() : AbstractSpaceKey.INVALID;
 		}
-		assert key_attributes.length == 1 && key_attributes[1] instanceof Item;
+		assert key_attributes.length == 2 && key_attributes[1] instanceof Item;
 
 		return new LinksSpaceKey(this, name, parentKey, ((Item) key_attributes[1]).getKey());
 	}
