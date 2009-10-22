@@ -226,6 +226,10 @@ public abstract class IMenuAction {
 		return true;
 	}
 
+	public IMenuAction find(String id) {
+		return null;
+	}
+	
 	/**
 	 * Load.
 	 * 
