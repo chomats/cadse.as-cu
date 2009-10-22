@@ -34,6 +34,7 @@ import fr.imag.adele.cadse.core.ui.IActionPage;
 import fr.imag.adele.cadse.core.ui.IPage;
 import fr.imag.adele.cadse.core.ui.IPageFactory;
 import fr.imag.adele.cadse.core.ui.Pages;
+import fr.imag.adele.cadse.core.ui.view.NewContext;
 
 /**
  * A item type is type of an element in the workspace. Each item type has an id.
@@ -82,7 +83,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	/**
 	 * Gets the sub types.
 	 * 
-	 * @return the sub types
+	 * @return the sub types (non null array, if no sub type, return an empty array)
 	 */
 	public ItemType[] getSubTypes();
 
@@ -422,6 +423,23 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public void addModificationPages(List<IPageFactory> modificationPages);
 
+	/**
+	 * Gets the good creation page.
+	 * 
+	 * @param parent
+	 *            the parent
+	 * @param type
+	 *            the type
+	 * @param lt
+	 *            the lt
+	 * 
+	 * @return the good creation page
+	 * 
+	 * @throws CadseException
+	 *             the melusine exception
+	 */
+	public Pages getGoodCreationPage(NewContext context) throws CadseException;
+	
 	/**
 	 * Gets the good creation page.
 	 * 

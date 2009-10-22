@@ -2030,6 +2030,14 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType ACTION_EXT_ITEM_TYPE_lt_ACTIONS_MODEL;
+	/**
+	    @generated
+	*/
+	public static LinkType GROUP_EXT_ITEM_lt_MEMBER_OF;
+	/**
+	    @generated
+	*/
+	public static LinkType GROUP_EXT_ITEM_lt_MEMBERS;
 
 	/**
 	    @generated

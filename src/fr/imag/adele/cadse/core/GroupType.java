@@ -22,7 +22,7 @@ public interface GroupType {
 	 * getGroupType() != null
 	 * @return
 	 */
-	public boolean isGroup();
+	public boolean isHeadGroup();
 	/**
 	 * In the outgoing link, there is a link type of kind group
 	 * @return
@@ -43,12 +43,16 @@ public interface GroupType {
 	 * getType() if getType() is groupType or null 
 	 * @return the group type or null if not a group
 	 */
-	public GroupType getGroupType();
+	public ItemType getGroupType();
 	
 	/**
 	 * while (gt !=null) { gt = gt.getGroupType(); if (this == gt) return true; } return false
 	 * @param gt
 	 * @return
 	 */
-	public boolean isSuperGroupOf(GroupType gt);
+	public boolean isSuperGroupTypeOf(GroupType gt);
+	
+	public ItemType[] getAllSubGroupType();
+	
+	public String getName();
 }
