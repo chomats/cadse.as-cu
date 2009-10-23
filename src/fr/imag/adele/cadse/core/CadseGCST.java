@@ -1437,6 +1437,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String LINK_at_GROUP="group";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType LINK_at_GROUP_;
+	/**
+	    @generated
+	*/
 	public final static String LINK_at_HIDDEN="hidden";
 	/**
 	    @generated
