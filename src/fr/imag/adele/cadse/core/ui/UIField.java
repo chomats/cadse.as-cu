@@ -359,7 +359,9 @@ public interface UIField extends IEventListener, IPageObject, IContextReference,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fede.workspace.domain.ui.IEventListener#init(fede.workspace.domain.ui.UIField)
+	 * @see
+	 * fede.workspace.domain.ui.IEventListener#init(fede.workspace.domain.ui
+	 * .UIField)
 	 */
 	abstract void init(UIField field);
 

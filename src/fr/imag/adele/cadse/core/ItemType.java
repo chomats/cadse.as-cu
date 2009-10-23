@@ -24,7 +24,6 @@ package fr.imag.adele.cadse.core;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 
 import fr.imag.adele.cadse.core.internal.ItemTypeInternal;
 import fr.imag.adele.cadse.core.key.SpaceKeyType;
@@ -48,7 +47,8 @@ import fr.imag.adele.cadse.core.ui.view.NewContext;
  * @date 26/09/05
  */
 
-public interface ItemType extends Item, IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster, ItemTypeInternal, GroupType {
+public interface ItemType extends Item, IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster,
+		ItemTypeInternal, GroupType {
 
 	/** The Constant PART. */
 	public static final int	PART			= 0x0002;
@@ -83,7 +83,8 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	/**
 	 * Gets the sub types.
 	 * 
-	 * @return the sub types (non null array, if no sub type, return an empty array)
+	 * @return the sub types (non null array, if no sub type, return an empty
+	 *         array)
 	 */
 	public ItemType[] getSubTypes();
 
@@ -120,15 +121,18 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	public String getCadseName();
 
 	/**
-	 * Create a link type. <br/> <br/>
+	 * Create a link type. <br/>
+	 * <br/>
 	 * 
-	 * Pr�conditions: <br/> - 1. <tt>name</tt> cannot be null.<br/> - 2.
-	 * <tt>name</tt> cannot be empty. - 3. <tt>destination</tt> cannot be
-	 * null.<br/> - 4. <tt>name</tt> muqt be unique.<br/> - 5.
-	 * <tt>destination</tt> cannot be type workspace.<br/> - 6. <tt>min</tt>
-	 * must greater or equal 0; <tt>max</tt> either equal -1 (means the
-	 * instance's number of this link type is undefined), or either greater than
-	 * <tt>min</tt>.
+	 * Pr�conditions: <br/>
+	 * - 1. <tt>name</tt> cannot be null.<br/>
+	 * - 2. <tt>name</tt> cannot be empty. - 3. <tt>destination</tt> cannot be
+	 * null.<br/>
+	 * - 4. <tt>name</tt> muqt be unique.<br/>
+	 * - 5. <tt>destination</tt> cannot be type workspace.<br/>
+	 * - 6. <tt>min</tt> must greater or equal 0; <tt>max</tt> either equal -1
+	 * (means the instance's number of this link type is undefined), or either
+	 * greater than <tt>min</tt>.
 	 * 
 	 * @param id
 	 *            runtime id define in cadseg
@@ -136,13 +140,13 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 *            the int id
 	 * @param name
 	 *            the name
-	 * @param kind :
-	 *            kind of link type, can be a Aggregation, or a Contaiment, or
+	 * @param kind
+	 *            : kind of link type, can be a Aggregation, or a Contaiment, or
 	 *            Other.
-	 * @param min :
-	 *            the minimum instances of this link type that we want create.
-	 * @param max :
-	 *            the maximum instances of this link type that we want create.
+	 * @param min
+	 *            : the minimum instances of this link type that we want create.
+	 * @param max
+	 *            : the maximum instances of this link type that we want create.
 	 * @param selection
 	 *            the selection
 	 * @param inverse
@@ -155,8 +159,8 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 *       self.to->forAll(rt | rt.name <> id) -- id must be unique. pre: not
 	 *       destination.oclIsTypeOf(WorkspaceType) -- destination cannot be a
 	 *       Workspace Type. pre: ((max>=min)||(max==-1))&&(min>=0)) <br/>
-	 * @exception IllegalArgumentException:
-	 *                Invalid assignment, <tt>name</tt> can not be null.<br/>
+	 * @exception IllegalArgumentException
+	 *                : Invalid assignment, <tt>name</tt> can not be null.<br/>
 	 *                IllegalArgumentException: Invalid assignment,
 	 *                <tt>name</tt> can not be empty.<br/>
 	 *                IllegalArgumentException: Invalid assignment, item type
@@ -165,8 +169,10 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 *                type <tt>destination</tt> already exist.<br/>
 	 *                IllegalArgumentException: Invalid assignment, you can not
 	 *                create a link type whose destination is an object of
-	 *                WorkspaceType.<br/> IllegalArgumentException: Invalid
-	 *                assignment, verify the values min and max.<br/> <br/>
+	 *                WorkspaceType.<br/>
+	 *                IllegalArgumentException: Invalid assignment, verify the
+	 *                values min and max.<br/>
+	 * <br/>
 	 */
 	public abstract LinkType createLinkType(CompactUUID id, int intID, String name, int kind, int min, int max,
 			String selection, LinkType inverse) throws CadseException;
@@ -192,7 +198,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 *            the destination
 	 * 
 	 * @return the link type
-	 * @throws CadseException 
+	 * @throws CadseException
 	 */
 	public abstract LinkType createLinkType(CompactUUID id, int intID, String name, int kind, int min, int max,
 			String selection, ItemType destination) throws CadseException;
@@ -241,14 +247,12 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public abstract LinkType getIncomingLinkType(String name);
 
-
 	/**
 	 * Get all hierarchical outgoing link types.
 	 * 
 	 * @return an unmodifiable list all hierarchical outgoing link types.
 	 */
 	public abstract List<LinkType> getOutgoingLinkTypes();
-	
 
 	/**
 	 * Get all owned outgoing link types, not hierarchical.
@@ -439,7 +443,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 *             the melusine exception
 	 */
 	public Pages getGoodCreationPage(NewContext context) throws CadseException;
-	
+
 	/**
 	 * Gets the good creation page.
 	 * 
@@ -572,11 +576,12 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 
 	public CadseRuntime getCadseRuntime();
 
-	
-/**
- * true if it a runtime ItemType (children of a RuntimeCadse, not a cadseg IT, not a dynamic IT
- * @return
- */
+	/**
+	 * true if it a runtime ItemType (children of a RuntimeCadse, not a cadseg
+	 * IT, not a dynamic IT
+	 * 
+	 * @return
+	 */
 	public boolean isRuntime();
 
 	/*
@@ -585,4 +590,8 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	public String getItemManagerClass();
 
 	public String getCSTName();
+
+	public boolean isMemberType();
+
+	public boolean isGroupHead();
 }

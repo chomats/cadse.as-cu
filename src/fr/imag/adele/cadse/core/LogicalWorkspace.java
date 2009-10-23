@@ -29,6 +29,8 @@ import fr.imag.adele.cadse.core.internal.Nullable;
 import fr.imag.adele.cadse.core.key.ISpaceKey;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
+import fr.imag.adele.cadse.core.ui.view.FilterContext;
+import fr.imag.adele.cadse.core.ui.view.NewContext;
 import fr.imag.adele.cadse.core.var.ContextVariable;
 
 /**
@@ -37,6 +39,8 @@ import fr.imag.adele.cadse.core.var.ContextVariable;
  * to manipulate models managed by executed CADSEs.
  */
 public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster {
+
+	public NewContext[] getNewContextFrom(FilterContext context);
 
 	/**
 	 * Returns item type with specified id. Returns null if no item type exists
@@ -95,13 +99,9 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * @throws IllegalArgumentException
 	 *             if Id is null or empty or this item type already exists.
 	 */
-	public ItemType createItemType(ItemType metaType, @NotNull
-	CadseRuntime cadseName, @Nullable
-	ItemType superType, int intID, @NotNull
-	CompactUUID id, @NotNull
-	String shortName, @Nullable
-	String displayName, boolean hasContent, boolean isAbstract, @NotNull
-	IItemManager manager);
+	public ItemType createItemType(ItemType metaType, @NotNull CadseRuntime cadseName, @Nullable ItemType superType,
+			int intID, @NotNull CompactUUID id, @NotNull String shortName, @Nullable String displayName,
+			boolean hasContent, boolean isAbstract, @NotNull IItemManager manager);
 
 	/**
 	 * Returns state of this logical workspace.
@@ -163,8 +163,8 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	/**
 	 * Get the items by item type.
 	 * 
-	 * @param it :
-	 *            the name of the item type to seek.
+	 * @param it
+	 *            : the name of the item type to seek.
 	 * 
 	 * @return a list of items.
 	 */
@@ -173,8 +173,8 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	/**
 	 * Get the items by item type.
 	 * 
-	 * @param it :
-	 *            item type to seek.
+	 * @param it
+	 *            : item type to seek.
 	 * 
 	 * @return a list of items.
 	 */
@@ -193,28 +193,30 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * NOTE: After initializing a new item, a link between parent and this item
 	 * will be created.
 	 * 
-	 * @param it :
-	 *            item type.
-	 * @param parent :
-	 *            item's parent.
-	 * @param lt :
-	 *            link type.
+	 * @param it
+	 *            : item type.
+	 * @param parent
+	 *            : item's parent.
+	 * @param lt
+	 *            : link type.
 	 * 
 	 * @return new item.
 	 * 
 	 * @throws CadseException
 	 *             the melusine exception
 	 * 
-	 * @OCL<br>
-	 *      context: Workspace::createItem(String id, ItemType it) : Item<br>
-	 *      1. pre: id <> null <br/> 2. pre: id <> '' <br/> 3. pre: it <> null
-	 *      <br/> 4. pre: parent <> null <br/> 5. pre: lt <> null <br/> 6. pre:
-	 *      items->forAll(item | item.id <> id )<br/> 7. pre:
-	 *      self.type.selectedItemtype->include(it) <br/> 8. pre: parent.type =
-	 *      lt.source and it = lt.dest<br/>
-	 * @exception IllegalArgumentException :
-	 *                Id can not be null. IllegalArgumentException : Id can not
-	 *                be empty. IllegalArgumentException : Parent can not be
+	 * @OCL<br> context: Workspace::createItem(String id, ItemType it) : Item<br>
+	 *          1. pre: id <> null <br/>
+	 *          2. pre: id <> '' <br/>
+	 *          3. pre: it <> null <br/>
+	 *          4. pre: parent <> null <br/>
+	 *          5. pre: lt <> null <br/>
+	 *          6. pre: items->forAll(item | item.id <> id )<br/>
+	 *          7. pre: self.type.selectedItemtype->include(it) <br/>
+	 *          8. pre: parent.type = lt.source and it = lt.dest<br/>
+	 * @exception IllegalArgumentException
+	 *                : Id can not be null. IllegalArgumentException : Id can
+	 *                not be empty. IllegalArgumentException : Parent can not be
 	 *                null. IllegalArgumentException : Link type can not be
 	 *                null. IllegalArgumentException : Invalid assignment, this
 	 *                item <tt>$id</tt> already exist.<br/>
@@ -268,13 +270,14 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	public Item loadItem(ItemDescriptionRef ref) throws CadseException;
 
 	/**
-	 * Test if an item exists by key or by qualified name.
-	 *  This id can be an compostant of a closed composite
+	 * Test if an item exists by key or by qualified name. This id can be an
+	 * compostant of a closed composite
 	 * 
 	 * @param item
 	 *            the item
 	 * 
-	 * @return true an item if found, false if not found. Found item is not the parameter item.
+	 * @return true an item if found, false if not found. Found item is not the
+	 *         parameter item.
 	 */
 
 	public boolean existsItem(Item item);

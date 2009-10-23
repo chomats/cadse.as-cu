@@ -18,11 +18,8 @@
  */
 package fr.imag.adele.cadse.core.ui.view;
 
-import java.util.List;
-import java.util.Set;
-
-import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
+import fr.imag.adele.cadse.core.LogicalWorkspace;
 
 /**
  * ebauche d'un description de view
@@ -36,7 +33,7 @@ public interface ViewDescription {
 	 * 
 	 * @return the first item type which instances items must be showed
 	 */
-	public ItemType[] getFirstItem();
+	public ItemType[] getFirstItemType();
 
 	/**
 	 * sous eclipse retourn un IShellProvider
@@ -67,7 +64,10 @@ public interface ViewDescription {
 	 *            a filter
 	 */
 	public void removeFilter(ViewFilter f);
-	
 
-	public boolean filterNew(FilterContext context) ;
+	public boolean filterNew(FilterContext context);
+
+	public LogicalWorkspace getCadseModel();
+
+	public String getNewLabel(NewContext context);
 }

@@ -37,78 +37,107 @@ public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTr
 	/**
 	 * Bit mask to determine aggregation flag.
 	 */
-	public static final int	AGGREGATION		= 0x0001;
+	public static final int	AGGREGATION					= 0x0001;
 
 	/**
 	 * Bit mask to determine part flag.
 	 */
-	public static final int	PART			= 0x0002;
+	public static final int	PART						= 0x0002;
 
 	/**
 	 * Bit mask to determine composition flag.
 	 */
-	public static final int	COMPOSITION		= 0x0004;
+	public static final int	COMPOSITION					= 0x0004;
 
 	/**
 	 * Bit mask to determine require flag.
 	 */
-	public static final int	REQUIRE			= 0x0008;
+	public static final int	REQUIRE						= 0x0008;
 
 	/**
 	 * Bit mask to determine derived flag.
 	 */
-	public static final int	DERIVED			= 0x0010;
+	public static final int	DERIVED						= 0x0010;
 
 	/**
 	 * Bit mask to determine inverse part flag.
 	 */
-	public static final int	INVERSE_PART	= 0x0020;
+	public static final int	INVERSE_PART				= 0x0020;
 
 	/**
 	 * Bit mask to determine read only flag.
 	 */
-	public static final int	READ_ONLY		= 0x0040;
+	public static final int	READ_ONLY					= 0x0040;
 
 	/**
 	 * Bit mask to determine hidden flag.
 	 */
-	public static final int	HIDDEN			= 0x0080;
+	public static final int	HIDDEN						= 0x0080;
 
 	/**
 	 * Bit mask to determine annotation flag.
 	 */
-	public static final int	ANNOTATION		= 0x0100;
+	public static final int	ANNOTATION					= 0x0100;
 
 	/**
 	 * Bit mask to determine ordered flag.
 	 */
-	public static final int	ORDERED			= 0x0200;
+	public static final int	ORDERED						= 0x0200;
 
 	/**
 	 * Bit mask to determine non circular flag.
 	 */
-	public static final int	NON_CIRCULAR	= 0x0400;
+	public static final int	NON_CIRCULAR				= 0x0400;
 
 	/**
 	 * Bit mask to determine content flag.
 	 */
-	public static final int	CONTENT			= 0x0800;
+	public static final int	CONTENT						= 0x0800;
 
-	
 	/**
 	 * Bit mask to determine content flag.
 	 */
-	public static final int	GROUP			= 0x1000;
+	public static final int	GROUP						= 0x1000;
 
 	/**
 	 * Bit mask to determine modified flag.
 	 */
-	public static final int	MODIFIED		= 0x8000;
+	public static final int	MODIFIED					= 0x8000;
+
+	/**
+	 * Bit mask to determine modified flag.
+	 */
+	public static final int	TRANSFERRED_VALUE			= 0x10000;
+
+	/**
+	 * Bit mask to determine modified flag.
+	 */
+	public static final int	TRANSFERRED_DEFINITION		= 0x20000;
+
+	/**
+	 * Bit mask to determine modified flag.
+	 */
+	public static final int	INSTANTIATION_DEFINITION	= 0x40000;
+
+	/**
+	 * Bit mask to determine modified flag.
+	 */
+	public static final int	TYPE_DEFINITION				= 0x80000;
+
+	/**
+	 * Bit mask to determine modified flag.
+	 */
+	public static final int	TYPE_PARTITION				= 0x100000;
+
+	/**
+	 * Bit mask to determine modified flag.
+	 */
+	public static final int	NEW							= 0x200000;
 
 	/**
 	 * Cardinality value for unbounded.
 	 */
-	public static final int	UNBOUNDED		= -1;
+	public static final int	UNBOUNDED					= -1;
 
 	/**
 	 * Returns short name.
@@ -282,7 +311,7 @@ public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTr
 	public boolean isRequire();
 
 	public void setIsGroup(boolean b);
-	
+
 	public boolean isGroup();
 
 }

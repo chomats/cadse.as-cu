@@ -46,7 +46,9 @@ public class ContentManagerInternal implements ContentItem {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fede.workspace.domain.ContentManager#build(fede.workspace.domain.build.IBuildingContext)
+	 * @see
+	 * fede.workspace.domain.ContentManager#build(fede.workspace.domain.build
+	 * .IBuildingContext)
 	 */
 	public void build(IBuildingContext context) {
 	}
@@ -54,8 +56,9 @@ public class ContentManagerInternal implements ContentItem {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fede.workspace.domain.ContentManager#clean(fede.workspace.domain.build.IBuildingContext,
-	 *      boolean)
+	 * @see
+	 * fede.workspace.domain.ContentManager#clean(fede.workspace.domain.build
+	 * .IBuildingContext, boolean)
 	 */
 	public void clean(IBuildingContext context, boolean componentsContent) {
 	}
@@ -63,7 +66,9 @@ public class ContentManagerInternal implements ContentItem {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fede.workspace.domain.ContentManager#compose(fede.workspace.domain.build.IBuildingContext)
+	 * @see
+	 * fede.workspace.domain.ContentManager#compose(fede.workspace.domain.build
+	 * .IBuildingContext)
 	 */
 	public void compose(IBuildingContext context) {
 	}
@@ -115,7 +120,7 @@ public class ContentManagerInternal implements ContentItem {
 	 * (non-Javadoc)
 	 * 
 	 * @see fede.workspace.domain.ContentManager#setResources(java.lang.String,
-	 *      java.lang.Object[])
+	 * java.lang.Object[])
 	 */
 	public void setResources(String kind, Object[] resource) throws CadseException {
 	}
@@ -855,7 +860,11 @@ public class ContentManagerInternal implements ContentItem {
 
 	@Override
 	public GroupType getGroup() {
-		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<LinkType> getInstanceOutgoingLinkTypes() {
 		return null;
 	}
 

@@ -38,26 +38,26 @@ import fr.imag.adele.cadse.core.ui.UIField;
  */
 public class FilterContext {
 
-	protected Item			_itemSource;
+	protected Item				_itemSource;
 	protected ViewDescription	_view;
-	protected IPage			_page;
-	protected LinkType		_lt;
-	protected ItemType		_destType;
-	
-	protected UIField			_field;
-	protected IItemNode		_node;
-	protected Pages			_pages;
+	protected IPage				_page;
+	protected LinkType			_lt;
+	protected ItemType			_destType;
 
-	protected GroupType 		_gt;
-	protected GroupType 		_gh;
-	protected LinkType 		_glt;
-	
+	protected UIField			_field;
+	protected IItemNode			_node;
+	protected Pages				_pages;
+
+	protected GroupType			_gt;
+	protected GroupType			_gh;
+	protected LinkType			_glt;
+
 	protected FilterContext() {
-		
+
 	}
-	
-	public FilterContext(Item source, LinkType lt, ItemType destType, ViewDescription view, IPage page, UIField field, IItemNode node,
-			Pages pages, GroupType gt, GroupType g, LinkType glt) {
+
+	public FilterContext(Item source, LinkType lt, ItemType destType, ViewDescription view, IPage page, UIField field,
+			IItemNode node, Pages pages, GroupType gt, GroupType g, LinkType glt) {
 		super();
 		this._node = node;
 		this._itemSource = source;
@@ -71,9 +71,9 @@ public class FilterContext {
 		this._gh = g;
 		this._glt = glt;
 	}
-	
-	public FilterContext(Item source, LinkType lt, ItemType destType, ViewDescription view, IPage page, UIField field, IItemNode node,
-			Pages pages) {
+
+	public FilterContext(Item source, LinkType lt, ItemType destType, ViewDescription view, IPage page, UIField field,
+			IItemNode node, Pages pages) {
 		super();
 		this._node = node;
 		this._itemSource = source;
@@ -97,7 +97,7 @@ public class FilterContext {
 		_gt = filterContext._gt;
 		_gh = filterContext._gh;
 		_glt = filterContext._glt;
-		
+
 	}
 
 	public FilterContext(FilterContext filterContext, UIField field) {
@@ -112,6 +112,20 @@ public class FilterContext {
 		_gt = filterContext._gt;
 		_gh = filterContext._gh;
 		_glt = filterContext._glt;
+	}
+
+	public FilterContext(FilterContext cxt) {
+		_itemSource = cxt.getItemSource();
+		_view = cxt.getView();
+		_pages = cxt.getPages();
+		_page = cxt.getPage();
+		_lt = cxt.getLinkType();
+		_destType = cxt.getDestinationType();
+		_field = cxt.getField();
+		_node = cxt.getItemNode();
+		_gt = cxt.getGroupType();
+		_gh = cxt.getGroupHead();
+		_glt = cxt.getGroupLinkType();
 	}
 
 	public ViewDescription getView() {
@@ -141,13 +155,15 @@ public class FilterContext {
 	public Pages getPages() {
 		return _pages;
 	}
-	
+
 	public ItemType getGroupHead() {
 		return (ItemType) _gh;
 	}
+
 	public LinkType getGroupLinkType() {
 		return _glt;
 	}
+
 	public GroupType getGroupType() {
 		return _gt;
 	}

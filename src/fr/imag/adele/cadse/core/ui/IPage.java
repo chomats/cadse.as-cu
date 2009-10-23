@@ -1,5 +1,7 @@
 package fr.imag.adele.cadse.core.ui;
 
+import java.util.List;
+
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
@@ -15,8 +17,14 @@ public interface IPage extends Item, IEventListener, IPageObject, IValidateContr
 
 	public static final UIField[]	EMPTY_UIFIELD	= new UIField[0];
 
+	IPage[] getSuperPage();
+
+	List<UIField> getGoodFields();
+
+	// UIField[] getHiddenField();
+
 	/**
-	 * Gets the fields.
+	 * Gets owner the fields.
 	 * 
 	 * @return the fields
 	 */

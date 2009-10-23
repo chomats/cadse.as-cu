@@ -27,7 +27,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import fr.imag.adele.cadse.core.attribute.StringAttributeType;
 import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.internal.InternalItem;
 import fr.imag.adele.cadse.core.key.ISpaceKey;
@@ -154,8 +153,8 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	/**
 	 * Returns item qualified name. It is a symbolic name. It may change and it
 	 * is not unique. It should be unique inside a logical workspace. If unique
-	 * name is defined with a pattern and <code>recompute</code> is true,
-	 * unique name computation is forced.
+	 * name is defined with a pattern and <code>recompute</code> is true, unique
+	 * name computation is forced.
 	 * 
 	 * @param recompute
 	 *            if true, force computation of unique name from unique name
@@ -257,14 +256,12 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public boolean itemHasContent();
 
 	/**
-	 * Returns true if <code>it</code> is type or an ancestor type of this
-	 * item.
+	 * Returns true if <code>it</code> is type or an ancestor type of this item.
 	 * 
 	 * @param it
 	 *            an item type
 	 * 
-	 * @return true if <code>it</code> is type or an ancestor type of this
-	 *         item.
+	 * @return true if <code>it</code> is type or an ancestor type of this item.
 	 */
 	public boolean isInstanceOf(ItemType it);
 
@@ -315,8 +312,8 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return the link of <code>linkType</code> type coming from this item.
 	 * 
 	 * @throws CadseException
-	 *             if the max cardinality of <code>linkType</code> link type
-	 *             is not equal to one.
+	 *             if the max cardinality of <code>linkType</code> link type is
+	 *             not equal to one.
 	 */
 	public Link getOutgoingLink(LinkType linkType);
 
@@ -524,13 +521,13 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public Link getIncomingLink(LinkType linkType, CompactUUID srcId);
 
 	/**
-	 * Returns all source items of links of <code>linkType</code> type
-	 * pointing to this item.
+	 * Returns all source items of links of <code>linkType</code> type pointing
+	 * to this item.
 	 * 
 	 * @param linkType
 	 *            a link type
-	 * @return all source items of links of <code>linkType</code> type
-	 *         pointing to this item.
+	 * @return all source items of links of <code>linkType</code> type pointing
+	 *         to this item.
 	 */
 	public Collection<Item> getIncomingItems(LinkType linkType);
 
@@ -542,13 +539,13 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public Collection<Item> getIncomingItems();
 
 	/**
-	 * Returns source item of the link of <code>linkType</code> type pointing
-	 * to this item. Returns null if link does not exist.
+	 * Returns source item of the link of <code>linkType</code> type pointing to
+	 * this item. Returns null if link does not exist.
 	 * 
 	 * @param linkType
 	 *            a link type
-	 * @return source item of the link of <code>linkType</code> type pointing
-	 *         to this item.
+	 * @return source item of the link of <code>linkType</code> type pointing to
+	 *         this item.
 	 */
 	public Item getIncomingItem(LinkType linkType);
 
@@ -593,10 +590,9 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 
 	/**
 	 * Deletes this item. This method deletes all <tt>incoming</tt> and
-	 * <tt>outgoing</tt> links of this item. If <code>deleteContent</code>
-	 * is true, delete all contents (IDE resources) associated to this item.
-	 * After this operation, logical workspace has no more reference on this
-	 * item.
+	 * <tt>outgoing</tt> links of this item. If <code>deleteContent</code> is
+	 * true, delete all contents (IDE resources) associated to this item. After
+	 * this operation, logical workspace has no more reference on this item.
 	 * 
 	 * @param deleteContent
 	 *            if true, delete all contents (IDE resources) associated to
@@ -757,8 +753,8 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * item has at most one parent. The parent item is the only item which has
 	 * an outgoing part link pointing to this item. If it has no parent or used
 	 * part link type is not specified one, returns null. If it has no parent
-	 * and and <code>attemptToRecreate</code> is true, try to recreate a
-	 * parent item.
+	 * and and <code>attemptToRecreate</code> is true, try to recreate a parent
+	 * item.
 	 * 
 	 * @param linkType
 	 *            a part link type
@@ -794,14 +790,14 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public Item getPartParentByName(String typeName);
 
 	/**
-	 * Returns destination item with <code>destItemId</code> Id of the part
-	 * link coming from this item. Returns null if link does not exist.
+	 * Returns destination item with <code>destItemId</code> Id of the part link
+	 * coming from this item. Returns null if link does not exist.
 	 * 
 	 * @param destItemId
 	 *            an item Id
 	 * 
-	 * @return destination item with <code>destItemId</code> Id of the part
-	 *         link coming from this item.
+	 * @return destination item with <code>destItemId</code> Id of the part link
+	 *         coming from this item.
 	 */
 	public Item getPartChild(CompactUUID destItemId);
 
@@ -846,8 +842,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return Java files representing root IDE resources associated to this
 	 *         item.
-	 * @throws if
-	 *             it is not implemented
+	 * @throws if it is not implemented
 	 * @deprecated prefers getMainMappingContent(...) to have references on
 	 *             resources
 	 */
@@ -892,8 +887,8 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 
 	/**
 	 * Returns true if IDE resource with relative path equal to
-	 * <code>slashedPath</code> is editable. Note that relative path must
-	 * begin with a slash (/).
+	 * <code>slashedPath</code> is editable. Note that relative path must begin
+	 * with a slash (/).
 	 * 
 	 * @param slashedPath
 	 *            relative path to IDE resource to test
@@ -984,15 +979,12 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 *         part and aggregation outgoing links.
 	 */
 	public boolean isAncestorOf(Item item);
-	
-	
+
 	public boolean isMemberOf(Item item);
-	
+
 	public GroupType getGroup();
-	
+
 	public boolean isMember();
-	
-	
 
 	/**
 	 * Returns CADSE domain. CADSE Domain is root entry to the current logical
@@ -1207,7 +1199,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @param newkey
 	 *            new item key.
-	 * @throws CadseException 
+	 * @throws CadseException
 	 */
 	public void setKey(ISpaceKey newkey) throws CadseException;
 
@@ -1254,12 +1246,15 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 */
 	public boolean isRevModified();
 
-	/** return the base item or this if no
+	/**
+	 * return the base item or this if no
 	 * 
 	 * @return
 	 */
 	public Item getBaseItem();
 
 	public boolean exists();
+
+	public List<LinkType> getInstanceOutgoingLinkTypes();
 
 }
