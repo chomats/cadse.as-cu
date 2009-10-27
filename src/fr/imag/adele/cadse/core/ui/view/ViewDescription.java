@@ -19,6 +19,7 @@
 package fr.imag.adele.cadse.core.ui.view;
 
 import fr.imag.adele.cadse.core.ItemType;
+import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
 
 /**
@@ -65,9 +66,13 @@ public interface ViewDescription {
 	 */
 	public void removeFilter(ViewFilter f);
 
-	public boolean filterNew(FilterContext context);
+	public boolean filterNew(NewContext context);
 
 	public LogicalWorkspace getCadseModel();
 
 	public String getNewLabel(NewContext context);
+
+	public boolean canCreateDestination(LinkType lt);
+
+	public ItemType[] getCreatableItemType();
 }

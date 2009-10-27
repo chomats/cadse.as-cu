@@ -10,10 +10,12 @@ import fr.imag.adele.cadse.core.util.NLS;
 
 public class NewContext extends FilterContext {
 	String		_defaultName;
-	Item[]		_sources;
-	LinkType[]	_sourcesLinkType;
+	Item[]		_outgoingDestination;
+	LinkType[]	_outgoingLinkType;
 	String		_label;
-
+	Item[]		_incomingSource;
+	LinkType[]	_incomingLinkType;
+	
 	public NewContext(IItemNode node) {
 		super();
 		_node = node;
@@ -22,55 +24,82 @@ public class NewContext extends FilterContext {
 	public NewContext(FilterContext cxt) {
 		super(cxt);
 		if (getItemSource() != null)
-			addSource(CadseGCST.ITEM_lt_PARENT, getItemSource());
+			addOutgoingLink(CadseGCST.ITEM_lt_PARENT, getItemSource());
 		if (getGroupHead() != null)
-			addSource(CadseGCST.GROUP_EXT_ITEM_lt_MEMBER_OF, getGroupHead());
+			addOutgoingLink(CadseGCST.GROUP_EXT_ITEM_lt_MEMBER_OF, getGroupHead());
 		if (getDestinationType() != null)
-			addSource(CadseGCST.ITEM_lt_INSTANCE_OF, getGroupHead());
+			addOutgoingLink(CadseGCST.ITEM_lt_INSTANCE_OF, getGroupHead());
 	}
 
-	public void addSource(LinkType lt, Item s) {
-		_sourcesLinkType = ArraysUtil.add(LinkType.class, _sourcesLinkType, lt);
-		_sources = ArraysUtil.add(Item.class, _sources, s);
+	public void addOutgoingLink(LinkType lt, Item dest) {
+		_outgoingLinkType = ArraysUtil.add(LinkType.class, _outgoingLinkType, lt);
+		_outgoingDestination = ArraysUtil.add(Item.class, _outgoingDestination, dest);
 	}
 
-	public Item[] getSources() {
-		return _sources;
+	public Item[] getOutgoingDestinations() {
+		return _outgoingDestination;
 	}
 
-	public LinkType[] getLinkTypeSources() {
-		return _sourcesLinkType;
+	public LinkType[] getOutgoingLinkType() {
+		return _outgoingLinkType;
 	}
 
-	public Item getSource(LinkType lt) {
-		if (_sources == null)
+	public Item getOutgoingDestination(LinkType lt) {
+		if (_outgoingDestination == null)
 			return null;
-		for (int i = 0; i < _sources.length; i++) {
-			if (_sourcesLinkType[i] == lt)
-				return _sources[i];
+		for (int i = 0; i < _outgoingDestination.length; i++) {
+			if (_outgoingLinkType[i] == lt)
+				return _outgoingDestination[i];
+		}
+		return null;
+	}
+	
+	public boolean hasKind(LinkType lt) {
+		return getOutgoingDestination(lt) != null;
+	}
+
+	
+	public void addIncomingLink(LinkType lt, Item source) {
+		_incomingLinkType = ArraysUtil.add(LinkType.class, _incomingLinkType, lt);
+		_incomingSource = ArraysUtil.add(Item.class, _incomingSource, source);
+	}
+
+	public Item[] getIncomingSources() {
+		return _incomingSource;
+	}
+
+	public LinkType[] getIncomingLinkType() {
+		return _incomingLinkType;
+	}
+
+	public Item getIncomingSource(LinkType lt) {
+		if (_incomingSource == null)
+			return null;
+		for (int i = 0; i < _incomingSource.length; i++) {
+			if (_incomingLinkType[i] == lt)
+				return _incomingSource[i];
 		}
 		return null;
 	}
 
-	public void setPartParent(Item s) {
-		addSource(CadseGCST.ITEM_lt_PARENT, s);
+	public void setPartParent(Item s, LinkType lt) {
+		addOutgoingLink(CadseGCST.ITEM_lt_PARENT, s);
+		addIncomingLink(lt, s);
 		_itemSource = s;
+		_lt = lt;
 	}
 
 	public Item getPartParent() {
 		return _itemSource;
 	}
 
-	public void setPartLinkType(LinkType lt) {
-		_lt = lt;
-	}
 
 	public LinkType getPartLinkType() {
 		return _lt;
 	}
 
 	public void setDestinationType(ItemType destType) {
-		addSource(CadseGCST.ITEM_lt_INSTANCE_OF, destType);
+		addOutgoingLink(CadseGCST.ITEM_lt_INSTANCE_OF, destType);
 		_destType = destType;
 	}
 
@@ -91,14 +120,13 @@ public class NewContext extends FilterContext {
 		return true;
 	}
 
-	public void setGroupHead(ItemType gh) {
-		addSource(CadseGCST.GROUP_EXT_ITEM_lt_MEMBER_OF, gh);
+	public void setGroupHead(ItemType gh, LinkType glt) {
+		addOutgoingLink(CadseGCST.GROUP_EXT_ITEM_lt_MEMBER_OF, gh);
+		addIncomingLink(glt, gh);
 		_gh = gh;
-	}
-
-	public void setGroupLinkType(LinkType glt) {
 		_glt = glt;
 	}
+
 
 	public void setGroupType(ItemType gt) {
 		_gt = gt;

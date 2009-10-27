@@ -80,6 +80,7 @@ public class FilterContext {
 		this._lt = lt;
 		this._destType = destType;
 		this._view = view;
+		this._node = node;
 		this._page = page;
 		this._field = field;
 		this._pages = pages;
@@ -126,6 +127,11 @@ public class FilterContext {
 		_gt = cxt.getGroupType();
 		_gh = cxt.getGroupHead();
 		_glt = cxt.getGroupLinkType();
+	}
+
+	public FilterContext(ViewDescription view, IItemNode node) {
+		this._view = view;
+		this._node = node;
 	}
 
 	public ViewDescription getView() {
