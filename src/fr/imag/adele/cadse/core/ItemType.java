@@ -596,4 +596,6 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	public boolean isGroupHead();
 
 	public boolean canCreateItem(NewContext newContext);
+
+	public boolean canCreateItem(NewContext newContext, LinkType lt, Item src);
 }
