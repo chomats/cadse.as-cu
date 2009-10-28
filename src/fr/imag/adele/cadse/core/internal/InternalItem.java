@@ -74,7 +74,7 @@ public interface InternalItem {
 
 	public <T> T internalGetGenericOwnerAttribute(IAttributeType<T> type);
 
-	public boolean commitSetAttribute(IAttributeType<?> type, String key, Object value);
+	public boolean commitSetAttribute(IAttributeType<?> type, Object value);
 
 	public Link commitLoadCreateLink(LinkType lt, Item destination) throws CadseException;
 

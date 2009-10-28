@@ -22,11 +22,10 @@ public interface InternalLink {
 	/**
 	 * 
 	 * @param type
-	 * @param key
 	 * @param value
 	 * @return
 	 */
-	public abstract boolean commitSetAttribute(IAttributeType<?> type, String key, Object value);
+	public abstract boolean commitSetAttribute(IAttributeType<?> type, Object value);
 
 	/**
 	 * Delete this link.
