@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cadse-runtime">
+  <eClassifiers xsi:type="ecore:EClass" name="Page" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="overwrite" upperBound="-1"
+        eType="#//Page"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerFields" upperBound="-1"
+        eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="readonlyFields" upperBound="-1"
+        eType="#//Attribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Field" eSuperTypes="#//Script">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refAttribute" lowerBound="1"
+        eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="editable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ic" eType="#//InteractionController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mc" eType="#//ModelController"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position_label"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="display-name"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemHidden"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemReadonly"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="committedDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="committedBy"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requireNewRev"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="revModified"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="twVersion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instance-of" lowerBound="1"
+        eType="#//ItemType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Item"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ItemType" eSuperTypes="#//TypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="super-type" eType="#//ItemType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="delegate" upperBound="-1"
+        eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cannot_be_undefinded"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="final-value"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="must-be-initialized"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="no-field"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Validateur" eSuperTypes="#//Script">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="listenAttributes" upperBound="-1"
+        eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="overwrite" upperBound="-1"
+        eType="#//Validateur"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionController" eSuperTypes="#//Script"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelController" eSuperTypes="#//Script"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Script" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="langage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtItemType" eSuperTypes="#//TypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extends" upperBound="-1"
+        eType="#//ItemType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//Field" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validators" upperBound="-1"
+        eType="#//Validateur" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//Attribute" containment="true">
+      <eAnnotations source="EAnnotation0">
+        <details key="EStringToStringMapEntry0" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="creation-pages" upperBound="-1"
+        eType="#//Page" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modification-pages" upperBound="-1"
+        eType="#//Page" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defintionID"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cadse" lowerBound="1" eType="#//Cadse"
+        eOpposite="#//Cadse/definitions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cadse" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
+        eType="#//TypeDefinition" containment="true" eOpposite="#//TypeDefinition/cadse"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extends_explicite" upperBound="-1"
+        eType="#//Cadse"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="executed"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="definitionID"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultContentRepoURL"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemRepoLogin"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemRepoPasswd"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemRepoURL"/>
+  </eClassifiers>
+</ecore:EPackage>

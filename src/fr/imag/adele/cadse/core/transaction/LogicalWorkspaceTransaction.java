@@ -44,6 +44,7 @@ import fr.imag.adele.cadse.core.delta.LinkDelta;
 import fr.imag.adele.cadse.core.internal.NotNull;
 import fr.imag.adele.cadse.core.internal.Nullable;
 import fr.imag.adele.cadse.core.internal.delta.InternalLogicalWorkspaceTransaction;
+import fr.imag.adele.cadse.core.ui.view.NewContext;
 import fr.imag.adele.cadse.core.var.ContextVariable;
 
 /**
@@ -122,6 +123,23 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 */
 	public ItemDelta createItem(ItemType itemType, Item parent, LinkType partLinkType) throws CadseException;
 
+	/**
+	 * Creates and returns an item. If <code>parent</code> is not null,
+	 * <code>partLinkType</code> must be defined.
+	 * 
+	 * @param itemType
+	 *            type of the item to create
+	 * @param parent
+	 *            parent item (can be null if no parent)
+	 * @param partLinkType
+	 *            part link type used to define the parent (can be null if no
+	 *            parent)
+	 * @return created item.
+	 * 
+	 * @throws CadseException
+	 *             if creation fails.
+	 */
+	public ItemDelta createItem(NewContext c) throws CadseException;
 	/**
 	 * Creates and returns an item. If <code>parent</code> is not null,
 	 * <code>partLinkType</code> must be defined.

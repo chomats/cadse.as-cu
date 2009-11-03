@@ -1,10 +1,12 @@
 package fr.imag.adele.cadse.core.ui.view;
 
+import fr.imag.adele.cadse.core.CadseError;
 import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.IItemNode;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
+import fr.imag.adele.cadse.core.attribute.SetAttrVal;
 import fr.imag.adele.cadse.core.util.ArraysUtil;
 import fr.imag.adele.cadse.core.util.NLS;
 
@@ -12,9 +14,10 @@ public class NewContext extends FilterContext {
 	String		_defaultName;
 	Item[]		_outgoingDestination;
 	LinkType[]	_outgoingLinkType;
-	String		_label;
+	String		_label = "?";
 	Item[]		_incomingSource;
 	LinkType[]	_incomingLinkType;
+	SetAttrVal<?>[] _setAttrs = null;
 	
 	public NewContext(IItemNode node) {
 		super();
@@ -28,10 +31,19 @@ public class NewContext extends FilterContext {
 		if (getGroupHead() != null)
 			addOutgoingLink(CadseGCST.GROUP_EXT_ITEM_lt_MEMBER_OF, getGroupHead());
 		if (getDestinationType() != null)
-			addOutgoingLink(CadseGCST.ITEM_lt_INSTANCE_OF, getGroupHead());
+			addOutgoingLink(CadseGCST.ITEM_lt_INSTANCE_OF, getDestinationType());
 	}
 
 	public void addOutgoingLink(LinkType lt, Item dest) {
+		if (lt == null) throw new NullPointerException();
+		if (dest == null) throw new NullPointerException();
+		if (_outgoingLinkType != null) {
+			int i = ArraysUtil.indexOf(_outgoingLinkType, lt);
+			if (i != -1) {
+				_outgoingDestination[i] = dest;
+				return;
+			}
+		}
 		_outgoingLinkType = ArraysUtil.add(LinkType.class, _outgoingLinkType, lt);
 		_outgoingDestination = ArraysUtil.add(Item.class, _outgoingDestination, dest);
 	}
@@ -60,6 +72,16 @@ public class NewContext extends FilterContext {
 
 	
 	public void addIncomingLink(LinkType lt, Item source) {
+		if (lt == null) throw new NullPointerException();
+		if (source == null) throw new NullPointerException();
+		
+		if (_incomingLinkType != null) {
+			int i = ArraysUtil.indexOf(_incomingLinkType, lt);
+			if (i != -1) {
+				_incomingSource[i] = source;
+				return;
+			}
+		}
 		_incomingLinkType = ArraysUtil.add(LinkType.class, _incomingLinkType, lt);
 		_incomingSource = ArraysUtil.add(Item.class, _incomingSource, source);
 	}
@@ -91,6 +113,14 @@ public class NewContext extends FilterContext {
 
 	public Item getPartParent() {
 		return _itemSource;
+	}
+	
+	public void addSetAttr(SetAttrVal<?> v) {
+		_setAttrs = ArraysUtil.add(SetAttrVal.class, _setAttrs, v);
+	}
+	
+	public SetAttrVal<?>[] getSetAttrs() {
+		return _setAttrs;
 	}
 
 
@@ -137,7 +167,7 @@ public class NewContext extends FilterContext {
 		String from = "";
 		if (_destType.isPartType()) {
 			from = NLS.bind("from parent {1}({2})", _itemSource == null ? "??" : _itemSource.getDisplayName(),
-					_lt == null ? "??" : _lt.getDisplayName());
+					_lt == null ? "??" : _lt.getDisplayName() == null ? _lt.getName() : _lt.getDisplayName());
 		}
 		if (_gh != null) {
 			from = NLS.bind("from group {0}({1}) {2}", new Object[] { _gh.getName(),
@@ -155,6 +185,7 @@ public class NewContext extends FilterContext {
 	}
 
 	public void setLabel(String label) {
+		if (label == null) throw new IllegalArgumentException("label is null");
 		_label = label;
 	}
 

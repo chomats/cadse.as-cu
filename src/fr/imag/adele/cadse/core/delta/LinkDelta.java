@@ -137,8 +137,6 @@ public interface LinkDelta extends Link, ItemOrLinkDelta, InternalWLWCOperation 
 
 	boolean resolve();
 
-	boolean commitSetAttribute(IAttributeType<?> type, Object value);
-
 	void addCompatibleVersions(int... versions);
 
 	void clearCompatibleVersions();
