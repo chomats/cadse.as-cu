@@ -392,14 +392,14 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * 
 	 * @return the creation page
 	 */
-	public IPageFactory[] getCreationPage();
+	public IPage[] getCreationPage();
 
 	/**
 	 * Gets the modification page.
 	 * 
 	 * @return the modification page
 	 */
-	public IPageFactory[] getModificationPage();
+	public IPage[] getModificationPage();
 
 	/**
 	 * Sets the creation action.
@@ -417,7 +417,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * @param creationPages
 	 *            the creation pages
 	 */
-	public void addCreationPages(List<IPageFactory> creationPages);
+	public void addCreationPages(List<IPage> creationPages);
 
 	/**
 	 * Adds the modification pages.
@@ -425,7 +425,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * @param modificationPages
 	 *            the modification pages
 	 */
-	public void addModificationPages(List<IPageFactory> modificationPages);
+	public void addModificationPages(List<IPage> modificationPages);
 
 	/**
 	 * Gets the good creation page.
@@ -459,6 +459,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * @throws CadseException
 	 *             the melusine exception
 	 */
+	@Deprecated
 	public Pages getGoodCreationPage(Item parent, ItemType type, LinkType lt) throws CadseException;
 
 	/**
@@ -565,16 +566,14 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public void setItemFactory(IItemFactory factory);
 
+	
+
 	/**
-	 * Returns . TODO
-	 * 
-	 * @return
+	 * @deprecated Use {@link #getCadse()} instead
 	 */
-	public IPage getFirstCreatedPage();
-
-	public IPage getFirstModificationPage();
-
 	public CadseRuntime getCadseRuntime();
+
+	public CadseRuntime getCadse();
 
 	/**
 	 * true if it a runtime ItemType (children of a RuntimeCadse, not a cadseg

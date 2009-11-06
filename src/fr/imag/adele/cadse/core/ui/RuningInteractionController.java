@@ -25,22 +25,8 @@ import fr.imag.adele.cadse.core.Item;
 /**
  * The Interface IInteractionController.
  */
-public interface IInteractionController extends Item {
+public interface RuningInteractionController {
 
-	/**
-	 * Gets the model controller.
-	 * 
-	 * @return the model controller
-	 */
-	IValidateContributor getModelController();
-
-	/**
-	 * Sets the uI field.
-	 * 
-	 * @param ui
-	 *            the new uI field
-	 */
-	void setUIField(UIField ui);
 
 	/**
 	 * Gets the uI field.

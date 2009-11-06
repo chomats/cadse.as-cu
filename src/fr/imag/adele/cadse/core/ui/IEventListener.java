@@ -19,6 +19,8 @@
 
 package fr.imag.adele.cadse.core.ui;
 
+import fr.imag.adele.cadse.core.CadseException;
+
 /**
  * The listener interface for receiving IEvent events. The class that is
  * interested in processing a IEvent event implements this interface, and the
@@ -48,8 +50,9 @@ public interface IEventListener {
 	 * 
 	 * @param field
 	 *            the field
+	 * @throws CadseException 
 	 */
-	public void init(UIField field);
+	public void init(IPageController uiPlatform) throws CadseException;
 
 	/**
 	 * Notifie value deleted.
@@ -59,7 +62,7 @@ public interface IEventListener {
 	 * @param oldvalue
 	 *            the oldvalue
 	 */
-	public void notifieValueDeleted(UIField field, Object oldvalue);
+	public void notifieValueDeleted(IPageController uiPlatform, UIField field, Object oldvalue);
 
 	/**
 	 * Notifie value changed.
@@ -69,7 +72,7 @@ public interface IEventListener {
 	 * @param value
 	 *            the value
 	 */
-	public void notifieValueChanged(UIField field, Object value);
+	public void notifieValueChanged(IPageController uiPlatform, UIField field, Object value);
 
 	/**
 	 * Notifie sub value added.
@@ -79,7 +82,7 @@ public interface IEventListener {
 	 * @param added
 	 *            the added
 	 */
-	public void notifieSubValueAdded(UIField field, Object added);
+	public void notifieSubValueAdded(IPageController uiPlatform, UIField field, Object added);
 
 	/**
 	 * Notifie sub value removed.
@@ -89,6 +92,6 @@ public interface IEventListener {
 	 * @param removed
 	 *            the removed
 	 */
-	public void notifieSubValueRemoved(UIField field, Object removed);
+	public void notifieSubValueRemoved(IPageController uiPlatform, UIField field, Object removed);
 
 }

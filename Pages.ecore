@@ -5,14 +5,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Page" eSuperTypes="#//Item">
     <eStructuralFeatures xsi:type="ecore:EReference" name="overwrite" upperBound="-1"
         eType="#//Page"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerFields" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="readonlyFields" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="readonlyAttributes" upperBound="-1"
         eType="#//Attribute"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Field" eSuperTypes="#//Script">
+  <eClassifiers xsi:type="ecore:EClass" name="UIField" eSuperTypes="#//Script">
     <eStructuralFeatures xsi:type="ecore:EReference" name="refAttribute" lowerBound="1"
         eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="editable"/>
@@ -43,6 +43,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="delegate" upperBound="-1"
         eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendedBy" upperBound="-1"
+        eType="#//ExtItemType" eOpposite="#//ExtItemType/extends"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Item">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cannot_be_undefinded"/>
@@ -50,11 +52,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="must-be-initialized"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="no-field"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Validateur" eSuperTypes="#//Script">
+  <eClassifiers xsi:type="ecore:EClass" name="UIValidateur" eSuperTypes="#//Script">
     <eStructuralFeatures xsi:type="ecore:EReference" name="listenAttributes" upperBound="-1"
         eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="overwrite" upperBound="-1"
-        eType="#//Validateur"/>
+        eType="#//UIValidateur"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InteractionController" eSuperTypes="#//Script"/>
   <eClassifiers xsi:type="ecore:EClass" name="ModelController" eSuperTypes="#//Script"/>
@@ -64,13 +66,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtItemType" eSuperTypes="#//TypeDefinition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extends" upperBound="-1"
-        eType="#//ItemType"/>
+        eType="#//ItemType" eOpposite="#//ItemType/extendedBy"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition" eSuperTypes="#//Item">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
-        eType="#//Field" containment="true"/>
+        eType="#//UIField" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="validators" upperBound="-1"
-        eType="#//Validateur" containment="true"/>
+        eType="#//UIValidateur" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true">
       <eAnnotations source="EAnnotation0">
@@ -97,5 +99,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemRepoLogin"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemRepoPasswd"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemRepoURL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HierachicalPage" eSuperTypes="#//Page">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bloc" upperBound="-1" eType="#//Page"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -1,10 +1,12 @@
 package fr.imag.adele.cadse.core.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.ui.view.IContextReference;
 
 /**
@@ -13,30 +15,27 @@ import fr.imag.adele.cadse.core.ui.view.IContextReference;
  * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
-public interface IPage extends Item, IEventListener, IPageObject, IValidateContributor, IContextReference {
+public interface IPage extends Item {
 
-	public static final UIField[]	EMPTY_UIFIELD	= new UIField[0];
+	public static final IAttributeType<?>[]	EMPTY_UIFIELD	= new IAttributeType<?>[0];
 
-	IPage[] getSuperPage();
+	IPage[] getOverwritePage();
 
-	List<UIField> getGoodFields();
-
-	// UIField[] getHiddenField();
-
+	
 	/**
 	 * Gets owner the fields.
 	 * 
 	 * @return the fields
 	 */
-	abstract UIField[] getFields();
+	abstract IAttributeType<?>[] getAttributes();
 
-	abstract void addLast(UIField... field);
+	abstract void addLast(IAttributeType<?>... attr);
+	
+	void addLast(List<IAttributeType> attrs);
+	
+	abstract void addBefore(IAttributeType<?> beforeAttr, IAttributeType<?> attributeToInsert);
 
-	abstract void addUIListner(UIListener l);
-
-	abstract void addBefore(String key, UIField field);
-
-	abstract void addAfter(String key, UIField field);
+	abstract void addAfter(IAttributeType<?> afterAttr, IAttributeType<?> attributeToInsert);
 
 	/**
 	 * Gets the action page.
@@ -45,12 +44,7 @@ public interface IPage extends Item, IEventListener, IPageObject, IValidateContr
 	 */
 	abstract IActionPage getActionPage();
 
-	/**
-	 * Gets the h span.
-	 * 
-	 * @return the h span
-	 */
-	abstract int getHSpan();
+	
 
 	/**
 	 * Gets the label.
@@ -58,30 +52,6 @@ public interface IPage extends Item, IEventListener, IPageObject, IValidateContr
 	 * @return the label
 	 */
 	abstract String getLabel();
-
-	/**
-	 * Gets the field.
-	 * 
-	 * @param keyPath
-	 *            the key path
-	 * 
-	 * @return the field
-	 */
-	abstract UIField getField(String... keyPath);
-
-	/**
-	 * Gets the pages.
-	 * 
-	 * @return the pages
-	 */
-	abstract Pages getPages();
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fede.workspace.domain.ui.IPageObject#getField(java.lang.String)
-	 */
-	abstract UIField getField(String fieldid);
 
 	/**
 	 * Gets the title.
@@ -104,66 +74,15 @@ public interface IPage extends Item, IEventListener, IPageObject, IValidateContr
 	 */
 	abstract boolean isPageComplete();
 
-	/**
-	 * Reset visual value. and set UI_running at true
-	 */
-	abstract void resetVisualValue();
-
-	/**
-	 * Dispose. (stop running)
-	 */
-	abstract void dispose();
-
-	/**
-	 * Gets the context.
-	 * 
-	 * @return the context
-	 */
-	abstract Object getContext();
 
 	abstract ItemType getParentItemType();
 
 	abstract boolean isModificationPage();
 
-	abstract boolean isLast(UIField field);
 
-	abstract boolean isFirst(UIField field);
+	boolean isEmptyPage();
 
-	/**
-	 * Sets the message error.
-	 * 
-	 * @param msg
-	 *            the new message error
-	 */
-	abstract void setMessageError(String msg);
 
-	/**
-	 * Sets the message error.
-	 * 
-	 * @param msg
-	 *            the new message error
-	 */
-	abstract void setMessageWarning(String msg);
+	boolean isLast(IAttributeType<?> attributeDefinition);
 
-	/**
-	 * Sets the message error.
-	 * 
-	 * @param msg
-	 *            the new message error
-	 */
-	abstract void setMessageInfo(String msg);
-
-	public boolean validateFields(UIField currentField);
-
-	abstract void initAfterUI();
-
-	abstract void setPages(Pages pages);
-
-	abstract void init(IPageController pageController) throws CadseException;
-
-	abstract boolean runCreationPage();
-
-	abstract void setItem(Item item);
-
-	abstract boolean isEmpty();
 }

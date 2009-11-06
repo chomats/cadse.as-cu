@@ -35,13 +35,7 @@ public interface IModelController extends IEventListener, IValidateContributor, 
 	/** The Constant FIELD_MANDATORY_KEY. */
 	public static final String	FIELD_MANDATORY_KEY					= "field-mandatory";
 
-	/**
-	 * Sets the uI field.
-	 * 
-	 * @param ui
-	 *            the new uI field
-	 */
-	void setUIField(UIField ui);
+	
 
 	/**
 	 * Gets the uI field.
@@ -61,19 +55,19 @@ public interface IModelController extends IEventListener, IValidateContributor, 
 	/**
 	 * Inits the after ui.
 	 */
-	void initAfterUI();
+	void initAfterUI(IPageController uiPlatform);
 
 	/**
 	 * Dispose.
 	 */
-	void dispose();
+	void dispose(IPageController uiPlatform);
 
 	/**
 	 * Gets the value.
 	 * 
 	 * @return the value
 	 */
-	Object getValue();
+	Object getValue(IPageController uiPlatform);
 
 	/**
 	 * Default value.

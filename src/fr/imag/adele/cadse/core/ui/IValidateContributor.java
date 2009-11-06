@@ -43,7 +43,7 @@ public interface IValidateContributor {
 	 * 
 	 * @return true, if error and stop validation process
 	 */
-	public abstract boolean validValueChanged(UIField field, Object value);
+	public abstract boolean validValueChanged(IPageController uiPlatform, UIField field, Object value);
 
 	/**
 	 * Valid added element to a list.
@@ -55,7 +55,7 @@ public interface IValidateContributor {
 	 * 
 	 * @return true, if error and stop validation process
 	 */
-	public abstract boolean validSubValueAdded(UIField field, Object addedElement);
+	public abstract boolean validSubValueAdded(IPageController uiPlatform, UIField field, Object addedElement);
 
 	/**
 	 * Valid removed element from a list.
@@ -67,7 +67,7 @@ public interface IValidateContributor {
 	 * 
 	 * @return true, if error and stop validation process
 	 */
-	public abstract boolean validSubValueRemoved(UIField field, Object removedElement);
+	public abstract boolean validSubValueRemoved(IPageController uiPlatform, UIField field, Object removedElement);
 
 	/**
 	 * Valid value deleted.
@@ -79,7 +79,7 @@ public interface IValidateContributor {
 	 * 
 	 * @return true, if error and stop validation process
 	 */
-	public abstract boolean validValueDeleted(UIField field, Object deletedValue);
+	public abstract boolean validValueDeleted(IPageController uiPlatform, UIField field, Object deletedValue);
 
 	/**
 	 * Re validate a field after an other field which has changed.
@@ -92,6 +92,6 @@ public interface IValidateContributor {
 	 * 
 	 * @return true, if error and stop validation process
 	 */
-	public abstract boolean validValue(UIField field, Object value);
+	public abstract boolean validValue(IPageController uiPlatform, UIField field, Object value);
 
 }
