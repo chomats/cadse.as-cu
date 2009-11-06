@@ -52,7 +52,7 @@ public interface UIField extends Item {
 	 * 
 	 * @return the model controller
 	 */
-	abstract IModelController getModelController();
+	abstract Item getModelController();
 
 	/**
 	 * This field has changed ...
@@ -113,7 +113,7 @@ public interface UIField extends Item {
 
 	abstract boolean getFlag(int flag);
 
-	abstract void setModelController(IModelController modelController);
+	abstract void setModelController(Item modelController);
 
 	abstract void setPositionLabel(EPosLabel poslabel);
 

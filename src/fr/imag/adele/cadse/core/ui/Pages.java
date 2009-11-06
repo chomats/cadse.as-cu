@@ -48,7 +48,7 @@ public interface Pages  {
 
 	abstract UIField getUIField(IAttributeType<?> at);
 
-	abstract List<UIValidator> getUIValidators();
+	abstract List<UIRunningValidator> getUIValidators();
 
 	abstract IActionPage getAction();
 

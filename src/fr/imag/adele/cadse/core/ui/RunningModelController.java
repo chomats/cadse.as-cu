@@ -19,15 +19,13 @@
 
 package fr.imag.adele.cadse.core.ui;
 
-import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.Item;
 
 /**
  * obtenir une valeur � partir du context.
  * 
  * @author chomats
  */
-public interface IModelController extends IEventListener, IValidateContributor, Item {
+public interface RunningModelController extends UIRunningValidator {
 
 	/** The Constant FIELD_MANADATORY_ERROR_MESSAGE_KEY. */
 	public static final String	FIELD_MANADATORY_ERROR_MESSAGE_KEY	= "field-manadatory-error-message";
@@ -44,30 +42,23 @@ public interface IModelController extends IEventListener, IValidateContributor, 
 	 */
 	UIField getUIField();
 
-	/**
-	 * Inits the.
-	 * 
-	 * @throws CadseException
-	 *             the melusine exception
-	 */
-	void init() throws CadseException;
-
+	
 	/**
 	 * Inits the after ui.
 	 */
-	void initAfterUI(IPageController uiPlatform);
+	void initAfterUI(UIField field);
 
 	/**
 	 * Dispose.
 	 */
-	void dispose(IPageController uiPlatform);
+	void dispose();
 
 	/**
 	 * Gets the value.
 	 * 
 	 * @return the value
 	 */
-	Object getValue(IPageController uiPlatform);
+	Object getValue();
 
 	/**
 	 * Default value.
