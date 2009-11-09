@@ -14,7 +14,7 @@ public interface UIRunningValidator {
 	 *            the field
 	 * @throws CadseException 
 	 */
-	public void init(IPageController uiPlatform);
+	public void init(UIPlatform uiPlatform);
 
 
 	public void initAfterUI();

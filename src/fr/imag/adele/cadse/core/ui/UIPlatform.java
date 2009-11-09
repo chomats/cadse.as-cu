@@ -31,7 +31,7 @@ import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionListener;
 /**
  * The Interface IPageController.
  */
-public interface IPageController {
+public interface UIPlatform {
 
 	/**
 	 * Constant for a regular message (value 0).

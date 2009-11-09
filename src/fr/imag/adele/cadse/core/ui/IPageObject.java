@@ -49,7 +49,7 @@ public interface IPageObject {
 	 * 
 	 * @return the page controller
 	 */
-	public IPageController getPageController();
+	public UIPlatform getPageController();
 
 	/**
 	 * Put local.

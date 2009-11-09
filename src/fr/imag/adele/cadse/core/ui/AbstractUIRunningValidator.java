@@ -16,7 +16,7 @@ public class AbstractUIRunningValidator implements UIRunningValidator {
 	}
 
 	@Override
-	public void init(IPageController uiPlatform) {
+	public void init(UIPlatform uiPlatform) {
 	}
 
 	@Override

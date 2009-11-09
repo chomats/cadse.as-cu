@@ -52,7 +52,7 @@ public interface IEventListener {
 	 *            the field
 	 * @throws CadseException 
 	 */
-	public void init(IPageController uiPlatform) throws CadseException;
+	public void init(UIPlatform uiPlatform) throws CadseException;
 
 	/**
 	 * Notifie value deleted.

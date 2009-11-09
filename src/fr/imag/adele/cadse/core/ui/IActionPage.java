@@ -39,7 +39,7 @@ public interface IActionPage {
 	 * @throws CadseException
 	 *             the melusine exception
 	 */
-	void init(IPageController uiPlatform) throws CadseException;
+	void init(UIPlatform uiPlatform) throws CadseException;
 	
 	/**
 	 * Do finish.
@@ -50,7 +50,7 @@ public interface IActionPage {
 	 * @throws Exception
 	 *             the exception
 	 */
-	void doFinish(IPageController uiPlatform, Object monitor) throws Exception;
+	void doFinish(UIPlatform uiPlatform, Object monitor) throws Exception;
 	
 	/**
 	 * Do cancel.
@@ -58,13 +58,13 @@ public interface IActionPage {
 	 * @param monitor
 	 *            the monitor
 	 */
-	void doCancel(IPageController uiPlatform, Object monitor);
+	void doCancel(UIPlatform uiPlatform, Object monitor);
 	
 	
 	/**
 	 * Dispose.
 	 */
-	void dispose(IPageController uiPlatform);
+	void dispose(UIPlatform uiPlatform);
 
-	void initAfterUI(IPageController uiPlatform);
+	void initAfterUI(UIPlatform uiPlatform);
 }
