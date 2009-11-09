@@ -10,6 +10,9 @@ public class AbstractUIRunningValidator implements UIRunningValidator {
 	public AbstractUIRunningValidator( Item desc) {
 		this._desc = desc;
 	}
+	public AbstractUIRunningValidator() {
+		this._desc = null;
+	}
 	
 	@Override
 	public void dispose() {
