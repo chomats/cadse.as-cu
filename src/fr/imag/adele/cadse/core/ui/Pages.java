@@ -54,4 +54,10 @@ public interface Pages  {
 
 	abstract void setUIField(IAttributeType<?> key, UIField field);
 
+	abstract void addPage(IPage page);
+
+	abstract void setAction(IActionPage newAction);
+
+	abstract void addUIValidator(UIRunningValidator v);
+
 }

@@ -23,6 +23,7 @@ import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.INamed;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.internal.InternalIAttributeType;
+import fr.imag.adele.cadse.core.ui.IPage;
 import fr.imag.adele.cadse.core.ui.UIField;
 
 /**
@@ -214,5 +215,6 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType 
 	public UIField generateDefaultField();
 	
 	public IAttributeType<?>[] getChildren();
+
 
 }
