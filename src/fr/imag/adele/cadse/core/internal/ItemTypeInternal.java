@@ -24,7 +24,7 @@ public interface ItemTypeInternal {
 	
 	public void resetOutgoingLinkType();
 	
-	public void computegetGoodCreationPage(List<IPage> list);
+	public void recurcifComputeGoodCreationPage(List<IPage> list);
 
 	public void setCSTName(String cst);
 	
