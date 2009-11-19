@@ -47,7 +47,6 @@ Import-Package: fr.imag.adele.cadse.core;version="2.2.1",
  fr.imag.adele.cadse.core.ui.view;version="2.2.1",
  fr.imag.adele.cadse.core.util;version="2.2.1",
  fr.imag.adele.cadse.core.var;version="2.2.1",
- fr.imag.adele.packageinfo;version="1.0.0",
  fr.imag.adele.teamwork.db;version="1.0.0"
 Created-By: envsam
 Bundle-Description: Bundle fr.imag.adele.cadse.as.workspace.cu
