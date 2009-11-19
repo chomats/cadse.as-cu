@@ -33,30 +33,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static ItemType ABSTRACT_ITEM_TYPE;
-	/**
-	    @generated
-	*/
-	public static LinkType ABSTRACT_ITEM_TYPE_lt_ATTRIBUTES;
-	/**
-	    @generated
-	*/
-	public static LinkType ABSTRACT_ITEM_TYPE_lt_CREATION_DIALOG;
-	/**
-	    @generated
-	*/
-	public final static String ABSTRACT_ITEM_TYPE_at_ID_RUNTIME="id-runtime";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType ABSTRACT_ITEM_TYPE_at_ID_RUNTIME_;
-	/**
-	    @generated
-	*/
-	public static LinkType ABSTRACT_ITEM_TYPE_lt_MODIFICATION_DIALOG;
-	/**
-	    @generated
-	*/
 	public static ItemType ASPECT_JEXPORTER;
 	/**
 	    @generated
@@ -133,11 +109,19 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String ATTRIBUTE_at_FINAL_VALUE="final-value";
+	public final static String ATTRIBUTE_at_FINAL="final";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType ATTRIBUTE_at_FINAL_VALUE_;
+	public static BooleanAttributeType ATTRIBUTE_at_FINAL_;
+	/**
+	    @generated
+	*/
+	public final static String ATTRIBUTE_at_HIDDEN_IN_COMPUTED_PAGES="hidden-in-computed-pages";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType ATTRIBUTE_at_HIDDEN_IN_COMPUTED_PAGES_;
 	/**
 	    @generated
 	*/
@@ -225,6 +209,74 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static ItemType CADSE;
+	/**
+	    @generated
+	*/
+	public final static String CADSE_at_DEFAULT_CONTENT_REPO_URL="defaultContentRepoURL";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType CADSE_at_DEFAULT_CONTENT_REPO_URL_;
+	/**
+	    @generated
+	*/
+	public final static String CADSE_at_DESCRIPTION="description";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType CADSE_at_DESCRIPTION_;
+	/**
+	    @generated
+	*/
+	public final static String CADSE_at_EXECUTED="executed";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType CADSE_at_EXECUTED_;
+	/**
+	    @generated
+	*/
+	public static LinkType CADSE_lt_EXTENDS;
+	/**
+	    @generated
+	*/
+	public final static String CADSE_at_ID_DEFINITION="id-definition";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType CADSE_at_ID_DEFINITION_;
+	/**
+	    @generated
+	*/
+	public final static String CADSE_at_ITEM_REPO_LOGIN="itemRepoLogin";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType CADSE_at_ITEM_REPO_LOGIN_;
+	/**
+	    @generated
+	*/
+	public final static String CADSE_at_ITEM_REPO_PASSWD="itemRepoPasswd";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType CADSE_at_ITEM_REPO_PASSWD_;
+	/**
+	    @generated
+	*/
+	public final static String CADSE_at_ITEM_REPO_URL="itemRepoURL";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType CADSE_at_ITEM_REPO_URL_;
+	/**
+	    @generated
+	*/
+	public static LinkType CADSE_lt_ITEM_TYPES;
+	/**
+	    @generated
+	*/
 	public static ItemType CADSE_DEFINITION;
 	/**
 	    @generated
@@ -302,74 +354,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType CADSE_DEFINITION_lt_VIEW_MODEL;
-	/**
-	    @generated
-	*/
-	public static ItemType CADSE_RUNTIME;
-	/**
-	    @generated
-	*/
-	public final static String CADSE_RUNTIME_at_DEFAULT_CONTENT_REPO_URL="defaultContentRepoURL";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType CADSE_RUNTIME_at_DEFAULT_CONTENT_REPO_URL_;
-	/**
-	    @generated
-	*/
-	public final static String CADSE_RUNTIME_at_DESCRIPTION="description";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType CADSE_RUNTIME_at_DESCRIPTION_;
-	/**
-	    @generated
-	*/
-	public final static String CADSE_RUNTIME_at_EXECUTED="executed";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType CADSE_RUNTIME_at_EXECUTED_;
-	/**
-	    @generated
-	*/
-	public static LinkType CADSE_RUNTIME_lt_EXTENDS;
-	/**
-	    @generated
-	*/
-	public final static String CADSE_RUNTIME_at_ID_DEFINITION="id-definition";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType CADSE_RUNTIME_at_ID_DEFINITION_;
-	/**
-	    @generated
-	*/
-	public final static String CADSE_RUNTIME_at_ITEM_REPO_LOGIN="itemRepoLogin";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType CADSE_RUNTIME_at_ITEM_REPO_LOGIN_;
-	/**
-	    @generated
-	*/
-	public final static String CADSE_RUNTIME_at_ITEM_REPO_PASSWD="itemRepoPasswd";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType CADSE_RUNTIME_at_ITEM_REPO_PASSWD_;
-	/**
-	    @generated
-	*/
-	public final static String CADSE_RUNTIME_at_ITEM_REPO_URL="itemRepoURL";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType CADSE_RUNTIME_at_ITEM_REPO_URL_;
-	/**
-	    @generated
-	*/
-	public static LinkType CADSE_RUNTIME_lt_ITEM_TYPES;
 	/**
 	    @generated
 	*/
@@ -466,46 +450,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static BooleanAttributeType CONTENT_ITEM_TYPE_at_EXTENDS_CLASS_;
-	/**
-	    @generated
-	*/
-	public static ItemType CREATION_DIALOG;
-	/**
-	    @generated
-	*/
-	public final static String CREATION_DIALOG_at_AUTOMATIC_SHORT_NAME="automatic-short-name";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType CREATION_DIALOG_at_AUTOMATIC_SHORT_NAME_;
-	/**
-	    @generated
-	*/
-	public final static String CREATION_DIALOG_at_DEFAULT_SHORT_NAME="default-short-name";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType CREATION_DIALOG_at_DEFAULT_SHORT_NAME_;
-	/**
-	    @generated
-	*/
-	public final static String CREATION_DIALOG_at_EXTENDS_DIALOG_CONTROLLER="extends-dialog-controller";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType CREATION_DIALOG_at_EXTENDS_DIALOG_CONTROLLER_;
-	/**
-	    @generated
-	*/
-	public final static String CREATION_DIALOG_at_GENERATE_AUTOMATIC_SHORT_NAME="generate-automatic-short-name";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType CREATION_DIALOG_at_GENERATE_AUTOMATIC_SHORT_NAME_;
-	/**
-	    @generated
-	*/
-	public static LinkType CREATION_DIALOG_lt_PAGES;
 	/**
 	    @generated
 	*/
@@ -657,22 +601,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String DISPLAY_at_EDITABLE="editable";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType DISPLAY_at_EDITABLE_;
-	/**
-	    @generated
-	*/
-	public final static String DISPLAY_at_ENABLE="enable";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType DISPLAY_at_ENABLE_;
-	/**
-	    @generated
-	*/
 	public final static String DISPLAY_at_EXTENDS_IC="extendsIC";
 	/**
 	    @generated
@@ -694,14 +622,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static BooleanAttributeType DISPLAY_at_EXTENDS_UI_;
-	/**
-	    @generated
-	*/
-	public static LinkType DISPLAY_lt_IC;
-	/**
-	    @generated
-	*/
-	public static LinkType DISPLAY_lt_MC;
 	/**
 	    @generated
 	*/
@@ -813,10 +733,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static LinkType FIELD_lt_DISPLAY;
-	/**
-	    @generated
-	*/
 	public final static String FIELD_at_EDITABLE="editable";
 	/**
 	    @generated
@@ -825,11 +741,19 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static LinkType FIELD_lt_IC;
+	/**
+	    @generated
+	*/
 	public final static String FIELD_at_LABEL="label";
 	/**
 	    @generated
 	*/
 	public static StringAttributeType FIELD_at_LABEL_;
+	/**
+	    @generated
+	*/
+	public static LinkType FIELD_lt_MC;
 	/**
 	    @generated
 	*/
@@ -842,14 +766,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static EnumAttributeType<EPosLabel> FIELD_at_POSITION_;
-	/**
-	    @generated
-	*/
-	public final static String FIELD_at_READONLY="readonly";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType FIELD_at_READONLY_;
 	/**
 	    @generated
 	*/
@@ -1201,14 +1117,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static LinkType ITEM_TYPE_lt_CADSE_RUNTIME;
-	/**
-	    @generated
-	*/
-	public static LinkType ITEM_TYPE_lt_CREATION_PAGES;
-	/**
-	    @generated
-	*/
 	public final static String ITEM_TYPE_at_CUSTOM_MANAGER="custom-manager";
 	/**
 	    @generated
@@ -1306,10 +1214,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static StringAttributeType ITEM_TYPE_at_MANAGER_CLASS_;
-	/**
-	    @generated
-	*/
-	public static LinkType ITEM_TYPE_lt_MODIFICATION_PAGES;
 	/**
 	    @generated
 	*/
@@ -1705,14 +1609,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static ItemType MODIFICATION_DIALOG;
-	/**
-	    @generated
-	*/
-	public static LinkType MODIFICATION_DIALOG_lt_PAGES;
-	/**
-	    @generated
-	*/
 	public static ItemType PDEPROJECT_CONTENT_MODEL;
 	/**
 	    @generated
@@ -1733,15 +1629,7 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String PAGE_at_CREATE_PAGE_ACTION="create-page-action";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType PAGE_at_CREATE_PAGE_ACTION_;
-	/**
-	    @generated
-	*/
-	public static LinkType PAGE_lt_DELETED_FIELDS;
+	public static LinkType PAGE_lt_ATTRIBUTES;
 	/**
 	    @generated
 	*/
@@ -1750,18 +1638,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static StringAttributeType PAGE_at_DESCRIPTION_;
-	/**
-	    @generated
-	*/
-	public static LinkType PAGE_lt_FIELDS;
-	/**
-	    @generated
-	*/
-	public final static String PAGE_at_HSPAN="hspan";
-	/**
-	    @generated
-	*/
-	public static IntegerAttributeType PAGE_at_HSPAN_;
 	/**
 	    @generated
 	*/
@@ -1789,11 +1665,7 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static LinkType PAGE_lt_LISTENERS;
-	/**
-	    @generated
-	*/
-	public static LinkType PAGE_lt_SUPER;
+	public static LinkType PAGE_lt_OVERWRITE;
 	/**
 	    @generated
 	*/
@@ -1802,22 +1674,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static StringAttributeType PAGE_at_TITLE_;
-	/**
-	    @generated
-	*/
-	public static ItemType PAGE_LISTENER;
-	/**
-	    @generated
-	*/
-	public static LinkType PAGE_LISTENER_lt_FIELDS;
-	/**
-	    @generated
-	*/
-	public final static String PAGE_LISTENER_at_LISTEN_SHORT_NAME="listen-short-name";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType PAGE_LISTENER_at_LISTEN_SHORT_NAME_;
 	/**
 	    @generated
 	*/
@@ -1913,11 +1769,59 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static ItemType TYPE_DEFINITION;
+	/**
+	    @generated
+	*/
+	public static LinkType TYPE_DEFINITION_lt_ATTRIBUTES;
+	/**
+	    @generated
+	*/
+	public static LinkType TYPE_DEFINITION_lt_CADSE;
+	/**
+	    @generated
+	*/
+	public static LinkType TYPE_DEFINITION_lt_CREATION_PAGES;
+	/**
+	    @generated
+	*/
+	public static LinkType TYPE_DEFINITION_lt_FIELDS;
+	/**
+	    @generated
+	*/
+	public final static String TYPE_DEFINITION_at_ID_RUNTIME="id-runtime";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType TYPE_DEFINITION_at_ID_RUNTIME_;
+	/**
+	    @generated
+	*/
+	public static LinkType TYPE_DEFINITION_lt_MODIFICATION_PAGES;
+	/**
+	    @generated
+	*/
+	public static LinkType TYPE_DEFINITION_lt_VALIDATORS;
+	/**
+	    @generated
+	*/
 	public static ItemType UILISTENER;
 	/**
 	    @generated
 	*/
 	public static LinkType UILISTENER_lt_FIELDS;
+	/**
+	    @generated
+	*/
+	public static ItemType UIVALIDATOR;
+	/**
+	    @generated
+	*/
+	public static LinkType UIVALIDATOR_lt_LISTEN_ATTRIBUTES;
+	/**
+	    @generated
+	*/
+	public static LinkType UIVALIDATOR_lt_OVERWRITE;
 	/**
 	    @generated
 	*/

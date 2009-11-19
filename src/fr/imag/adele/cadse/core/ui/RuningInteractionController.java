@@ -23,25 +23,10 @@ import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.Item;
 
 /**
- * obtenir une valeur � partir du context.
- * 
- * @author chomats
+ * The Interface IInteractionController.
  */
-public interface IModelController extends IEventListener, IValidateContributor, Item {
+public interface RuningInteractionController {
 
-	/** The Constant FIELD_MANADATORY_ERROR_MESSAGE_KEY. */
-	public static final String	FIELD_MANADATORY_ERROR_MESSAGE_KEY	= "field-manadatory-error-message";
-
-	/** The Constant FIELD_MANDATORY_KEY. */
-	public static final String	FIELD_MANDATORY_KEY					= "field-mandatory";
-
-	/**
-	 * Sets the uI field.
-	 * 
-	 * @param ui
-	 *            the new uI field
-	 */
-	void setUIField(UIField ui);
 
 	/**
 	 * Gets the uI field.
@@ -56,31 +41,15 @@ public interface IModelController extends IEventListener, IValidateContributor, 
 	 * @throws CadseException
 	 *             the melusine exception
 	 */
-	void init() throws CadseException;
-
-	/**
-	 * Inits the after ui.
-	 */
-	void initAfterUI();
+	public void init() throws CadseException;
 
 	/**
 	 * Dispose.
 	 */
-	void dispose();
+	public void dispose();
 
 	/**
-	 * Gets the value.
-	 * 
-	 * @return the value
+	 * Inits the after ui.
 	 */
-	Object getValue();
-
-	/**
-	 * Default value.
-	 * 
-	 * @return the object
-	 */
-	Object defaultValue();
-
-	public boolean isAnonymous();
+	public void initAfterUI();
 }

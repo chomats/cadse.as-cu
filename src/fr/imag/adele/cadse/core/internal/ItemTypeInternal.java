@@ -6,6 +6,7 @@ import java.util.Map;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
+import fr.imag.adele.cadse.core.ui.IPage;
 import fr.imag.adele.cadse.core.ui.IPageFactory;
 
 public interface ItemTypeInternal {
@@ -23,8 +24,7 @@ public interface ItemTypeInternal {
 	
 	public void resetOutgoingLinkType();
 	
-	public void computegetGoodCreationPage(Map<String, IPageFactory> map,
-			List<IPageFactory> list);
+	public void recurcifComputeGoodCreationPage(List<IPage> list);
 
 	public void setCSTName(String cst);
 	

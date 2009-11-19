@@ -208,19 +208,19 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 		return ret;
 	}
 
-	public Pages createCreationPages(Item theItemParent, LinkType theLinkType, ItemType desType) {
-		try {
-			return desType.getGoodCreationPage(theItemParent, desType, theLinkType);
-		} catch (CadseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	public Pages createCreationPages(Item theItemParent, LinkType theLinkType, ItemType desType) {
+//		try {
+//			return desType.getGoodCreationPage(theItemParent, desType, theLinkType);
+//		} catch (CadseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
-	public Pages createModificationPage(Item item) {
-		return item.getType().getGoodModificationPage(item);
-	}
+//	public Pages createModificationPage(Item item) {
+//		return item.getType().getGoodModificationPage(item);
+//	}
 
 	public boolean hasImageByItem() {
 		return false;

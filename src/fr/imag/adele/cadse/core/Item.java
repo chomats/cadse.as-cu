@@ -30,6 +30,7 @@ import java.util.Set;
 import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.internal.InternalItem;
 import fr.imag.adele.cadse.core.key.ISpaceKey;
+import fr.imag.adele.cadse.core.ui.Pages;
 
 /**
  * An item is an object of logical workspace. It has attributes composed by a
@@ -1257,5 +1258,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public boolean exists();
 
 	public List<LinkType> getInstanceOutgoingLinkTypes();
+
+	public Pages getInstanceModificationPages(Item selectedItem);
 
 }

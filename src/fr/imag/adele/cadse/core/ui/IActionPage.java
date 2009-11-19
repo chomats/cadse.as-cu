@@ -26,6 +26,8 @@ import fr.imag.adele.cadse.core.CadseException;
  * The Interface IActionPage.
  */
 public interface IActionPage {
+	
+	
 	public abstract String getTypeId() ;
 	
 	/**
@@ -37,7 +39,7 @@ public interface IActionPage {
 	 * @throws CadseException
 	 *             the melusine exception
 	 */
-	void init(IPageObject pageObject) throws CadseException;
+	void init(UIPlatform uiPlatform) throws CadseException;
 	
 	/**
 	 * Do finish.
@@ -48,7 +50,7 @@ public interface IActionPage {
 	 * @throws Exception
 	 *             the exception
 	 */
-	void doFinish(Object monitor) throws Exception;
+	void doFinish(UIPlatform uiPlatform, Object monitor) throws Exception;
 	
 	/**
 	 * Do cancel.
@@ -56,74 +58,13 @@ public interface IActionPage {
 	 * @param monitor
 	 *            the monitor
 	 */
-	void doCancel(Object monitor);
-	
-	
-	/**
-	 * Do next page action.
-	 * 
-	 * @param monitor
-	 *            the monitor
-	 * @param pages
-	 *            the pages
-	 * @param currentPage
-	 *            the current page
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	void doNextPageAction(Object monitor, Pages pages, int currentPage) throws Exception;
-	
-	/**
-	 * Do prev page action.
-	 * 
-	 * @param monitor
-	 *            the monitor
-	 * @param pages
-	 *            the pages
-	 * @param currentPage
-	 *            the current page
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	void doPrevPageAction(Object monitor, Pages pages, int currentPage) throws Exception;
-	
-	/**
-	 * Gets the next page index.
-	 * 
-	 * @param pages
-	 *            the pages
-	 * @param currentPage
-	 *            the current page
-	 * 
-	 * @return the next page index
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	int getNextPageIndex(Pages pages, int currentPage) throws Exception;
-	
-	/**
-	 * Gets the prev page index.
-	 * 
-	 * @param pages
-	 *            the pages
-	 * @param currentPage
-	 *            the current page
-	 * 
-	 * @return the prev page index
-	 * 
-	 * @throws Exception
-	 *             the exception
-	 */
-	int getPrevPageIndex(Pages pages, int currentPage) throws Exception;
+	void doCancel(UIPlatform uiPlatform, Object monitor);
 	
 	
 	/**
 	 * Dispose.
 	 */
-	void dispose();
+	void dispose(UIPlatform uiPlatform);
 
-	void initAfterUI();
+	void initAfterUI(UIPlatform uiPlatform);
 }
