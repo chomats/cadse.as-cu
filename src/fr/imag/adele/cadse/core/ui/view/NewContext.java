@@ -34,6 +34,11 @@ public class NewContext extends FilterContext {
 			addOutgoingLink(CadseGCST.ITEM_lt_INSTANCE_OF, getDestinationType());
 	}
 
+	public NewContext(Item parent, LinkType lt, ItemType destItemType) {
+		setDestinationType(destItemType);
+		setPartParent(parent, lt);
+	}
+
 	public void addOutgoingLink(LinkType lt, Item dest) {
 		if (lt == null) throw new NullPointerException();
 		if (dest == null) throw new NullPointerException();
