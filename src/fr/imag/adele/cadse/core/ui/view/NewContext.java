@@ -1,12 +1,16 @@
 package fr.imag.adele.cadse.core.ui.view;
 
 import fr.imag.adele.cadse.core.CadseError;
+import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.IItemNode;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
+import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.attribute.SetAttrVal;
+import fr.imag.adele.cadse.core.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.util.ArraysUtil;
 import fr.imag.adele.cadse.core.util.NLS;
 
@@ -18,6 +22,8 @@ public class NewContext extends FilterContext {
 	Item[]		_incomingSource;
 	LinkType[]	_incomingLinkType;
 	SetAttrVal<?>[] _setAttrs = null;
+	private LogicalWorkspaceTransaction	_transaction;
+	private Item	_newItem;
 	
 	public NewContext(IItemNode node) {
 		super();
@@ -196,5 +202,18 @@ public class NewContext extends FilterContext {
 
 	public String getLabel() {
 		return _label;
+	}
+
+	public void initTransaction(LogicalWorkspace lw) throws CadseException {
+		_transaction = lw.createTransaction();
+		_newItem = _transaction.createItem(this);
+	}
+	
+	public LogicalWorkspaceTransaction getTransaction() {
+		return _transaction;
+	}
+	
+	public Item getNewItem() {
+		return _newItem;
 	}
 }

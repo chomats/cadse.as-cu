@@ -17,14 +17,10 @@ public interface ItemTypeInternal {
 	public void addSubItemType(ItemType itemType);
 	
 	public void removeSubItemType(ItemType itemType);
-	public void resetModificationPages();
-	public void resetCreationPages();
 	public void resetIncomingLinkType();
 	public void resetContributions();
 	
 	public void resetOutgoingLinkType();
-	
-	public void recurcifComputeGoodCreationPage(List<IPage> list);
 
 	public void setCSTName(String cst);
 	

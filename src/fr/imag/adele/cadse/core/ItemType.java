@@ -427,60 +427,45 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public void addModificationPages(List<IPage> modificationPages);
 
-	/**
-	 * Gets the good creation page.
-	 * 
-	 * @param parent
-	 *            the parent
-	 * @param type
-	 *            the type
-	 * @param lt
-	 *            the lt
-	 * 
-	 * @return the good creation page
-	 * 
-	 * @throws CadseException
-	 *             the melusine exception
-	 */
-	public Pages getGoodCreationPage(NewContext context) throws CadseException;
+	public String getDefaultInstanceName() ;
 
-	/**
-	 * Gets the good creation page.
-	 * 
-	 * @param parent
-	 *            the parent
-	 * @param type
-	 *            the type
-	 * @param lt
-	 *            the lt
-	 * 
-	 * @return the good creation page
-	 * 
-	 * @throws CadseException
-	 *             the melusine exception
-	 */
-	@Deprecated
-	public Pages getGoodCreationPage(Item parent, ItemType type, LinkType lt) throws CadseException;
-
-	/**
-	 * Gets the good modification page.
-	 * 
-	 * @param selected
-	 *            the selected
-	 * 
-	 * @return the good modification page
-	 */
-	public Pages getGoodModificationPage(Item selected);
-
-	/**
-	 * Gets the good modification page.
-	 * 
-	 * @param selected
-	 *            the selected
-	 * 
-	 * @return the good modification page
-	 */
-	public Pages getGoodModificationPage(IItemNode selected);
+//	/**
+//	 * Gets the good creation page.
+//	 * 
+//	 * @param parent
+//	 *            the parent
+//	 * @param type
+//	 *            the type
+//	 * @param lt
+//	 *            the lt
+//	 * 
+//	 * @return the good creation page
+//	 * 
+//	 * @throws CadseException
+//	 *             the melusine exception
+//	 */
+//	@Deprecated
+//	public Pages getGoodCreationPage(Item parent, ItemType type, LinkType lt) throws CadseException;
+//
+//	/**
+//	 * Gets the good modification page.
+//	 * 
+//	 * @param selected
+//	 *            the selected
+//	 * 
+//	 * @return the good modification page
+//	 */
+//	public Pages getGoodModificationPage(Item selected);
+//
+//	/**
+//	 * Gets the good modification page.
+//	 * 
+//	 * @param selected
+//	 *            the selected
+//	 * 
+//	 * @return the good modification page
+//	 */
+//	public Pages getGoodModificationPage(IItemNode selected);
 
 	/**
 	 * Gets the action contribution.

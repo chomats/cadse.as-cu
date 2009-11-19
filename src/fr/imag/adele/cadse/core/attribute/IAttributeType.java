@@ -34,7 +34,7 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType 
 	/**
 	 * undefined value
 	 */
-	public static final Object NULL = new Object();
+	public static final Object NULL = null;
 	
 	/**
 	 * TODO soit ItemType soit IAttributeType pour les types composer

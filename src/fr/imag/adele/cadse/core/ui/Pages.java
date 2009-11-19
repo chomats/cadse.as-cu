@@ -9,6 +9,7 @@ import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.IContextReference;
+import fr.imag.adele.cadse.core.ui.view.NewContext;
 
 public interface Pages  {
 
@@ -59,5 +60,7 @@ public interface Pages  {
 	abstract void setAction(IActionPage newAction);
 
 	abstract void addUIValidator(UIRunningValidator v);
+
+	abstract NewContext getContext();
 
 }
