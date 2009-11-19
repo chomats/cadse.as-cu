@@ -74,12 +74,13 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 
 	public static final int		CAN_BE_UNDEFINED						= 0x00000001;
 	public static final int		MUST_BE_INITIALIZED_AT_CREATION_TIME	= 0x00000002;
-	public static final int		IS_META_ATTRIBUTE						= 0x00000004;
-	public static final int		OVERWRITABLE							= 0x00000008;
+	public static final int		FINAL									= 0x00000004;
+	public static final int		HIDDEN_IN_COMPUTED_PAGES				= 0x00000008;
 
 	public static final int		NATIF									= 0x00000010;
 	public static final int		TRANSIENT								= 0x00000020;
-	public static final int		FINAL_VALUE								= 0x00000040;
+	//free to other kind
+	public static final int		FREE1									= 0x00000040;
 	public static final int		PERSISTENCE_CACHE						= 0x00000080;
 
 	public static final int		NOT_EMPTY								= 0x00000100;

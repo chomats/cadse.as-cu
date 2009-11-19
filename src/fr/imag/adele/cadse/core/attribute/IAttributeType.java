@@ -30,7 +30,12 @@ import fr.imag.adele.cadse.core.internal.InternalIAttributeType;
 public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType {
 
 	/**
-	 * TODO soit ItemType soit IAttributeType pour les types composer"
+	 * undefined value
+	 */
+	public static final Object NULL = new Object();
+	
+	/**
+	 * TODO soit ItemType soit IAttributeType pour les types composer
 	 * get
 	 * @return the parent
 	 */
@@ -44,11 +49,11 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType 
 	public Class<T> getAttributeType();
 
 	/**
-	 * Returns true if attribute value must be not equal to null at creation
+	 * Returns true if attribute value must be not equal to <code>NULL</code> at creation
 	 * time. Attribute value must be set at the end of related item creation
-	 * wizard.
+	 * wizard and .
 	 * 
-	 * @return true if attribute value must be not equal to null at creation
+	 * @return true if attribute value must be not equal to <code>NULL</code> at creation
 	 *         time.
 	 */
 	public boolean mustBeInitializedAtCreationTime();
@@ -127,19 +132,42 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType 
 
 	/**
 	 * Returns true if attribute value can be undefined. An undefined attribute
-	 * value is equal to null.
+	 * value is equal to <code>NULL</code>..
 	 * 
 	 * @return true if attribute value is not persisted.
 	 */
 	public boolean canBeUndefined();
 
 	/**
-	 * Returns true if attribute value can be undefined. An undefined attribute
-	 * value is equal to null.
+	 * Returns true if attribute value cannot be undefined. An undefined attribute
+	 * value is equal to <code>NULL</code>. The value attribute cannot be to <code>NULL</code>.
 	 * 
-	 * @return true if attribute value can not be undefined.
+	 * @return true if attribute value cannot not be undefined.
 	 */
 	public boolean cannotBeUndefined();
+	
+	/**
+	 * TODO
+	 * @return
+	 */
+	public boolean isHiddenInComputedPages();
+	
+	/**
+	 * TODO
+	 */
+	public void setHiddenInComputedPages(boolean flag);
+	
+	/**
+	 * TODO 
+	 * @return cannot be modified is value not <code>NULL</code>.
+	 */
+	public boolean isFinal();
+	
+	/**
+	 * TODO
+	 */
+	public void setFinal(boolean flag);
+	
 
 	/**
 	 * Converts specified value into this attribute data type.
