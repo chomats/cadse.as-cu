@@ -19,6 +19,8 @@
 
 package fr.imag.adele.cadse.core.ui;
 
+import fr.imag.adele.cadse.core.CadseException;
+
 /**
  * The listener interface for receiving IEvent events. The class that is
  * interested in processing a IEvent event implements this interface, and the
@@ -48,8 +50,9 @@ public interface IEventListener {
 	 * 
 	 * @param field
 	 *            the field
+	 * @throws CadseException 
 	 */
-	public void init(UIField field);
+	public void init(UIPlatform uiPlatform) throws CadseException;
 
 	/**
 	 * Notifie value deleted.
@@ -90,5 +93,66 @@ public interface IEventListener {
 	 *            the removed
 	 */
 	public void notifieSubValueRemoved(UIField field, Object removed);
+	
+	/**
+	 * Valid this field : the value has changed .
+	 * 
+	 * @param field
+	 *            the field
+	 * @param value
+	 *            the new value
+	 * 
+	 * @return true, if error and stop validation process
+	 */
+	public abstract boolean validValueChanged(UIField field, Object value);
+
+	/**
+	 * Valid added element to a list.
+	 * 
+	 * @param field
+	 *            the field
+	 * @param addedElement
+	 *            the added element
+	 * 
+	 * @return true, if error and stop validation process
+	 */
+	public abstract boolean validSubValueAdded(UIField field, Object addedElement);
+
+	/**
+	 * Valid removed element from a list.
+	 * 
+	 * @param field
+	 *            the field
+	 * @param removedElement
+	 *            the removed element
+	 * 
+	 * @return true, if error and stop validation process
+	 */
+	public abstract boolean validSubValueRemoved(UIField field, Object removedElement);
+
+	/**
+	 * Valid value deleted.
+	 * 
+	 * @param field
+	 *            the field
+	 * @param deletedValue
+	 *            the deleted value
+	 * 
+	 * @return true, if error and stop validation process
+	 */
+	public abstract boolean validValueDeleted(UIField field, Object deletedValue);
+
+	/**
+	 * Re validate a field after an other field which has changed.
+	 * 
+	 * @param field
+	 *            null or the field which has changed. All others field is
+	 *            revalidate.
+	 * @param value
+	 *            the current value or null
+	 * 
+	 * @return true, if error and stop validation process
+	 */
+	public abstract boolean validValue(UIField field, Object value);
 
 }

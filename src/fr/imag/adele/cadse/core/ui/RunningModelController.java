@@ -19,28 +19,21 @@
 
 package fr.imag.adele.cadse.core.ui;
 
-import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.Item;
 
 /**
- * The Interface IInteractionController.
+ * obtenir une valeur � partir du context.
+ * 
+ * @author chomats
  */
-public interface IInteractionController extends Item {
+public interface RunningModelController extends UIRunningValidator {
 
-	/**
-	 * Gets the model controller.
-	 * 
-	 * @return the model controller
-	 */
-	IValidateContributor getModelController();
+	/** The Constant FIELD_MANADATORY_ERROR_MESSAGE_KEY. */
+	public static final String	FIELD_MANADATORY_ERROR_MESSAGE_KEY	= "field-manadatory-error-message";
 
-	/**
-	 * Sets the uI field.
-	 * 
-	 * @param ui
-	 *            the new uI field
-	 */
-	void setUIField(UIField ui);
+	/** The Constant FIELD_MANDATORY_KEY. */
+	public static final String	FIELD_MANDATORY_KEY					= "field-mandatory";
+
+	
 
 	/**
 	 * Gets the uI field.
@@ -49,21 +42,30 @@ public interface IInteractionController extends Item {
 	 */
 	UIField getUIField();
 
+	
 	/**
-	 * Inits the.
-	 * 
-	 * @throws CadseException
-	 *             the melusine exception
+	 * Inits the after ui.
 	 */
-	public void init() throws CadseException;
+	void initAfterUI(UIField field);
 
 	/**
 	 * Dispose.
 	 */
-	public void dispose();
+	void dispose();
 
 	/**
-	 * Inits the after ui.
+	 * Gets the value.
+	 * 
+	 * @return the value
 	 */
-	public void initAfterUI();
+	Object getValue();
+
+	/**
+	 * Default value.
+	 * 
+	 * @return the object
+	 */
+	Object defaultValue();
+
+	public boolean isAnonymous();
 }

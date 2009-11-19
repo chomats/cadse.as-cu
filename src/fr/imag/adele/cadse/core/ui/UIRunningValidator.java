@@ -1,38 +1,69 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 package fr.imag.adele.cadse.core.ui;
 
-/**
- * Implemente un validator qui permet de valider la valeur d'un champ suivant
- * different cas : valeur chang�, un �lement ajout� ou supprimer pour les
- * listes, Chacune des m�thodes returnent true si il y eu une erreur sinon
- * false. L'expression field.getPageController().setMessage(...) permet
- * d'ajouter un message. Suivant l'implementation de setMessage, cela peut etre
- * soit le premier message, soit le dernier, soit l'ensemble des messages.
- * Durant un cycle de validations, plusieurs validators sont appel�s : il peut
- * avoir plusieurs erreur durant le cycle.
- * 
- * @author chomats
- */
-public interface IValidateContributor {
+import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.Item;
 
+public interface UIRunningValidator {
+	
+	public Item getDescriptor();
+	
+	/**
+	 * Inits the.
+	 * 
+	 * @param field
+	 *            the field
+	 * @throws CadseException 
+	 */
+	public void init(UIPlatform uiPlatform) throws CadseException;
+
+
+	public void initAfterUI();
+	
+
+/** Called when ui is disposed. */
+
+	abstract void dispose();
+
+	/**
+	 * Notifie value deleted.
+	 * 
+	 * @param field
+	 *            the field
+	 * @param oldvalue
+	 *            the oldvalue
+	 */
+	public void notifieValueDeleted(UIField field, Object oldvalue);
+
+	/**
+	 * Notifie value changed.
+	 * 
+	 * @param field
+	 *            the field
+	 * @param value
+	 *            the value
+	 */
+	public void notifieValueChanged(UIField field, Object value);
+
+	/**
+	 * Notifie sub value added.
+	 * 
+	 * @param field
+	 *            the field
+	 * @param added
+	 *            the added
+	 */
+	public void notifieSubValueAdded(UIField field, Object added);
+
+	/**
+	 * Notifie sub value removed.
+	 * 
+	 * @param field
+	 *            the field
+	 * @param removed
+	 *            the removed
+	 */
+	public void notifieSubValueRemoved(UIField field, Object removed);
+	
 	/**
 	 * Valid this field : the value has changed .
 	 * 
@@ -93,5 +124,7 @@ public interface IValidateContributor {
 	 * @return true, if error and stop validation process
 	 */
 	public abstract boolean validValue(UIField field, Object value);
+
+	public int incrementError();
 
 }

@@ -34,6 +34,7 @@ import fr.imag.adele.cadse.core.build.IBuildingContext;
 import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.delta.ItemDelta;
 import fr.imag.adele.cadse.core.key.ISpaceKey;
+import fr.imag.adele.cadse.core.ui.Pages;
 import fr.imag.adele.cadse.core.util.IErrorCollector;
 import fr.imag.adele.cadse.core.util.OrderWay;
 import fr.imag.adele.cadse.core.var.ContextVariable;
@@ -865,6 +866,12 @@ public class ContentManagerInternal implements ContentItem {
 
 	@Override
 	public List<LinkType> getInstanceOutgoingLinkTypes() {
+		return null;
+	}
+
+	@Override
+	public Pages getInstanceModificationPages(Item selectedItem) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
