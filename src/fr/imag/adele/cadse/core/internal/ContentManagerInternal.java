@@ -35,6 +35,8 @@ import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.delta.ItemDelta;
 import fr.imag.adele.cadse.core.key.ISpaceKey;
 import fr.imag.adele.cadse.core.ui.Pages;
+import fr.imag.adele.cadse.core.ui.view.FilterContext;
+import fr.imag.adele.cadse.core.ui.view.NewContext;
 import fr.imag.adele.cadse.core.util.IErrorCollector;
 import fr.imag.adele.cadse.core.util.OrderWay;
 import fr.imag.adele.cadse.core.var.ContextVariable;
@@ -870,8 +872,12 @@ public class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
-	public Pages getInstanceModificationPages(Item selectedItem) {
-		// TODO Auto-generated method stub
+	public Pages getCreationPages(NewContext context) throws CadseException {
+		return null;
+	}
+
+	@Override
+	public Pages getModificationPages(FilterContext context) {
 		return null;
 	}
 

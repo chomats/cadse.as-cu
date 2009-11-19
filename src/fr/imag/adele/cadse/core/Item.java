@@ -31,6 +31,8 @@ import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.internal.InternalItem;
 import fr.imag.adele.cadse.core.key.ISpaceKey;
 import fr.imag.adele.cadse.core.ui.Pages;
+import fr.imag.adele.cadse.core.ui.view.FilterContext;
+import fr.imag.adele.cadse.core.ui.view.NewContext;
 
 /**
  * An item is an object of logical workspace. It has attributes composed by a
@@ -1259,6 +1261,23 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 
 	public List<LinkType> getInstanceOutgoingLinkTypes();
 
-	public Pages getInstanceModificationPages(Item selectedItem);
+	/**
+	 * Gets the good creation page.
+	 * 
+	 * @param parent
+	 *            the parent
+	 * @param type
+	 *            the type
+	 * @param lt
+	 *            the lt
+	 * 
+	 * @return the good creation page
+	 * 
+	 * @throws CadseException
+	 *             the melusine exception
+	 */
+	public Pages getCreationPages(NewContext context) throws CadseException;
+	
+	public Pages getModificationPages(FilterContext context);
 
 }
