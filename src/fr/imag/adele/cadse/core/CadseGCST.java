@@ -109,11 +109,19 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String ATTRIBUTE_at_FINAL_VALUE="final-value";
+	public final static String ATTRIBUTE_at_FINAL="final";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType ATTRIBUTE_at_FINAL_VALUE_;
+	public static BooleanAttributeType ATTRIBUTE_at_FINAL_;
+	/**
+	    @generated
+	*/
+	public final static String ATTRIBUTE_at_HIDDEN_IN_COMPUTED_PAGES="hidden-in-computed-pages";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType ATTRIBUTE_at_HIDDEN_IN_COMPUTED_PAGES_;
 	/**
 	    @generated
 	*/
