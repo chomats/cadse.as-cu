@@ -7,6 +7,8 @@ public class AbstractUIRunningValidator implements UIRunningValidator {
 
 	final protected Item _desc;
 	private int _error;
+	protected UIPlatform _uiPlatform;
+	
 	public AbstractUIRunningValidator( Item desc) {
 		this._desc = desc;
 	}
@@ -20,6 +22,7 @@ public class AbstractUIRunningValidator implements UIRunningValidator {
 
 	@Override
 	public void init(UIPlatform uiPlatform) {
+		_uiPlatform = uiPlatform;
 	}
 
 	@Override
