@@ -42,7 +42,8 @@ public class NewContext extends FilterContext {
 
 	public NewContext(Item parent, LinkType lt, ItemType destItemType) {
 		setDestinationType(destItemType);
-		setPartParent(parent, lt);
+		if (parent != null)
+			setPartParent(parent, lt);
 	}
 
 	public void addOutgoingLink(LinkType lt, Item dest) {
