@@ -33,6 +33,7 @@ import fr.imag.adele.cadse.core.ui.IActionPage;
 import fr.imag.adele.cadse.core.ui.IPage;
 import fr.imag.adele.cadse.core.ui.IPageFactory;
 import fr.imag.adele.cadse.core.ui.Pages;
+import fr.imag.adele.cadse.core.ui.UIField;
 import fr.imag.adele.cadse.core.ui.UIValidator;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
 
@@ -585,4 +586,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	public boolean canCreateItem(NewContext newContext, LinkType lt, Item src);
 	
 	public void addValidators(UIValidator v);
+	
+
+	public void addField(UIField v);
 }
