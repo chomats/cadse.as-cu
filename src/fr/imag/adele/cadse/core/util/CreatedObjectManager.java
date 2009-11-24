@@ -1,24 +1,32 @@
 package fr.imag.adele.cadse.core.util;
 
-import fr.imag.adele.cadse.core.Item;
+import java.util.HashMap;
+import java.util.Map;
 
-public class CreatedObjectManager<T> {
+import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.ItemType;
+
+public abstract class CreatedObjectManager {
+	static public JavaCreatedObject DEFAULTObjectMANAGER = new JavaCreatedObject(null);
 	
-	static public <T> CreatedObjectManager<T> getManager(Item desc, Class<T> clazz) {
-		if (desc instanceof CreatedObjectManager) {
-			return ((CreatedObjectManager<T>) desc);
-		}
-		
-		if (desc.getType() instanceof CreatedObjectManager )
-			return (CreatedObjectManager<T>) desc.getType();
-		
-		if (desc.getType().getItemManager() instanceof CreatedObjectManager )
-			return (CreatedObjectManager<T>) desc.getType().getItemManager();
-		
-		return null;
+	static private Map<Class<?>, CreatedObject>		PLATFORME_;	
+	
+	static public CreatedObject getManager(Item desc, Class platform) {
+		CreatedObject ret = PLATFORME_.get(platform);
+		if (ret == null)
+			ret = DEFAULTObjectMANAGER;
+		return ret;
 	}
 	
-	public T create(Item descriptor) {
-		return null;
+	static public <T> void defaultregister(ItemType it, Class<T> clazz) {
+		DEFAULTObjectMANAGER.register(it, clazz);
+	}
+	
+	static public <T> void registerPlatform(Class<T> clazz, CreatedObject manager) {
+		if (PLATFORME_ == null) {
+			PLATFORME_	= new HashMap<Class<?>, CreatedObject>();	
+			PLATFORME_.put(CreatedObjectManager.class, DEFAULTObjectMANAGER);
+		}
+		PLATFORME_.put(clazz, manager);
 	}
 }
