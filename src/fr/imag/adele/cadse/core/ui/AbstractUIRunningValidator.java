@@ -7,7 +7,7 @@ public class AbstractUIRunningValidator implements UIRunningValidator {
 
 	public Item _desc;
 	private int _error;
-	protected UIPlatform _uiPlatform;
+	public UIPlatform _uiPlatform;
 	
 	public AbstractUIRunningValidator( Item desc) {
 		this._desc = desc;
