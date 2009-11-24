@@ -262,4 +262,6 @@ public interface UIPlatform {
 	abstract boolean validateFields(UIField currentField, IPage currentPage);
 
 	public boolean validateValueChanged(UIField field, Object visualValue);
+
+	public void setEditable(UIField uiField, boolean b);
 }
