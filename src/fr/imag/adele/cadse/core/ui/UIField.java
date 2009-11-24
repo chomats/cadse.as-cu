@@ -61,12 +61,6 @@ public interface UIField extends Item {
 	 */
 	abstract int getHSpan();
 
-	/**
-	 * Gets the v span.
-	 * 
-	 * @return the v span
-	 */
-	abstract int getVSpan();
 
 	abstract void setEditable(boolean editable);
 	
