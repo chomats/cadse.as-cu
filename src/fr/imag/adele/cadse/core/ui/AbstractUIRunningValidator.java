@@ -5,7 +5,7 @@ import fr.imag.adele.cadse.core.Item;
 
 public class AbstractUIRunningValidator implements UIRunningValidator {
 
-	final protected Item _desc;
+	public Item _desc;
 	private int _error;
 	protected UIPlatform _uiPlatform;
 	
