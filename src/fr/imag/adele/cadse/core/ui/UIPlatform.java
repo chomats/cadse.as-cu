@@ -162,6 +162,7 @@ public interface UIPlatform {
 
 	public Item getItem(UIField fromField);
 
+	public Item getItem();
 
 
 	/**
@@ -264,4 +265,6 @@ public interface UIPlatform {
 	public boolean validateValueChanged(UIField field, Object visualValue);
 
 	public void setEditable(UIField uiField, boolean b);
+
+	public UIField getField(IAttributeType<?> att);
 }
