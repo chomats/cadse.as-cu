@@ -5,7 +5,6 @@ import java.util.Map;
 
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
-
 public abstract class CreatedObjectManager {
 	static public JavaCreatedObject DEFAULTObjectMANAGER = new JavaCreatedObject(null);
 	
@@ -28,5 +27,12 @@ public abstract class CreatedObjectManager {
 			PLATFORME_.put(CreatedObjectManager.class, DEFAULTObjectMANAGER);
 		}
 		PLATFORME_.put(clazz, manager);
+	}
+
+	public static void register(CreatedObject platform, Item item, Class<?> clazz) {
+		if (platform != null)
+			platform.register(item, clazz);
+		else
+			DEFAULTObjectMANAGER.register(item, clazz);
 	}
 }
