@@ -4,6 +4,7 @@
 package fr.imag.adele.cadse.core.util;
 
 import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.ItemType;
 
 final public class ItemManagerCreatedObject implements CreatedObject {
 	
@@ -24,5 +25,15 @@ final public class ItemManagerCreatedObject implements CreatedObject {
 			return (CreatedObject) desc.getType().getItemManager();
 		
 		return CreatedObjectManager.DEFAULTObjectMANAGER;
+	}
+
+	@Override
+	public <T> void register(Item item, Class<T> clazz) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public <T> void register(ItemType it, Class<T> clazz) {
+		throw new UnsupportedOperationException();
 	}
 }

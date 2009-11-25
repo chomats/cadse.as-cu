@@ -13,6 +13,7 @@ import fr.imag.adele.cadse.core.ItemType;
 
 final public class JavaCreatedObject implements CreatedObject {
 	private Map<ItemType, Class<?>>				ITEMTYPE_TO_RUNNING_IMPL	= new HashMap<ItemType, Class<?>>();	
+	private Map<Item, Class<?>>				ITEM_TO_RUNNING_IMPL	= new HashMap<Item, Class<?>>();	
 	CreatedObject _superCreate =  null;
 	
 	public JavaCreatedObject(CreatedObject superCreate) {
@@ -23,11 +24,15 @@ final public class JavaCreatedObject implements CreatedObject {
 		ITEMTYPE_TO_RUNNING_IMPL.put(it, clazz);
 	}
 	
-	public <T> T create(Item it) {
-		Class<?> clazz = ITEMTYPE_TO_RUNNING_IMPL.get(it.getType());
+	public <T> T create(Item item) {
+		Class<?> clazz = ITEM_TO_RUNNING_IMPL.get(item);
+		
+		if (clazz == null)
+			clazz = ITEMTYPE_TO_RUNNING_IMPL.get(item.getType());
+		
 		if (clazz == null) {
 			if (_superCreate != null)
-				return _superCreate.create(it);
+				return _superCreate.create(item);
 			return null;
 		}
 		try {
@@ -46,5 +51,9 @@ final public class JavaCreatedObject implements CreatedObject {
 	
 	public void log(String msg, Throwable e) {
 		Logger.getLogger("uiPlatform").log(Level.SEVERE, msg, e);
+	}
+
+	public <T> void register(Item item, Class<T> clazz) {
+		ITEM_TO_RUNNING_IMPL.put(item, clazz);
 	}
 }
