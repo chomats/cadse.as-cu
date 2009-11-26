@@ -178,7 +178,7 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType 
 	 *            a value
 	 * @return converted value of this attribute data type.
 	 */
-	public Object convertTo(Object value);
+	public T convertTo(Object value);
 
 	/**
 	 * Returns the errors related if we set specified attribute value to
