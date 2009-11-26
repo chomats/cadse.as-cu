@@ -29,10 +29,11 @@ public abstract class CreatedObjectManager {
 		PLATFORME_.put(clazz, manager);
 	}
 
-	public static void register(CreatedObject platform, Item item, Class<?> clazz) {
+	public static Item register(CreatedObject platform, Item item, Class<?> clazz) {
 		if (platform != null)
 			platform.register(item, clazz);
 		else
 			DEFAULTObjectMANAGER.register(item, clazz);
+		return item;
 	}
 }
