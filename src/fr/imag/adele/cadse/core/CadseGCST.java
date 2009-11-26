@@ -817,6 +817,18 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static ItemType GROUP_OF_ATTRIBUTES;
+	/**
+	    @generated
+	*/
+	public static LinkType GROUP_OF_ATTRIBUTES_lt_ATTRIBUTES;
+	/**
+	    @generated
+	*/
+	public static LinkType GROUP_OF_ATTRIBUTES_lt_SUPER_GROUP;
+	/**
+	    @generated
+	*/
 	public static ItemType IC_ABSTRACT_FOR_BROWSER_COMBO;
 	/**
 	    @generated
@@ -1786,6 +1798,10 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType TYPE_DEFINITION_lt_FIELDS;
+	/**
+	    @generated
+	*/
+	public static LinkType TYPE_DEFINITION_lt_GOUPS_OF_ATTRIBUTES;
 	/**
 	    @generated
 	*/
