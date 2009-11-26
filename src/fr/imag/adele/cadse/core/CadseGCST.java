@@ -509,6 +509,10 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static ItemType DSECTION;
+	/**
+	    @generated
+	*/
 	public static ItemType DSYMBOLIC_BIT_MAP_UI;
 	/**
 	    @generated
@@ -965,50 +969,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static ItemType INT_MODEL_CONTROLLER;
-	/**
-	    @generated
-	*/
-	public final static String INT_MODEL_CONTROLLER_at_DEFAULT_VALUE="default-value";
-	/**
-	    @generated
-	*/
-	public static IntegerAttributeType INT_MODEL_CONTROLLER_at_DEFAULT_VALUE_;
-	/**
-	    @generated
-	*/
-	public final static String INT_MODEL_CONTROLLER_at_ERROR_MSG_MAX="error-msg-max";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType INT_MODEL_CONTROLLER_at_ERROR_MSG_MAX_;
-	/**
-	    @generated
-	*/
-	public final static String INT_MODEL_CONTROLLER_at_ERROR_MSG_MIN="error-msg-min";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType INT_MODEL_CONTROLLER_at_ERROR_MSG_MIN_;
-	/**
-	    @generated
-	*/
-	public final static String INT_MODEL_CONTROLLER_at_MAX="max";
-	/**
-	    @generated
-	*/
-	public static IntegerAttributeType INT_MODEL_CONTROLLER_at_MAX_;
-	/**
-	    @generated
-	*/
-	public final static String INT_MODEL_CONTROLLER_at_MIN="min";
-	/**
-	    @generated
-	*/
-	public static IntegerAttributeType INT_MODEL_CONTROLLER_at_MIN_;
-	/**
-	    @generated
-	*/
 	public static ItemType INTEGER;
 	/**
 	    @generated
@@ -1441,18 +1401,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static ItemType LINK_MODEL_CONTROLLER;
-	/**
-	    @generated
-	*/
-	public final static String LINK_MODEL_CONTROLLER_at_ERROR_MESSAGE="error-message";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType LINK_MODEL_CONTROLLER_at_ERROR_MESSAGE_;
-	/**
-	    @generated
-	*/
 	public static ItemType LIST;
 	/**
 	    @generated
@@ -1482,6 +1430,62 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType MC_DEST_LINK;
+	/**
+	    @generated
+	*/
+	public static ItemType MC_INTEGER;
+	/**
+	    @generated
+	*/
+	public final static String MC_INTEGER_at_DEFAULT_VALUE="default-value";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType MC_INTEGER_at_DEFAULT_VALUE_;
+	/**
+	    @generated
+	*/
+	public final static String MC_INTEGER_at_ERROR_MSG_MAX="error-msg-max";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType MC_INTEGER_at_ERROR_MSG_MAX_;
+	/**
+	    @generated
+	*/
+	public final static String MC_INTEGER_at_ERROR_MSG_MIN="error-msg-min";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType MC_INTEGER_at_ERROR_MSG_MIN_;
+	/**
+	    @generated
+	*/
+	public final static String MC_INTEGER_at_MAX="max";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType MC_INTEGER_at_MAX_;
+	/**
+	    @generated
+	*/
+	public final static String MC_INTEGER_at_MIN="min";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType MC_INTEGER_at_MIN_;
+	/**
+	    @generated
+	*/
+	public static ItemType MC_LINK;
+	/**
+	    @generated
+	*/
+	public final static String MC_LINK_at_ERROR_MESSAGE="error-message";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType MC_LINK_at_ERROR_MESSAGE_;
 	/**
 	    @generated
 	*/
