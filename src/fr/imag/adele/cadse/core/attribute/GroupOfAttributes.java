@@ -1,8 +1,7 @@
-package fr.imag.adele.cadse.core.ui;
+package fr.imag.adele.cadse.core.attribute;
 
-import fr.imag.adele.cadse.core.attribute.IAttributeType;
 
-public interface GroupOfAttributes {
+public interface GroupOfAttributes extends IAttributeType<Object> {
 
 	public abstract IAttributeType<?>[] getAttributes();
 
@@ -11,5 +10,11 @@ public interface GroupOfAttributes {
 	public abstract GroupOfAttributes getOverWriteGroup();
 
 	public abstract void setOverWriteGroup(GroupOfAttributes ow);
+	
+	public abstract String getLabel();
+	
+	public abstract int getColumn();
+	
+	
 
 }
