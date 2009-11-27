@@ -1,6 +1,7 @@
 package fr.imag.adele.cadse.core.ui;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import fr.imag.adele.cadse.core.CadseException;
@@ -84,5 +85,8 @@ public interface IPage extends Item {
 
 
 	boolean isLast(IAttributeType<?> attributeDefinition);
+
+
+	void getAllAttributes(HashSet<IAttributeType<?>> allAttributes);
 
 }
