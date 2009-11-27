@@ -473,6 +473,10 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static ItemType DGROUP;
+	/**
+	    @generated
+	*/
 	public static ItemType DLIST;
 	/**
 	    @generated
