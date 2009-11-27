@@ -1429,11 +1429,11 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static ItemType LIST_OF_STRING_MODEL_CONTROLLER;
+	public static ItemType LONG;
 	/**
 	    @generated
 	*/
-	public static ItemType LONG;
+	public static ItemType MC_BOOLEAN;
 	/**
 	    @generated
 	*/
@@ -1450,6 +1450,10 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType MC_DEST_LINK;
+	/**
+	    @generated
+	*/
+	public static ItemType MC_ENUM;
 	/**
 	    @generated
 	*/
@@ -1510,6 +1514,10 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType MC_LINK_TO_BOOLEAN;
+	/**
+	    @generated
+	*/
+	public static ItemType MC_LIST_OF_STRING;
 	/**
 	    @generated
 	*/
@@ -1746,14 +1754,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static BooleanAttributeType STRING_at_NOT_EMPTY_;
-	/**
-	    @generated
-	*/
-	public static ItemType STRING_TO_BOOLEAN_MODEL_CONTROLLER;
-	/**
-	    @generated
-	*/
-	public static ItemType STRING_TO_ENUM_MODEL_CONTROLLER;
 	/**
 	    @generated
 	*/
