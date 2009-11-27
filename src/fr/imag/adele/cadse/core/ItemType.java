@@ -25,6 +25,7 @@ package fr.imag.adele.cadse.core;
 import java.net.URL;
 import java.util.List;
 
+import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
 import fr.imag.adele.cadse.core.internal.ItemTypeInternal;
 import fr.imag.adele.cadse.core.key.SpaceKeyType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
@@ -587,6 +588,9 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	
 	public void addValidators(UIValidator v);
 	
-
 	public void addField(UIField v);
+	
+	public void addGroupOfAttributes( GroupOfAttributes g);
+	
+	public GroupOfAttributes[] getGroupOfAttributes();
 }
