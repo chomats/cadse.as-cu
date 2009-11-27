@@ -473,6 +473,18 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static ItemType DGROUP;
+	/**
+	    @generated
+	*/
+	public final static String DGROUP_at_COLUMN="column";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType DGROUP_at_COLUMN_;
+	/**
+	    @generated
+	*/
 	public static ItemType DLIST;
 	/**
 	    @generated
@@ -826,6 +838,14 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType GROUP_OF_ATTRIBUTES_lt_ATTRIBUTES;
+	/**
+	    @generated
+	*/
+	public final static String GROUP_OF_ATTRIBUTES_at_COLUMN="column";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType GROUP_OF_ATTRIBUTES_at_COLUMN_;
 	/**
 	    @generated
 	*/
