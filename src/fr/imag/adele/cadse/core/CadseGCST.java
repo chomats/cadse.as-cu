@@ -485,6 +485,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String DGROUP_at_MAKE_COLUMNS_EQUAL_WIDTH="makeColumnsEqualWidth";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType DGROUP_at_MAKE_COLUMNS_EQUAL_WIDTH_;
+	/**
+	    @generated
+	*/
 	public static ItemType DLIST;
 	/**
 	    @generated
