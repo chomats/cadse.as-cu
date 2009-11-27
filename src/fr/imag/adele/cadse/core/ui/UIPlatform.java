@@ -199,7 +199,7 @@ public interface UIPlatform {
 
 	public Object getValueForVisual(UIField field);
 
-	public Object getVisualValue(UIField uiField);
+	public Object getModelValue(UIField uiField);
 
 	public boolean isDisposed();
 
