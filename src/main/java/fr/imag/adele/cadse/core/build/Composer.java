@@ -26,10 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import fr.imag.adele.cadse.core.AdaptableObjectImpl;
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
+import fr.imag.adele.emf.cadse.ccore.impl.ComposerImpl;
 
 /**
  * This class manages the contents of an eclipse resources associated with an
@@ -41,10 +42,10 @@ import fr.imag.adele.cadse.core.Link;
 public abstract class Composer {
 
 	/** The content manager. */
-	final private ContentItem	contentManager;
+	final private Item			_owerItem;
 
 	/** The exporter types. */
-	final private String[]		exporterTypes;
+	final private Class<?>[]	_exporterTypes;
 
 	protected IExporterTarget	currentTarget;
 
@@ -56,9 +57,9 @@ public abstract class Composer {
 	 * @param exporterTypes
 	 *            the exporter types
 	 */
-	protected Composer(ContentItem contentManager, String... exporterTypes) {
-		this.contentManager = contentManager;
-		this.exporterTypes = exporterTypes;
+	protected Composer(Item owerItem, Class<?>... exporterTypes) {
+		this._owerItem = owerItem;
+		this._exporterTypes = exporterTypes;
 	}
 
 	/**
@@ -67,16 +68,7 @@ public abstract class Composer {
 	 * @return the item
 	 */
 	final public Item getItem() {
-		return contentManager.getItem();
-	}
-
-	/**
-	 * Gets the content manager.
-	 * 
-	 * @return the content manager
-	 */
-	final public ContentItem getContentItem() {
-		return contentManager;
+		return _owerItem;
 	}
 
 	/**
@@ -84,8 +76,8 @@ public abstract class Composer {
 	 * 
 	 * @return the exporter types
 	 */
-	final public String[] getExporterTypes() {
-		return exporterTypes;
+	final public Class<?>[] getExporterTypes() {
+		return _exporterTypes;
 	}
 
 	public IExporterTarget getCurrentTarget() {
@@ -99,9 +91,7 @@ public abstract class Composer {
 	 * @param context
 	 *            the context
 	 * 
-	 * @throws CadseException *
 	 * @throws CadseException
-	 *             the melusine exception
 	 */
 	final public void compose(IBuildingContext context) throws CadseException {
 		Item item = getItem();
@@ -113,12 +103,10 @@ public abstract class Composer {
 		preComposer(context, currentTarget);
 
 		List<IExportedContent> listExportedContent = new ArrayList<IExportedContent>();
-		for (String exporterType : exporterTypes) {
+		for (Class<?> exporterType : _exporterTypes) {
 			List<Link> outgoingLinks = new ArrayList<Link>(item.getOutgoingLinks());
 			for (Link l : outgoingLinks) {
-				if (!l.isComposition()) {
-					continue;
-				}
+
 				if (!l.isLinkResolved()) {
 					context.report("not resolveed link to item {0}", l.getDestinationId());// error...
 					continue;
@@ -128,12 +116,7 @@ public abstract class Composer {
 				}
 
 				Item composant = l.getResolvedDestination();
-				if (!composant.itemHasContent()) {
-					continue;
-				}
-				ContentItem cm = composant.getContentItem();
-
-				Exporter[] ex = cm.getExporter(exporterType);
+				Exporter[] ex = composant.getExporter(exporterType);
 				if (ex == null) {
 					continue;
 				}
@@ -165,7 +148,7 @@ public abstract class Composer {
 	 * 
 	 * @return the full export
 	 */
-	protected boolean getFullExport(Link l, String exporterType) {
+	protected boolean getFullExport(Link l, Class<?> exporterType) {
 		return true;
 	}
 
@@ -178,7 +161,7 @@ public abstract class Composer {
 	 * @return true if the link is managed by the composer
 	 */
 	protected boolean accepts(Link l) {
-		return true;
+		return l.getLinkType().isComposition();
 	}
 
 	/**
@@ -192,7 +175,7 @@ public abstract class Composer {
 	 * @throws CadseException
 	 *             the melusine exception
 	 */
-	protected void garbageCollect(IBuildingContext context, String exporterType, IExporterTarget target)
+	protected void garbageCollect(IBuildingContext context, Class<?> exporterType, IExporterTarget target)
 			throws CadseException {
 		if (target == null) {
 			Logger.getLogger("Composer").severe("Cannot found target");
@@ -278,7 +261,7 @@ public abstract class Composer {
 			return;
 		}
 		preClean(context, currentTarget);
-		for (String exporterType : exporterTypes) {
+		for (Class<?> exporterType : _exporterTypes) {
 			try {
 				List<IExportedContent> repositoryComponents = currentTarget.getRepositoryComponents(exporterType);
 

@@ -25,24 +25,25 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-
 /**
- * A utility class used to 
- * - navigate through links
- * - find item by name
+ * A utility class used to - navigate through links - find item by name
  * 
  */
 public class CadseUtil {
 
 	/**
-	 * Returns all items (including specified one) on way when 
-	 * navigating incoming links of one of specified <code>linkTypes</code> types from specified item.
+	 * Returns all items (including specified one) on way when navigating
+	 * incoming links of one of specified <code>linkTypes</code> types from
+	 * specified item.
 	 * 
-	 * @param item      an item
-	 * @param linkTypes link types
+	 * @param item
+	 *            an item
+	 * @param linkTypes
+	 *            link types
 	 * 
-	 * @return all items (including specified one) on way when 
-	 *         navigating incoming links of one of specified <code>linkTypes</code> types from specified item.
+	 * @return all items (including specified one) on way when navigating
+	 *         incoming links of one of specified <code>linkTypes</code> types
+	 *         from specified item.
 	 */
 	public final static Collection<Item> incomingClosure(Item item, LinkType... linkTypes) {
 		HashSet<Item> closure = new HashSet<Item>();
@@ -50,8 +51,9 @@ public class CadseUtil {
 		List<Item> stack = new ArrayList<Item>();
 		stack.add(item);
 		while (stack.size() != 0) {
-			Item theItem = stack.remove(stack.size()-1);
-			if (closure.contains(theItem)) continue;
+			Item theItem = stack.remove(stack.size() - 1);
+			if (closure.contains(theItem))
+				continue;
 			closure.add(theItem);
 			for (Link l : theItem.getIncomingLinks()) {
 				if (!linkTypeSet.contains(l.getLinkType()))
@@ -61,16 +63,20 @@ public class CadseUtil {
 		}
 		return closure;
 	}
-	
+
 	/**
-	 * Returns all items (including specified one) on way when 
-	 * navigating outgoing links of one of specified <code>linkTypes</code> types from specified item.
+	 * Returns all items (including specified one) on way when navigating
+	 * outgoing links of one of specified <code>linkTypes</code> types from
+	 * specified item.
 	 * 
-	 * @param item      an item
-	 * @param linkTypes link types
+	 * @param item
+	 *            an item
+	 * @param linkTypes
+	 *            link types
 	 * 
-	 * @return all items (including specified one) on way when 
-	 *         navigating outgoing links of one of specified <code>linkTypes</code> types from specified item.
+	 * @return all items (including specified one) on way when navigating
+	 *         outgoing links of one of specified <code>linkTypes</code> types
+	 *         from specified item.
 	 */
 	public final static Collection<Item> outgoingClosure(Item item, LinkType... linkTypes) {
 		HashSet<Item> closure = new HashSet<Item>();
@@ -78,8 +84,9 @@ public class CadseUtil {
 		List<Item> stack = new ArrayList<Item>();
 		stack.add(item);
 		while (stack.size() != 0) {
-			Item theItem = stack.remove(stack.size()-1);
-			if (closure.contains(theItem)) continue;
+			Item theItem = stack.remove(stack.size() - 1);
+			if (closure.contains(theItem))
+				continue;
 			closure.add(theItem);
 			for (Link l : theItem.getOutgoingLinks()) {
 				if (!linkTypeSet.contains(l.getLinkType()))
@@ -89,13 +96,15 @@ public class CadseUtil {
 		}
 		return closure;
 	}
-	
+
 	/**
-	 * Returns an item with specified short name contained in specified list.
-	 * If there is no item with same short name, returns null.
+	 * Returns an item with specified short name contained in specified list. If
+	 * there is no item with same short name, returns null.
 	 * 
-	 * @param items    a list of item
-	 * @param shotname item short name to find
+	 * @param items
+	 *            a list of item
+	 * @param shotname
+	 *            item short name to find
 	 * @return an item with specified short name contained in specified list.
 	 */
 	public final static Item getItemByName(Collection<Item> items, String shotname) {
@@ -107,18 +116,22 @@ public class CadseUtil {
 	}
 
 	/**
-	 * Returns all item types where their items (instance of these types) 
-	 * which can be parent of items of specified item type.
+	 * Returns all item types where their items (instance of these types) which
+	 * can be parent of items of specified item type.
 	 * 
-	 * @param type an item type
-	 * @return all item types where their items (instance of these types) 
-	 *         which can be parent of items of specified item type.
+	 * @param type
+	 *            an item type
+	 * @return all item types where their items (instance of these types) which
+	 *         can be parent of items of specified item type.
 	 */
 	public static ItemType[] getIncomingPartsType(ItemType type) {
 		HashSet<ItemType> ret = new HashSet<ItemType>();
 		for (LinkType lt : type.getIncomingLinkTypes()) {
-			if (lt.isPart())
-				ret.add(lt.getSource());
+			if (lt.isPart()) {
+				TypeDefinition sourceType = lt.getSource();
+				if (sourceType.isMainType())
+					ret.add((ItemType) sourceType);
+			}
 		}
 		return ret.toArray(new ItemType[ret.size()]);
 	}

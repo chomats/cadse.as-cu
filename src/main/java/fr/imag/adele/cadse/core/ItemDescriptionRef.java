@@ -21,16 +21,13 @@ package fr.imag.adele.cadse.core;
 
 import java.io.Serializable;
 
-import fr.imag.adele.cadse.core.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
+import java.util.UUID;
 
 /**
- * Represents a reference of an item.
- * It does not describe state, attribute values...
- * This description includes:
- * - item id
- * - item short name
- * - item unique name
- * - item type id
+ * Represents a reference of an item. It does not describe state, attribute
+ * values... This description includes: - item id - item short name - item
+ * unique name - item type id
  * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
@@ -40,19 +37,16 @@ public class ItemDescriptionRef implements Serializable {
 	private static final long	serialVersionUID	= -177950843243113310L;
 
 	/** The id. */
-	private CompactUUID			_id;
+	private UUID			_id;
 
 	/** The type. */
-	private CompactUUID			_type;
+	private ItemType			_type;
 
 	/** The qualifiedName. */
 	private String				_qualifiedName;
 
 	/** The shortname. */
-	private String				_shortname;
-
-	/** The other. */
-	private String				_other;
+	private String				_name;
 
 	/**
 	 * Instantiates a new item description ref.
@@ -66,31 +60,11 @@ public class ItemDescriptionRef implements Serializable {
 	 * @param shortname
 	 *            the shortname
 	 */
-	public ItemDescriptionRef(CompactUUID id, CompactUUID type, String uniquename, String shortname) {
+	public ItemDescriptionRef(UUID id, ItemType type, String qualifiedName, String name) {
 		this._id = id;
 		this._type = type;
-		this._qualifiedName = uniquename;
-		this._shortname = shortname;
-	}
-
-	/**
-	 * Instantiates a new item description ref.
-	 * 
-	 * @param id
-	 *            the id
-	 * @param type
-	 *            the type
-	 * @param uniquename
-	 *            the uniquename
-	 * @param shortname
-	 *            the shortname
-	 * @param other
-	 *            the other
-	 */
-	@Deprecated
-	public ItemDescriptionRef(CompactUUID id, CompactUUID type, String uniquename, String shortname, String other) {
-		this(id, type, uniquename, shortname);
-		this._other = other;
+		this._qualifiedName = qualifiedName;
+		this._name = name;
 	}
 
 	/**
@@ -101,7 +75,7 @@ public class ItemDescriptionRef implements Serializable {
 	 * @param type
 	 *            the type
 	 */
-	public ItemDescriptionRef(CompactUUID id, CompactUUID type) {
+	public ItemDescriptionRef(UUID id, ItemType type) {
 		this._id = id;
 		this._type = type;
 	}
@@ -114,9 +88,9 @@ public class ItemDescriptionRef implements Serializable {
 	 */
 	public ItemDescriptionRef(Item item) {
 		this._id = item.getId();
-		this._type = item.getType().getId();
+		this._type = item.getType();
 		this._qualifiedName = item.getQualifiedName();
-		this._shortname = item.getName();
+		this._name = item.getName();
 
 	}
 
@@ -128,9 +102,9 @@ public class ItemDescriptionRef implements Serializable {
 	 */
 	public ItemDescriptionRef(ItemDelta item) {
 		this._id = item.getId();
-		this._type = item.getItemTypeId();
+		this._type = item.getType();
 		this._qualifiedName = item.getQualifiedName();
-		this._shortname = item.getName();
+		this._name = item.getName();
 
 	}
 
@@ -142,11 +116,11 @@ public class ItemDescriptionRef implements Serializable {
 	 * @param item
 	 *            the item
 	 */
-	public ItemDescriptionRef(CompactUUID newid, ItemDescription item) {
+	public ItemDescriptionRef(UUID newid, ItemDescription item) {
 		this._id = newid;
-		this._type = item.getType();
+		this._type = item.getTypeObject();
 		this._qualifiedName = item.getQualifiedName();
-		this._shortname = item.getName();
+		this._name = item.getName();
 	}
 
 	/**
@@ -154,7 +128,16 @@ public class ItemDescriptionRef implements Serializable {
 	 * 
 	 * @return the type
 	 */
-	public CompactUUID getType() {
+	public UUID getType() {
+		return _type.getId();
+	}
+
+	/**
+	 * Gets the type.
+	 * 
+	 * @return the type
+	 */
+	public ItemType getTypeObject() {
 		return _type;
 	}
 
@@ -163,7 +146,7 @@ public class ItemDescriptionRef implements Serializable {
 	 * 
 	 * @return the id
 	 */
-	public CompactUUID getId() {
+	public UUID getId() {
 		return _id;
 	}
 
@@ -182,7 +165,7 @@ public class ItemDescriptionRef implements Serializable {
 	 * @return the short name
 	 */
 	public String getName() {
-		return _shortname;
+		return _name;
 	}
 
 	/**
@@ -202,7 +185,7 @@ public class ItemDescriptionRef implements Serializable {
 	 *            the new shortname
 	 */
 	public void setShortname(String shortname) {
-		this._shortname = shortname;
+		this._name = shortname;
 	}
 
 	/**
@@ -211,7 +194,7 @@ public class ItemDescriptionRef implements Serializable {
 	 * @param id
 	 *            the new id
 	 */
-	public void setId(CompactUUID id) {
+	public void setId(UUID id) {
 		this._id = id;
 	}
 
@@ -221,7 +204,7 @@ public class ItemDescriptionRef implements Serializable {
 	 * @param type
 	 *            the new type
 	 */
-	public void setType(CompactUUID type) {
+	public void setType(ItemType type) {
 		this._type = type;
 	}
 
@@ -235,7 +218,7 @@ public class ItemDescriptionRef implements Serializable {
 		StringBuilder sb = new StringBuilder();
 		sb.append("id: ").append(_id).append("\n");
 		sb.append("uniquename: ").append(_qualifiedName).append("\n");
-		sb.append("shortname: ").append(_shortname).append("\n");
+		sb.append("shortname: ").append(_name).append("\n");
 		sb.append("type: ").append(_type).append("\n");
 		return sb.toString();
 	}

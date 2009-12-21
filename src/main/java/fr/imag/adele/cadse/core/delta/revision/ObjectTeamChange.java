@@ -20,7 +20,7 @@ package fr.imag.adele.cadse.core.delta.revision;
 
 public abstract class ObjectTeamChange implements ITeamChangeObject {
 
-	protected int change;
+	protected int	change;
 
 	public ObjectTeamChange() {
 		super();
@@ -29,33 +29,39 @@ public abstract class ObjectTeamChange implements ITeamChangeObject {
 	public int getChange() {
 		return change;
 	}
-	
+
 	public void setChange(int change) {
 		this.change = change;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.delta.revision.ITeamChangeObject#hasChange()
 	 */
 	public boolean hasChange() {
 		return (change & WorkspaceLogiqueRevisionDelta.HAS_CHANGE) != 0;
 	}
-	
-	
-	/* (non-Javadoc)
-	 * @see fede.workspace.domain.delta.revision.ITeamChangeObject#hasLocalChange()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fede.workspace.domain.delta.revision.ITeamChangeObject#hasLocalChange()
 	 */
 	public boolean hasLocalChange() {
 		return (change & WorkspaceLogiqueRevisionDelta.HAS_LOCAL_CHANGE) != 0;
 	}
-	
-	/* (non-Javadoc)
-	 * @see fede.workspace.domain.delta.revision.ITeamChangeObject#hasRemoteChange()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fede.workspace.domain.delta.revision.ITeamChangeObject#hasRemoteChange()
 	 */
 	public boolean hasRemoteChange() {
 		return (change & WorkspaceLogiqueRevisionDelta.HAS_REMOTE_CHANGE) != 0;
 	}
-	
 
 	public void acceptRemoteChange() {
 		if (hasRemoteChange()) {
@@ -133,15 +139,21 @@ public abstract class ObjectTeamChange implements ITeamChangeObject {
 		return (change & flags) == flags;
 	}
 
-	/* (non-Javadoc)
-	 * @see fede.workspace.domain.delta.revision.ITeamChangeObject#isLocalChanged()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fede.workspace.domain.delta.revision.ITeamChangeObject#isLocalChanged()
 	 */
 	public boolean isLocalChanged() {
 		return (change & WorkspaceLogiqueRevisionDelta.HAS_LOCAL_CHANGE) != 0;
 	}
 
-	/* (non-Javadoc)
-	 * @see fede.workspace.domain.delta.revision.ITeamChangeObject#isRemoteChanged()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fede.workspace.domain.delta.revision.ITeamChangeObject#isRemoteChanged()
 	 */
 	public boolean isRemoteChanged() {
 		return (change & WorkspaceLogiqueRevisionDelta.HAS_REMOTE_CHANGE) != 0;

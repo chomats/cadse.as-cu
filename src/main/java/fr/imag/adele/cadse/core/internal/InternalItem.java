@@ -3,17 +3,13 @@ package fr.imag.adele.cadse.core.internal;
 import java.util.Iterator;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
-import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemState;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
-import fr.imag.adele.cadse.core.delta.ItemDelta;
-import fr.imag.adele.cadse.core.util.IErrorCollector;
-import fr.imag.adele.cadse.core.util.OrderWay;
+import fr.imag.adele.cadse.util.OrderWay;
 
 /**
  * Internal methods used by the CADSE runtime. Users MUST NOT USE these methods.
@@ -23,6 +19,7 @@ import fr.imag.adele.cadse.core.util.OrderWay;
  * 
  */
 public interface InternalItem {
+
 
 	/**
 	 * Sets the type of this item.
@@ -66,11 +63,7 @@ public interface InternalItem {
 	 */
 	public void addIncomingLink(Link link, boolean notify);
 
-	public <T> T internalGetOwnerAttribute(String key);
-
 	public <T> T internalGetOwnerAttribute(IAttributeType<T> type);
-
-	public <T> T internalGetGenericOwnerAttribute(String key);
 
 	public <T> T internalGetGenericOwnerAttribute(IAttributeType<T> type);
 

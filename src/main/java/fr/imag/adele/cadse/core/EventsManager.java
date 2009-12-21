@@ -1,6 +1,5 @@
 package fr.imag.adele.cadse.core;
 
-
 public interface EventsManager {
 
 	/**

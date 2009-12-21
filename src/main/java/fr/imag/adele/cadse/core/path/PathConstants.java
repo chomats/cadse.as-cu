@@ -19,18 +19,17 @@
 
 package fr.imag.adele.cadse.core.path;
 
-
 /**
  * The Interface PathConstants.
  */
 public interface PathConstants {
-	
+
 	/** The Constant SELF. */
-	public static final String SELF = "self";
-	
+	public static final String	SELF				= "self";
+
 	/** The Constant PARENT_PATH. */
-	public static final String PARENT_PATH = "<-parent:";
-	
+	public static final String	PARENT_PATH			= "<-parent:";
+
 	/** The Constant INCOMING_LINK_PATH. */
-	public static final String INCOMING_LINK_PATH = "<-";
+	public static final String	INCOMING_LINK_PATH	= "<-";
 }

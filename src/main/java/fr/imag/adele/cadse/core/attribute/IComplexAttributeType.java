@@ -19,8 +19,6 @@
 
 package fr.imag.adele.cadse.core.attribute;
 
-
-
 /**
  * The Interface IComplexAttributeType.
  */

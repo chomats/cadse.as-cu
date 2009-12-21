@@ -24,11 +24,10 @@ import java.io.ObjectStreamClass;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class ObjectInputStream extends java.io.ObjectInputStream {
 
-	Map<String, Class<?>> classes;
-	
+	Map<String, Class<?>>	classes;
+
 	protected ObjectInputStream() throws IOException, SecurityException {
 		super();
 	}
@@ -36,12 +35,11 @@ public class ObjectInputStream extends java.io.ObjectInputStream {
 	public ObjectInputStream(InputStream in) throws IOException {
 		super(in);
 	}
-	
+
 	@Override
-	protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException,
-			ClassNotFoundException {
+	protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
 		try {
-		    return super.resolveClass(desc);
+			return super.resolveClass(desc);
 		} catch (ClassNotFoundException ex) {
 			String name = desc.getName();
 			if (classes != null) {
@@ -50,12 +48,13 @@ public class ObjectInputStream extends java.io.ObjectInputStream {
 					return ret;
 				}
 			}
-		    throw ex;
+			throw ex;
 		}
 	}
-	
+
 	public void addClass(Class<?> clazz) {
-		if (classes == null) classes = new HashMap<String, Class<?>>();
+		if (classes == null)
+			classes = new HashMap<String, Class<?>>();
 		classes.put(clazz.getName(), clazz);
 	}
 

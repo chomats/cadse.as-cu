@@ -36,10 +36,10 @@ import fr.imag.adele.cadse.core.Item;
 public abstract class Exporter {
 
 	/** The content manager. */
-	final private ContentItem	contentManager;
+	final private Item			_owerItem;
 
 	/** The exporter types. */
-	final private String[]			exporterTypes;
+	final private Class<?>[]	exporterTypes;
 
 	/**
 	 * Instantiates a new exporter.
@@ -49,8 +49,8 @@ public abstract class Exporter {
 	 * @param exporterTypes
 	 *            the exporter types
 	 */
-	protected Exporter(ContentItem contentManager, String... exporterTypes) {
-		this.contentManager = contentManager;
+	protected Exporter(Item contentManager, Class<?>... exporterTypes) {
+		this._owerItem = contentManager;
 		this.exporterTypes = exporterTypes;
 	}
 
@@ -60,16 +60,7 @@ public abstract class Exporter {
 	 * @return the item
 	 */
 	public Item getItem() {
-		return contentManager.getItem();
-	}
-
-	/**
-	 * Gets the content manager.
-	 * 
-	 * @return the content manager
-	 */
-	public ContentItem getContentItem() {
-		return contentManager;
+		return _owerItem;
 	}
 
 	/**
@@ -77,7 +68,7 @@ public abstract class Exporter {
 	 * 
 	 * @return the exporter types
 	 */
-	public String[] getExporterTypes() {
+	public Class<?>[] getExporterTypes() {
 		return exporterTypes;
 	}
 
@@ -89,8 +80,8 @@ public abstract class Exporter {
 	 * 
 	 * @return true, if successful
 	 */
-	public boolean containsExporterType(String type) {
-		for (String exporterType : exporterTypes) {
+	public boolean containsExporterType(Class<?> type) {
+		for (Class<?> exporterType : exporterTypes) {
 			if (exporterType.equals(type)) {
 				return true;
 			}
@@ -108,41 +99,16 @@ public abstract class Exporter {
 	 *            the target
 	 * @param exporterType
 	 *            the exporter type
-	 * 
-	 * @return the i exported content
-	 * 
-	 * @throws CadseException *
-	 * @throws CadseException
-	 *             the melusine exception
-	 */
-	@Deprecated
-	public IExportedContent exportItem(IBuildingContext context, IExporterTarget target, String exporterType)
-			throws CadseException {
-		return null;
-	}
-
-	/**
-	 * Packages the contents of the specified item, in order to be able to copy
-	 * and compose it in other composite items.
-	 * 
-	 * @param context
-	 *            the context
-	 * @param target
-	 *            the target
-	 * @param exporterType
-	 *            the exporter type
 	 * @param fullExport
 	 *            the full export
 	 * 
 	 * @return the i exported content
 	 * 
-	 * @throws CadseException *
 	 * @throws CadseException
-	 *             the melusine exception
 	 */
-	public IExportedContent exportItem(IBuildingContext context, IExporterTarget target, String exporterType,
+	public IExportedContent exportItem(IBuildingContext context, IExporterTarget target, Class<?> exporterType,
 			boolean fullExport) throws CadseException {
-		return exportItem(context, target, exporterType);
+		return null;
 	}
 
 }

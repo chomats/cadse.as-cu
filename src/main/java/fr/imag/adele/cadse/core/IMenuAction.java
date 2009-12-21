@@ -30,64 +30,64 @@ import fr.imag.adele.cadse.core.ui.view.ViewDescription;
  */
 public abstract class IMenuAction {
 
-	/** 
-	 * constant used to specify that a menu action has no children menu. 
+	/**
+	 * constant used to specify that a menu action has no children menu.
 	 */
 	private static final IMenuAction[]	NO_CHILDREN		= new IMenuAction[0];
 
 	/** id of the menu new */
-	public static final String NEW_MENU_ID = "new";
-	
-	/** 
-	 * Menu contexts are places where menu actions are show.
-	 * They are separated from each other by a separator.
-	 * Higher context are shown under a lower one.
+	public static final String			NEW_MENU_ID		= "new";
+
+	/**
+	 * Menu contexts are places where menu actions are show. They are separated
+	 * from each other by a separator. Higher context are shown under a lower
+	 * one.
 	 */
 	public static final String			CONTEXT_1_MENU	= "context1";
 
-	/** 
-	 * Menu contexts are places where menu actions are show.
-	 * They are separated from each other by a separator.
-	 * Higher context are shown under a lower one.
+	/**
+	 * Menu contexts are places where menu actions are show. They are separated
+	 * from each other by a separator. Higher context are shown under a lower
+	 * one.
 	 */
 	public static final String			CONTEXT_2_MENU	= "context2";
 
-	/** 
-	 * Menu contexts are places where menu actions are show.
-	 * They are separated from each other by a separator.
-	 * Higher context are shown under a lower one.
+	/**
+	 * Menu contexts are places where menu actions are show. They are separated
+	 * from each other by a separator. Higher context are shown under a lower
+	 * one.
 	 */
 	public static final String			CONTEXT_3_MENU	= "context3";
 
-	/** 
-	 * Menu contexts are places where menu actions are show.
-	 * They are separated from each other by a separator.
-	 * Higher context are shown under a lower one.
+	/**
+	 * Menu contexts are places where menu actions are show. They are separated
+	 * from each other by a separator. Higher context are shown under a lower
+	 * one.
 	 */
 	public static final String			CONTEXT_4_MENU	= "context4";
 
-	/** 
-	 * Menu contexts are places where menu actions are show.
-	 * They are separated from each other by a separator.
-	 * Higher context are shown under a lower one.
+	/**
+	 * Menu contexts are places where menu actions are show. They are separated
+	 * from each other by a separator. Higher context are shown under a lower
+	 * one.
 	 */
 	public static final String			CONTEXT_5_MENU	= "context5";
 
-	/** 
-	 * Menu contexts are places where menu actions are show.
-	 * They are separated from each other by a separator.
-	 * Higher context are shown under a lower one.
+	/**
+	 * Menu contexts are places where menu actions are show. They are separated
+	 * from each other by a separator. Higher context are shown under a lower
+	 * one.
 	 */
 	public static final String			CONTEXT_6_MENU	= "context6";
 
-	/** 
-	 * Menu contexts are places where menu actions are show.
-	 * They are separated from each other by a separator.
-	 * Higher context are shown under a lower one.
+	/**
+	 * Menu contexts are places where menu actions are show. They are separated
+	 * from each other by a separator. Higher context are shown under a lower
+	 * one.
 	 */
-	public static final String			NEW_MENU		= CONTEXT_1_MENU + "/" +NEW_MENU_ID;
+	public static final String			NEW_MENU		= CONTEXT_1_MENU + "/" + NEW_MENU_ID;
 
-	/** 
+	/**
 	 * Represents a separator of menu actions.
 	 */
 	public final static IMenuAction		SEPARATOR		= new Separator();
@@ -114,8 +114,7 @@ public abstract class IMenuAction {
 	public abstract String getLabel();
 
 	/**
-	 * Returns the action image.
-	 * If no image is specified, returns null.
+	 * Returns the action image. If no image is specified, returns null.
 	 * 
 	 * @return the action image.
 	 */
@@ -149,18 +148,20 @@ public abstract class IMenuAction {
 	}
 
 	/**
-	 * Returns descriptor of action image when mouse pointer hovers on this action.
+	 * Returns descriptor of action image when mouse pointer hovers on this
+	 * action.
 	 * 
-	 * @return descriptor of action image when mouse pointer hovers on this action.
+	 * @return descriptor of action image when mouse pointer hovers on this
+	 *         action.
 	 */
 	public Object getHoverImageDescriptor() {
 		return null;
 	}
 
 	/**
-	 * Returns the menu path of this action.
-	 * A menu path is concatenation of menu names and action names separated by a slash.
-	 * For example, rootMenu/subMenu2/action4.
+	 * Returns the menu path of this action. A menu path is concatenation of
+	 * menu names and action names separated by a slash. For example,
+	 * rootMenu/subMenu2/action4.
 	 * 
 	 * @return the menu path of this action.
 	 */
@@ -171,8 +172,9 @@ public abstract class IMenuAction {
 	/**
 	 * Execute this action.
 	 * 
-	 * @param selection selected nodes in the CADSE view
-	 *
+	 * @param selection
+	 *            selected nodes in the CADSE view
+	 * 
 	 * @throws CadseException
 	 */
 	public abstract void run(IItemNode[] selection) throws CadseException;
@@ -187,8 +189,8 @@ public abstract class IMenuAction {
 	}
 
 	/**
-	 * Returns true if it is a group.
-	 * A group is a list of menu actions which will be shown in the same order.
+	 * Returns true if it is a group. A group is a list of menu actions which
+	 * will be shown in the same order.
 	 * 
 	 * @return true if it is a group.
 	 */
@@ -206,8 +208,8 @@ public abstract class IMenuAction {
 	}
 
 	/**
-	 * Returns children of this menu action.
-	 * Children are shown as submenu from this menu aciton.
+	 * Returns children of this menu action. Children are shown as submenu from
+	 * this menu aciton.
 	 * 
 	 * @return children of this menu action.
 	 */
@@ -218,7 +220,8 @@ public abstract class IMenuAction {
 	/**
 	 * Returns true if it is enable.
 	 * 
-	 * @param selection selected nodes in the CADSE view
+	 * @param selection
+	 *            selected nodes in the CADSE view
 	 * 
 	 * @return true if it is enable.
 	 */
@@ -229,7 +232,7 @@ public abstract class IMenuAction {
 	public IMenuAction find(String id) {
 		return null;
 	}
-	
+
 	/**
 	 * Load.
 	 * 
@@ -245,13 +248,14 @@ public abstract class IMenuAction {
 	 *            the icon
 	 */
 	public void init(String id, String label, String path, int forNb, URL icon) {
-		
+
 	}
 
 	/**
 	 * Set description of current CADSE view.
 	 * 
-	 * @param viewDescription description of current CADSE view
+	 * @param viewDescription
+	 *            description of current CADSE view
 	 */
 	public void setViewDescription(ViewDescription viewDescription) {
 		this._viewDescription = viewDescription;

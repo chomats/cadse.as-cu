@@ -29,17 +29,20 @@ import java.util.logging.Logger;
 
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGCST;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemDescriptionRef;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkDescription;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
-import fr.imag.adele.cadse.core.delta.ItemDelta;
-import fr.imag.adele.cadse.core.delta.LinkDelta;
-import fr.imag.adele.cadse.core.delta.WLWCOperationImpl;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.internal.ILoggableAction;
+import fr.imag.adele.cadse.core.transaction.FacetteLWTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.delta.LinkDelta;
+import fr.imag.adele.cadse.core.transaction.delta.WLWCOperationImpl;
+import fr.imag.adele.cadse.util.IProgressMonitor;
 
 public class WorkspaceLogiqueRevisionDelta {
 
@@ -50,11 +53,12 @@ public class WorkspaceLogiqueRevisionDelta {
 			this.logger = logger;
 		}
 
-		public void actionAddAttribute(CompactUUID itemId, String key, Object value) throws CadseException {
+		public <T> void actionAddAttribute(UUID itemId, IAttributeType<T> key, T value) throws CadseException {
 			logger.info("add-attribute itemId=" + itemId + " key=" + key + " value=" + value);
 		}
 
-		public void actionAddAttribute(LinkDescription linkDescription, String key, Object value) throws CadseException {
+		public <T> void actionAddAttribute(LinkDescription linkDescription, IAttributeType<T> key, T value)
+				throws CadseException {
 			logger.info("add-attribute linkDescription=(" + linkDescription.getSource().getId() + ","
 					+ linkDescription.getType() + "," + linkDescription.getDestination().getId() + ")" + " key=" + key
 					+ " value=" + value);
@@ -71,11 +75,11 @@ public class WorkspaceLogiqueRevisionDelta {
 					+ linkDescription.getType() + "," + linkDescription.getDestination().getId() + ")");
 		}
 
-		public void actionChangeAttribute(CompactUUID itemId, String key, Object value) throws CadseException {
+		public <T> void actionChangeAttribute(UUID itemId, IAttributeType<T> key, T value) throws CadseException {
 			logger.info("change-attribute itemId=" + itemId + " key=" + key + " value=" + value);
 		}
 
-		public void actionChangeAttribute(LinkDescription linkDescription, String key, Object value)
+		public <T> void actionChangeAttribute(LinkDescription linkDescription, IAttributeType<T> key, T value)
 				throws CadseException {
 			logger.info("change-attribute linkDescription=(" + linkDescription.getSource().getId() + ","
 					+ linkDescription.getType() + "," + linkDescription.getDestination().getId() + ") key=" + key
@@ -83,12 +87,13 @@ public class WorkspaceLogiqueRevisionDelta {
 
 		}
 
-		public void actionRemoveAttribute(CompactUUID itemId, String key) throws CadseException {
+		public <T> void actionRemoveAttribute(UUID itemId, IAttributeType<T> key) throws CadseException {
 			logger.info("remove-attribute itemId=" + itemId + " key=" + key);
 
 		}
 
-		public void actionRemoveAttribute(LinkDescription linkDescription, String key) throws CadseException {
+		public <T> void actionRemoveAttribute(LinkDescription linkDescription, IAttributeType<T> key)
+				throws CadseException {
 			logger.info("remove-attribute  linkDescription=(" + linkDescription.getSource().getId() + ","
 					+ linkDescription.getType() + "," + linkDescription.getDestination().getId() + ") key=" + key);
 		}
@@ -155,12 +160,12 @@ public class WorkspaceLogiqueRevisionDelta {
 
 	private LogicalWorkspaceTransaction	transaction;
 	LogicalWorkspace					workspaceLogique;
-	Map<CompactUUID, ItemRevisionDelta>	items;
+	Map<UUID, ItemRevisionDelta>	items;
 	Map<String, ItemRevisionDelta>		headUniqueName;
 
 	public WorkspaceLogiqueRevisionDelta(LogicalWorkspace wl) {
 		this.workspaceLogique = wl;
-		this.items = new HashMap<CompactUUID, ItemRevisionDelta>();
+		this.items = new HashMap<UUID, ItemRevisionDelta>();
 		this.headUniqueName = new HashMap<String, ItemRevisionDelta>();
 
 	}
@@ -172,7 +177,7 @@ public class WorkspaceLogiqueRevisionDelta {
 		while (!stack.isEmpty()) {
 			delta = stack.pop();
 			for (LinkRevisionDelta lrd : delta.getLinks()) {
-				CompactUUID destId = lrd.getDestination().getId();
+				UUID destId = lrd.getDestination().getId();
 				ObjectTeamChange destDelta = items.get(destId);
 				if (destDelta != null) {
 					continue;
@@ -184,7 +189,7 @@ public class WorkspaceLogiqueRevisionDelta {
 		}
 	}
 
-	public ItemRevisionDelta mergeItem(ITeamRevisionService revisionService, Item anItem, CompactUUID id,
+	public ItemRevisionDelta mergeItem(ITeamRevisionService revisionService, Item anItem, UUID id,
 			IProgressMonitor monitor) {
 
 		assert id != null;
@@ -209,8 +214,8 @@ public class WorkspaceLogiqueRevisionDelta {
 	public ItemRevisionDelta merge(ItemDelta workingItem, ItemDelta base, ItemDelta head) {
 		assert workingItem != null || base != null || head != null;
 
-		CompactUUID id = null;
-		CompactUUID type = null;
+		UUID id = null;
+		UUID type = null;
 		if (workingItem != null) {
 			id = workingItem.getId();
 			type = workingItem.getItemTypeId();
@@ -333,8 +338,8 @@ public class WorkspaceLogiqueRevisionDelta {
 		if (head != null) {
 			headValue = head.getQualifiedName();
 		}
-		AttributeRevisionDelta uniqueAttribute = new AttributeRevisionDelta(delta,
-				CadseGCST.ITEM_at_QUALIFIED_NAME, baseValue, headValue, currentValue);
+		AttributeRevisionDelta uniqueAttribute = new AttributeRevisionDelta(delta, CadseGCST.ITEM_at_QUALIFIED_NAME_,
+				baseValue, headValue, currentValue);
 		if (!uniqueAttribute.currentValueEqualsHeadValue()) {
 			if (headValue != null && headValue != AttributeRevisionDelta.NOT_PRESENT) {
 				this.headUniqueName.put((String) headValue, delta);
@@ -355,7 +360,7 @@ public class WorkspaceLogiqueRevisionDelta {
 		if (head != null) {
 			headValue = head.getName();
 		}
-		delta.addAttribute(new AttributeRevisionDelta(delta, CadseGCST.ITEM_at_NAME, baseValue, headValue,
+		delta.addAttribute(new AttributeRevisionDelta(delta, CadseGCST.ITEM_at_NAME_, baseValue, headValue,
 				currentValue));
 
 		// is ReadOnly
@@ -371,7 +376,7 @@ public class WorkspaceLogiqueRevisionDelta {
 		if (head != null) {
 			headValue = Boolean.toString(head.isReadOnly());
 		}
-		delta.addAttribute(new AttributeRevisionDelta(delta, CadseGCST.ITEM_at_ITEM_READONLY, baseValue, headValue,
+		delta.addAttribute(new AttributeRevisionDelta(delta, CadseGCST.ITEM_at_ITEM_READONLY_, baseValue, headValue,
 				currentValue));
 
 		// is Valid
@@ -387,7 +392,8 @@ public class WorkspaceLogiqueRevisionDelta {
 		if (head != null) {
 			headValue = Boolean.toString(head.isValid());
 		}
-		delta.addAttribute(new AttributeRevisionDelta(delta, Item.IS_VALID_KEY, baseValue, headValue, currentValue));
+		delta.addAttribute(new AttributeRevisionDelta(delta, CadseGCST.ITEM_at_ISVALID_, baseValue, headValue,
+				currentValue));
 
 		return delta;
 	}
@@ -409,7 +415,7 @@ public class WorkspaceLogiqueRevisionDelta {
 		return workspaceLogique;
 	}
 
-	public Map<CompactUUID, ItemRevisionDelta> getItems() {
+	public Map<UUID, ItemRevisionDelta> getItems() {
 		return items;
 	}
 
@@ -504,7 +510,7 @@ public class WorkspaceLogiqueRevisionDelta {
 		}
 	}
 
-	public ItemType getType(CompactUUID type) {
+	public ItemType getType(UUID type) {
 		return this.workspaceLogique.getItemType(type);
 	}
 

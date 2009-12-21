@@ -3,17 +3,11 @@ package fr.imag.adele.cadse.core.ui;
 import java.util.List;
 import java.util.Set;
 
-import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
-import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
-import fr.imag.adele.cadse.core.ui.view.FilterContext;
-import fr.imag.adele.cadse.core.ui.view.IContextReference;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
 
-public interface Pages  {
+public interface Pages {
 
 	/**
 	 * Gets the page.
@@ -32,8 +26,6 @@ public interface Pages  {
 	 */
 	abstract IPage[] getPages();
 
-	
-
 	/**
 	 * Gets the page.
 	 * 
@@ -44,9 +36,6 @@ public interface Pages  {
 	 */
 	abstract IPage getPage(String pageid);
 
-
-
-	
 	boolean isModificationPages();
 
 	abstract UIField getUIField(IAttributeType<?> at);
@@ -65,5 +54,5 @@ public interface Pages  {
 
 	abstract NewContext getContext();
 
-	public Set<GroupOfAttributes>	getGroupOfAttributes();
+	public Set<GroupOfAttributes> getGroupOfAttributes();
 }

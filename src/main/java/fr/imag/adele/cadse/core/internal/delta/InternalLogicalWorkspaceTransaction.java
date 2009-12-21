@@ -1,70 +1,56 @@
 package fr.imag.adele.cadse.core.internal.delta;
 
 import java.util.Collection;
-import java.util.List;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemDescriptionRef;
 import fr.imag.adele.cadse.core.ItemType;
-import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkDescription;
 import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.ProjectAssociation;
-import fr.imag.adele.cadse.core.delta.ItemDelta;
-import fr.imag.adele.cadse.core.delta.LinkDelta;
-import fr.imag.adele.cadse.core.delta.MappingOperation;
-import fr.imag.adele.cadse.core.delta.OrderOperation;
-import fr.imag.adele.cadse.core.delta.SetAttributeOperation;
-import fr.imag.adele.cadse.core.delta.WLWCOperationImpl;
+import fr.imag.adele.cadse.core.TypeDefinition;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.internal.ILoggableAction;
 import fr.imag.adele.cadse.core.internal.IWorkspaceNotifier;
-import fr.imag.adele.cadse.core.key.ISpaceKey;
+import fr.imag.adele.cadse.core.key.Key;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.delta.LinkDelta;
+import fr.imag.adele.cadse.core.transaction.delta.MappingOperation;
+import fr.imag.adele.cadse.core.transaction.delta.OrderOperation;
+import fr.imag.adele.cadse.core.transaction.delta.SetAttributeOperation;
+import fr.imag.adele.cadse.core.transaction.delta.WLWCOperationImpl;
 import fr.imag.adele.cadse.core.util.ElementsOrder;
 
 public interface InternalLogicalWorkspaceTransaction {
 	void actionAdd(ItemDelta item) throws CadseException;
 
-	public abstract void actionAddAttribute(CompactUUID itemId, String key, Object value) throws CadseException,
-			CadseException;
+	public abstract <T> void actionAddAttribute(UUID itemId, IAttributeType<T> key, T value)
+			throws CadseException, CadseException;
 
-	public abstract void actionAddAttribute(LinkDescription linkDescription, String key, Object value)
+	public abstract <T> void actionAddAttribute(LinkDescription linkDescription, IAttributeType<T> key, T value)
 			throws CadseException;
 
-	ItemDelta actionAddItem(ItemDescriptionRef itemDescriptionRef, CompactUUID parent, LinkType lt)
+	ItemDelta actionAddItem(ItemDescriptionRef itemDescriptionRef, UUID parent, LinkType lt)
 			throws CadseException;
 
 	public abstract void actionAddLink(LinkDescription linkDescription) throws CadseException;
 
-	public abstract void actionAddOperation(WLWCOperationImpl operation) ;
+	public abstract void actionAddOperation(WLWCOperationImpl operation);
 
-	// <T> void actionAddAttribute(CompactUUID itemId, IAttributeType<T> key, T
-	// value) throws CadseException;
-	public abstract void actionChangeAttribute(CompactUUID itemId, String key, Object value) throws CadseException,
-			CadseException;
+	public abstract <T> void actionChangeAttribute(UUID itemId, IAttributeType<T> key, T value)
+			throws CadseException, CadseException;
 
-	// <T> void actionAddAttribute(LinkDescription linkDescription,
-	// IAttributeType<T> key, T value) throws CadseException;
-	public abstract void actionChangeAttribute(LinkDescription linkDescription, String key, Object value)
+	public abstract <T> void actionChangeAttribute(LinkDescription linkDescription, IAttributeType<T> key, T value)
 			throws CadseException;
-
-	// <T> void actionRemoveAttribute(CompactUUID itemId, IAttributeType<T> key)
-	// throws CadseException;
 
 	void actionDelete(ItemDelta item);
 
-	// <T> void actionChangeAttribute(CompactUUID itemId, IAttributeType<T> key,
-	// T value) throws CadseException;
-	public abstract void actionRemoveAttribute(CompactUUID itemId, String key) throws CadseException;
+	public abstract <T> void actionRemoveAttribute(UUID itemId, IAttributeType<T> key) throws CadseException;
 
-	// <T> void actionChangeAttribute(LinkDescription linkDescription,
-	// IAttributeType<T> key, T value) throws CadseException;
-	public abstract void actionRemoveAttribute(LinkDescription linkDescription, String key) throws CadseException,
-			CadseException;
-
-	// <T> void actionRemoveAttribute(LinkDescription linkDescription,
-	// IAttributeType<T> key) throws CadseException;
+	public abstract <T> void actionRemoveAttribute(LinkDescription linkDescription, IAttributeType<T> key)
+			throws CadseException, CadseException;
 
 	public abstract void actionRemoveItem(ItemDescriptionRef itemDescriptionRef) throws CadseException, CadseException;
 
@@ -74,15 +60,15 @@ public interface InternalLogicalWorkspaceTransaction {
 
 	void addLoadedItem(Item item);
 
-	boolean containsSpaceKey(ISpaceKey key);
+	boolean containsSpaceKey(Key key);
 
 	boolean containsUniqueName(String un);
 
-	Item getBaseItem(CompactUUID id);
+	Item getBaseItem(UUID id);
 
+	TypeDefinition getTypeDefinition(UUID cadseId, UUID id, boolean createUnresolvedType);
 
-
-	ItemType getItemType(CompactUUID id, boolean createUnresolvedType);
+	ItemType getItemType(UUID cadseId, UUID id, boolean createUnresolvedType);
 
 	ILoggableAction getLog();
 
@@ -92,11 +78,11 @@ public interface InternalLogicalWorkspaceTransaction {
 
 	Collection<WLWCOperationImpl> getOperations();
 
-	ItemDelta getOrCreateItemOperation(CompactUUID id) throws CadseException;
+	ItemDelta getOrCreateItemOperation(UUID id) throws CadseException;
 
-	ItemDelta getOrCreateItemOperation(CompactUUID id, CompactUUID type) throws CadseException;
+	ItemDelta getOrCreateItemOperation(UUID id, UUID type) throws CadseException;
 
-	ItemDelta getOrCreateItemOperation(CompactUUID id, CompactUUID type, boolean add) throws CadseException,
+	ItemDelta getOrCreateItemOperation(UUID id, UUID type, boolean add) throws CadseException,
 			CadseException;
 
 	ItemDelta getOrCreateItemOperation(Item itembase) throws CadseException;
@@ -134,7 +120,7 @@ public interface InternalLogicalWorkspaceTransaction {
 	void remove(ItemDelta itemOperation);
 
 	void setLog(ILoggableAction log);
-	
+
 	public void validateDeleteLink(LinkDelta link) throws CadseException;
 
 }

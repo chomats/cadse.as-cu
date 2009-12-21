@@ -26,19 +26,19 @@ import java.util.Set;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 
-
 /**
  * The Class ParentItemTypePath.
+ * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public class ParentItemTypePath extends ElementPath {
-	
+
 	/** The Constant BEGIN_PATH. */
-	public static final String BEGIN_PATH = "<-parent:";
-	
+	public static final String	BEGIN_PATH	= "<-parent:";
+
 	/** The parent type. */
-	public final ItemType fParentType;
-	
+	public final ItemType		fParentType;
+
 	/**
 	 * Instantiates a new parent item type path.
 	 * 
@@ -49,7 +49,9 @@ public class ParentItemTypePath extends ElementPath {
 		fParentType = parentType;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getItemType()
 	 */
 	@Override
@@ -57,31 +59,35 @@ public class ParentItemTypePath extends ElementPath {
 		return fParentType;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getText()
 	 */
 	@Override
 	public String getText() {
-		return "."+BEGIN_PATH+fParentType.getId()+"*";
+		return "." + BEGIN_PATH + fParentType.getId() + "*";
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#evaluate(java.util.Set)
 	 */
 	@Override
 	Set<Item> evaluate(Set<Item> sources) {
 		if (sources.size() == 1) {
 			Item parent = sources.iterator().next().getPartParent(fParentType);
-			if (parent!=null)
+			if (parent != null)
 				return Collections.singleton(parent);
 			return Collections.EMPTY_SET;
 		}
 		HashSet<Item> ret = new HashSet<Item>();
 		for (Item source : sources) {
 			Item parent = source.getPartParent(fParentType);
-			if (parent!=null)
+			if (parent != null)
 				ret.add(parent);
-			
+
 		}
 		return ret;
 	}

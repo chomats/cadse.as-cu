@@ -33,7 +33,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to a create item operation. Arguments
-	 * are in order: 
+	 * are in order:
 	 * <ul>
 	 * <li>created item</li>
 	 * </ul>
@@ -65,7 +65,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to an addition outgoing link operation.
-	 * Arguments are in order: 
+	 * Arguments are in order:
 	 * <ul>
 	 * <li>created link</li>
 	 * </ul>
@@ -97,7 +97,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to resolution of an incoming link due
-	 * to loading or addition of a link. Arguments are in order: 
+	 * to loading or addition of a link. Arguments are in order:
 	 * <ul>
 	 * <li>destination item</li>
 	 * <li>resolved link</li>
@@ -131,7 +131,7 @@ public enum ChangeID {
 	/**
 	 * Represents an event corresponding to an incoming link which becomes no
 	 * more resolved due to unloading or deletion of a link. Arguments are in
-	 * order: 
+	 * order:
 	 * <ul>
 	 * <li>destination item</li>
 	 * <li>unresolved link</li>
@@ -164,7 +164,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to deletion of a link. Arguments are in
-	 * order: 
+	 * order:
 	 * <ul>
 	 * <li>deleted link</li>
 	 * </ul>
@@ -196,7 +196,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to a set item attribute value
-	 * operation. Arguments are in order: 
+	 * operation. Arguments are in order:
 	 * <ul>
 	 * <li>item</li>
 	 * <li>attribute definition</li>
@@ -231,7 +231,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to a set link attribute value
-	 * operation. Arguments are in order: 
+	 * operation. Arguments are in order:
 	 * <ul>
 	 * <li>link</li>
 	 * <li>attribute definition</li>
@@ -266,7 +266,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to a set item valid state operation.
-	 * Arguments are in order: 
+	 * Arguments are in order:
 	 * <ul>
 	 * <li>item</li>
 	 * <li>old value</li>
@@ -300,7 +300,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to a delete item operation. Arguments
-	 * are in order: 
+	 * are in order:
 	 * <ul>
 	 * <li>deleted item</li>
 	 * </ul>
@@ -332,7 +332,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to a set item state operation.
-	 * Arguments are in order: 
+	 * Arguments are in order:
 	 * <ul>
 	 * <li>item</li>
 	 * <li>old state</li>
@@ -366,7 +366,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to a set CADSE model state operation.
-	 * Arguments are in order: 
+	 * Arguments are in order:
 	 * <ul>
 	 * <li>logical workspace</li>
 	 * <li>old state</li>
@@ -400,7 +400,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to addition of a component to a
-	 * composite item operation. Arguments are in order: 
+	 * composite item operation. Arguments are in order:
 	 * <ul>
 	 * <li>composite item</li>
 	 * <li>added component items</li>
@@ -454,7 +454,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to removal of a component to a
-	 * composite item operation. Arguments are in order: 
+	 * composite item operation. Arguments are in order:
 	 * <ul>
 	 * <li>composite item</li>
 	 * <li>removed component items</li>
@@ -547,7 +547,7 @@ public enum ChangeID {
 
 	/**
 	 * Represents an event corresponding to loading of a set of items operation.
-	 * Arguments are in order: 
+	 * Arguments are in order:
 	 * <ul>
 	 * <li>logical workspace</li>
 	 * <li>all just loading items</li>
@@ -584,7 +584,7 @@ public enum ChangeID {
 	/**
 	 * Represents an event corresponding to force persist item (not in team
 	 * repository but only in the current workspace) operation. <br>
-	 * Arguments are in order: 
+	 * Arguments are in order:
 	 * <ul>
 	 * <li>saved item</li>
 	 * </ul>

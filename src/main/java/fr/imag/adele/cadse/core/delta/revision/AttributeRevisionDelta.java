@@ -18,34 +18,34 @@
  */
 package fr.imag.adele.cadse.core.delta.revision;
 
-
-
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 
-public class AttributeRevisionDelta extends ObjectTeamChange implements ITeamChangeObject {
+public class AttributeRevisionDelta<T> extends ObjectTeamChange implements ITeamChangeObject {
 	final public static class NotPresent {
 		private NotPresent() {
 		}
+
 		@Override
 		public String toString() {
 			return "<not present>";
 		}
 	}
-	final static public Object NOT_PRESENT = new NotPresent();
-	
-	final private Object parent;
-	
-	final private Object baseValue;
-	final private Object headValue;
-	final private Object currentValue;
 
-	//int change;
-	String key;
-	
-	public AttributeRevisionDelta(Object parent, String key, Object baseValue,
-			Object headValue, Object currentValue) {
+	final static public Object	NOT_PRESENT	= new NotPresent();
+
+	final private Object		parent;
+
+	final private T				baseValue;
+	final private T				headValue;
+	final private T				currentValue;
+
+	// int change;
+	IAttributeType<T>			key;
+
+	public AttributeRevisionDelta(Object parent, IAttributeType<T> key, T baseValue, T headValue, T currentValue) {
 		super();
 		this.parent = parent;
 		this.key = key;
@@ -77,11 +77,11 @@ public class AttributeRevisionDelta extends ObjectTeamChange implements ITeamCha
 				change |= WorkspaceLogiqueRevisionDelta.LOCAL_CHANGE_MODIFIED;
 			}
 		}
-		
+
 		if (isSet(WorkspaceLogiqueRevisionDelta.BASE_PRESENT | WorkspaceLogiqueRevisionDelta.CURRENT_NOT_PRESENT)) {
 			change |= WorkspaceLogiqueRevisionDelta.LOCAL_CHANGE_REMOVE;
 		}
-		
+
 		if (isSet(WorkspaceLogiqueRevisionDelta.BASE_NOT_PRESENT | WorkspaceLogiqueRevisionDelta.HEAD_PRESENT)) {
 			change |= WorkspaceLogiqueRevisionDelta.REMOTE_CHANGE_ADD;
 		}
@@ -91,20 +91,17 @@ public class AttributeRevisionDelta extends ObjectTeamChange implements ITeamCha
 				change |= WorkspaceLogiqueRevisionDelta.REMOTE_CHANGE_MODIFIED;
 			}
 		}
-		
+
 		if (isSet(WorkspaceLogiqueRevisionDelta.BASE_PRESENT | WorkspaceLogiqueRevisionDelta.HEAD_NOT_PRESENT)) {
 			change |= WorkspaceLogiqueRevisionDelta.REMOTE_CHANGE_REMOVE;
 		}
 	}
-	
-	private static boolean equals(Object v1, Object v2) {
-		return (v1 == null && v2 == null) ||
-			(v1 != null && v2 != null && v1.equals(v2));
-	}
-	
-	
 
-	public String getKey() {
+	private static boolean equals(Object v1, Object v2) {
+		return (v1 == null && v2 == null) || (v1 != null && v2 != null && v1.equals(v2));
+	}
+
+	public IAttributeType<?> getKey() {
 		return key;
 	}
 
@@ -120,16 +117,12 @@ public class AttributeRevisionDelta extends ObjectTeamChange implements ITeamCha
 		return currentValue;
 	}
 
-	
-	
-	
-	
-	
-	boolean revertLocalChanges(ITeamRevisionService ser,
-			LogicalWorkspaceTransaction copy) throws CadseException {
-		if(!hasRefuseLocalChange()) return false;
-		if (hasRemoteChange() && hasAcceptRemoteChange()) return false;
-		
+	boolean revertLocalChanges(ITeamRevisionService ser, LogicalWorkspaceTransaction copy) throws CadseException {
+		if (!hasRefuseLocalChange())
+			return false;
+		if (hasRemoteChange() && hasAcceptRemoteChange())
+			return false;
+
 		if (this.headValue == AttributeRevisionDelta.NOT_PRESENT) {
 			if (currentValue == AttributeRevisionDelta.NOT_PRESENT)
 				return false;
@@ -156,45 +149,44 @@ public class AttributeRevisionDelta extends ObjectTeamChange implements ITeamCha
 		}
 		return false;
 	}
-	
-	public boolean commitAcceptHeadChanges(ITeamRevisionService ser,
-			LogicalWorkspaceTransaction copy) throws CadseException {
+
+	public boolean commitAcceptHeadChanges(ITeamRevisionService ser, LogicalWorkspaceTransaction copy)
+			throws CadseException {
 		if (!hasRemoteChange()) {
-			//System.out.println("has no remote change "+key);
+			// System.out.println("has no remote change "+key);
 			return false;
 		}
-		
+
 		if (!hasAcceptRemoteChange()) {
-			//System.out.println("has no accept remote change "+key);
+			// System.out.println("has no accept remote change "+key);
 			return false;
 		}
 		// meme si la valeur est egual on fait l'operation.
-	//	if (currentValueEqualsHeadValue()) {
-	//		System.out.println("value is equals :"+key);
-	//		return true;
-	//	}
-		
-		
+		// if (currentValueEqualsHeadValue()) {
+		// System.out.println("value is equals :"+key);
+		// return true;
+		// }
+
 		if (parent instanceof ItemRevisionDelta) {
 			if (headValue == null) {
 				copy.actionRemoveAttribute(getParentId(), key);
 				return true;
-			} 
+			}
 			if (baseValue == null) {
 				copy.actionAddAttribute(getParentId(), key, headValue);
 				return true;
-			} 
+			}
 			copy.actionChangeAttribute(getParentId(), key, headValue);
 			return true;
 		} else if (parent instanceof LinkRevisionDelta) {
 			if (headValue == null) {
 				copy.actionRemoveAttribute(((LinkRevisionDelta) parent).toDesc(), key);
 				return true;
-			} 
+			}
 			if (baseValue == null) {
 				copy.actionAddAttribute(((LinkRevisionDelta) parent).toDesc(), key, headValue);
 				return true;
-			} 
+			}
 			copy.actionChangeAttribute(((LinkRevisionDelta) parent).toDesc(), key, headValue);
 			return true;
 		} else {
@@ -202,18 +194,14 @@ public class AttributeRevisionDelta extends ObjectTeamChange implements ITeamCha
 		}
 	}
 
-	public CompactUUID getParentId() {
+	public UUID getParentId() {
 		return ((ItemRevisionDelta) parent).getId();
 	}
-	
+
 	public boolean currentValueEqualsHeadValue() {
 		return equals(currentValue, headValue);
 	}
-	
-	
-	
-	
-	
+
 	public StringBuilder toString(StringBuilder sb, String tab) {
 		if (currentValueEqualsHeadValue()) {
 			sb.append(tab);
@@ -222,13 +210,13 @@ public class AttributeRevisionDelta extends ObjectTeamChange implements ITeamCha
 			return sb;
 		}
 		if (isRemoteChanged() && isLocalChanged()) {
-				sb.append(tab);
-				sb.append(this.key).append(" Conflict attribute current value =");
-				sb.append(currentValue);
-				sb.append("\n");
-				sb.append(tab).append(this.key).append("    head value =").append(headValue).append("\n");
-				sb.append(tab).append(this.key).append("    base value =").append(baseValue).append("\n");
-				return sb;
+			sb.append(tab);
+			sb.append(this.key).append(" Conflict attribute current value =");
+			sb.append(currentValue);
+			sb.append("\n");
+			sb.append(tab).append(this.key).append("    head value =").append(headValue).append("\n");
+			sb.append(tab).append(this.key).append("    base value =").append(baseValue).append("\n");
+			return sb;
 		}
 		if (isRemoteChanged()) {
 			sb.append(tab);
@@ -253,22 +241,21 @@ public class AttributeRevisionDelta extends ObjectTeamChange implements ITeamCha
 		sb.append("\n");
 		return sb;
 	}
-	
-	static public final int L = 0;
-	static public final int R = 1;
-	static public final int C = 2;
-	static public final int AL = 3;
-	static public final int AR = 4;
-	
+
+	static public final int	L	= 0;
+	static public final int	R	= 1;
+	static public final int	C	= 2;
+	static public final int	AL	= 3;
+	static public final int	AR	= 4;
+
 	public String getStatus() {
 		char[] statusItem = new char[5];
-		statusItem[L]  =
-		statusItem[R] =
-		statusItem[C]=' ';
-		statusItem[AL]=' ';
-		statusItem[AR]=' ';
-		
-		//ItemDescription mergeItem = new ItemDescription(delta.getId(), delta.getType());
+		statusItem[L] = statusItem[R] = statusItem[C] = ' ';
+		statusItem[AL] = ' ';
+		statusItem[AR] = ' ';
+
+		// ItemDescription mergeItem = new ItemDescription(delta.getId(),
+		// delta.getType());
 		if (isSet(WorkspaceLogiqueRevisionDelta.LOCAL_CHANGE_ADD)) {
 			statusItem[L] = 'a';
 		}
@@ -290,59 +277,58 @@ public class AttributeRevisionDelta extends ObjectTeamChange implements ITeamCha
 		if (hasConflict()) {
 			statusItem[C] = 'C';
 		}
-		
+
 		if (hasAcceptLocalChange()) {
-			statusItem[AL]='a';
+			statusItem[AL] = 'a';
 		} else if (hasRefuseLocalChange()) {
-			statusItem[AL]='r';
+			statusItem[AL] = 'r';
 		}
 		if (hasAcceptRemoteChange()) {
-			statusItem[AR]='A';
+			statusItem[AR] = 'A';
 		} else if (hasRefuseRemoteChange()) {
-			statusItem[AR]='R';
+			statusItem[AR] = 'R';
 		}
-//		//AL DL AR DR C * AL 
-//		for (LinkRevisionDelta lrd : links) {
-//			if (lrd.hasConflict())
-//				return true;
-//		}
-		
+		// //AL DL AR DR C * AL
+		// for (LinkRevisionDelta lrd : links) {
+		// if (lrd.hasConflict())
+		// return true;
+		// }
+
 		return new String(statusItem);
 	}
+
 	public String toStringNoReturn(String tab, boolean detail) {
-		
+
 		StringBuilder sb = new StringBuilder();
 		sb.append("[").append(getStatus()).append("] ").append(key);
 		if (!detail)
 			return sb.toString();
-		
+
 		sb.append(" value =");
 		sb.append(currentValue);
 		sb.append(", head value =").append(headValue);
 		sb.append(", base value =").append(baseValue);
 		return sb.toString();
 	}
-	
+
 	public String getDisplayOneLine() {
-		return "Attribute "+key;
-	}
-	
-	@Override
-	public String toString() {
-		return toString(new StringBuilder(),"").toString();
+		return "Attribute " + key;
 	}
 
-	
+	@Override
+	public String toString() {
+		return toString(new StringBuilder(), "").toString();
+	}
+
 	public boolean hasConflict() {
 		if (currentValueEqualsHeadValue()) {
 			return false;
 		}
-		return (isRemoteChanged() && isLocalChanged()) ;
+		return (isRemoteChanged() && isLocalChanged());
 	}
 
 	public int getHStatus() {
 		return change;
 	}
 
-	
 }

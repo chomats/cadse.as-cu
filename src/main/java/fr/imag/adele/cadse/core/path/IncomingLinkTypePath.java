@@ -23,26 +23,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
-
+import fr.imag.adele.cadse.core.TypeDefinition;
 
 /**
  * The Class IncomingLinkTypePath.
+ * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public class IncomingLinkTypePath extends ElementPath {
-	
+
 	/** The Constant BEGIN_PATH. */
-	public static final String BEGIN_PATH = "<-";
-	
+	public static final String	BEGIN_PATH	= "<-";
+
 	/** The source. */
-	public final ItemType fSource;
-	
+	public final TypeDefinition	fSource;
+
 	/** The link type. */
-	public final LinkType fLinkType;
-	
+	public final LinkType		fLinkType;
+
 	/**
 	 * Instantiates a new incoming link type path.
 	 * 
@@ -54,29 +54,34 @@ public class IncomingLinkTypePath extends ElementPath {
 		fLinkType = lt;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getItemType()
 	 */
 	@Override
-	public ItemType getItemType() {
+	public TypeDefinition getItemType() {
 		return fSource;
 	}
-	
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getText()
 	 */
 	@Override
 	public String getText() {
-		return "."+BEGIN_PATH+fLinkType.getName();
+		return "." + BEGIN_PATH + fLinkType.getName();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#evaluate(java.util.Set)
 	 */
 	@Override
 	Set<Item> evaluate(Set<Item> sources) {
-		HashSet<Item> ret = getIncomingItems(sources,fLinkType);
+		HashSet<Item> ret = getIncomingItems(sources, fLinkType);
 		return ret;
 	}
 
@@ -90,8 +95,8 @@ public class IncomingLinkTypePath extends ElementPath {
 	 * 
 	 * @return the incoming items
 	 */
-	public static HashSet<Item> getIncomingItems(Set<Item> sources, LinkType fLinkType ) {
-		//source est de type fLinkType.getDestination()
+	public static HashSet<Item> getIncomingItems(Set<Item> sources, LinkType fLinkType) {
+		// source est de type fLinkType.getDestination()
 		HashSet<Item> ret = new HashSet<Item>();
 		for (Item source : sources) {
 			for (Link l : source.getIncomingLinks()) {

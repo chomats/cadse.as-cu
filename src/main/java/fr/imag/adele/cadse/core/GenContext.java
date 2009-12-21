@@ -24,33 +24,34 @@ import java.util.Map;
 import java.util.Set;
 
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
-import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.core.var.ContextVariableImpl;
 
 /**
- * Represents a context for a generation. It is a collection of
- * configuration properties.
+ * Represents a context for a generation. It is a collection of configuration
+ * properties.
  * 
- * Generation contexts can be organized hierarchically.
- * A child generation context inherit all configuration properties of its parent.
+ * Generation contexts can be organized hierarchically. A child generation
+ * context inherit all configuration properties of its parent.
  * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
-public class GenContext extends ContextVariable implements IAttributable {
+public class GenContext extends ContextVariableImpl implements IAttributable {
 
 	/** The Constant REMOVE_VALUE. */
-	public final static Object	REMOVE_VALUE	= new Object();
+	public final static Object		REMOVE_VALUE	= new Object();
 
 	/** The parent. */
-	protected GenContext					_parent;
+	protected GenContext			_parent;
 
 	/** The values. */
-	protected Map<String, Object>			_values;
+	protected Map<String, Object>	_values;
 
 	/**
-	 * Creates a new generation context.
-	 * If it has no parent, specify a null parent.
+	 * Creates a new generation context. If it has no parent, specify a null
+	 * parent.
 	 * 
-	 * @param parent parent of newly generation context
+	 * @param parent
+	 *            parent of newly generation context
 	 */
 	public GenContext(GenContext parent) {
 		_parent = parent;
@@ -61,7 +62,7 @@ public class GenContext extends ContextVariable implements IAttributable {
 	 * (non-Javadoc)
 	 * 
 	 * @see fede.workspace.domain.IAttributable#getAttribute(java.lang.String,
-	 *      java.lang.Object)
+	 * java.lang.Object)
 	 */
 	public <T> T getAttributeWithDefaultValue(String key, T defaultValue) {
 		T ret = null;
@@ -100,7 +101,7 @@ public class GenContext extends ContextVariable implements IAttributable {
 	 * (non-Javadoc)
 	 * 
 	 * @see fede.workspace.domain.IAttributable#setAttribute(java.lang.String,
-	 *      java.lang.Object)
+	 * java.lang.Object)
 	 */
 	public void setAttribute(String key, Object value) {
 

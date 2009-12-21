@@ -18,7 +18,6 @@
  */
 package fr.imag.adele.cadse.core.oper;
 
-
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
@@ -27,39 +26,36 @@ import fr.imag.adele.cadse.core.oper.annotation.OperTest;
 import fr.imag.adele.cadse.core.oper.annotation.ParameterKind;
 
 @Deprecated
-@OperTest(testMustBeStopped=true)
+@OperTest(testMustBeStopped = true)
 public class WSOCreateLink extends WSOperation {
-	@OperParameter(constructorPosition=0, type = ParameterKind.item_ref)
-	private Item source;
-	@OperParameter(constructorPosition=1, type = ParameterKind.link_type_ref)
-	private LinkType linktype;
-	@OperParameter(constructorPosition=2, type = ParameterKind.item_ref)
-	private Item dest;
-	
-	private Link resultat;
-	
+	@OperParameter(constructorPosition = 0, type = ParameterKind.item_ref)
+	private Item		source;
+	@OperParameter(constructorPosition = 1, type = ParameterKind.link_type_ref)
+	private LinkType	linktype;
+	@OperParameter(constructorPosition = 2, type = ParameterKind.item_ref)
+	private Item		dest;
+
+	private Link		resultat;
+
 	public WSOCreateLink(Item source, LinkType linktype, Item dest) {
 		this.source = source;
 		this.linktype = linktype;
 		this.dest = dest;
 	}
-	
-	
 
 	@Override
 	protected void excecuteImpl() throws Throwable {
 		resultat = source.createLink(linktype, dest);
 	}
-	
+
 	public Item getDest() {
 		return dest;
 	}
-	
-	
+
 	public LinkType getLinktype() {
 		return linktype;
 	}
-	
+
 	public Item getSource() {
 		return source;
 	}
@@ -67,12 +63,13 @@ public class WSOCreateLink extends WSOperation {
 	public Class<?> getType() {
 		return WSOCreateLink.class;
 	}
-	
+
 	@Override
 	public String getDiplayComment() {
-		return "create link from "+source.getDisplayName()+" to "+dest.getDisplayName()+ "( "+linktype.toString() +" )";
+		return "create link from " + source.getDisplayName() + " to " + dest.getDisplayName() + "( "
+				+ linktype.toString() + " )";
 	}
-	
+
 	public Link getResultat() {
 		return resultat;
 	}

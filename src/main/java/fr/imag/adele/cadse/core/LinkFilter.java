@@ -19,13 +19,11 @@
 
 package fr.imag.adele.cadse.core;
 
-
-
 /**
  * The Interface LinkFilter.
  */
 public interface LinkFilter {
-	
+
 	/**
 	 * Tests whether or not the specified link should be included in a link
 	 * list.
@@ -36,13 +34,13 @@ public interface LinkFilter {
 	 * @return <code>true</code> if and only if <code>link</code> should be
 	 *         included
 	 */
-    boolean accept(Link link);
-    
-    /**
+	boolean accept(Link link);
+
+	/**
 	 * Stop.
 	 * 
 	 * @return <code>true</code> si la recherche est fini
 	 */
-    boolean stop();
-    
+	boolean stop();
+
 }

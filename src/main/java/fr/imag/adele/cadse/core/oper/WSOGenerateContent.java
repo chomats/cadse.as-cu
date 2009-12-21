@@ -20,17 +20,17 @@ package fr.imag.adele.cadse.core.oper;
 
 import fr.imag.adele.cadse.core.IGenerateContent;
 import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.content.FacetteItemContent;
 import fr.imag.adele.cadse.core.oper.annotation.OperParameter;
 import fr.imag.adele.cadse.core.oper.annotation.OperTest;
 import fr.imag.adele.cadse.core.oper.annotation.ParameterKind;
-import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.core.var.ContextVariableImpl;
 
-@OperTest(testMustBeStopped=true)
+@OperTest(testMustBeStopped = true)
 public class WSOGenerateContent extends WSOperation {
-	@OperParameter(constructorPosition=0, type = ParameterKind.item_ref)
-	Item item;
-	
-	
+	@OperParameter(constructorPosition = 0, type = ParameterKind.item_ref)
+	Item	item;
+
 	public WSOGenerateContent(Item item) {
 		super();
 		this.item = item;
@@ -38,14 +38,14 @@ public class WSOGenerateContent extends WSOperation {
 
 	@Override
 	protected void excecuteImpl() throws Throwable {
-		((IGenerateContent) item.getContentItem()).generate(ContextVariable.DEFAULT);
+		((IGenerateContent) item.getContentItem()).generate(ContextVariableImpl.DEFAULT);
 	}
 
 	@Override
 	public String getDiplayComment() {
-		return "Generate content "+item.getDisplayName();
+		return "Generate content " + item.getDisplayName();
 	}
-	
+
 	public Item getItem() {
 		return item;
 	}
