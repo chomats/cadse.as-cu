@@ -19,21 +19,19 @@
 
 package fr.imag.adele.cadse.core.path;
 
-
-
 /**
  * The Class AbstractParsePath.
+ * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public abstract class AbstractParsePath {
-	
+
 	/** The error. */
-	protected String error ;
-	
+	protected String	error;
+
 	/** The issingleton. */
-	protected boolean issingleton;
-	
-	
+	protected boolean	issingleton;
+
 	/**
 	 * Instantiates a new abstract parse path.
 	 * 
@@ -43,7 +41,7 @@ public abstract class AbstractParsePath {
 	public AbstractParsePath(String path) {
 		this.error = null;
 	}
-	
+
 	/**
 	 * Parses the.
 	 * 
@@ -58,7 +56,7 @@ public abstract class AbstractParsePath {
 		int lastindex = 0;
 		String s;
 		boolean closure = false;
-		
+
 		int len = value.length();
 		int nextindex = len;
 		error = null;
@@ -67,7 +65,7 @@ public abstract class AbstractParsePath {
 			if (len == 0) {
 				break ONE;
 			}
-			
+
 			int index = value.indexOf('.');
 			if (index == lastindex) {
 				error = "Bad expresion not begin by '.'";
@@ -89,19 +87,19 @@ public abstract class AbstractParsePath {
 				issingleton = false;
 			}
 			while (index != -1) {
-				lastindex = nextindex +1;
-				if (lastindex == len ) {
+				lastindex = nextindex + 1;
+				if (lastindex == len) {
 					error = "Bad expression not end by '.'";
 					break ONE;
 				}
-				index = value.indexOf('.',lastindex);
+				index = value.indexOf('.', lastindex);
 				if (index == lastindex) {
 					error = "Bad expresion find '..'";
 					break ONE;
 				}
 				nextindex = (index == -1) ? len : index;
 				s = value.substring(lastindex, nextindex);
-			
+
 				closure = false;
 				if (s.endsWith("*")) {
 					closure = true;
@@ -109,34 +107,33 @@ public abstract class AbstractParsePath {
 				}
 				if (s.startsWith(PathConstants.PARENT_PATH)) {
 					s = s.substring(PathConstants.PARENT_PATH.length());
-					parseParent(s,closure);
+					parseParent(s, closure);
 					if (error != null)
 						break ONE;
 					continue;
 				}
 				if (s.equals(PathConstants.INCOMING_LINK_PATH)) {
 					s = s.substring(PathConstants.INCOMING_LINK_PATH.length());
-					parseIncomingLink(s,closure);
+					parseIncomingLink(s, closure);
 					if (error != null)
 						break ONE;
 					continue;
 				}
-				parseOutgoingLink(s,closure);
+				parseOutgoingLink(s, closure);
 				if (error != null)
 					break ONE;
-				
+
 			}
 			endParse(partiel);
-		}		
+		}
 		return value.substring(lastindex);
 	}
-	
-	
+
 	/**
 	 * Begin parse.
 	 */
 	protected abstract void beginParse();
-	
+
 	/**
 	 * Parses the type.
 	 * 
@@ -189,7 +186,7 @@ public abstract class AbstractParsePath {
 	 *            the partiel
 	 */
 	protected abstract void endParse(boolean partiel);
-	
+
 	/**
 	 * Gets the error.
 	 * 
@@ -198,5 +195,5 @@ public abstract class AbstractParsePath {
 	public String getError() {
 		return error;
 	}
-	
+
 }

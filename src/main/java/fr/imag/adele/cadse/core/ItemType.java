@@ -16,17 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-/*
- * Adele/LIG/ Grenoble University, France
- * 2006-2008
- */
+
 package fr.imag.adele.cadse.core;
 
 import java.net.URL;
 import java.util.List;
 
 import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
+import fr.imag.adele.cadse.core.attribute.StringAttributeType;
 import fr.imag.adele.cadse.core.internal.ItemTypeInternal;
+import fr.imag.adele.cadse.core.key.FacetteItemTypeKey;
+import fr.imag.adele.cadse.core.transaction.FacetteItemTypeTransaction;
+import fr.imag.adele.cadse.core.ui.FacetteItemTypeAction;
 import fr.imag.adele.cadse.core.key.SpaceKeyType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
 import fr.imag.adele.cadse.core.ui.IActionContributor;
@@ -49,9 +50,10 @@ import fr.imag.adele.cadse.core.ui.view.NewContext;
  * @version 6
  * @date 26/09/05
  */
-
-public interface ItemType extends Item, IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster,
-		ItemTypeInternal, GroupType {
+public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinition, FacetteItemTypeAction,
+		FacetteItemTypeCanCreate, FacetteItemTypeFactory, FacetteItemTypeKey,
+		FacetteItemTypeTransaction, 
+		IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster {
 
 	/** The Constant PART. */
 	public static final int	PART			= 0x0002;

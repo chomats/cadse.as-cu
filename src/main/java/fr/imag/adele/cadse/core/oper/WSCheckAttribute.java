@@ -20,27 +20,28 @@ package fr.imag.adele.cadse.core.oper;
 
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.oper.annotation.OperParameter;
 import fr.imag.adele.cadse.core.oper.annotation.OperTest;
 import fr.imag.adele.cadse.core.oper.annotation.ParameterKind;
 
-@OperTest(testMustBeStopped=false)
+@OperTest(testMustBeStopped = false)
 public class WSCheckAttribute extends WSCheckOperation {
-	@OperParameter(constructorPosition=0, type = ParameterKind.item_ref)
-	Item item;
-	@OperParameter(constructorPosition=1, type = ParameterKind.string_value)
-	String key;	
-	@OperParameter(constructorPosition=2, type = ParameterKind.object_value, required=false)
-	Object value;
-	
-	public WSCheckAttribute(Item item, String attributeName, Object value) {
+	@OperParameter(constructorPosition = 0, type = ParameterKind.item_ref)
+	Item				item;
+	@OperParameter(constructorPosition = 1, type = ParameterKind.attribute_ref)
+	IAttributeType<?>	key;
+	@OperParameter(constructorPosition = 2, type = ParameterKind.object_value, required = false)
+	Object				value;
+
+	public WSCheckAttribute(Item item, IAttributeType<?> attributeName, Object value) {
 		super();
 		this.item = item;
 		this.key = attributeName;
 		this.value = value;
 	}
 
-	public WSCheckAttribute(Item item, String attributeName) {
+	public WSCheckAttribute(Item item, IAttributeType<?> attributeName) {
 		this.item = item;
 		this.key = attributeName;
 		this.value = item.getAttribute(key);
@@ -50,25 +51,25 @@ public class WSCheckAttribute extends WSCheckOperation {
 	protected void excecuteImpl() throws Throwable {
 		Object attributeValue = item.getAttribute(key);
 		if (!equals(attributeValue, value)) {
-			throw new CadseException("attribute_not_equals","Attribute {0} not equal in {1}", null, key, item.getQualifiedDisplayName() );
+			throw new CadseException("attribute_not_equals", "Attribute {0} not equal in {1}", null, key, item
+					.getQualifiedDisplayName());
 		}
 	}
 
-	
 	public Item getItem() {
 		return item;
 	}
 
-	public String getKey() {
+	public IAttributeType<?> getKey() {
 		return key;
 	}
 
 	public Object getValue() {
 		return value;
 	}
-	
+
 	@Override
 	public String getDiplayComment() {
-		return "check attribute "+key+" in "+item.getDisplayName();
+		return "check attribute " + key + " in " + item.getDisplayName();
 	}
 }

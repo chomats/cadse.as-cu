@@ -5,17 +5,18 @@ import fr.imag.adele.cadse.core.Item;
 
 public class AbstractUIRunningValidator implements UIRunningValidator {
 
-	public Item _desc;
-	private int _error;
-	public UIPlatform _uiPlatform;
-	
-	public AbstractUIRunningValidator( Item desc) {
+	public Item			_desc;
+	private int			_error;
+	public UIPlatform	_uiPlatform;
+
+	public AbstractUIRunningValidator(Item desc) {
 		this._desc = desc;
 	}
+
 	public AbstractUIRunningValidator() {
 		this._desc = null;
 	}
-	
+
 	@Override
 	public void dispose() {
 	}
@@ -28,7 +29,7 @@ public class AbstractUIRunningValidator implements UIRunningValidator {
 	@Override
 	public void initAfterUI() {
 	}
-	
+
 	@Override
 	public void notifieSubValueAdded(UIField field, Object added) {
 	}
@@ -80,8 +81,8 @@ public class AbstractUIRunningValidator implements UIRunningValidator {
 
 	@Override
 	public int incrementError() {
-		//if (_desc != null)
-		//	return _desc.incrementError();
+		// if (_desc != null)
+		// return _desc.incrementError();
 		return ++_error;
 	}
 

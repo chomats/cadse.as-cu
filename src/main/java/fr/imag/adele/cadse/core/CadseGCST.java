@@ -1,3 +1,4 @@
+/** Licensed to the Apache Software Foundation (ASF) under one* or more contributor license agreements.  See the NOTICE file* distributed with this work for additional information* regarding copyright ownership.  The ASF licenses this file* to you under the Apache License, Version 2.0 (the* "License"); you may not use this file except in compliance* with the License.  You may obtain a copy of the License at**   http://www.apache.org/licenses/LICENSE-2.0** Unless required by applicable law or agreed to in writing,* software distributed under the License is distributed on an* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY* KIND, either express or implied.  See the License for the* specific language governing permissions and limitations* under the License.*/
 package fr.imag.adele.cadse.core;
 
 
@@ -14,6 +15,7 @@ import fr.imag.adele.cadse.core.enumdef.TWDestEvol;
 import fr.imag.adele.cadse.core.enumdef.TWEvol;
 import fr.imag.adele.cadse.core.enumdef.TWUpdateKind;
 import fr.imag.adele.cadse.core.ui.EPosLabel;
+import java.lang.Integer;
 import java.lang.String;
 
 
@@ -30,6 +32,14 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType AJPROJECT_COMPOSER_lt_COMPOSER_LINKS;
+	/**
+	    @generated
+	*/
+	public final static String AJPROJECT_COMPOSER_at_SKIP_WEAVING="skip-weaving";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType AJPROJECT_COMPOSER_at_SKIP_WEAVING_;
 	/**
 	    @generated
 	*/
@@ -178,6 +188,14 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType ATTRIBUTE_ITEM_TYPE;
+	/**
+	    @generated
+	*/
+	public final static String ATTRIBUTE_ITEM_TYPE_at_DEFAULT_VALUE="default-value";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType ATTRIBUTE_ITEM_TYPE_at_DEFAULT_VALUE_;
 	/**
 	    @generated
 	*/
@@ -362,14 +380,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType COMPOSER_lt_COMPOSER_LINKS;
-	/**
-	    @generated
-	*/
-	public final static String COMPOSER_at_EXTENDS_CLASS="extends-class";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType COMPOSER_at_EXTENDS_CLASS_;
 	/**
 	    @generated
 	*/
@@ -865,22 +875,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String IC_ABSTRACT_FOR_BROWSER_COMBO_at_MESSAGE="message";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType IC_ABSTRACT_FOR_BROWSER_COMBO_at_MESSAGE_;
-	/**
-	    @generated
-	*/
-	public final static String IC_ABSTRACT_FOR_BROWSER_COMBO_at_TITLE="title";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType IC_ABSTRACT_FOR_BROWSER_COMBO_at_TITLE_;
-	/**
-	    @generated
-	*/
 	public static ItemType IC_ABSTRACT_FOR_CHECKED;
 	/**
 	    @generated
@@ -890,38 +884,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType IC_ABSTRACT_TREE_DIALOG_FOR_LIST_BROWSER_COMBO;
-	/**
-	    @generated
-	*/
-	public final static String IC_ABSTRACT_TREE_DIALOG_FOR_LIST_BROWSER_COMBO_at_MESSAGE="message";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType IC_ABSTRACT_TREE_DIALOG_FOR_LIST_BROWSER_COMBO_at_MESSAGE_;
-	/**
-	    @generated
-	*/
-	public final static String IC_ABSTRACT_TREE_DIALOG_FOR_LIST_BROWSER_COMBO_at_SELECT_MESSAGE="select-message";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType IC_ABSTRACT_TREE_DIALOG_FOR_LIST_BROWSER_COMBO_at_SELECT_MESSAGE_;
-	/**
-	    @generated
-	*/
-	public final static String IC_ABSTRACT_TREE_DIALOG_FOR_LIST_BROWSER_COMBO_at_SELECT_TITLE="select-title";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType IC_ABSTRACT_TREE_DIALOG_FOR_LIST_BROWSER_COMBO_at_SELECT_TITLE_;
-	/**
-	    @generated
-	*/
-	public final static String IC_ABSTRACT_TREE_DIALOG_FOR_LIST_BROWSER_COMBO_at_TITLE="title";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType IC_ABSTRACT_TREE_DIALOG_FOR_LIST_BROWSER_COMBO_at_TITLE_;
 	/**
 	    @generated
 	*/
@@ -969,6 +931,22 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String IC_JAVA_CLASS_FOR_BROWSER_COMBO_at_FILTER="filter";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType IC_JAVA_CLASS_FOR_BROWSER_COMBO_at_FILTER_;
+	/**
+	    @generated
+	*/
+	public final static String IC_JAVA_CLASS_FOR_BROWSER_COMBO_at_STYLE="style";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType IC_JAVA_CLASS_FOR_BROWSER_COMBO_at_STYLE_;
+	/**
+	    @generated
+	*/
 	public static ItemType IC_LINK_FOR_BROWSER_COMBO_LIST;
 	/**
 	    @generated
@@ -981,7 +959,23 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String IC_RESOURCE_TREE_DIALOG_FOR_BROWSER_COMBO_LIST_at_SELECT_TYPE_ROOT="select-type-root";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType IC_RESOURCE_TREE_DIALOG_FOR_BROWSER_COMBO_LIST_at_SELECT_TYPE_ROOT_;
+	/**
+	    @generated
+	*/
 	public static ItemType IC_STATIC_ARRAY_OF_OBJECT_FOR_BROWSER_COMBO;
+	/**
+	    @generated
+	*/
+	public final static String IC_STATIC_ARRAY_OF_OBJECT_FOR_BROWSER_COMBO_at_VALUES="values";
+	/**
+	    @generated
+	*/
+	public static ListAttributeType<String> IC_STATIC_ARRAY_OF_OBJECT_FOR_BROWSER_COMBO_at_VALUES_;
 	/**
 	    @generated
 	*/
@@ -994,6 +988,26 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static BooleanAttributeType IC_STRING_LIST_FOR_LIST_at_ALLOW_DUPLICATE_;
+	/**
+	    @generated
+	*/
+	public static ItemType IC_WITH_TITLE_FOR_DIALOG;
+	/**
+	    @generated
+	*/
+	public final static String IC_WITH_TITLE_FOR_DIALOG_at_SELECT_MESSAGE="select-message";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType IC_WITH_TITLE_FOR_DIALOG_at_SELECT_MESSAGE_;
+	/**
+	    @generated
+	*/
+	public final static String IC_WITH_TITLE_FOR_DIALOG_at_SELECT_TITLE="select-title";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType IC_WITH_TITLE_FOR_DIALOG_at_SELECT_TITLE_;
 	/**
 	    @generated
 	*/
@@ -1054,6 +1068,14 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType ITEM_lt_INSTANCE_OF;
+	/**
+	    @generated
+	*/
+	public final static String ITEM_at_ISVALID="isvalid";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType ITEM_at_ISVALID_;
 	/**
 	    @generated
 	*/
@@ -1125,6 +1147,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String ITEM_TYPE_at_DISPLAY_NAME_TEMPLATE="display-name-template";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType ITEM_TYPE_at_DISPLAY_NAME_TEMPLATE_;
+	/**
+	    @generated
+	*/
 	public final static String ITEM_TYPE_at_HAS_CONTENT="has-content";
 	/**
 	    @generated
@@ -1157,19 +1187,19 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String ITEM_TYPE_at_IS_ABSTRACT="is-abstract";
+	public final static String ITEM_TYPE_at_IS_INSTANCE_ABSTRACT="is-instance-abstract";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType ITEM_TYPE_at_IS_ABSTRACT_;
+	public static BooleanAttributeType ITEM_TYPE_at_IS_INSTANCE_ABSTRACT_;
 	/**
 	    @generated
 	*/
-	public final static String ITEM_TYPE_at_IS_HIDDEN="is-hidden";
+	public final static String ITEM_TYPE_at_IS_INSTANCE_HIDDEN="is-instance-hidden";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType ITEM_TYPE_at_IS_HIDDEN_;
+	public static BooleanAttributeType ITEM_TYPE_at_IS_INSTANCE_HIDDEN_;
 	/**
 	    @generated
 	*/
@@ -1217,6 +1247,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String ITEM_TYPE_at_MESSAGE_ERROR_ID="message-error-id";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType ITEM_TYPE_at_MESSAGE_ERROR_ID_;
+	/**
+	    @generated
+	*/
 	public final static String ITEM_TYPE_at_OVERWRITE_DEFAULT_PAGES="overwrite-default-pages";
 	/**
 	    @generated
@@ -1233,11 +1271,27 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String ITEM_TYPE_at_QUALIFIED_NAME_TEMPLATE="qualified-name-template";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType ITEM_TYPE_at_QUALIFIED_NAME_TEMPLATE_;
+	/**
+	    @generated
+	*/
 	public static LinkType ITEM_TYPE_lt_SUB_TYPES;
 	/**
 	    @generated
 	*/
 	public static LinkType ITEM_TYPE_lt_SUPER_TYPE;
+	/**
+	    @generated
+	*/
+	public final static String ITEM_TYPE_at_VALIDATE_NAME_RE="validate-name-re";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType ITEM_TYPE_at_VALIDATE_NAME_RE_;
 	/**
 	    @generated
 	*/
@@ -1254,6 +1308,22 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType JAVA_FILE_CONTENT_MODEL;
+	/**
+	    @generated
+	*/
+	public final static String JAVA_FILE_CONTENT_MODEL_at_CLASS_NAME="class-name";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType JAVA_FILE_CONTENT_MODEL_at_CLASS_NAME_;
+	/**
+	    @generated
+	*/
+	public final static String JAVA_FILE_CONTENT_MODEL_at_PACKAGE_NAME="package-name";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType JAVA_FILE_CONTENT_MODEL_at_PACKAGE_NAME_;
 	/**
 	    @generated
 	*/
@@ -1293,139 +1363,191 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static ItemType LINK;
+	public static ItemType LINK_TYPE;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_TWCOUPLED="TWCoupled";
+	public final static String LINK_TYPE_at_TWCOUPLED="TWCoupled";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType LINK_at_TWCOUPLED_;
+	public static BooleanAttributeType LINK_TYPE_at_TWCOUPLED_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_TWDEST_EVOL="TWDestEvol";
+	public final static String LINK_TYPE_at_TWDEST_EVOL="TWDestEvol";
 	/**
 	    @generated
 	*/
-	public static EnumAttributeType<TWDestEvol> LINK_at_TWDEST_EVOL_;
+	public static EnumAttributeType<TWDestEvol> LINK_TYPE_at_TWDEST_EVOL_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_AGGREGATION="aggregation";
+	public final static String LINK_TYPE_at_AGGREGATION="aggregation";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType LINK_at_AGGREGATION_;
+	public static BooleanAttributeType LINK_TYPE_at_AGGREGATION_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_ANNOTATION="annotation";
+	public final static String LINK_TYPE_at_ANNOTATION="annotation";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType LINK_at_ANNOTATION_;
+	public static BooleanAttributeType LINK_TYPE_at_ANNOTATION_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_COMPOSITION="composition";
+	public final static String LINK_TYPE_at_COMPOSITION="composition";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType LINK_at_COMPOSITION_;
+	public static BooleanAttributeType LINK_TYPE_at_COMPOSITION_;
 	/**
 	    @generated
 	*/
-	public static LinkType LINK_lt_DESTINATION;
+	public static LinkType LINK_TYPE_lt_DESTINATION;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_GROUP="group";
+	public final static String LINK_TYPE_at_GROUP="group";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType LINK_at_GROUP_;
+	public static BooleanAttributeType LINK_TYPE_at_GROUP_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_HIDDEN="hidden";
+	public final static String LINK_TYPE_at_HIDDEN="hidden";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType LINK_at_HIDDEN_;
+	public static BooleanAttributeType LINK_TYPE_at_HIDDEN_;
 	/**
 	    @generated
 	*/
-	public static LinkType LINK_lt_INVERSE_LINK;
+	public static LinkType LINK_TYPE_lt_INVERSE_LINK;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_KIND="kind";
+	public final static String LINK_TYPE_at_KIND="kind";
 	/**
 	    @generated
 	*/
-	public static IntegerAttributeType LINK_at_KIND_;
+	public static IntegerAttributeType LINK_TYPE_at_KIND_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_LINK_MANAGER="link-manager";
+	public final static String LINK_TYPE_at_LINK_MANAGER="link-manager";
 	/**
 	    @generated
 	*/
-	public static StringAttributeType LINK_at_LINK_MANAGER_;
+	public static StringAttributeType LINK_TYPE_at_LINK_MANAGER_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_MAPPING="mapping";
+	public final static String LINK_TYPE_at_MAPPING="mapping";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType LINK_at_MAPPING_;
+	public static BooleanAttributeType LINK_TYPE_at_MAPPING_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_MAX="max";
+	public final static String LINK_TYPE_at_MAX="max";
 	/**
 	    @generated
 	*/
-	public static IntegerAttributeType LINK_at_MAX_;
+	public static IntegerAttributeType LINK_TYPE_at_MAX_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_MIN="min";
+	public final static String LINK_TYPE_at_MIN="min";
 	/**
 	    @generated
 	*/
-	public static IntegerAttributeType LINK_at_MIN_;
+	public static IntegerAttributeType LINK_TYPE_at_MIN_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_PART="part";
+	public final static String LINK_TYPE_at_PART="part";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType LINK_at_PART_;
+	public static BooleanAttributeType LINK_TYPE_at_PART_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_REQUIRE="require";
+	public final static String LINK_TYPE_at_REQUIRE="require";
 	/**
 	    @generated
 	*/
-	public static BooleanAttributeType LINK_at_REQUIRE_;
+	public static BooleanAttributeType LINK_TYPE_at_REQUIRE_;
 	/**
 	    @generated
 	*/
-	public final static String LINK_at_SELECTION="selection";
+	public final static String LINK_TYPE_at_SELECTION="selection";
 	/**
 	    @generated
 	*/
-	public static StringAttributeType LINK_at_SELECTION_;
+	public static StringAttributeType LINK_TYPE_at_SELECTION_;
 	/**
 	    @generated
 	*/
-	public static LinkType LINK_lt_SOURCE;
+	public static LinkType LINK_TYPE_lt_SOURCE;
+	/**
+	    @generated
+	*/
+	public static ItemType LINK_TYPE_TYPE;
+	/**
+	    @generated
+	*/
+	public final static String LINK_TYPE_TYPE_at_COMPATIBLE_VERSIONS="CompatibleVersions";
+	/**
+	    @generated
+	*/
+	public static ListAttributeType<Integer> LINK_TYPE_TYPE_at_COMPATIBLE_VERSIONS_;
+	/**
+	    @generated
+	*/
+	public final static String LINK_TYPE_TYPE_at_HIDDEN="Hidden";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType LINK_TYPE_TYPE_at_HIDDEN_;
+	/**
+	    @generated
+	*/
+	public final static String LINK_TYPE_TYPE_at_INDEX_OF="IndexOf";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType LINK_TYPE_TYPE_at_INDEX_OF_;
+	/**
+	    @generated
+	*/
+	public final static String LINK_TYPE_TYPE_at_VERSION="Version";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType LINK_TYPE_TYPE_at_VERSION_;
+	/**
+	    @generated
+	*/
+	public final static String LINK_TYPE_TYPE_at_READ_ONLY="readOnly";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType LINK_TYPE_TYPE_at_READ_ONLY_;
+	/**
+	    @generated
+	*/
+	public final static String LINK_TYPE_TYPE_at_VALID="valid";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType LINK_TYPE_TYPE_at_VALID_;
 	/**
 	    @generated
 	*/
@@ -1529,6 +1651,22 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String MC_LIST_OF_STRING_at_MAX="max";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType MC_LIST_OF_STRING_at_MAX_;
+	/**
+	    @generated
+	*/
+	public final static String MC_LIST_OF_STRING_at_MIN="min";
+	/**
+	    @generated
+	*/
+	public static IntegerAttributeType MC_LIST_OF_STRING_at_MIN_;
+	/**
+	    @generated
+	*/
 	public static ItemType MC_NAME_ATTRIBUTE;
 	/**
 	    @generated
@@ -1581,19 +1719,19 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String MANAGER_at_LONG_NAME_TEMPLATE="long-name-template";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType MANAGER_at_LONG_NAME_TEMPLATE_;
-	/**
-	    @generated
-	*/
 	public final static String MANAGER_at_MESSAGE_ERROR_ID="message-error-id";
 	/**
 	    @generated
 	*/
 	public static StringAttributeType MANAGER_at_MESSAGE_ERROR_ID_;
+	/**
+	    @generated
+	*/
+	public final static String MANAGER_at_QUALIFIED_NAME_TEMPLATE="qualified-name-template";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType MANAGER_at_QUALIFIED_NAME_TEMPLATE_;
 	/**
 	    @generated
 	*/
@@ -1673,6 +1811,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String PACKAGE_CONTENT_MODEL_at_PACKAGE_NAME="package-name";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType PACKAGE_CONTENT_MODEL_at_PACKAGE_NAME_;
+	/**
+	    @generated
+	*/
 	public static ItemType PACKAGE_LIST_CONTROLLER;
 	/**
 	    @generated
@@ -1749,7 +1895,35 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static ItemType RUNTIME_ITEM;
+	/**
+	    @generated
+	*/
+	public final static String RUNTIME_ITEM_at_CLASS_NAME="class-name";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType RUNTIME_ITEM_at_CLASS_NAME_;
+	/**
+	    @generated
+	*/
+	public final static String RUNTIME_ITEM_at_EXTENDS_CLASS="extends-class";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType RUNTIME_ITEM_at_EXTENDS_CLASS_;
+	/**
+	    @generated
+	*/
 	public static ItemType SOURCE_FOLDER_CONTENT_MODEL;
+	/**
+	    @generated
+	*/
+	public final static String SOURCE_FOLDER_CONTENT_MODEL_at_OUTPUT_PATH="output-path";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType SOURCE_FOLDER_CONTENT_MODEL_at_OUTPUT_PATH_;
 	/**
 	    @generated
 	*/
@@ -1901,6 +2075,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static ItemType VIEW_DESCRIPTION;
+	/**
+	    @generated
+	*/
+	public static LinkType VIEW_DESCRIPTION_lt_ROOT_TYPES;
+	/**
+	    @generated
+	*/
 	public static ItemType VIEW_ITEM_TYPE;
 	/**
 	    @generated
@@ -1993,6 +2175,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String GENERATE_INFORMATION_at_CSTNAME="CSTName";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType GENERATE_INFORMATION_at_CSTNAME_;
+	/**
+	    @generated
+	*/
 	public static LinkType GROUP_EXT_ITEM_lt_MEMBER_OF;
 	/**
 	    @generated
@@ -2006,5 +2196,4 @@ public class CadseGCST {
 	}
 
 }
-/** Licensed to the Apache Software Foundation (ASF) under one* or more contributor license agreements.  See the NOTICE file* distributed with this work for additional information* regarding copyright ownership.  The ASF licenses this file* to you under the Apache License, Version 2.0 (the* "License"); you may not use this file except in compliance* with the License.  You may obtain a copy of the License at**   http://www.apache.org/licenses/LICENSE-2.0** Unless required by applicable law or agreed to in writing,* software distributed under the License is distributed on an* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY* KIND, either express or implied.  See the License for the* specific language governing permissions and limitations* under the License.*/
 

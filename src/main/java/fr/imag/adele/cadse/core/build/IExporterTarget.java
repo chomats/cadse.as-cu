@@ -26,13 +26,11 @@ import java.util.List;
 
 import fr.imag.adele.cadse.core.CadseException;
 
-
-
 /**
  * The Interface IExporterTarget.
  */
 public interface IExporterTarget {
-	
+
 	/**
 	 * Gets the repository components.
 	 * 
@@ -44,5 +42,5 @@ public interface IExporterTarget {
 	 * @throws CadseException
 	 *             the melusine exception
 	 */
-	List<IExportedContent> getRepositoryComponents(String exporterType) throws CadseException; 
+	List<IExportedContent> getRepositoryComponents(Class<?> exporterType) throws CadseException;
 }

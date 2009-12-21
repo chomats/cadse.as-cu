@@ -35,9 +35,11 @@ public interface ITeamChangeObject {
 	public abstract void refuseLocalChange();
 
 	public abstract boolean hasAcceptRemoteChange();
+
 	public abstract boolean hasAcceptLocalChange();
 
 	public abstract boolean hasRefuseRemoteChange();
+
 	public abstract boolean hasRefuseLocalChange();
 
 	public abstract boolean isLocalChanged();
@@ -45,16 +47,15 @@ public interface ITeamChangeObject {
 	public abstract boolean isRemoteChanged();
 
 	public abstract boolean hasConflict();
-	
+
 	public abstract String getDisplayOneLine();
-	
-	
+
 	public boolean isRemoteAdded();
-	
+
 	public boolean isRemoteDeleted();
-	
+
 	public boolean isLocalAdded();
-	
+
 	public boolean isLocalDeleted();
 
 }

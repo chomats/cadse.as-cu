@@ -19,20 +19,21 @@
 package fr.imag.adele.cadse.core.oper;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.content.ContentItem;
+import fr.imag.adele.cadse.core.content.FacetteItemContent;
 import fr.imag.adele.cadse.core.oper.annotation.OperParameter;
 import fr.imag.adele.cadse.core.oper.annotation.OperTest;
 import fr.imag.adele.cadse.core.oper.annotation.ParameterKind;
 
-@OperTest(testMustBeStopped=true)
+@OperTest(testMustBeStopped = true)
 public class WSCheckMapping extends WSCheckOperation {
-	@OperParameter(constructorPosition=0, type = ParameterKind.item_ref)
-	Item item;
-	
-	@OperParameter(constructorPosition=1, type = ParameterKind.string_value)
-	String qualifiedClassName;
-	
+	@OperParameter(constructorPosition = 0, type = ParameterKind.item_ref)
+	Item	item;
+
+	@OperParameter(constructorPosition = 1, type = ParameterKind.string_value)
+	String	qualifiedClassName;
+
 	public WSCheckMapping(Item item, String qualifiedClassName) {
 		super();
 		this.item = item;
@@ -43,17 +44,20 @@ public class WSCheckMapping extends WSCheckOperation {
 	protected void excecuteImpl() throws Throwable {
 		ContentItem cm = item.getContentItem();
 		if (cm == null)
-			throw new CadseException("content_not_found","Content not found in {0}", null,  item.getQualifiedDisplayName() );
+			throw new CadseException("content_not_found", "Content not found in {0}", null, item
+					.getQualifiedDisplayName());
 		try {
 			Class cls = cm.getClass().getClassLoader().loadClass(qualifiedClassName);
 			Object co = cm.getMainMappingContent(cls);
 			if (co == null)
-				throw new CadseException("mapping_not_found","Mapping not found in {0}", null,  item.getQualifiedDisplayName() );
-			
+				throw new CadseException("mapping_not_found", "Mapping not found in {0}", null, item
+						.getQualifiedDisplayName());
+
 		} catch (Throwable e) {
-			throw new CadseException("class_of_mapping_not_found","Class of mapping not found in {0}", null,  item.getQualifiedDisplayName() );
+			throw new CadseException("class_of_mapping_not_found", "Class of mapping not found in {0}", null, item
+					.getQualifiedDisplayName());
 		}
-		
+
 	}
 
 	public Item getItem() {
@@ -66,6 +70,6 @@ public class WSCheckMapping extends WSCheckOperation {
 
 	@Override
 	public String getDiplayComment() {
-		return "check mappping with internal identifier "+item.getDisplayName();
+		return "check mappping with internal identifier " + item.getDisplayName();
 	}
 }

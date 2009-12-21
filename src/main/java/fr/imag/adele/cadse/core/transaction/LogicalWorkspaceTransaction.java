@@ -25,7 +25,7 @@ import java.util.List;
 
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseRuntime;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.EventFilter;
 import fr.imag.adele.cadse.core.IItemManager;
 import fr.imag.adele.cadse.core.Item;
@@ -35,6 +35,7 @@ import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.ProjectAssociation;
+import fr.imag.adele.cadse.core.TypeDefinition;
 import fr.imag.adele.cadse.core.WorkspaceListener;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.attribute.SetAttrVal;
@@ -46,13 +47,15 @@ import fr.imag.adele.cadse.core.internal.Nullable;
 import fr.imag.adele.cadse.core.internal.delta.InternalLogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.util.NotNull;
+import fr.imag.adele.cadse.util.Nullable;
 
 /**
  * Represents a transaction on the CADSE logical workspace. Imbricated
  * transactions are not supported by CADSE.
  * 
- * Example code of use: LogicalWorkspace lws = ... LogicalWorkspaceTransaction t =
- * lws.createTransaction(); ... some stuff like t.createItem(...) ...
+ * Example code of use: LogicalWorkspace lws = ... LogicalWorkspaceTransaction t
+ * = lws.createTransaction(); ... some stuff like t.createItem(...) ...
  * t.commit();
  * 
  * @author Thomas
@@ -140,12 +143,13 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 *             if creation fails.
 	 */
 	public ItemDelta createItem(NewContext c) throws CadseException;
+
 	/**
 	 * Creates and returns an item. If <code>parent</code> is not null,
 	 * <code>partLinkType</code> must be defined.
 	 * 
-	 * Example code to generate an id: CompactUUID generatedId =
-	 * CompactUUID.randomUUID();
+	 * Example code to generate an id: UUID generatedId =
+	 * UUID.randomUUID();
 	 * 
 	 * @param itemType
 	 *            type of the item to create
@@ -165,7 +169,7 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 * @throws CadseException
 	 *             if creation fails.
 	 */
-	public ItemDelta createItem(ItemType itemType, Item parent, LinkType lt, CompactUUID id, String uniqueName,
+	public ItemDelta createItem(ItemType itemType, Item parent, LinkType lt, UUID id, String uniqueName,
 			String shortName) throws CadseException;
 
 	/**
@@ -177,20 +181,7 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 * @return a delta representing all operations performed by this transaction
 	 *         on the item with specified id.
 	 */
-	public ItemDelta getItem(CompactUUID id);
-
-	/**
-	 * Returns a delta representing all operations performed by this transaction
-	 * on the item with specified id. Returns null, if there is no item with
-	 * specified id in logical workspace and no item creation operation has been
-	 * performed for this item in this transaction.
-	 * 
-	 * @return a delta representing all operations performed by this transaction
-	 *         on the item with specified id.
-	 * @deprecated prefers using getItem(CompactUUID) method.
-	 */
-	@Deprecated
-	public ItemDelta getItemOperation(CompactUUID id);
+	public ItemDelta getItem(UUID id);
 
 	/**
 	 * Returns a delta representing all operations performed by this transaction
@@ -207,7 +198,7 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 * @return a delta representing all operations performed by this transaction
 	 *         on the item with specified id.
 	 */
-	public ItemDelta getItem(CompactUUID itemId, boolean showDeleteItem);
+	public ItemDelta getItem(UUID itemId, boolean showDeleteItem);
 
 	public ItemDelta getItem(Item item);
 
@@ -228,14 +219,16 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 */
 	public ItemDelta loadItem(ItemDescriptionRef itemRef) throws CadseException;
 
+	public TypeDefinition findTypeDefinition(UUID id, UUID cadse, boolean createUnresolved)
+			throws CadseException;
+
 	/**
-	 * Giving a reference to an item
-	 * Loads from persistence an item and returns it. A load operation is
-	 * composed of - an item create operation and - many set attribute
-	 * operations - many create link operations Transaction listeners are not
-	 * notified of this load operation until method loadItems(...) is called and
-	 * are not notified about these set attribute and create link operations.
-	 * must call finishLoaded and setLoaded()
+	 * Giving a reference to an item Loads from persistence an item and returns
+	 * it. A load operation is composed of - an item create operation and - many
+	 * set attribute operations - many create link operations Transaction
+	 * listeners are not notified of this load operation until method
+	 * loadItems(...) is called and are not notified about these set attribute
+	 * and create link operations. must call finishLoaded and setLoaded()
 	 * 
 	 * @param id
 	 *            id of the item to load
@@ -246,7 +239,26 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 * 
 	 * @throws CadseException
 	 */
-	public ItemDelta loadItem(CompactUUID id, CompactUUID type) throws CadseException;
+	public ItemDelta loadItem(UUID id, ItemType type) throws CadseException;
+
+	/**
+	 * Giving a reference to an item Loads from persistence an item and returns
+	 * it. A load operation is composed of - an item create operation and - many
+	 * set attribute operations - many create link operations Transaction
+	 * listeners are not notified of this load operation until method
+	 * loadItems(...) is called and are not notified about these set attribute
+	 * and create link operations. must call finishLoaded and setLoaded()
+	 * 
+	 * @param id
+	 *            id of the item to load
+	 * @param type
+	 *            item type id
+	 * 
+	 * @return the loaded item.
+	 * 
+	 * @throws CadseException
+	 */
+	public ItemDelta loadItem(UUID id, UUID type) throws CadseException;
 
 	// TODO
 	public void loadItems(Collection<URL> itemdescription) throws CadseException, IOException;
@@ -465,14 +477,6 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 * Throws an UnsupportedOperationException exception.
 	 */
 	@Deprecated
-	public void setAttribute(Item item, String key, Object value);
-
-	/**
-	 * DO NOT USE IT.
-	 * 
-	 * Throws an UnsupportedOperationException exception.
-	 */
-	@Deprecated
 	public void setAttribute(Item item, IAttributeType<?> key, Object value);
 
 	/**
@@ -481,7 +485,7 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 * Throws an UnsupportedOperationException exception.
 	 */
 	@Deprecated
-	public CadseRuntime createCadseRuntime(String name, CompactUUID runtimeId, CompactUUID definitionId);
+	public CadseRuntime createCadseRuntime(String name, UUID runtimeId, UUID definitionId);
 
 	/**
 	 * DO NOT USE IT.
@@ -513,4 +517,25 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	public LinkDelta getLink(Link link) throws CadseException;
 
 	public ItemDelta loadItem(Item item);
+
+	public IAttributeType<?> findAttribute(UUID key, UUID attSourceType, UUID attSourceCadsetype,
+			UUID attTypeType, UUID attTypeCadsetype) throws CadseException;
+
+	public LinkType findLinkType(UUID linkTypeID, UUID lTSourceType, UUID lTSourceCadsetype,
+			UUID lTDestType, UUID lTDestCadsetype) throws CadseException;
+
+	public ItemDelta createEmptyItem(UUID id);
+
+	public IAttributeType<?> findAttribute(ItemDelta attHeader, ItemDelta attSourceHeader) throws CadseException;
+
+	public TypeDefinition findTypeDefinition(ItemDelta destHeader, boolean b) throws CadseException;
+
+	public LinkType findLinkType(ItemDelta ltHeader, ItemDelta ltSourceHeader, ItemDelta ltDestTypeHeader)
+			throws CadseException;
+
+    public void checkAll() throws CadseException;
+
+    public void notifyCommitTransaction();
+
+    public void notifyAbortTransaction();
 }

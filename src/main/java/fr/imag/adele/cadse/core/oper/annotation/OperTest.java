@@ -24,26 +24,25 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-@Retention(RUNTIME) 
-@Target({TYPE})
+@Retention(RUNTIME)
+@Target( { TYPE })
 public @interface OperTest {
-    /**
-     * local name of the XML element.
-     * <p>
-     * If the value is "##default", then the name is derived from the
-     * class name. 
-     *
-     */
-    String name() default OperParameter.DEFAULT_VALUE;
-    
-    /**
-     * Specifies if the XML Schema attribute is optional or
-     * required. If true, then the JavaBean property is mapped to a
-     * XML Schema attribute that is required. Otherwise it is mapped
-     * to a XML Schema attribute that is optional.
-     *
-     */
-     boolean testMustBeStopped();
-     
-     
+	/**
+	 * local name of the XML element.
+	 * <p>
+	 * If the value is "##default", then the name is derived from the class
+	 * name.
+	 * 
+	 */
+	String name() default OperParameter.DEFAULT_VALUE;
+
+	/**
+	 * Specifies if the XML Schema attribute is optional or required. If true,
+	 * then the JavaBean property is mapped to a XML Schema attribute that is
+	 * required. Otherwise it is mapped to a XML Schema attribute that is
+	 * optional.
+	 * 
+	 */
+	boolean testMustBeStopped();
+
 }

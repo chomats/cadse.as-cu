@@ -1,6 +1,5 @@
 package fr.imag.adele.cadse.core.ui.view;
 
-import fr.imag.adele.cadse.core.CadseError;
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.IItemNode;
@@ -9,22 +8,22 @@ import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.attribute.SetAttrVal;
-import fr.imag.adele.cadse.core.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.FacetteLWTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
-import fr.imag.adele.cadse.core.util.ArraysUtil;
-import fr.imag.adele.cadse.core.util.NLS;
+import fr.imag.adele.cadse.util.ArraysUtil;
+import fr.imag.adele.cadse.util.NLS;
 
 public class NewContext extends FilterContext {
-	String		_defaultName;
-	Item[]		_outgoingDestination;
-	LinkType[]	_outgoingLinkType;
-	String		_label = "?";
-	Item[]		_incomingSource;
-	LinkType[]	_incomingLinkType;
-	SetAttrVal<?>[] _setAttrs = null;
+	String								_defaultName;
+	Item[]								_outgoingDestination;
+	LinkType[]							_outgoingLinkType;
+	String								_label		= "?";
+	Item[]								_incomingSource;
+	LinkType[]							_incomingLinkType;
+	SetAttrVal<?>[]						_setAttrs	= null;
 	private LogicalWorkspaceTransaction	_transaction;
-	private Item	_newItem;
-	
+	private Item						_newItem;
+
 	public NewContext(IItemNode node) {
 		super();
 		_node = node;
@@ -47,8 +46,10 @@ public class NewContext extends FilterContext {
 	}
 
 	public void addOutgoingLink(LinkType lt, Item dest) {
-		if (lt == null) throw new NullPointerException();
-		if (dest == null) throw new NullPointerException();
+		if (lt == null)
+			throw new NullPointerException();
+		if (dest == null)
+			throw new NullPointerException();
 		if (_outgoingLinkType != null) {
 			int i = ArraysUtil.indexOf(_outgoingLinkType, lt);
 			if (i != -1) {
@@ -77,16 +78,17 @@ public class NewContext extends FilterContext {
 		}
 		return null;
 	}
-	
+
 	public boolean hasKind(LinkType lt) {
 		return getOutgoingDestination(lt) != null;
 	}
 
-	
 	public void addIncomingLink(LinkType lt, Item source) {
-		if (lt == null) throw new NullPointerException();
-		if (source == null) throw new NullPointerException();
-		
+		if (lt == null)
+			throw new NullPointerException();
+		if (source == null)
+			throw new NullPointerException();
+
 		if (_incomingLinkType != null) {
 			int i = ArraysUtil.indexOf(_incomingLinkType, lt);
 			if (i != -1) {
@@ -126,15 +128,14 @@ public class NewContext extends FilterContext {
 	public Item getPartParent() {
 		return _itemSource;
 	}
-	
+
 	public void addSetAttr(SetAttrVal<?> v) {
 		_setAttrs = ArraysUtil.add(SetAttrVal.class, _setAttrs, v);
 	}
-	
+
 	public SetAttrVal<?>[] getSetAttrs() {
 		return _setAttrs;
 	}
-
 
 	public LinkType getPartLinkType() {
 		return _lt;
@@ -152,12 +153,14 @@ public class NewContext extends FilterContext {
 			if (_lt == null || _itemSource == null || !_lt.isPart() || _lt.getSource() == null
 					|| _lt.getDestination() == null || !_itemSource.exists() || !_lt.exists())
 				return false;
-			// source
-			if (_itemSource.getType() != _lt.getSource() && !_lt.getSource().isSuperGroupTypeOf(_itemSource.getType()))
-				return false;
-			// dest
-			if (_destType != _lt.getDestination() && !_lt.getDestination().isSuperGroupTypeOf(_destType))
-				return false;
+			// // source
+			// if (_itemSource.getType() != _lt.getSource() &&
+			// !_lt.getSource().isSuperGroupTypeOf(_itemSource.getType()))
+			// return false;
+			// // dest
+			// if (_destType != _lt.getDestination() &&
+			// !_lt.getDestination().isSuperGroupTypeOf(_destType))
+			// return false;
 		}
 		return true;
 	}
@@ -168,7 +171,6 @@ public class NewContext extends FilterContext {
 		_gh = gh;
 		_glt = glt;
 	}
-
 
 	public void setGroupType(ItemType gt) {
 		_gt = gt;
@@ -197,7 +199,8 @@ public class NewContext extends FilterContext {
 	}
 
 	public void setLabel(String label) {
-		if (label == null) throw new IllegalArgumentException("label is null");
+		if (label == null)
+			throw new IllegalArgumentException("label is null");
 		_label = label;
 	}
 
@@ -209,11 +212,11 @@ public class NewContext extends FilterContext {
 		_transaction = lw.createTransaction();
 		_newItem = _transaction.createItem(this);
 	}
-	
+
 	public LogicalWorkspaceTransaction getTransaction() {
 		return _transaction;
 	}
-	
+
 	public Item getNewItem() {
 		return _newItem;
 	}

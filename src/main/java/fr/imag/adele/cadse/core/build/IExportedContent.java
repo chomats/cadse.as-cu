@@ -51,7 +51,7 @@ public interface IExportedContent {
 	 * 
 	 * @return the exporter type
 	 */
-	public String getExporterType();
+	public Class<?> getExporterType();
 
 	/**
 	 * Id of item associated.

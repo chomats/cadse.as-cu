@@ -32,7 +32,8 @@ import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcast
  * 
  * @author Cadse Team
  */
-public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTransactionBroadcaster {
+public interface LinkType extends IAttributeType<Link>, Link, FacetteLinkTypeManager, 
+LogicalWorkspaceTransactionBroadcaster {
 
 	/**
 	 * Bit mask to determine aggregation flag.
@@ -151,6 +152,7 @@ public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTr
 	 * 
 	 * @return maximum number of links of this type from a same item.
 	 */
+	@Override
 	public int getMax();
 
 	/**
@@ -158,6 +160,7 @@ public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTr
 	 * 
 	 * @return minimum number of links of this type from a same item.
 	 */
+	@Override
 	public int getMin();
 
 	/**
@@ -165,14 +168,16 @@ public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTr
 	 * 
 	 * @return the destination type.
 	 */
-	public ItemType getDestination();
+	@Override
+	public TypeDefinition getDestination();
 
 	/**
 	 * Returns the source type (an Item type). It is never null.
 	 * 
 	 * @return the source type.
 	 */
-	public ItemType getSource();
+	@Override
+	public TypeDefinition getSource();
 
 	/**
 	 * Returns bit set representing flags of this link type (including all
@@ -313,5 +318,7 @@ public interface LinkType extends IAttributeType<Link>, Link, LogicalWorkspaceTr
 	public void setIsGroup(boolean b);
 
 	public boolean isGroup();
+
+	public IAttributeType<?>[] getLinkTypeAttributeTypes();
 
 }

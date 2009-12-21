@@ -3,9 +3,9 @@
  */
 package fr.imag.adele.cadse.core.attribute;
 
-import fr.imag.adele.cadse.core.delta.ItemDelta;
-import fr.imag.adele.cadse.core.delta.SetAttributeOperation;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionListener;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.delta.SetAttributeOperation;
 
 public interface IComputedAttribute {
 	/**

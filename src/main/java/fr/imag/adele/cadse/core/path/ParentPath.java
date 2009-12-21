@@ -24,25 +24,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
-
+import fr.imag.adele.cadse.core.TypeDefinition;
 
 /**
  * The Class ParentPath.
+ * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public class ParentPath extends ElementPath {
-	
+
 	/** The Constant BEGIN_PATH. */
-	public static final String BEGIN_PATH = "<-parent:";
-	
+	public static final String	BEGIN_PATH	= "<-parent:";
+
 	/** The parent type. */
-	public final ItemType fParentType;
-	
+	public final TypeDefinition	fParentType;
+
 	/** The link type. */
-	public final LinkType fLinkType;
-	
+	public final LinkType		fLinkType;
+
 	/**
 	 * Instantiates a new parent path.
 	 * 
@@ -54,37 +54,43 @@ public class ParentPath extends ElementPath {
 		fLinkType = lt;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getItemType()
 	 */
 	@Override
-	public ItemType getItemType() {
+	public TypeDefinition getItemType() {
 		return fParentType;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getText()
 	 */
 	@Override
 	public String getText() {
-		return "."+BEGIN_PATH+fParentType.getId();
+		return "." + BEGIN_PATH + fParentType.getId();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#evaluate(java.util.Set)
 	 */
 	@Override
 	Set<Item> evaluate(Set<Item> sources) {
 		if (sources.size() == 1) {
 			Item parent = sources.iterator().next().getPartParent();
-			if (parent!=null && parent.getType() == fParentType)
+			if (parent != null && parent.getType() == fParentType)
 				return Collections.singleton(parent);
 			return Collections.EMPTY_SET;
 		}
 		HashSet<Item> ret = new HashSet<Item>();
 		for (Item source : sources) {
 			Item parent = source.getPartParent();
-			if (parent!=null && parent.getType() == fParentType)
+			if (parent != null && parent.getType() == fParentType)
 				ret.add(parent);
 		}
 		return ret;

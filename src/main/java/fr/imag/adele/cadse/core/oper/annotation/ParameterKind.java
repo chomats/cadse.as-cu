@@ -28,4 +28,5 @@ public enum ParameterKind {
 	boolean_value,
 	string_value,
 	object_value,
+	attribute_ref;
 }

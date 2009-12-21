@@ -25,12 +25,14 @@ package fr.imag.adele.cadse.core;
 import java.io.File;
 import java.util.concurrent.TimeoutException;
 
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.internal.IWorkspaceNotifier;
-import fr.imag.adele.teamwork.db.ModelVersionDBService;
+import java.util.UUID;
 
 /**
  * The Interface WorkspaceDomain.
  * 
+ * extends IWorkspaceNotifier
  */
 
 public interface CadseDomain extends IWorkspaceNotifier {
@@ -38,21 +40,16 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	/** The Constant DOMAIN_NAME. */
 	public static final String		DOMAIN_NAME			= "Workspace";
 
-	public static final CompactUUID	META_LINK_ID		= new CompactUUID(7525975296182863367L, -6733988287527508841L);	// 6871a2a8-5558-4607-a28c-1154a8482497
+	public static final UUID	META_LINK_ID		= new UUID(7525975296182863367L, -6733988287527508841L); // 6871a2a8-5558-4607-a28c-1154a8482497
 
 	/** The Constant ANY_ID. */
-	public static final CompactUUID	ITEM_ID		= new CompactUUID(1481067329060227563L, -6059699345038497928L);	// "148dcee3-8512-49eb-abe7-9f8d25502778"
+	public static final UUID	ITEM_ID				= new UUID(1481067329060227563L, -6059699345038497928L); // "148dcee3-8512-49eb-abe7-9f8d25502778"
 
+	static public UUID		EXT_ITEM_ID			= UUID.fromString("d72bd5b1-cf11-4fa6-84f1-c12582dc5989");
 
-	static public CompactUUID EXT_ITEM_ID = new CompactUUID("d72bd5b1-cf11-4fa6-84f1-c12582dc5989");
-
-	
 	/** The Constant META_ITEMTYPE_ID. */
-	public static final CompactUUID	ITEMTYPE_ID	= new CompactUUID(4864028770172945040L, -5928200930686985311L);
+	public static final UUID	ITEMTYPE_ID			= new UUID(4864028770172945040L, -5928200930686985311L);
 	// "43808065-4f70-4290-adba-cca999431ba1"
-	
-	
-	
 
 	/** The Constant CADSE_ROOT_MODEL. */
 	public static final String		CADSE_ROOT_MODEL	= "Model.Workspace.CadseG";
@@ -73,32 +70,6 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	 * @return the location
 	 */
 	public abstract File getLocation();
-
-	// /**
-	// * Reload ws content.
-	// */
-	// @Deprecated
-	// public void reloadWSContent();
-	//
-	// /**
-	// * Disable persistance.
-	// */
-	// @Deprecated
-	// public void disablePersistance();
-	//
-	// /**
-	// * Enable persistance.
-	// */
-	// @Deprecated
-	// public void enablePersistance();
-	//
-	// /**
-	// * Checks if is enable persistance.
-	// *
-	// * @return true, if is enable persistance
-	// */
-	// @Deprecated
-	// public boolean isEnablePersistance();
 
 	/**
 	 * Checks if is locked.
@@ -126,7 +97,7 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	/**
 	 * End operation.
 	 */
-	public void endOperation();
+	// public void endOperation();
 
 	/**
 	 * Begin operation.
@@ -136,7 +107,7 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	 * 
 	 * @return the i workspace operation
 	 */
-	public IWorkspaceOperation beginOperation(String name);
+	// public IWorkspaceOperation beginOperation(String name);
 
 	/**
 	 * Begin operation.
@@ -148,9 +119,7 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	 * 
 	 * @return the i workspace operation
 	 */
-	public IWorkspaceOperation beginOperation(String name, boolean wait);
-
-	public void waitEndAsyncEvents(int timeout) throws InterruptedException, TimeoutException;
+	// public IWorkspaceOperation beginOperation(String name, boolean wait);
 
 	/**
 	 * Returns versioning service used to save and restore items from a
@@ -159,7 +128,10 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	 * @return versioning service used to save and restore items from a
 	 *         repository.
 	 */
-	public ModelVersionDBService getModelVersionDBService();
+	// public ModelVersionDBService getModelVersionDBService();
+	// public ModelVersionDBService2 getDB();
+
+	public void waitEndAsyncEvents(int timeout) throws InterruptedException, TimeoutException;
 
 	public void error(Item item, String message, Throwable e);
 
@@ -176,7 +148,18 @@ public interface CadseDomain extends IWorkspaceNotifier {
 
 	public void log(String type, String message, Throwable e);
 
-	public Item createUnresolvedItem(ItemType itemType, String name,
-			CompactUUID id) throws CadseException;
+	public Item createUnresolvedItem(ItemType itemType, String name, UUID id) throws CadseException;
+
+	public boolean inDevelopmentMode();
+
+	public static class Old {
+
+		static public final Object getAttribute(Item item, String attributeName) {
+			IAttributeType<?> attr = item.getLocalAttributeType(attributeName);
+			if (attr == null)
+				return null;
+			return item.getAttribute(attr);
+		}
+	}
 
 }

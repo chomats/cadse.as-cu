@@ -19,14 +19,14 @@
 package fr.imag.adele.cadse.core.internal;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
-import fr.imag.adele.cadse.core.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 
 public interface IWorkingLoadingItems {
 
-	public abstract Item getItem(CompactUUID id);
+	public abstract Item getItem(UUID id);
 
 	public Item loadItem(ItemDelta ref) throws CadseException;
 
