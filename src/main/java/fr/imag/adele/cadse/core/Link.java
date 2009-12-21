@@ -68,7 +68,7 @@ public interface Link extends InternalLink, INamedUUID, AdaptableObject {
 	 * 
 	 * @return source item id.
 	 */
-	public CompactUUID getSourceId();
+	public UUID getSourceId();
 
 	/**
 	 * Returns the resolved destination (an Item). Destination may not exist in

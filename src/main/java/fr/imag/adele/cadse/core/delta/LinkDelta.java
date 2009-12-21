@@ -1,7 +1,7 @@
 package fr.imag.adele.cadse.core.delta;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
@@ -34,7 +34,7 @@ public interface LinkDelta extends Link, ItemOrLinkDelta, InternalWLWCOperation 
 
 	ItemDelta getDestination(boolean resolved);
 
-	CompactUUID getDestinationId();
+	UUID getDestinationId();
 
 	/**
 	 * @deprecated Use {@link #getDestinationName()} instead
@@ -57,7 +57,7 @@ public interface LinkDelta extends Link, ItemOrLinkDelta, InternalWLWCOperation 
 
 	ItemDelta getSource();
 
-	CompactUUID getSourceId();
+	UUID getSourceId();
 
 	int getVersion();
 

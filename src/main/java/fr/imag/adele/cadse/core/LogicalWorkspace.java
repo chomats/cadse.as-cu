@@ -258,10 +258,10 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * @throws CadseException
 	 *             the melusine exception
 	 * @deprecated use
-	 *             {@link LogicalWorkspaceTransaction#createItem(ItemType, Item, LinkType, CompactUUID, String, String)}
+	 *             {@link LogicalWorkspaceTransaction#createItem(ItemType, Item, LinkType, UUID, String, String)}
 	 */
 	@Deprecated
-	public Item createItem(ItemType it, Item parent, LinkType lt, CompactUUID id, String uniqueName, String shortName)
+	public Item createItem(ItemType it, Item parent, LinkType lt, UUID id, String uniqueName, String shortName)
 			throws CadseException;
 
 	/**
@@ -386,7 +386,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 *            the definition id
 	 * @return a new cadse runtime ...
 	 */
-	public CadseRuntime createCadseRuntime(String name, CompactUUID runtimeId, CompactUUID definitionId);
+	public CadseRuntime createCadseRuntime(String name, UUID runtimeId, UUID definitionId);
 
 	/**
 	 * 

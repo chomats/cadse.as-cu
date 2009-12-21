@@ -26,10 +26,11 @@ import java.io.File;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.internal.InternalItem;
-import fr.imag.adele.cadse.core.key.ISpaceKey;
+import fr.imag.adele.cadse.core.key.Key;
 import fr.imag.adele.cadse.core.ui.Pages;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
@@ -125,7 +126,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return an immutable universally unique identifier of this item.
 	 */
-	public CompactUUID getId();
+	public UUID getId();
 
 	/**
 	 * @deprecated use getName()
@@ -344,7 +345,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return one of its outgoing links of specified type pointing to
 	 *         destination item.
 	 */
-	public Link getOutgoingLink(LinkType lt, CompactUUID destId);
+	public Link getOutgoingLink(LinkType lt, UUID destId);
 
 	/**
 	 * Returns destination of its outgoing links of specified type pointing to
@@ -358,7 +359,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return one of its outgoing links of specified type pointing to
 	 *         destination item.
 	 */
-	public Item getOutgoingItem(String linkTypeName, CompactUUID itemId, boolean resolvedOnly);
+	public Item getOutgoingItem(String linkTypeName, UUID itemId, boolean resolvedOnly);
 
 	/**
 	 * Gets the outgoing item.
@@ -522,7 +523,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return the link of <code>linkType</code> type coming from item with
 	 *         <code>srcId</code> Id and pointing to this item.
 	 */
-	public Link getIncomingLink(LinkType linkType, CompactUUID srcId);
+	public Link getIncomingLink(LinkType linkType, UUID srcId);
 
 	/**
 	 * Returns all source items of links of <code>linkType</code> type pointing
@@ -590,7 +591,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return true if specified link can be created.
 	 */
-	public boolean canCreateLink(LinkType linkType, CompactUUID destItemId);
+	public boolean canCreateLink(LinkType linkType, UUID destItemId);
 
 	/**
 	 * Deletes this item. This method deletes all <tt>incoming</tt> and
@@ -803,7 +804,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return destination item with <code>destItemId</code> Id of the part link
 	 *         coming from this item.
 	 */
-	public Item getPartChild(CompactUUID destItemId);
+	public Item getPartChild(UUID destItemId);
 
 	/**
 	 * Returns an unmodifiable list of all destination items of part links
@@ -1014,7 +1015,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return all destination item ids of outgoing composition links from this
 	 *         item.
 	 */
-	public Set<CompactUUID> getComponentIds();
+	public Set<UUID> getComponentIds();
 
 	/**
 	 * Returns true if there is one destination item with same id of an outgoing
@@ -1026,7 +1027,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return true if there is one destination item with same id of an outgoing
 	 *         composition link from this item.
 	 */
-	public boolean containsComponent(CompactUUID itemId);
+	public boolean containsComponent(UUID itemId);
 
 	/**
 	 * Returns destination item with same id of an outgoing composition link
@@ -1038,7 +1039,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return destination item with same id of an outgoing composition link
 	 *         from this item if it exists else returns null.
 	 */
-	public Item getComponentInfo(CompactUUID itemId);
+	public Item getComponentInfo(UUID itemId);
 
 	/**
 	 * Returns current logical workspace.
@@ -1134,7 +1135,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return the key
 	 */
-	public ISpaceKey getKey();
+	public Key getKey();
 
 	/**
 	 * Adds a listener for modification, deletion about this item.
@@ -1205,7 +1206,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 *            new item key.
 	 * @throws CadseException
 	 */
-	public void setKey(ISpaceKey newkey) throws CadseException;
+	public void setKey(Key newkey) throws CadseException;
 
 	/**
 	 * Returns order number of specified link. Outgoing links of a same type are

@@ -80,7 +80,7 @@ public interface InternalItem {
 
 	public Iterator<Item> propagateValue(String key);
 
-	//public void loadContent(CompactUUID id);
+	//public void loadContent(UUID id);
 
 	public void setParent(Item parent, LinkType lt);
 

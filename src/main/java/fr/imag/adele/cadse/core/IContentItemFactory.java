@@ -16,5 +16,5 @@ public interface IContentItemFactory  {
 	 * @throws CadseException
 	 *             a CADSE exception.
 	 */
-	public ContentItem createContentItem(CompactUUID id) throws CadseException;
+	public ContentItem createContentItem(UUID id) throws CadseException;
 }

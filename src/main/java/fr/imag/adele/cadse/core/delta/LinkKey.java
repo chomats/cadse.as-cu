@@ -21,7 +21,7 @@
  */
 package fr.imag.adele.cadse.core.delta;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Link;
 
 /**
@@ -32,7 +32,7 @@ import fr.imag.adele.cadse.core.Link;
  */
 public final class LinkKey {
 	String		lt;
-	CompactUUID	dest;
+	UUID	dest;
 
 	public LinkKey(Link l) {
 		super();
@@ -40,7 +40,7 @@ public final class LinkKey {
 		this.dest = l.getDestinationId();
 	}
 
-	public LinkKey(String lt, CompactUUID dest) {
+	public LinkKey(String lt, UUID dest) {
 		super();
 		if (lt == null) {
 			throw new NullPointerException("lt is null");

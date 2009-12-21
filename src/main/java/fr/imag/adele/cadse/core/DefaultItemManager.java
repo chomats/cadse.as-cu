@@ -303,7 +303,7 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 		return null; // the default value (is itemDestType.getDsiplayName();
 	}
 
-	public ContentItem createContentItem(CompactUUID id) throws CadseException {
+	public ContentItem createContentItem(UUID id) throws CadseException {
 		return ContentItem.NO_CONTENT;
 	}
 

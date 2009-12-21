@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.ContentChangeInfo;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemDescriptionRef;
@@ -81,7 +81,7 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public int getIntAttribut(IntegerAttributeType key, int defaultValue);
 
-	public CompactUUID getItemTypeId();
+	public UUID getItemTypeId();
 
 	public <T extends MappingOperation> T getMappingOperation(Class<T> clazz);
 
@@ -142,9 +142,9 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	 */
 	public LinkDelta getOutgoingLink(LinkType linkType);
 
-	public LinkDelta getOutgoingLink(LinkType lt, CompactUUID destId);
+	public LinkDelta getOutgoingLink(LinkType lt, UUID destId);
 
-	public LinkDelta getOutgoingLink(String lt, CompactUUID destId);
+	public LinkDelta getOutgoingLink(String lt, UUID destId);
 
 	public LinkDelta getOutgoingLinkOperation(Link l) throws CadseException;
 
@@ -167,13 +167,13 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	 */
 	public Collection<LinkDelta> getOutgoingLinkOperations();
 
-	public List<LinkDelta> getOutgoingLinkOperations(CompactUUID destId);
+	public List<LinkDelta> getOutgoingLinkOperations(UUID destId);
 
 	public List<LinkDelta> getOutgoingLinkOperations(LinkType linkType);
 
 	public List<LinkDelta> getOutgoingLinks(boolean acceptDeleted);
 
-	public List<LinkDelta> getOutgoingLinks(CompactUUID destId);
+	public List<LinkDelta> getOutgoingLinks(UUID destId);
 
 	/**
 	 * Gets the parent in storage.
@@ -241,8 +241,8 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	public void loadContent();
 
 	public void loadDerivedLink(String linkType, ItemDelta dest, boolean isAggregation, boolean isRequire,
-			String link_info, String originLinkTypeID, CompactUUID uuidOriginLinkSourceTypeID,
-			CompactUUID uuidOriginLinkDestinationTypeID, int version);
+			String link_info, String originLinkTypeID, UUID uuidOriginLinkSourceTypeID,
+			UUID uuidOriginLinkDestinationTypeID, int version);
 
 	public LinkDelta loadLink(String linkType, ItemDelta destItem) throws CadseException;
 
