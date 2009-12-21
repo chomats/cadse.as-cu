@@ -39,7 +39,7 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	 * si added -> nothing si deleted -> remove deleted operation sinon add
 	 * creation operation
 	 */
-	public LinkDelta createLink(fr.imag.adele.emf.cadse.ccore.LinkType lt, fr.imag.adele.emf.cadse.ccore.Item destination) throws CadseException;
+	public LinkDelta createLink(LinkType lt, Item destination) throws CadseException;
 
 	/**
 	 * Migrate part link.
