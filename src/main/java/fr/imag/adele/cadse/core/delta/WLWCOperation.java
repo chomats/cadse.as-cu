@@ -1,7 +1,7 @@
 package fr.imag.adele.cadse.core.delta;
 
 import fr.imag.adele.cadse.core.CadseError;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.internal.delta.InternalWLWCOperation;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 
@@ -13,7 +13,7 @@ public interface WLWCOperation extends InternalWLWCOperation {
 
 	OperationType getOperationType();
 
-	CompactUUID getOperationId();
+	UUID getOperationId();
 
 	LogicalWorkspaceTransaction getWorkingCopy();
 

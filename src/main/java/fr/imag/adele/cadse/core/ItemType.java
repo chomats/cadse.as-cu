@@ -179,7 +179,7 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 *                values min and max.<br/>
 	 * <br/>
 	 */
-	public abstract LinkType createLinkType(CompactUUID id, int intID, String name, int kind, int min, int max,
+	public abstract LinkType createLinkType(UUID id, int intID, String name, int kind, int min, int max,
 			String selection, LinkType inverse) throws CadseException;
 
 	/**
@@ -205,7 +205,7 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 * @return the link type
 	 * @throws CadseException
 	 */
-	public abstract LinkType createLinkType(CompactUUID id, int intID, String name, int kind, int min, int max,
+	public abstract LinkType createLinkType(UUID id, int intID, String name, int kind, int min, int max,
 			String selection, ItemType destination) throws CadseException;
 
 	/**

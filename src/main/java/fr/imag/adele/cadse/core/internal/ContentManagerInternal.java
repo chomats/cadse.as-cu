@@ -9,7 +9,7 @@ import java.util.Set;
 
 import fr.imag.adele.cadse.core.CadseDomain;
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.DerivedLink;
 import fr.imag.adele.cadse.core.DerivedLinkDescription;
@@ -246,7 +246,7 @@ public class ContentManagerInternal implements ContentItem {
 
 	}
 
-	public boolean canCreateLink(LinkType linkType, CompactUUID destItemId) {
+	public boolean canCreateLink(LinkType linkType, UUID destItemId) {
 		return false;
 	}
 
@@ -258,7 +258,7 @@ public class ContentManagerInternal implements ContentItem {
 		return false;
 	}
 
-	public boolean containsComponent(CompactUUID id) {
+	public boolean containsComponent(UUID id) {
 		return false;
 	}
 
@@ -298,11 +298,11 @@ public class ContentManagerInternal implements ContentItem {
 		return null;
 	}
 
-	public Set<CompactUUID> getComponentIds() {
+	public Set<UUID> getComponentIds() {
 		return null;
 	}
 
-	public Item getComponentInfo(CompactUUID id) {
+	public Item getComponentInfo(UUID id) {
 		return null;
 	}
 
@@ -334,7 +334,7 @@ public class ContentManagerInternal implements ContentItem {
 		return null;
 	}
 
-	public CompactUUID getId() {
+	public UUID getId() {
 		return null;
 	}
 
@@ -350,7 +350,7 @@ public class ContentManagerInternal implements ContentItem {
 		return null;
 	}
 
-	public Link getIncomingLink(LinkType linkType, CompactUUID srcId) {
+	public Link getIncomingLink(LinkType linkType, UUID srcId) {
 		return null;
 	}
 
@@ -390,7 +390,7 @@ public class ContentManagerInternal implements ContentItem {
 		return null;
 	}
 
-	public Item getOutgoingItem(String linkTypeName, CompactUUID itemId, boolean resolvedOnly) {
+	public Item getOutgoingItem(String linkTypeName, UUID itemId, boolean resolvedOnly) {
 		return null;
 	}
 
@@ -422,7 +422,7 @@ public class ContentManagerInternal implements ContentItem {
 		return null;
 	}
 
-	public Link getOutgoingLink(LinkType lt, CompactUUID destId) {
+	public Link getOutgoingLink(LinkType lt, UUID destId) {
 		return null;
 	}
 
@@ -434,7 +434,7 @@ public class ContentManagerInternal implements ContentItem {
 		return null;
 	}
 
-	public Item getPartChild(CompactUUID destItemId) {
+	public Item getPartChild(UUID destItemId) {
 		return null;
 	}
 

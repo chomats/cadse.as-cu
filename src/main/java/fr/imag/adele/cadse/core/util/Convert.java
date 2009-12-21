@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.attribute.BooleanAttributeType;
 import fr.imag.adele.cadse.core.attribute.DateAttributeType;
 import fr.imag.adele.cadse.core.attribute.DoubleAttributeType;
@@ -281,16 +281,16 @@ public class Convert {
 		return ret;
 	}
 
-	public static CompactUUID toUUID(Object value) {
+	public static java.util.UUID toUUID(Object value) {
 		if (value == null || "".equals(value)) {
 			return null;
 		}
-		if (value instanceof CompactUUID) {
-			return (CompactUUID) value;
+		if (value instanceof UUID) {
+			return (UUID) value;
 		}
 		if (value instanceof String) {
 			try {
-				return new CompactUUID(value.toString());
+				return UUID.fromString(value.toString());
 			} catch (IllegalArgumentException e) {
 			}
 		}

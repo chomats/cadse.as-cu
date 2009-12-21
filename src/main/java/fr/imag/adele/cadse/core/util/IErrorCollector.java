@@ -18,12 +18,12 @@
  */
 package fr.imag.adele.cadse.core.util;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 
 public interface IErrorCollector {
 
 	public void addError(Item item, String msg);
 
-	public void addError(CompactUUID id, String msg);
+	public void addError(UUID id, String msg);
 }

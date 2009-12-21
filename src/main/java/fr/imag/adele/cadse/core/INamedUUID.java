@@ -19,6 +19,8 @@
 
 package fr.imag.adele.cadse.core;
 
+import java.util.UUID;
+
 
 
 /**
@@ -35,6 +37,6 @@ public interface INamedUUID {
 	 * 
 	 * @return an internal immutable universally unique identifier
 	 */
-	public CompactUUID getId();
+	public UUID getId();
 	
 }

@@ -19,18 +19,18 @@
 package fr.imag.adele.cadse.core.delta;
 
 
-//import fede.workspace.domain.CompactUUID;
+//import fede.workspace.domain.UUID;
 
 public class OperationType  {
 
-//	private CompactUUID id;
+//	private UUID id;
 	
 	
 	public OperationType() {
 		//this.id = id;
 	}
 	
-	//public CompactUUID getId() {
+	//public UUID getId() {
 	//	return id;
 	//}
 

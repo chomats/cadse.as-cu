@@ -42,8 +42,6 @@ import fr.imag.adele.cadse.core.attribute.SetAttrVal;
 import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.delta.ItemDelta;
 import fr.imag.adele.cadse.core.delta.LinkDelta;
-import fr.imag.adele.cadse.core.internal.NotNull;
-import fr.imag.adele.cadse.core.internal.Nullable;
 import fr.imag.adele.cadse.core.internal.delta.InternalLogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
 import fr.imag.adele.cadse.core.var.ContextVariable;
@@ -103,7 +101,7 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	@Deprecated
 	public ItemType createItemType(ItemType itemTypeType, CadseRuntime cadseName, @Nullable
 	ItemType superType, int intID, @NotNull
-	CompactUUID id, @NotNull
+	UUID id, @NotNull
 	String shortName, @Nullable
 	String displayName, boolean hasContent, boolean isAbstract, @NotNull
 	IItemManager manager);

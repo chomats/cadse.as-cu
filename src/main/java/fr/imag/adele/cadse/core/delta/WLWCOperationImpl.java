@@ -20,13 +20,13 @@ package fr.imag.adele.cadse.core.delta;
 
 import fr.imag.adele.cadse.core.CadseError;
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.internal.delta.InternalWLWCOperation;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.util.ArraysUtil;
 
 public abstract class WLWCOperationImpl implements InternalWLWCOperation, WLWCOperation {
-	CompactUUID						_operationId					= CompactUUID.randomUUID();
+	UUID						_operationId					= UUID.randomUUID();
 	private final OperationType		_type;
 	protected final WLWCOperation	_parent;
 	long							_commitFlag						= 0;
@@ -98,7 +98,7 @@ public abstract class WLWCOperationImpl implements InternalWLWCOperation, WLWCOp
 	 * 
 	 * @see fede.workspace.domain.internal.delta.WLWCOperation#getOperationId()
 	 */
-	public CompactUUID getOperationId() {
+	public UUID getOperationId() {
 		return _operationId;
 	}
 
