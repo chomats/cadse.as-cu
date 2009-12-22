@@ -206,7 +206,7 @@ public abstract class Composer {
 		for (IExportedContent component : repositoryComponents) {
 			context.subTask("verifiying " + component.getItemDisplayName());
 
-			if (getItem().containsComponent(component.getItemIdentification())) {
+			if (containsComponent(component)) {
 				continue;
 			}
 
@@ -214,6 +214,10 @@ public abstract class Composer {
 			context.worked(1);
 		}
 		context.endTask();
+	}
+
+	protected boolean containsComponent(IExportedContent component) {
+		return true;
 	}
 
 	/**

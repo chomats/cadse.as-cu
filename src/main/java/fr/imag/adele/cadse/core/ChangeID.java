@@ -428,10 +428,7 @@ public enum ChangeID {
 				a.append(">");
 				a.append("\n\t <<");
 				Item item = (Item) objects[0];
-				for (Item link : item.getComponents()) {
-					a.append(" ");
-					a.append(link.toString());
-				}
+				
 				a.append(" >>");
 			} catch (IOException e) {
 			}
@@ -482,11 +479,6 @@ public enum ChangeID {
 				}
 				a.append(">");
 				a.append("\n\t <<");
-				Item item = (Item) objects[0];
-				for (Item link : item.getComponents()) {
-					a.append(" ");
-					a.append(link.toString());
-				}
 				a.append(" >>");
 			} catch (IOException e) {
 			}

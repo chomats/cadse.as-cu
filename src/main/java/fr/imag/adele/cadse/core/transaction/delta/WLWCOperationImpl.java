@@ -113,13 +113,9 @@ public abstract class WLWCOperationImpl implements InternalWLWCOperation, WLWCOp
 		return _parent.getWorkingCopy();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fede.workspace.domain.internal.delta.WLWCOperation#getParent()
-	 */
-	public WLWCOperation getParent() {
-		return _parent;
+	@Override
+	public WLWCOperation getParentOperDelta() {
+			return _parent;
 	}
 
 	/*
