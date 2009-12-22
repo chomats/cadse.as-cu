@@ -63,6 +63,15 @@ public interface Link extends InternalLink, INamedUUID, AdaptableObject {
 	 */
 	public boolean isInterCadseLink();
 
+	
+
+	/**
+	 * Returns source cadse id. It can be null.
+	 * 
+	 * @return source cadse id.
+	 */
+	public UUID getSourceCadseId();
+
 	/**
 	 * Returns source item id. It is never null.
 	 * 

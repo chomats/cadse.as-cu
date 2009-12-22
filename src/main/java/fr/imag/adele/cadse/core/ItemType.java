@@ -21,20 +21,20 @@ package fr.imag.adele.cadse.core;
 
 import java.net.URL;
 import java.util.List;
+import java.util.UUID;
 
+import fr.imag.adele.cadse.core.attribute.BooleanAttributeType;
 import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
-import fr.imag.adele.cadse.core.attribute.StringAttributeType;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.internal.ItemTypeInternal;
 import fr.imag.adele.cadse.core.key.FacetteItemTypeKey;
+import fr.imag.adele.cadse.core.key.KeyDefinition;
 import fr.imag.adele.cadse.core.transaction.FacetteItemTypeTransaction;
-import fr.imag.adele.cadse.core.ui.FacetteItemTypeAction;
-import fr.imag.adele.cadse.core.key.SpaceKeyType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
+import fr.imag.adele.cadse.core.ui.FacetteItemTypeAction;
 import fr.imag.adele.cadse.core.ui.IActionContributor;
 import fr.imag.adele.cadse.core.ui.IActionPage;
 import fr.imag.adele.cadse.core.ui.IPage;
-import fr.imag.adele.cadse.core.ui.IPageFactory;
-import fr.imag.adele.cadse.core.ui.Pages;
 import fr.imag.adele.cadse.core.ui.UIField;
 import fr.imag.adele.cadse.core.ui.UIValidator;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
@@ -110,6 +110,8 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 * @return true if this item type is super type of <code>it</code>.
 	 */
 	public boolean isSuperTypeOf(ItemType it);
+
+	public ExtendedType[] getExtendedType();
 
 	/**
 	 * Returns the item manager.
@@ -302,6 +304,7 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 * 
 	 * @see fede.workspace.domain.Item#isComposite()
 	 */
+	@Override
 	public boolean isComposite();
 
 	/**
@@ -530,14 +533,14 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 * @param spaceKeytype
 	 *            the new space key type
 	 */
-	public void setSpaceKeyType(SpaceKeyType spaceKeytype);
+	public void setSpaceKeyType(KeyDefinition spaceKeytype);
 
 	/**
 	 * Gets the space key type.
 	 * 
 	 * @return the space key type
 	 */
-	public SpaceKeyType getSpaceKeyType();
+	public KeyDefinition getSpaceKeyType();
 
 	public <T> T getApdapter(Item instance, Class<T> clazz);
 
@@ -582,6 +585,7 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 
 	public boolean isMemberType();
 
+	@Override
 	public boolean isGroupHead();
 
 	public boolean canCreateItem(NewContext newContext);
@@ -595,4 +599,6 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	public void addGroupOfAttributes( GroupOfAttributes g);
 	
 	public GroupOfAttributes[] getGroupOfAttributes();
+
+	public IAttributeType<?> getCStructuralFeatures(int i);
 }

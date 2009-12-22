@@ -33,7 +33,7 @@ import fr.imag.adele.cadse.core.attribute.EnumAttributeType;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.attribute.LongAttributeType;
 import fr.imag.adele.cadse.core.attribute.StringAttributeType;
-import fr.imag.adele.cadse.core.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 
 public class Convert {
 
@@ -269,7 +269,7 @@ public class Convert {
 		return (URL) value;
 	}
 
-	public static Boolean toBoolean(ItemDelta item, String key, Boolean defaultValue) {
+	public static Boolean toBoolean(ItemDelta item, BooleanAttributeType key, Boolean defaultValue) {
 		Object value = item.getAttribute(key);
 		if (value == null || "".equals(value)) {
 			return defaultValue;

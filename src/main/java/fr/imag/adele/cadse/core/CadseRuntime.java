@@ -2,7 +2,6 @@ package fr.imag.adele.cadse.core;
 
 import fr.imag.adele.cadse.core.internal.InternalCadseRuntime;
 import fr.imag.adele.cadse.core.ui.view.FacetteCadseRuntimeView;
-import fr.imag.adele.emf.cadse.ccore.Cadse;
 
 import java.util.UUID;
 import fr.imag.adele.cadse.core.ui.view.DefineNewContext;
@@ -12,7 +11,7 @@ import fr.imag.adele.cadse.core.ui.view.DefineNewContext;
  * 
  * @author CADSE team
  */
-public interface CadseRuntime extends Item, InternalCadseRuntime, FacetteCadseRuntimeView, Cadse {
+public interface CadseRuntime extends Item, InternalCadseRuntime, FacetteCadseRuntimeView {
 
 	/** The Constant RESOURCE_SUFFIX. */
 	public final static String	CADSE_NAME_SUFFIX	= "Model.Workspace.";

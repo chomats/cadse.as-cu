@@ -31,15 +31,18 @@ import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
  */
 public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
-	public void addMappingOperaion(MappingOperation mappingOperation) throws CadseException;
+	public void addMappingOperaion(MappingOperation mappingOperation)
+			throws CadseException;
 
-	public LinkDelta addOutgoingItem(LinkType lt, Item destination) throws CadseException;
+	public LinkDelta addOutgoingItem(LinkType lt, Item destination)
+			throws CadseException;
 
 	/**
 	 * si added -> nothing si deleted -> remove deleted operation sinon add
 	 * creation operation
 	 */
-	public LinkDelta createLink(LinkType lt, Item destination) throws CadseException;
+	public LinkDelta createLink(LinkType lt, Item destination)
+			throws CadseException;
 
 	/**
 	 * Migrate part link.
@@ -50,9 +53,11 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	 *            the lt
 	 * @throws CadseException
 	 */
-	public void migratePartLink(Item newPartParent, LinkType lt) throws CadseException;
+	public void migratePartLink(Item newPartParent, LinkType lt)
+			throws CadseException;
 
-	public void delete(DeleteOperation operation, int flag) throws CadseException;
+	public void delete(DeleteOperation operation, int flag)
+			throws CadseException;
 
 	public void doubleClick();
 
@@ -67,17 +72,21 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	 */
 	public Item getBaseItem();
 
-	public boolean getBooleanAttribut(BooleanAttributeType key, boolean defaultValue);
+	public boolean getBooleanAttribut(BooleanAttributeType key,
+			boolean defaultValue);
 
 	public Collection<LinkDelta> getDeletedLinks();
 
-	public Collection<ItemDelta> getIncomingItems(boolean acceptDelete, boolean acceptAdd);
+	public Collection<ItemDelta> getIncomingItems(boolean acceptDelete,
+			boolean acceptAdd);
 
-	public Collection<ItemDelta> getIncomingItems(LinkType lt, boolean acceptDelete, boolean acceptAdd);
+	public Collection<ItemDelta> getIncomingItems(LinkType lt,
+			boolean acceptDelete, boolean acceptAdd);
 
 	public List<LinkDelta> getIncomingLinkOperations();
 
-	public List<LinkDelta> getIncomingLinks(boolean acceptDelete, boolean acceptAdd);
+	public List<LinkDelta> getIncomingLinks(boolean acceptDelete,
+			boolean acceptAdd);
 
 	public int getIntAttribut(IntegerAttributeType key, int defaultValue);
 
@@ -91,17 +100,21 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public List<Item> getOpenCompositeParent();
 
-	public <T extends MappingOperation> T getorCreateMappingOperation(Class<T> clazz);
+	public <T extends MappingOperation> T getorCreateMappingOperation(
+			Class<T> clazz);
 
 	public List<OrderOperation> getOrdersOperation();
 
 	public List<OrderOperation> getOrdersOperation(LinkType lt);
 
-	public Collection<ItemDelta> getOutgoingItems(boolean acceptDeletedLink, boolean resovledOnly);
+	public Collection<ItemDelta> getOutgoingItems(boolean acceptDeletedLink,
+			boolean resovledOnly);
 
-	public Collection<ItemDelta> getOutgoingItems(boolean acceptDeletedLink, LinkType lt, boolean resovledOnly);
+	public Collection<ItemDelta> getOutgoingItems(boolean acceptDeletedLink,
+			LinkType lt, boolean resovledOnly);
 
-	public Collection<ItemDelta> getOutgoingItems(boolean acceptDeletedLink, String linkType, boolean resovledOnly);
+	public Collection<ItemDelta> getOutgoingItems(boolean acceptDeletedLink,
+			String linkType, boolean resovledOnly);
 
 	/*
 	 * (non-Javadoc)
@@ -161,7 +174,8 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	 * @return un link sur le quel on peut appliquer des operations futur. Null
 	 *         si le lien n'estiste pas.
 	 */
-	public LinkDelta getOutgoingLinkOperation(String type, ItemDescriptionRef destination);
+	public LinkDelta getOutgoingLinkOperation(String type,
+			ItemDescriptionRef destination);
 
 	/**
 	 * Return all outgoing links ( modified, added, deleted, or present in wl)
@@ -215,19 +229,22 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public ItemDelta getPartParent(boolean attemptToRecreate);
 
-	public ItemDelta getPartParent(boolean attemptToRecreate, boolean acceptDeleted);
+	public ItemDelta getPartParent(boolean attemptToRecreate,
+			boolean acceptDeleted);
 
 	public ItemDelta getPartParent(LinkType lt);
 
 	public ItemDelta getPartParent(LinkType lt, boolean attemptToRecreate);
 
-	public SetAttributeOperation getSetAttributeOperation(IAttributeType<?> key, boolean create);
+	public SetAttributeOperation getSetAttributeOperation(
+			IAttributeType<?> key, boolean create);
 
 	public String getStringAttribut(StringAttributeType key, String defaultValue);
 
 	public ItemType getType();
 
-	public URL getURLAttribut(URLAttributeType key) throws MalformedURLException;
+	public URL getURLAttribut(URLAttributeType key)
+			throws MalformedURLException;
 
 	public List<Item> getWhyReadOnly();
 
@@ -237,25 +254,24 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public boolean isUpdate();
 
-	public void loadAttribute(IAttributeType<?> key, Object value) throws CadseException;
+	public void loadAttribute(IAttributeType<?> key, Object value)
+			throws CadseException;
 
 	public void loadContent();
 
-	public void loadDerivedLink(String linkType, ItemDelta dest, boolean isAggregation, boolean isRequire,
-			String link_info, String originLinkTypeID, UUID uuidOriginLinkSourceTypeID,
+	public void loadDerivedLink(String linkType, ItemDelta dest,
+			boolean isAggregation, boolean isRequire, String link_info,
+			String originLinkTypeID, UUID uuidOriginLinkSourceTypeID,
 			UUID uuidOriginLinkDestinationTypeID, int version);
 
-	public LinkDelta loadLink(LinkType linkType, ItemDelta destItem) throws CadseException;
+	public LinkDelta loadLink(LinkType linkType, ItemDelta destItem)
+			throws CadseException;
 
-	/**
-	 * @deprecated
-	 */
-	@Deprecated
-	public LinkDelta loadLink(String linkType, ItemDelta destItem) throws CadseException;
+	public boolean moveAfter(LinkDelta linkOne, Link linkTwo_)
+			throws CadseException;
 
-	public boolean moveAfter(LinkDelta linkOne, Link linkTwo_) throws CadseException;
-
-	public boolean moveBefore(LinkDelta linkOne, Link linkTwo_) throws CadseException;
+	public boolean moveBefore(LinkDelta linkOne, Link linkTwo_)
+			throws CadseException;
 
 	/**
 	 * This method is called when the content is changed. Do not call this
@@ -276,20 +292,24 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public void resetContentIsChanged();
 
-	public void setAttribute(IAttributeType<?> key, Object newCurrentValue, boolean loaded) throws CadseException;
+	public void setAttribute(IAttributeType<?> key, Object newCurrentValue,
+			boolean loaded) throws CadseException;
 
 	public void setModified(boolean value) throws CadseException;
 
-	public void setModified(boolean value, boolean loaded) throws CadseException;
+	public void setModified(boolean value, boolean loaded)
+			throws CadseException;
 
 	/**
 	 */
 
-	public void setReadOnly(boolean readOnly, boolean loaded) throws CadseException;
+	public void setReadOnly(boolean readOnly, boolean loaded)
+			throws CadseException;
 
 	public void setName(String shortname, boolean loaded) throws CadseException;
 
-	public void setQualifiedName(String uniqueName, boolean loaded) throws CadseException;
+	public void setQualifiedName(String uniqueName, boolean loaded)
+			throws CadseException;
 
 	public void setUpdate(boolean update);
 
@@ -305,8 +325,8 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public <T> T getAdapter(Class<T> clazz);
 
-	public void setParent(ItemDelta parent, LinkType lt, boolean createLinkIfNeed, boolean notify)
-			throws CadseException;
+	public void setParent(ItemDelta parent, LinkType lt,
+			boolean createLinkIfNeed, boolean notify) throws CadseException;
 
 	public LogicalWorkspaceTransaction getCopy();
 
@@ -316,6 +336,7 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public void addItemType(ItemType it);
 
-	public void loadLink(int linkId, LinkType lt, ItemDelta dest) throws CadseException;
+	public void loadLink(int linkId, LinkType lt, ItemDelta dest)
+			throws CadseException;
 
 }

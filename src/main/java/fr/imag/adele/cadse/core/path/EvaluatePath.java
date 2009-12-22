@@ -26,7 +26,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
@@ -296,9 +295,9 @@ public class EvaluatePath extends AbstractParsePath {
 	 */
 	private static void evaluateSubType(ItemType subit, HashSet<Item> ret) {
 		ret.addAll(subit.getItems());
-		EList<fr.imag.adele.emf.cadse.ccore.ItemType> its = subit.getSubTypes();
-		for (fr.imag.adele.emf.cadse.ccore.ItemType subit2 : its) {
-			evaluateSubType((ItemType) subit2, ret);
+		ItemType[] its = subit.getSubTypes();
+		for (ItemType subit2 : its) {
+			evaluateSubType(subit2,ret);
 		}
 	}
 

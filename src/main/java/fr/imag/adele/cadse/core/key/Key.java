@@ -22,7 +22,7 @@ package fr.imag.adele.cadse.core.key;
 import fr.imag.adele.cadse.core.INamedUUID;
 
 /**
- * The Interface ISpaceKey.
+ * The Interface Key.
  */
 public interface Key extends INamedUUID {
 

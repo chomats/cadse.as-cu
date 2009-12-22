@@ -1,8 +1,7 @@
 package fr.imag.adele.cadse.core;
 
-import fr.imag.adele.emf.cadse.ccore.ExtentedType;
 
-public interface ExtendedType extends TypeDefinition, ExtentedType {
+public interface ExtendedType extends TypeDefinition {
 
 	public abstract ItemType[] getExendsItemType();
 

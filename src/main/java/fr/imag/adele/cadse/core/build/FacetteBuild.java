@@ -4,8 +4,6 @@
  */
 package fr.imag.adele.cadse.core.build;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * 
  * @author chomats

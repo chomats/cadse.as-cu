@@ -30,7 +30,6 @@ import fr.imag.adele.cadse.core.AdaptableObjectImpl;
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
-import fr.imag.adele.emf.cadse.ccore.impl.ComposerImpl;
 
 /**
  * This class manages the contents of an eclipse resources associated with an
