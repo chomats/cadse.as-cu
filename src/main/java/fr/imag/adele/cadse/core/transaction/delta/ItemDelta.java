@@ -330,9 +330,9 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public LogicalWorkspaceTransaction getCopy();
 
-	public void setParentID(int parentID);
+	public void setParentId(int parentID);
 
-	public void setCadseID(int int1);
+	public void setCadseId(int int1);
 
 	public void addItemType(ItemType it);
 

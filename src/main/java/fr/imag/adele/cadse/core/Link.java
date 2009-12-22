@@ -130,15 +130,6 @@ public interface Link extends InternalLink, INamedUUID, AdaptableObject {
 	 * 
 	 * @return destination cadse id.
 	 */
-	public UUID getDestinationID();
-
-	/**
-	 * Returns destination cadse id. It can be null.
-	 * 
-	 * @return destination cadse id.
-	 * @deprecated use {@link #getDestinationID}.
-	 */
-	@Deprecated
 	public UUID getDestinationId();
 
 	/**
@@ -148,14 +139,6 @@ public interface Link extends InternalLink, INamedUUID, AdaptableObject {
 	 */
 	public UUID getDestinationCadseId();
 
-	/**
-	 * Returns destination item id. It is never null.
-	 * 
-	 * @return destination item id.
-	 * @deprecated use {@link #getDestinationCadseID()}.
-	 */
-	@Deprecated
-	public UUID getDestinationCadseID();
 
 	/**
 	 * Set read only flag. A read only link cannot be modified (delete and set

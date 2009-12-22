@@ -33,8 +33,8 @@ public abstract class MappingOperation extends WLWCOperationImpl {
 	}
 
 	@Override
-	public ItemDelta getParent() {
-		return (ItemDelta) super.getParent();
+	public ItemDelta getParentOperDelta() {
+		return (ItemDelta) super.getParentOperDelta();
 	}
 
 	abstract protected String getLabel();

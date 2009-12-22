@@ -656,12 +656,12 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	 */
 	public void buildComposite() throws CadseException;
 
-	/**
-	 * Returns all items which have composition links pointing to this item.
-	 * 
-	 * @return all items which have composition links pointing to this item.
-	 */
-	public List<Item> getCompositeParent();
+//	/**
+//	 * Returns all items which have composition links pointing to this item.
+//	 * 
+//	 * @return all items which have composition links pointing to this item.
+//	 */
+//	public List<Item> getCompositeParent();
 
 	/**
 	 * Returns true if this item is an orphan. In this case, the logical
@@ -932,47 +932,47 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	 */
 	public CadseDomain getCadseDomain();
 
-	/**
-	 * Returns all destination items of outgoing composition links from this
-	 * item.
-	 * 
-	 * @return all destination items of outgoing composition links from this
-	 *         item.
-	 */
-	public Set<Item> getComponents();
-
-	/**
-	 * Returns all destination item ids of outgoing composition links from this
-	 * item.
-	 * 
-	 * @return all destination item ids of outgoing composition links from this
-	 *         item.
-	 */
-	public Set<UUID> getComponentIds();
-
-	/**
-	 * Returns true if there is one destination item with same id of an outgoing
-	 * composition link from this item.
-	 * 
-	 * @param itemId
-	 *            a component item id
-	 * 
-	 * @return true if there is one destination item with same id of an outgoing
-	 *         composition link from this item.
-	 */
-	public boolean containsComponent(UUID itemId);
-
-	/**
-	 * Returns destination item with same id of an outgoing composition link
-	 * from this item if it exists else returns null.
-	 * 
-	 * @param itemId
-	 *            a component item id
-	 * 
-	 * @return destination item with same id of an outgoing composition link
-	 *         from this item if it exists else returns null.
-	 */
-	public Item getComponentInfo(UUID itemId);
+//	/**
+//	 * Returns all destination items of outgoing composition links from this
+//	 * item.
+//	 * 
+//	 * @return all destination items of outgoing composition links from this
+//	 *         item.
+//	 */
+//	public Set<Item> getComponents();
+//
+//	/**
+//	 * Returns all destination item ids of outgoing composition links from this
+//	 * item.
+//	 * 
+//	 * @return all destination item ids of outgoing composition links from this
+//	 *         item.
+//	 */
+//	public Set<UUID> getComponentIds();
+//
+//	/**
+//	 * Returns true if there is one destination item with same id of an outgoing
+//	 * composition link from this item.
+//	 * 
+//	 * @param itemId
+//	 *            a component item id
+//	 * 
+//	 * @return true if there is one destination item with same id of an outgoing
+//	 *         composition link from this item.
+//	 */
+//	public boolean containsComponent(UUID itemId);
+//
+//	/**
+//	 * Returns destination item with same id of an outgoing composition link
+//	 * from this item if it exists else returns null.
+//	 * 
+//	 * @param itemId
+//	 *            a component item id
+//	 * 
+//	 * @return destination item with same id of an outgoing composition link
+//	 *         from this item if it exists else returns null.
+//	 */
+//	public Item getComponentInfo(UUID itemId);
 
 	/**
 	 * Returns current logical workspace.

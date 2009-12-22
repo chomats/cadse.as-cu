@@ -253,12 +253,6 @@ class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
-	public boolean containsComponent(UUID itemId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean containsPartChild(Item item) {
 		// TODO Auto-generated method stub
 		return false;
@@ -333,30 +327,6 @@ class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
-	public Set<UUID> getComponentIds() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Item getComponentInfo(UUID itemId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<Item> getComponents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Item> getCompositeParent() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ContentItem getContentItem() {
 		// TODO Auto-generated method stub
 		return null;
@@ -370,6 +340,12 @@ class ContentManagerInternal implements ContentItem {
 
 	@Override
 	public String getDisplayName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Exporter[] getExporter(Class<?> exporterType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -899,6 +875,24 @@ class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
+	public int getObjectId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setUUID(long uuidMsb, long uuidLsb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setUUID(UUID uuid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void getLocalAllAttributeTypes(
 			List<IAttributeType<?>> allLocalAttrDefs) {
 		// TODO Auto-generated method stub
@@ -1080,30 +1074,6 @@ class ContentManagerInternal implements ContentItem {
 	@Override
 	public void update(IWorkingLoadingItems items, ItemDelta desc,
 			IWorkspaceNotifier notifie) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Exporter[] getExporter(Class<?> exporterType) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getObjectId() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setUUID(long uuidMsb, long uuidLsb) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setUUID(UUID uuid) {
 		// TODO Auto-generated method stub
 		
 	}}
