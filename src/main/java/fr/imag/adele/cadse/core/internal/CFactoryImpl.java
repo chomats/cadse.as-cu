@@ -15,8 +15,7 @@ public class CFactoryImpl implements CFactory {
 		TypeDefinition ret = (TypeDefinition) create(typeInPackage);
 		ret.setName(name);
 		ret.setQualifiedName(qname);
-		ret.setUuid_msb(itemMsb);
-        ret.setUuid_lsb(itemLsb);
+		ret.setUUID(itemMsb, itemLsb);
 		ret.setIdInPackage(idInPackage);
 		cPackage.addTypeDefintion(ret);
 		return ret;

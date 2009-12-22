@@ -33,9 +33,9 @@
                         <Export-Package>fr.imag.adele.cadse.core*,fr.imag.adele.emf.cadse.ccore*</Export-Package>
                         <Private-Package></Private-Package>
                         <Import-Package>org.eclipse.emf.common, *</Import-Package>
-                        <Include-Resource> META-INF/LICENSE=LICENSE,
+                        <!-- Include-Resource> META-INF/LICENSE=LICENSE,
               plugin.xml=plugin.xml, plugin.properties=plugin.properties
-               </Include-Resource>
+               </Include-Resource>  -->
                     </instructions>
                 </configuration>
             </plugin>

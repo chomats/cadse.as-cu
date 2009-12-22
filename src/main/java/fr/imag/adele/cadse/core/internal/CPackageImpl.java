@@ -1,5 +1,7 @@
 package fr.imag.adele.cadse.core.internal;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import fr.imag.adele.cadse.core.CFactory;
@@ -13,12 +15,8 @@ import fr.imag.adele.cadse.core.enumdef.TWCommitKind;
 import fr.imag.adele.cadse.core.enumdef.TWDestEvol;
 import fr.imag.adele.cadse.core.enumdef.TWEvol;
 import fr.imag.adele.cadse.core.enumdef.TWUpdateKind;
-import fr.imag.adele.emf.cadse.ccore.BindExt;
-import fr.imag.adele.emf.cadse.ccore.CadseCoreFactory;
-import fr.imag.adele.emf.cadse.ccore.impl.BindExtImpl;
-import fr.imag.adele.emf.cadse.ccore.impl.CadseImpl;
 
-public class CPackageImpl extends CadseImpl  implements CPackage {
+public class CPackageImpl  implements CPackage {
 	final static protected boolean IS_ABSTRACT = true;
 	
 	final static protected boolean IS_AGGREGATION = true;
@@ -57,10 +55,26 @@ public class CPackageImpl extends CadseImpl  implements CPackage {
 	private String	_qname;
 
 	private int	_version;
+
+	private ArrayList<BindExt> _binding;
 	
 	@Override
 	public UUID getId() {
 		return new UUID(getUuid_msb(), getUuid_lsb());
+	}
+
+
+
+	private long getUuid_lsb() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	private long getUuid_msb() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
@@ -88,8 +102,8 @@ public class CPackageImpl extends CadseImpl  implements CPackage {
 			IAttributeType<?> ...attributeTypes) {
 		IAttributeType<?> ret = (IAttributeType<?>) getCFactory().create(attributeTypeId);
 		ret.setName(name);
-		ret.setUuid_msb(itemMsb);
-		ret.setUuid_lsb(itemLsb);
+		ret.setUUID(itemMsb, itemLsb);
+		
 		ret.setIdInPackage(idInPackage);
 		ownerTypeDefintion.addAttributeType(ret);
                 ret.setParent(ownerTypeDefintion, null);
@@ -101,8 +115,8 @@ public class CPackageImpl extends CadseImpl  implements CPackage {
 			int attributeTypeId2) {
 		IAttributeType<?> ret = (IAttributeType<?>) getCFactory().create(attributeTypeId);
 		ret.setName(name);
-        ret.setUuid_msb(itemMsb);
-		ret.setUuid_lsb(itemLsb);
+		ret.setUUID(itemMsb, itemLsb);
+		
 		ret.setIdInPackage(idInPackage);
 		ownerTypeDefintion.addAttributeType(ret);
 		return ret;
@@ -140,9 +154,8 @@ public class CPackageImpl extends CadseImpl  implements CPackage {
 
 	
 
-	protected void setUUID(UUID cuuid) {
-		setUuid_msb(cuuid.getMostSignificantBits());
-		setUuid_lsb(cuuid.getLeastSignificantBits());
+	public void setUUID(UUID cuuid) {
+		setUUID(cuuid.getMostSignificantBits(), cuuid.getLeastSignificantBits());
 	}
 
 	protected void setVersion(int cversion) {
@@ -185,12 +198,73 @@ public class CPackageImpl extends CadseImpl  implements CPackage {
 
 	}
 	
+	static class BindExt {
+
+		public void setRefExt(ExtendedType extType) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void setRefItemType(ItemType type) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 	protected void bindExt(ItemType type, ExtendedType extType) {
 
-        BindExt b = CadseCoreFactory.eINSTANCE.createBindExt();
+        BindExt b = new BindExt(); //.eINSTANCE.createBindExt();
         b.setRefExt(extType);
         b.setRefItemType(type);
         
         getBinding().add(b);
+	}
+
+
+
+	private List<BindExt> getBinding() {
+		if (_binding == null)
+			_binding = new ArrayList<BindExt>();
+		return _binding;
+	}
+
+
+
+	@Override
+	public int getObjectId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public void setUUID(long uuidMsb, long uuidLsb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+	public void setDescription(String cdescription) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setQualifiedName(String cqname) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setName(String cname) {
+		// TODO Auto-generated method stub
+		
 	}
 }
