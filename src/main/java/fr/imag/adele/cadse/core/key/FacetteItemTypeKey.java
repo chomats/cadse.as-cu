@@ -23,5 +23,5 @@ public interface FacetteItemTypeKey {
 	 * 
 	 * @return the space key type
 	 */
-	public fr.imag.adele.emf.cadse.ccore.KeyDefinition getKeyDefinition();
+	public KeyDefinition getKeyDefinition();
 }

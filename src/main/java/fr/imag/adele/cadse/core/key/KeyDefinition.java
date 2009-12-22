@@ -16,7 +16,21 @@ import fr.imag.adele.cadse.core.attribute.IAttributeType;
  * 
  * @author chomats
  */
-public interface KeyDefinition extends INamedUUID, INamed, fr.imag.adele.emf.cadse.ccore.KeyDefinition {
+public interface KeyDefinition extends INamedUUID, INamed {
 
-	
+	public IAttributeType<?>[] getKeyElements();
+
+	public KeyDefinition getParentKey();
+
+	public Key computeKey(Key parentKey, Object... key_attributes) throws CadseException;
+
+	public Key computeKey(Item item) throws CadseException;
+
+	public void getQualifiedString(Key key, StringBuilder sb);
+
+	public ItemType getItemType();
+
+	public String getName(Key key);
+
+    public int hashNameAttribute();
 }

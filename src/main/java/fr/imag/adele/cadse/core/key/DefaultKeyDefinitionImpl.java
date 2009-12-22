@@ -42,11 +42,15 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
-public class DefaultKeyDefinitionImpl extends KeyDefinitionImpl implements KeyDefinition {
+public class DefaultKeyDefinitionImpl implements KeyDefinition {
 
-	
-	public DefaultKeyDefinitionImpl() {
-	}
+	FacetteLWKey					_lw;
+	/** The space key type. */
+	final protected KeyDefinition	_parentKeyDefinition;
+	private UUID				_uuid;
+	private final int				_objectId;
+	private String					_name;
+	protected IAttributeType<?>[]	_elts	= null;
 
 	/**
 	 * Instantiates a new space key type.
@@ -56,20 +60,224 @@ public class DefaultKeyDefinitionImpl extends KeyDefinitionImpl implements KeyDe
 	 * @param parentItemType
 	 *            the space key type
 	 */
-	public DefaultKeyDefinitionImpl(UUID uuid, int objectId, fr.imag.adele.emf.cadse.ccore.KeyDefinition parentKeyDef,
+	public DefaultKeyDefinitionImpl(FacetteLWKey lw, UUID uuid, int objectId, KeyDefinition parentKeyDef,
 			IAttributeType<?>... elts) {
 		super(uuid, objectId, parentKeyDef, elts);
 
 	}
 
-    @Override
-    public Key computeKey(fr.imag.adele.emf.cadse.ccore.Item item) throws CadseException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+	/**
+	 * Gets the parent space key types.
+	 * 
+	 * @return the parent space key types
+	 */
+	final public KeyDefinition getParentSpaceKeyTypes() {
+		return _parentKeyDefinition;
+	}
+
+	@Override
+	public UUID getId() {
+		return _uuid;
+	}
+
+	@Override
+	public String getName() {
+		return _name;
+	}
+
+	@Override
+	public IAttributeType<?>[] getKeyElements() {
+		return _elts;
+	}
+
+	@Override
+	public int getObjectID() {
+		return _objectId;
+	}
+
+	@Override
+	public KeyDefinition getParentKey() {
+		return _parentKeyDefinition;
+	}
+
+	/**
+	 * Compute key.
+	 * 
+	 * @param item
+	 *            the item
+	 * 
+	 * @return the space key
+	 * @throws CadseException
+	 */
+	@Override
+	public Key computeKey(Item item) throws CadseException {
+		Key parentKey = null;
+		if (_parentKeyDefinition != null) {
+			parentKey = getParentSpaceKeyFromItem(item);
+			if (parentKey == DefaultKeyImpl.INVALID) {
+				return DefaultKeyImpl.INVALID;
+			}
+		}
+		return createKey(item, parentKey);
+	}
 
     @Override
-    public java.lang.String getName(Key key) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int hashNameAttribute() {
+       for (int i = 0; i < _elts.length; i++) {
+			if (CadseGCST.ITEM_at_NAME_ == _elts[i])
+                return i;
+		}
+       return -1;
     }
 
+
+
+	protected Key createKey(Item item, Key parentKey) throws CadseException {
+		Object[] values = new Object[_elts.length];
+		for (int i = 0; i < values.length; i++) {
+			if (_elts[i] instanceof LinkType) {
+				Item lt_item = item.getOutgoingItem((LinkType) _elts[i], true);
+				assert lt_item != item;
+
+				Key lt_key = DefaultKeyImpl.INVALID;
+				if (lt_item != null && lt_item.isResolved()) {
+					lt_key = lt_item.getKey();
+
+				}
+				if (lt_key == null || lt_key == DefaultKeyImpl.INVALID) {
+					return DefaultKeyImpl.INVALID;
+				}
+				values[i] = lt_key;
+			} else if (CadseGCST.ITEM_at_NAME_ == _elts[i])
+				values[i] = convertName(getName(item));
+			else
+				values[i] = item.getAttribute(_elts[i]);
+		}
+		return new DefaultKeyImpl(_lw, this, parentKey, values);
+	}
+
+	protected String getName(Item item) {
+		return item.getName();
+	}
+
+	/**
+	 * Compute key.
+	 * 
+	 * @param name
+	 *            the name
+	 * @param parentItem
+	 *            the parent item
+	 * @param key_attributes
+	 *            the key_attributes
+	 * 
+	 * @return the space key
+	 * @throws CadseException
+	 */
+	@Override
+	public Key computeKey(Key parentKey, Object... values) throws CadseException {
+		if (values.length != _elts.length)
+			return DefaultKeyImpl.INVALID;
+
+		if (parentKey == DefaultKeyImpl.INVALID) {
+			return DefaultKeyImpl.INVALID;
+		}
+		return createKey(parentKey, values);
+	}
+
+	protected Key getParentKeyFromParentItem(Item parentItem) {
+		Key parentKey = null;
+		if (_parentKeyDefinition != null) {
+			parentKey = getParentSpaceKeyFromItem(parentItem);
+		}
+		return parentKey;
+	}
+
+	protected Key createKey(Key parentKey, Object... values) {
+
+		if (values.length != _elts.length)
+			return DefaultKeyImpl.INVALID;
+		for (int i = 0; i < values.length; i++) {
+			if (_elts[i] instanceof LinkType) {
+				if (values[i] instanceof Key) {
+					if (values[i] == DefaultKeyImpl.INVALID)
+						return DefaultKeyImpl.INVALID;
+					continue;
+				}
+				if (values[i] instanceof Item) {
+					values[i] = ((Item) values[1]).getKey();
+					if (values[i] == DefaultKeyImpl.INVALID)
+						return DefaultKeyImpl.INVALID;
+					continue;
+				}
+				return DefaultKeyImpl.INVALID;
+			} else if (CadseGCST.ITEM_at_NAME_ == _elts[i])
+				values[i] = convertName((String) values[i]);
+		}
+		return new DefaultKeyImpl(null, this, parentKey, values);
+	}
+
+	protected String convertName(String name) {
+		return name;
+	}
+
+	/**
+	 * Gets the parent space key from item.
+	 * 
+	 * @param item
+	 *            the item
+	 * 
+	 * @return the parent space key from item
+	 */
+	protected Key getParentSpaceKeyFromItem(Item item) {
+		Item partparent = item.getPartParent(_parentKeyDefinition.getItemType());
+		if (partparent == null) {
+			Logger.getLogger("fr.imag.adele.cadse.key").log(Level.SEVERE,
+					"Cannot find the parent item for " + item.getType().getName() + "::" + item.getDisplayName());
+			return DefaultKeyImpl.INVALID;
+		}
+		Key key = partparent.getKey();
+		assert key != null;
+		return key;
+	}
+
+	/**
+	 * Retourn une chaine humainenement lisible indiquant la porter de la cl�.
+	 * 
+	 * @param key
+	 *            the key
+	 * @param sb
+	 *            the sb
+	 */
+	@Override
+	public void getQualifiedString(Key key, StringBuilder sb) {
+
+		Key parentKey = key.getParentKey();
+		if (parentKey != null) {
+			parentKey.getQualifiedString(sb);
+			sb.append("::");
+		}
+
+		sb.append(((INamed) key).getName());
+
+	}
+
+	@Override
+	public ItemType getItemType() {
+		throw new UnsupportedOperationException("Not yet implemented");
+	}
+
+	@Override
+	public String getName(Key key) {
+		for (int i = 0; i < _elts.length; i++) {
+			if (CadseGCST.ITEM_at_NAME_ == _elts[i]) {
+				return key.getValue(i);
+			}
+		}
+		return Item.NO_VALUE_STRING;
+	}
+
+    @Override
+    public void setUUID(long itemMsb, long itemLsb) {
+        _uuid = new UUID(itemMsb, itemLsb);
+    }
 }
