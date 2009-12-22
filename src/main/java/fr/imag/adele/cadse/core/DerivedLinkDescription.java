@@ -19,6 +19,8 @@
 
 package fr.imag.adele.cadse.core;
 
+import java.util.UUID;
+
 /**
  * The Class DerivedLinkDescription.
  * 

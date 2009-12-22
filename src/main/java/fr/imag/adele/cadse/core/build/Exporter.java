@@ -23,7 +23,6 @@
 package fr.imag.adele.cadse.core.build;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 
 /**

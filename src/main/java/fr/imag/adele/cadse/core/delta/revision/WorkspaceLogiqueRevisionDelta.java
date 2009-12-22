@@ -202,7 +202,7 @@ public class WorkspaceLogiqueRevisionDelta {
 		}
 		ItemDelta working = null;
 		if (anItem != null) {
-			working = transaction.getItem(anItem);
+			working = (ItemDelta) transaction.getItem(anItem);
 		}
 		ItemRevisionDelta delta = merge(working, base, head);
 		items.put(base.getId(), delta);
@@ -467,7 +467,7 @@ public class WorkspaceLogiqueRevisionDelta {
 					Item item = workspaceLogique.getItem(delta.getId());
 					ItemDelta workingItem = null;
 					if (item != null) {
-						workingItem = transaction.getItem(item);
+						workingItem = (ItemDelta) transaction.getItem(item);
 					} else {
 						System.out.println("Error: not found item in workspace " + delta.getId());
 					}

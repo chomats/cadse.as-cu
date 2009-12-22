@@ -4,9 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import fr.imag.adele.emf.cadse.ccore.Cadse;
 
-public interface CPackage extends INamedUUID, INamed, Cadse {
+public interface CPackage extends INamedUUID, INamed {
 	
 	interface CRegistry {
 

@@ -1,5 +1,6 @@
 package fr.imag.adele.cadse.core;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +15,7 @@ import fr.imag.adele.cadse.core.ui.UIValidator;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
 
-public interface TypeDefinition {
+public interface TypeDefinition extends Item {
 
 	/*
 	 * (non-Javadoc)
@@ -71,4 +72,16 @@ public interface TypeDefinition {
 
 		
 	}
+
+	public abstract boolean isMainType();
+
+	public abstract IItemManager getItemManager();
+
+	public abstract Collection<? extends Item> getItems();
+
+	public abstract LinkType getOutgoingLinkType(String nameOfLinkType);
+
+	public abstract List<LinkType> getOutgoingLinkTypes();
+
+	public abstract LinkType getIncomingLinkType(String nameOfLinkType);
 }

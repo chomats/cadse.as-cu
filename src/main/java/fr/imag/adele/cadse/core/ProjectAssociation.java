@@ -21,6 +21,7 @@ package fr.imag.adele.cadse.core;
 
 import java.net.URL;
 import java.util.HashMap;
+import java.util.UUID;
 
 
 /**

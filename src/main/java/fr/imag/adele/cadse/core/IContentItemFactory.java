@@ -1,5 +1,9 @@
 package fr.imag.adele.cadse.core;
 
+import java.util.UUID;
+
+import fr.imag.adele.cadse.core.content.ContentItem;
+
 
 public interface IContentItemFactory  {
 

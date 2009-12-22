@@ -22,8 +22,6 @@ package fr.imag.adele.cadse.core.path;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
-
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 
@@ -107,9 +105,9 @@ public class ItemTypePath extends ElementPath {
 	 */
 	private static void evaluate(ItemType subit, HashSet<Item> ret) {
 		ret.addAll(subit.getItems());
-		EList<fr.imag.adele.emf.cadse.ccore.ItemType> its = subit.getSubTypes();
-		for (fr.imag.adele.emf.cadse.ccore.ItemType subit2 : its) {
-			evaluate((ItemType) subit2, ret);
+		ItemType[] its = subit.getSubTypes();
+		for (ItemType subit2 : its) {
+			evaluate(subit2,ret);
 		}
 	}
 }

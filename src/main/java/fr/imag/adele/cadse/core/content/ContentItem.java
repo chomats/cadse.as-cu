@@ -1,8 +1,12 @@
 package fr.imag.adele.cadse.core.content;
 
 import java.util.Collection;
+import java.util.Set;
 
 import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.GenContext;
+import fr.imag.adele.cadse.core.GenStringBuilder;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 import fr.imag.adele.cadse.core.var.ContextVariable;
 import fr.imag.adele.cadse.core.Item;
 
@@ -156,7 +160,7 @@ public interface ContentItem extends Item, FacetteGenerate {
 	 * @param oldCxt
 	 *            old context
 	 */
-	public void migrateContentItem(Item ownerItem, ContextVariable newCxt, ContextVariable oldCxt);
+	public void migrateContentItem(ItemDelta ownerItem, ContextVariable newCxt, ContextVariable oldCxt);
 
 	/**
 	 * Sets parent content item.
@@ -187,7 +191,6 @@ public interface ContentItem extends Item, FacetteGenerate {
 	 * 
 	 * @return its children content items.
 	 */
-
 	public Collection<ContentItem> getPartChildrenContents();
 
 	/**
@@ -216,6 +219,84 @@ public interface ContentItem extends Item, FacetteGenerate {
 	@Deprecated
 	public ContentItem getParentPartContentManager();
 
+//	/**
+//	 * Returns its children content items. Note that it is not children of the
+//	 * logical item but the direct children content items of this content item.
+//	 * For example, a content item representing a project may have children
+//	 * content items representing the source directories. Content items are
+//	 * organized hierarchically.
+//	 * 
+//	 * @return its children content items.
+//	 * @deprecated uses {@link #getPartChildrenContents()}
+//	 */
+//	@Deprecated
+//	public ContentItem[] getChildrenContentManager();
+
+//	/**
+//	 * Returns its children content items. Note that it is not children of the
+//	 * logical item but the direct children content items of this content item.
+//	 * For example, a content item representing a project may have children
+//	 * content items representing the source directories. Content items are
+//	 * organized hierarchically.
+//	 * 
+//	 * @return its children content items.
+//	 * @deprecated uses {@link #getPartChildrenContents()}
+//	 */
+//	@Deprecated
+//	public ContentItem[] getChildrenPropreContentManager();
+
+	/**
+	 * Generates a string content represented by this item.
+	 * 
+	 * @param sb           string builder used to generate string content
+	 * @param type         generation type
+	 * @param kind         generation kind (multiple kinds per generation type)
+	 * @param imports      set of imports used for the generation
+	 * @param context      generation context which contains configuration properties
+	 */
+	public void generate(GenStringBuilder sb, String type, String kind, Set<String> imports, GenContext context);
+
+	/**
+	 * Generates string content represented by all children (destination items of 
+	 * outgoing part links) of the logical item associated to this item.
+	 * 
+	 * @param sb           string builder used to generate string content
+	 * @param type         generation type
+	 * @param kind         generation kind (multiple kinds per generation type)
+	 * @param imports      set of imports used for the generation
+	 * @param context      generation context which contains configuration properties
+	 */
+	public void generateParts(GenStringBuilder sb, String type, String kind, Set<String> imports, GenContext context);
+
+	/**
+	 * Generates string content represented by one child (destination item of 
+	 * one outgoing link of specified type) of the logical item associated to this item.
+	 * 
+	 * @param linkTypeName link type name
+	 * @param sb           string builder used to generate string content
+	 * @param type         generation type
+	 * @param kind         generation kind (multiple kinds per generation type)
+	 * @param imports      set of imports used for the generation
+	 * @param context      generation context which contains configuration properties
+	 */
+	public void generatePart(String linkTypeName, GenStringBuilder sb, String type, String kind, Set<String> imports,
+			GenContext context);
+
+	/**
+	 * Generates string content represented by all children (destination items of 
+	 * outgoing links of specified type) of the logical item associated to this item.
+	 * 
+	 * @param linkTypeName link type name
+	 * @param sb           string builder used to generate string content
+	 * @param type         generation type
+	 * @param kind         generation kind (multiple kinds per generation type)
+	 * @param imports      set of imports used for the generation
+	 * @param context      generation context which contains configuration properties
+	 */
+	public void generateParts(String linkTypeName, GenStringBuilder sb, String type, String kind, Set<String> imports,
+			GenContext context);
+
+	
 	/**
 	 * If this item represents an IDE resource, returns the resource name else
 	 * return null.
@@ -238,7 +319,7 @@ public interface ContentItem extends Item, FacetteGenerate {
 	/* internale */
 
 	public void addChild(ContentItem contentItem);
-
+	
 	public void removeChild(ContentItem contentItem);
 
 }

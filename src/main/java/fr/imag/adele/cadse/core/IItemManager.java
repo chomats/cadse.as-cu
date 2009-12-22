@@ -22,7 +22,7 @@ package fr.imag.adele.cadse.core;
 import java.net.URL;
 import java.util.List;
 
-import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.ui.IActionContributor;
 
 /**

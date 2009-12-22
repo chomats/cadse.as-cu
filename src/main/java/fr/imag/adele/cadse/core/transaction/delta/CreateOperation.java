@@ -1,4 +1,4 @@
-package fr.imag.adele.cadse.core.transaction.delta;
+package fr.imag.adele.cadse.core.delta;
 
 import fr.imag.adele.cadse.core.internal.delta.InternalWLWCOperation;
 

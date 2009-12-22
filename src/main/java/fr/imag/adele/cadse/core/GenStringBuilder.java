@@ -19,6 +19,7 @@
 
 package fr.imag.adele.cadse.core;
 
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 
 /**
  * This implementation of a string builder make easy way to manage text
@@ -837,8 +838,13 @@ public class GenStringBuilder {
 	 * @return the gen string builder
 	 */
 	public GenStringBuilder appendStringValue(String value) {
+		if (value == null) {
+			append("null");
+			return this;
+		}
 		_sb.ensureCapacity(_sb.length() + value.length() + 2);
 		value = value.replace("\"", "\\\"");
+		value = value.replace("\\", "\\\\");
 		appendTab();
 		_sb.append('\"').append(value).append('\"');
 		return this;
@@ -997,7 +1003,7 @@ public class GenStringBuilder {
 	 * 
 	 * @return the gen string builder
 	 */
-	public GenStringBuilder append_exp_vir(Item item, String key, String defaultValue) {
+	public <T> GenStringBuilder append_exp_vir(Item item, IAttributeType<T> key, T defaultValue) {
 		Object v = item.getAttributeWithDefaultValue(key, defaultValue);
 		appendExpValue_vir(v.toString());
 		return this;
@@ -1013,7 +1019,7 @@ public class GenStringBuilder {
 	 * 
 	 * @return the gen string builder
 	 */
-	public GenStringBuilder append_string_vir(Item item, String key) {
+	public GenStringBuilder append_string_vir(Item item, IAttributeType<String> key) {
 		Object v = item.getAttributeWithDefaultValue(key, "");
 		appendStringValue(v.toString());
 		append(",");

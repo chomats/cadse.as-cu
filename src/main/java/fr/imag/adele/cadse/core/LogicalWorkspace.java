@@ -21,23 +21,21 @@ package fr.imag.adele.cadse.core;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
-import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
-import fr.imag.adele.cadse.core.internal.NotNull;
-import fr.imag.adele.cadse.core.internal.Nullable;
-import fr.imag.adele.cadse.core.key.ISpaceKey;
-import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.key.FacetteLWKey;
+import fr.imag.adele.cadse.core.key.Key;
 import fr.imag.adele.cadse.core.transaction.FacetteLWTransaction;
+import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
+import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
+import fr.imag.adele.cadse.core.ui.FacetteLWUI;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
 import fr.imag.adele.cadse.core.var.ContextVariable;
-import fr.imag.adele.cadse.core.ui.FacetteLWUI;
 import fr.imag.adele.cadse.util.NotNull;
 import fr.imag.adele.cadse.util.Nullable;
-import java.util.UUID;
 
 /**
  * Represents the CADSE workspace. A CADSE workspace is IDE workspace extended

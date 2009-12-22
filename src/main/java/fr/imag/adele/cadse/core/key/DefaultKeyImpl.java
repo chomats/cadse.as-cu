@@ -217,7 +217,7 @@ public class DefaultKeyImpl implements Key {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fede.workspace.domain.key.ISpaceKey#hashCode()
+	 * @see fede.workspace.domain.key.Key#hashCode()
 	 */
 	@Override
 	public int hashCode() {
