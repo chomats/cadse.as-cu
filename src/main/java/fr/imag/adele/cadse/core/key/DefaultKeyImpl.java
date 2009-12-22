@@ -103,6 +103,18 @@ public class DefaultKeyImpl implements Key {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
+		@Override
+		public void setUUID(long uuidMsb, long uuidLsb) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void setUUID(UUID uuid) {
+			// TODO Auto-generated method stub
+			
+		}
+
 	}
 
 	public static FacetteLWKey					_lw;
@@ -246,4 +258,15 @@ public class DefaultKeyImpl implements Key {
     public void setUUID(long itemMsb, long itemLsb) {
         _uuid = new UUID(itemMsb, itemLsb);
     }
+
+	@Override
+	public void setUUID(UUID uuid) {
+		_uuid = uuid;
+		
+	}
+
+	@Override
+	public String getName() {
+		return _keydefinition.getName(this);
+	}
 }

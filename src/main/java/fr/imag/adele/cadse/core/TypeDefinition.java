@@ -84,4 +84,10 @@ public interface TypeDefinition extends Item {
 	public abstract List<LinkType> getOutgoingLinkTypes();
 
 	public abstract LinkType getIncomingLinkType(String nameOfLinkType);
+
+	public abstract void addAttributeType(IAttributeType<?> ret);
+	
+
+
+	public IAttributeType<?> getCStructuralFeatures(int i);
 }

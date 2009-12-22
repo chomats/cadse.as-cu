@@ -18,24 +18,17 @@
  */
 package fr.imag.adele.cadse.core.key;
 
-import fr.imag.adele.emf.cadse.ccore.String;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGCST;
-import java.util.UUID;
 import fr.imag.adele.cadse.core.INamed;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
-import fr.imag.adele.emf.cadse.ccore.impl.KeyDefinitionImpl;
-import java.util.Arrays;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * The Class SpaceKeyType.
@@ -44,10 +37,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public class DefaultKeyDefinitionImpl implements KeyDefinition {
 
-	FacetteLWKey					_lw;
 	/** The space key type. */
 	final protected KeyDefinition	_parentKeyDefinition;
-	private UUID				_uuid;
+	private UUID					_uuid;
 	private final int				_objectId;
 	private String					_name;
 	protected IAttributeType<?>[]	_elts	= null;
@@ -60,10 +52,12 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 	 * @param parentItemType
 	 *            the space key type
 	 */
-	public DefaultKeyDefinitionImpl(FacetteLWKey lw, UUID uuid, int objectId, KeyDefinition parentKeyDef,
+	public DefaultKeyDefinitionImpl(UUID uuid, int objectId, KeyDefinition parentKeyDef,
 			IAttributeType<?>... elts) {
-		super(uuid, objectId, parentKeyDef, elts);
-
+		_uuid = uuid;
+		_objectId = objectId;
+		_parentKeyDefinition = parentKeyDef;
+		_elts = elts;
 	}
 
 	/**
@@ -91,7 +85,7 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 	}
 
 	@Override
-	public int getObjectID() {
+	public int getObjectId() {
 		return _objectId;
 	}
 
@@ -153,7 +147,7 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 			else
 				values[i] = item.getAttribute(_elts[i]);
 		}
-		return new DefaultKeyImpl(_lw, this, parentKey, values);
+		return new DefaultKeyImpl(this, parentKey, values);
 	}
 
 	protected String getName(Item item) {
@@ -213,7 +207,7 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 			} else if (CadseGCST.ITEM_at_NAME_ == _elts[i])
 				values[i] = convertName((String) values[i]);
 		}
-		return new DefaultKeyImpl(null, this, parentKey, values);
+		return new DefaultKeyImpl(this, parentKey, values);
 	}
 
 	protected String convertName(String name) {
@@ -280,4 +274,9 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
     public void setUUID(long itemMsb, long itemLsb) {
         _uuid = new UUID(itemMsb, itemLsb);
     }
+
+	@Override
+	public void setUUID(UUID uuid) {
+		_uuid = uuid;
+	}
 }

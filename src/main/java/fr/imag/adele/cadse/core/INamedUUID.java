@@ -21,8 +21,6 @@ package fr.imag.adele.cadse.core;
 
 import java.util.UUID;
 
-
-
 /**
  * The Interface INamedUUID.
  * 
@@ -33,10 +31,26 @@ import java.util.UUID;
 public interface INamedUUID {
 
 	/**
-	 * Return an internal immutable universally unique identifier.
+	 * Returns the immutable universally unique identifier of this object.
+	 * Object has same Id for all its life.
 	 * 
-	 * @return an internal immutable universally unique identifier
+	 * @return an immutable universally unique identifier of this item.
 	 */
 	public UUID getId();
+
+	/**
+	 * Return a local identifier. This identifier is the same during all the
+	 * life in local. If this object is deleted and after re-imported, the local
+	 * identifier cannot be the same. Return -1 if this object is added and not
+	 * saved. After the first save or load, this method return a good
+	 * identifier.
+	 * 
+	 * @return a local identifier.
+	 */
+	public int getObjectId();
 	
+	public void setUUID(long uuidMsb, long uuidLsb);
+	
+	public void setUUID(UUID uuid);
+
 }

@@ -1088,4 +1088,22 @@ class ContentManagerInternal implements ContentItem {
 	public Exporter[] getExporter(Class<?> exporterType) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int getObjectId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setUUID(long uuidMsb, long uuidLsb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setUUID(UUID uuid) {
+		// TODO Auto-generated method stub
+		
 	}}

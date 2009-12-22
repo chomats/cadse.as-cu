@@ -4136,7 +4136,7 @@ public class CadseGPackageImpl extends CPackageImpl implements CadseGPackage {
 		setVersion(cVERSION);
 		setUUID(cUUID);
 		setDescription(cDESCRIPTION);
-		setDisplayName(cDISPLAYNAME);
+		setName(cDISPLAYNAME);
 		setCstClass(cCLASS_CST);
 		initEClass(aJProjectComposerCClass, !IS_ROOT_ELMENT, IS_INSTANCE_HAS_CONTENT, !IS_INSTANCE_IS_HIDDEN, null,
 				"build.composer", !IS_INSTANCE_IS_ITEM_TYPE, IS_ABSTRACT, eclipseComposerCClass, "AJProjectComposer",
@@ -5929,6 +5929,7 @@ public class CadseGPackageImpl extends CPackageImpl implements CadseGPackage {
 				!IS_ANNOTATION, !IS_NATIF, !IS_HIDDEN, !IS_PART, null, "WCLISTENER_lt_LISTEN_ITEM_TYPES", null,
 				TWEvol.twImmutable, TWCommitKind.conflict, TWUpdateKind.merge, true, TWDestEvol.immutable, false);
 	}
+
 
 	
 
