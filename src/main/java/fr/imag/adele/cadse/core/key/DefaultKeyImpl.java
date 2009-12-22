@@ -242,4 +242,8 @@ public class DefaultKeyImpl implements Key {
 	public void dispose() {
 	}
         
+    @Override
+    public void setUUID(long itemMsb, long itemLsb) {
+        _uuid = new UUID(itemMsb, itemLsb);
+    }
 }
