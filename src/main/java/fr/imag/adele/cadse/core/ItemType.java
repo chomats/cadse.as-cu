@@ -525,4 +525,5 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	public GroupOfAttributes[] getGroupOfAttributes();
 
 	public CPackage getPackage();
+
 }
