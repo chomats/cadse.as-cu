@@ -1082,4 +1082,10 @@ class ContentManagerInternal implements ContentItem {
 	public IAttributeType<?> getLocalAttributeType(UUID attrName) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public UUID getCadseId() {
+		// TODO Auto-generated method stub
+		return null;
 	}}

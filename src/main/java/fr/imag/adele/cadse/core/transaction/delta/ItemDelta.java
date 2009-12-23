@@ -336,7 +336,7 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public void addItemType(ItemType it);
 
-	public void loadLink(int linkId, LinkType lt, ItemDelta dest)
+	public LinkDelta loadLink(int linkId, LinkType lt, ItemDelta dest)
 			throws CadseException;
 
 }

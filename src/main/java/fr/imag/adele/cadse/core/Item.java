@@ -218,6 +218,9 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	 * @return a cadse or null.
 	 */
 	public CadseRuntime getCadse();
+	
+
+	public UUID getCadseId();
 
 	/**
 	 * Set the cadse of this item
