@@ -39,9 +39,6 @@ public class LinkDescription implements Serializable {
 	/** The source. */
 	private ItemDescriptionRef			source;
 
-	/** The type. */
-	private String						type;
-
 	/** The destination. */
 	private ItemDescriptionRef			destination;
 
@@ -114,6 +111,8 @@ public class LinkDescription implements Serializable {
 	/** The version. */
 	private int							version;
 
+	private LinkType _lt;
+
 	/**
 	 * Instantiates a new link description.
 	 * 
@@ -148,7 +147,7 @@ public class LinkDescription implements Serializable {
 	 * @param version
 	 *            the version
 	 */
-	public LinkDescription(final ItemDescriptionRef source, final String type, final ItemDescriptionRef destination,
+	public LinkDescription(final ItemDescriptionRef source, final LinkType type, final ItemDescriptionRef destination,
 			final boolean _isAggregation, final boolean _isAnnotation, final boolean _isComposition,
 			final boolean _isPart, final boolean _isRequire, final boolean _isOther, final boolean _isDerived,
 			final boolean _isHidden, final boolean _isModified, final boolean _isReadOnly, String info, int version) {
@@ -189,13 +188,13 @@ public class LinkDescription implements Serializable {
 	 * @param info
 	 *            the info
 	 */
-	public LinkDescription(final ItemDescriptionRef source, final String type, final ItemDescriptionRef destination,
+	public LinkDescription(final ItemDescriptionRef source, final LinkType type, final ItemDescriptionRef destination,
 			final boolean _isAggregation, final boolean _isAnnotation, final boolean _isComposition,
 			final boolean _isPart, final boolean _isRequire, final boolean _isOther, final boolean _isDerived,
 			final boolean _isHidden, final boolean _isModified, final boolean _isReadOnly, String info) {
 		super();
 		this.source = source;
-		this.type = type;
+		this._lt = type;
 		this.destination = destination;
 
 		state = (_isAggregation ? AGGREGATION : 0) + (_isAnnotation ? ANNOTATION : 0)
@@ -220,7 +219,7 @@ public class LinkDescription implements Serializable {
 	 * @param destination
 	 *            the destination
 	 */
-	public LinkDescription(final ItemDescriptionRef source, final String type, final ItemDescriptionRef destination) {
+	public LinkDescription(final ItemDescriptionRef source, final LinkType type, final ItemDescriptionRef destination) {
 		this(source, type, destination, true);
 	}
 
@@ -236,11 +235,11 @@ public class LinkDescription implements Serializable {
 	 * @param add
 	 *            the add
 	 */
-	public LinkDescription(final ItemDescriptionRef source, final String type, final ItemDescriptionRef destination,
+	public LinkDescription(final ItemDescriptionRef source, final LinkType type, final ItemDescriptionRef destination,
 			boolean add) {
 		super();
 		this.source = source;
-		this.type = type;
+		this._lt = type;
 		this.destination = destination;
 
 		state = AGGREGATION_IGNORE + ANNOTATION_IGNORE + COMPOSITION_IGNORE + PART_IGNORE + REQUIRE_IGNORE
@@ -260,7 +259,7 @@ public class LinkDescription implements Serializable {
 	 */
 	public LinkDescription(Link l) {
 		source = new ItemDescriptionRef(l.getSource());
-		type = l.getLinkType().getName();
+		_lt = l.getLinkType();
 		destination = new ItemDescriptionRef(l.getDestination(false));
 		state = (l.isAggregation() ? AGGREGATION : 0) + (l.isComposition() ? ANNOTATION : 0)
 				+ (l.isAnnotation() ? COMPOSITION : 0) + (l.getLinkType().isPart() ? PART : 0)
@@ -283,7 +282,7 @@ public class LinkDescription implements Serializable {
 	 */
 	public LinkDescription(ItemDescription ret, LinkDescription l, boolean add) {
 		this.source = ret;
-		type = l.getType();
+		_lt = l.getLinkType();
 		destination = l.getDestination();
 		state = l.state;
 		attributes = new HashMap<String, Object>(l.getAttributes());
@@ -309,7 +308,7 @@ public class LinkDescription implements Serializable {
 	 * @return the type
 	 */
 	public String getType() {
-		return type;
+		return _lt.getName();
 	}
 
 	/**
@@ -466,8 +465,8 @@ public class LinkDescription implements Serializable {
 	 * @param type
 	 *            the new type
 	 */
-	public void setType(String type) {
-		this.type = type;
+	public void setType(LinkType type) {
+		this._lt = type;
 	}
 
 	/**
@@ -488,7 +487,7 @@ public class LinkDescription implements Serializable {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return source.getId().toString() + " --(" + type + ")--> " + destination.getId().toString();
+		return source.getId().toString() + " --(" + _lt.getName() + ")--> " + destination.getId().toString();
 	}
 
 	@Override
@@ -496,8 +495,12 @@ public class LinkDescription implements Serializable {
 		if (obj instanceof LinkDescription) {
 			LinkDescription l = (LinkDescription) obj;
 			return l.source.getId().equals(source.getId()) && l.destination.getId().equals(destination.getId())
-					&& l.type.equals(type);
+					&& l._lt.equals(_lt);
 		}
 		return super.equals(obj);
+	}
+
+	public LinkType getLinkType() {
+		return _lt;
 	}
 }

@@ -160,7 +160,7 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 
 	public LinkDelta getOutgoingLink(LinkType lt, UUID destId);
 
-	public LinkDelta getOutgoingLink(String lt, UUID destId);
+	public LinkDelta getOutgoingLink(UUID ltId, String lt, UUID destId) throws CadseException;
 
 	public LinkDelta getOutgoingLinkOperation(Link l) throws CadseException;
 

@@ -210,71 +210,8 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	public abstract LinkType createLinkType(UUID id, int intID, String name, int kind, int min, int max,
 			String selection, ItemType destination) throws CadseException;
 
-	/**
-	 * Get an outgoing link type by id.
-	 * 
-	 * @param name
-	 *            the name
-	 * 
-	 * @return a link type if found; null if not found.
-	 */
-	public abstract LinkType getOutgoingLinkType(String name);
-
-	/**
-	 * Gets the outgoing link type.
-	 * 
-	 * @param destination
-	 *            the destination
-	 * @param name
-	 *            the name
-	 * 
-	 * @return the outgoing link type
-	 */
-	public abstract LinkType getOutgoingLinkType(ItemType destination, String name);
-
-	/**
-	 * Gets the outgoing link type.
-	 * 
-	 * @param destination
-	 *            the destination
-	 * @param kind
-	 *            the kind
-	 * 
-	 * @return the outgoing link type
-	 */
-	public abstract LinkType getOutgoingLinkType(ItemType destination, int kind);
-
-	/**
-	 * Get an incoming link type by id.
-	 * 
-	 * @param name
-	 *            the name
-	 * 
-	 * @return a link type if found; null if not found.
-	 */
-	public abstract LinkType getIncomingLinkType(String name);
-
-	/**
-	 * Get all hierarchical outgoing link types.
-	 * 
-	 * @return an unmodifiable list all hierarchical outgoing link types.
-	 */
-	public abstract List<LinkType> getOutgoingLinkTypes();
-
-	/**
-	 * Get all owned outgoing link types, not hierarchical.
-	 * 
-	 * @return an unmodifiable list all owned outgoing link types.
-	 */
-	public List<LinkType> getOwnerOutgoingLinkTypes();
-
-	/**
-	 * Get all incoming link types.
-	 * 
-	 * @return an unmodifiable list all incoming link types.
-	 */
-	public abstract List<LinkType> getIncomingLinkTypes();
-
+	
+	
 	/**
 	 * Return true si ce type a un contenu (file, folder, project, ...).
 	 * 
@@ -368,19 +305,6 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 */
 	public LinkType getIncomingPart(ItemType typeParent);
 
-	/**
-	 * Gets the items.
-	 * 
-	 * @return the items
-	 */
-	public abstract List<Item> getItems();
-
-	/**
-	 * Checks for incoming parts.
-	 * 
-	 * @return true, if successful
-	 */
-	public boolean hasIncomingParts();
 
 	/**
 	 * Gets the incoming one.
@@ -533,14 +457,14 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 * @param spaceKeytype
 	 *            the new space key type
 	 */
-	public void setSpaceKeyType(KeyDefinition spaceKeytype);
+	public void setKeyDefinition(KeyDefinition spaceKeytype);
 
 	/**
 	 * Gets the space key type.
 	 * 
 	 * @return the space key type
 	 */
-	public KeyDefinition getSpaceKeyType();
+	public KeyDefinition getKeyDefinition();
 
 	public <T> T getApdapter(Item instance, Class<T> clazz);
 
