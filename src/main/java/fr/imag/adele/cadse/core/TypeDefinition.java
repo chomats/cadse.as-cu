@@ -1,12 +1,15 @@
 package fr.imag.adele.cadse.core;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
+import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
+import fr.imag.adele.cadse.core.ui.FacetteTypeDefinitionUI;
+import fr.imag.adele.cadse.core.ui.FacetteTypeDefinitionUIInternal;
 import fr.imag.adele.cadse.core.ui.HierarchicPage;
 import fr.imag.adele.cadse.core.ui.IActionPage;
 import fr.imag.adele.cadse.core.ui.IPage;
@@ -14,12 +17,6 @@ import fr.imag.adele.cadse.core.ui.UIField;
 import fr.imag.adele.cadse.core.ui.UIValidator;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
-
-import fr.imag.adele.cadse.core.attribute.StringAttributeType;
-import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
-import fr.imag.adele.cadse.core.ui.FacetteTypeDefinitionUI;
-import fr.imag.adele.cadse.core.ui.FacetteTypeDefinitionUIInternal;
-import java.util.UUID;
 
 public interface TypeDefinition 
 extends Item,IAttributableType, FacetteTypeDefinitionAction, FacetteTypeDefinitionUIInternal,
@@ -314,6 +311,7 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 		public Link addOutgoingLinkType(LinkType ret);
 
 	}
+
 
 	
 }
