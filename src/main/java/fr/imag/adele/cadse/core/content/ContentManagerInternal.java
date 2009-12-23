@@ -1076,4 +1076,10 @@ class ContentManagerInternal implements ContentItem {
 			IWorkspaceNotifier notifie) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public IAttributeType<?> getLocalAttributeType(UUID attrName) {
+		// TODO Auto-generated method stub
+		return null;
 	}}
