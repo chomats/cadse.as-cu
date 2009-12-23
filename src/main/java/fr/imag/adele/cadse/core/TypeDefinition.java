@@ -124,25 +124,6 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 	 */
 	public abstract LinkType createLinkType(UUID id, int intID, String name, int kind, int min, int max,
 			String selection, LinkType inverse) throws CadseException;
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.imag.adele.cadse.core.ItemType#getCreationPage()
-	 */
-	public abstract IPage[] getCreationPage();
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.imag.adele.cadse.core.ItemType#getModificationPage()
-	 */
-	public abstract IPage[] getModificationPage();
-
-	
-	public abstract void getAllAttributeTypes(List<IAttributeType<?>> all, ItemFilter filter);
-
-	public abstract UIField findField(IAttributeType<?> att);
-
 	
 	
 	/**
@@ -198,6 +179,16 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 	 * @return a link type if found; null if not found.
 	 */
 	public abstract LinkType getOutgoingLinkType(String name);
+	
+	/**
+	 * Get an outgoing link type by id.
+	 * 
+	 * @param name
+	 *            the name
+	 * 
+	 * @return a link type if found; null if not found.
+	 */
+	public abstract LinkType getOutgoingLinkType(UUID idLinkType);
 	
 	/**
 	 * Gets the outgoing link type.
@@ -284,6 +275,11 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 	// MENU ACTION
 
 
+	/**
+	 * Checks for incoming parts.
+	 * 
+	 * @return true, if successful
+	 */
 	boolean hasIncomingParts();
 	
 
@@ -294,10 +290,6 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 	
 	public void setPackage(CPackage p);
 	
-
-	public abstract void addAttributeType(IAttributeType<?> ret);
-	
-
 
 	public IAttributeType<?> getCStructuralFeatures(int index);
 

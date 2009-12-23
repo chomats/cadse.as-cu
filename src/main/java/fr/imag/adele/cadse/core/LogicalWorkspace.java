@@ -406,12 +406,13 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 
 	public void setAttribute(Item item, IAttributeType<?> key, Object value) throws CadseException;
 
-	@Deprecated
-	public void setAttribute(Item item, String key, Object value) throws CadseException;
+	public LinkType findLinkType(ItemType sourceType, ItemType destType, UUID ltId, String ltName, boolean createUnresolvedObject);
+	
+	public LinkType createUnresolvedLinkType(UUID id, String linkTypeName, TypeDefinition sourceType,
+			TypeDefinition destType);
 
-	public LinkType createUnresolvedLinkType(String linkTypeName, ItemType sourceType, ItemType destType);
-
-	public <T> T getAttribute(Item source, String key, boolean ownerOnly);
+	public IAttributeType<?> createUnresolvedAttributeType(TypeDefinition sourceType, ItemType attrType,
+			UUID attrID, String attName);
 
 	public <T> T getAttribute(Item source, IAttributeType<T> type, boolean ownerOnly);
 

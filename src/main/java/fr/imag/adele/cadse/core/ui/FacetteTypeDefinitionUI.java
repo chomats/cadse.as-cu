@@ -15,17 +15,17 @@ import fr.imag.adele.cadse.core.attribute.IAttributeType;
  * @author chomats
  */
 public interface FacetteTypeDefinitionUI {
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Gets the creation page.
 	 * 
-	 * @see fr.imag.adele.cadse.core.ItemType#getCreationPage()
+	 * @return the creation page
 	 */
 	public abstract IPage[] getCreationPage();
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Gets the modification page.
 	 * 
-	 * @see fr.imag.adele.cadse.core.ItemType#getModificationPage()
+	 * @return the modification page
 	 */
 	public abstract IPage[] getModificationPage();
 
