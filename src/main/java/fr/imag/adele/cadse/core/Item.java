@@ -29,6 +29,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import fr.imag.adele.cadse.core.build.Exporter;
+import fr.imag.adele.cadse.core.build.FacetteBuild;
 import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.internal.InternalItem;
 import fr.imag.adele.cadse.core.key.Key;
@@ -45,7 +46,7 @@ import fr.imag.adele.cadse.core.ui.view.NewContext;
  * 
  */
 
-public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributableType, InternalItem {
+public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributableType, InternalItem, FacetteBuild {
 
 	/**
 	 * TODO version dec 2009 remove this lines
