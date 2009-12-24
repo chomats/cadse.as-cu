@@ -97,7 +97,7 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	/**
 	 * End operation.
 	 */
-	// public void endOperation();
+	public void endOperation();
 
 	/**
 	 * Begin operation.
@@ -107,7 +107,7 @@ public interface CadseDomain extends IWorkspaceNotifier {
 	 * 
 	 * @return the i workspace operation
 	 */
-	// public IWorkspaceOperation beginOperation(String name);
+	public IWorkspaceOperation beginOperation(String name);
 
 	/**
 	 * Begin operation.
