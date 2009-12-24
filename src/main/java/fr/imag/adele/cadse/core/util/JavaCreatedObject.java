@@ -32,7 +32,7 @@ final public class JavaCreatedObject implements CreatedObject {
 		
 		if (clazz == null) {
 			if (_superCreate != null)
-				return _superCreate.create(item);
+				return (T) _superCreate.create(item);
 			return null;
 		}
 		try {
