@@ -1088,4 +1088,34 @@ class ContentManagerInternal implements ContentItem {
 	public UUID getCadseId() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void build(IBuildingContext context) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clean(IBuildingContext context, boolean componentsContent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void compose(IBuildingContext context) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setComposers(Composer... composers) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setExporters(Exporter... exporters) {
+		// TODO Auto-generated method stub
+		
 	}}
