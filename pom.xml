@@ -7,20 +7,15 @@
     <artifactId>as.cu</artifactId>
     <name>fr.imag.adele.cadse.as.cu</name>
     <version>2.3.0-SNAPSHOT</version>
-    <description>Cadse Core CU</description>
-    <organization>
-        <name>Adele/LIG/ Grenoble University, France</name>
-        <url>http://www-adele.imag.fr/</url>
-    </organization>
+    <description>Cadse Core CU</description>   
+    <parent>
+		<artifactId>fr.imag.adele.cadse.parent</artifactId>
+		<groupId>fr.imag.adele.cadse</groupId>
+		<version>2.3.0-SNAPSHOT</version>
+		<relativePath>../fr.imag.adele.cadse.parent</relativePath>
+	</parent>
     <build>
         <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -28,15 +23,8 @@
                 <configuration>
                     <manifestLocation>META-INF</manifestLocation>
                     <instructions>
-                        <Bundle-SymbolicName>${pom.name};singleton:=true</Bundle-SymbolicName>
-                        <Bundle-Name>${pom.name}</Bundle-Name>
-                        <Bundle-Description>${pom.description}</Bundle-Description>
-                        <Export-Package>fr.imag.adele.cadse.core*,fr.imag.adele.emf.cadse.ccore*</Export-Package>
-                        <Private-Package></Private-Package>
+                        <Export-Package>fr.imag.adele.cadse.core*;version="2.3.0"</Export-Package>
                         <Import-Package>org.eclipse.emf.common, *</Import-Package>
-                        <!-- Include-Resource> META-INF/LICENSE=LICENSE,
-              plugin.xml=plugin.xml, plugin.properties=plugin.properties
-               </Include-Resource>  -->
                     </instructions>
                 </configuration>
             </plugin>
@@ -46,12 +34,10 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>as.ModelVersionDBService</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>util</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
