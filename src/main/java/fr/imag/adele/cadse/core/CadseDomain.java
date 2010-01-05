@@ -27,6 +27,8 @@ import java.util.concurrent.TimeoutException;
 
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.internal.IWorkspaceNotifier;
+import fr.imag.adele.teamwork.db.ModelVersionDBService;
+
 import java.util.UUID;
 
 /**
@@ -161,5 +163,7 @@ public interface CadseDomain extends IWorkspaceNotifier {
 			return item.getAttribute(attr);
 		}
 	}
+
+	public ModelVersionDBService getModelVersionDBService();
 
 }
