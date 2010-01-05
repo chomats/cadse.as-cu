@@ -59,6 +59,10 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 		_parentKeyDefinition = parentKeyDef;
 		_elts = elts;
 	}
+	
+	public DefaultKeyDefinitionImpl(ItemType childType, ItemType parentType) {
+		this(null, -1, parentType == null ? null : parentType.getKeyDefinition(), CadseGCST.ITEM_at_NAME_);
+	}
 
 	/**
 	 * Gets the parent space key types.
