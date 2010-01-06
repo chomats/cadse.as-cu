@@ -66,4 +66,6 @@ public interface Pages  {
 	abstract NewContext getContext();
 
 	public Set<GroupOfAttributes>	getGroupOfAttributes();
+	
+	abstract ItemType getMainType();
 }
