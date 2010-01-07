@@ -3,6 +3,7 @@ package fr.imag.adele.cadse.core.ui;
 import java.util.List;
 import java.util.Set;
 
+import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
@@ -55,4 +56,6 @@ public interface Pages {
 	abstract NewContext getContext();
 
 	public Set<GroupOfAttributes> getGroupOfAttributes();
+	
+	public ItemType getMainType();
 }

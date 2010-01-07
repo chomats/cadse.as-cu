@@ -61,7 +61,11 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 	}
 	
 	public DefaultKeyDefinitionImpl(ItemType childType, ItemType parentType) {
-		this(null, -1, parentType == null ? null : parentType.getKeyDefinition(), CadseGCST.ITEM_at_NAME_);
+		this(childType, parentType, CadseGCST.ITEM_at_NAME_);
+	}
+	
+	public DefaultKeyDefinitionImpl(ItemType childType, ItemType parentType, IAttributeType<?>... elts) {
+		this(null, -1, parentType == null ? null : parentType.getKeyDefinition(), elts);
 	}
 
 	/**
