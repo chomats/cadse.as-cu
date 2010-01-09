@@ -23,7 +23,7 @@
                 <configuration>
                     <manifestLocation>META-INF</manifestLocation>
                     <instructions>
-                        <Export-Package>fr.imag.adele.cadse.core*;version="2.3.0"</Export-Package>
+                        <Export-Package>fr.imag.adele.cadse.core*;version="${version.cadse}"</Export-Package>
                         <Import-Package>org.eclipse.emf.common, *</Import-Package>
                     </instructions>
                 </configuration>
