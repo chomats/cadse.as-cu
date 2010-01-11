@@ -65,62 +65,7 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 
 	// Link type
 
-	/**
-	 * Create a link type. <br/>
-	 * <br/>
-	 * 
-	 * PrÔøΩconditions: <br/>
-	 * - 1. <tt>name</tt> cannot be null.<br/>
-	 * - 2. <tt>name</tt> cannot be empty. - 3. <tt>destination</tt> cannot be
-	 * null.<br/>
-	 * - 4. <tt>name</tt> muqt be unique.<br/>
-	 * - 5. <tt>destination</tt> cannot be type workspace.<br/>
-	 * - 6. <tt>min</tt> must greater or equal 0; <tt>max</tt> either equal -1
-	 * (means the instance's number of this link type is undefined), or either
-	 * greater than <tt>min</tt>.
-	 * 
-	 * @param id
-	 *            runtime id define in cadseg
-	 * @param intID
-	 *            the int id
-	 * @param name
-	 *            the name
-	 * @param kind
-	 *            : kind of link type, can be a Aggregation, or a Contaiment, or
-	 *            Other.
-	 * @param min
-	 *            : the minimum instances of this link type that we want create.
-	 * @param max
-	 *            : the maximum instances of this link type that we want create.
-	 * @param selection
-	 *            the selection
-	 * @param inverse
-	 *            the inverse
-	 * 
-	 * @return the link type
-	 * @throws CadseException
-	 * 
-	 * @OCL: pre: name <> null pre: id <> '' pre: destination <> null pre:
-	 *       self.to->forAll(rt | rt.name <> id) -- id must be unique. pre: not
-	 *       destination.oclIsTypeOf(WorkspaceType) -- destination cannot be a
-	 *       Workspace Type. pre: ((max>=min)||(max==-1))&&(min>=0)) <br/>
-	 * @exception IllegalArgumentException
-	 *                : Invalid assignment, <tt>name</tt> can not be null.<br/>
-	 *                IllegalArgumentException: Invalid assignment,
-	 *                <tt>name</tt> can not be empty.<br/>
-	 *                IllegalArgumentException: Invalid assignment, item type
-	 *                <tt>$name</tt> can not be null.<br/>
-	 *                IllegalArgumentException: Invalid assignment, this link
-	 *                type <tt>destination</tt> already exist.<br/>
-	 *                IllegalArgumentException: Invalid assignment, you can not
-	 *                create a link type whose destination is an object of
-	 *                WorkspaceType.<br/>
-	 *                IllegalArgumentException: Invalid assignment, verify the
-	 *                values min and max.<br/>
-	 * <br/>
-	 */
-	public abstract LinkType createLinkType(UUID id, int intID, String name, int kind, int min, int max,
-			String selection, LinkType inverse) throws CadseException;
+	
 	
 	
 	/**
@@ -312,6 +257,61 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 
 	}
 
-
+	/**
+	 * Create a link type. <br/>
+	 * <br/>
+	 * 
+	 * Pr�conditions: <br/>
+	 * - 1. <tt>name</tt> cannot be null.<br/>
+	 * - 2. <tt>name</tt> cannot be empty. - 3. <tt>destination</tt> cannot be
+	 * null.<br/>
+	 * - 4. <tt>name</tt> muqt be unique.<br/>
+	 * - 5. <tt>destination</tt> cannot be type workspace.<br/>
+	 * - 6. <tt>min</tt> must greater or equal 0; <tt>max</tt> either equal -1
+	 * (means the instance's number of this link type is undefined), or either
+	 * greater than <tt>min</tt>.
+	 * 
+	 * @param id
+	 *            runtime id define in cadseg
+	 * @param intID
+	 *            the int id
+	 * @param name
+	 *            the name
+	 * @param kind
+	 *            : kind of link type, can be a Aggregation, or a Contaiment, or
+	 *            Other.
+	 * @param min
+	 *            : the minimum instances of this link type that we want create.
+	 * @param max
+	 *            : the maximum instances of this link type that we want create.
+	 * @param selection
+	 *            the selection
+	 * @param inverse
+	 *            the inverse
+	 * 
+	 * @return the link type
+	 * @throws CadseException
+	 * 
+	 * @OCL: pre: name <> null pre: id <> '' pre: destination <> null pre:
+	 *       self.to->forAll(rt | rt.name <> id) -- id must be unique. pre: not
+	 *       destination.oclIsTypeOf(WorkspaceType) -- destination cannot be a
+	 *       Workspace Type. pre: ((max>=min)||(max==-1))&&(min>=0)) <br/>
+	 * @exception IllegalArgumentException
+	 *                : Invalid assignment, <tt>name</tt> can not be null.<br/>
+	 *                IllegalArgumentException: Invalid assignment,
+	 *                <tt>name</tt> can not be empty.<br/>
+	 *                IllegalArgumentException: Invalid assignment, item type
+	 *                <tt>$name</tt> can not be null.<br/>
+	 *                IllegalArgumentException: Invalid assignment, this link
+	 *                type <tt>destination</tt> already exist.<br/>
+	 *                IllegalArgumentException: Invalid assignment, you can not
+	 *                create a link type whose destination is an object of
+	 *                WorkspaceType.<br/>
+	 *                IllegalArgumentException: Invalid assignment, verify the
+	 *                values min and max.<br/>
+	 * <br/>
+	 */
+	public abstract LinkType createLinkType(UUID id, int intID, String name, int kind, int min, int max,
+			String selection, LinkType inverse) throws CadseException;
 	
 }
