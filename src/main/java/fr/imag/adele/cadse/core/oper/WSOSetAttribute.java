@@ -28,36 +28,22 @@ import fr.imag.adele.cadse.core.oper.annotation.ParameterKind;
 public class WSOSetAttribute extends WSOperation {
 
 	@OperParameter(constructorPosition = 0, type = ParameterKind.item_ref)
-	private Item		item;
-	@OperParameter(constructorPosition = 1, type = ParameterKind.string_value)
-	private String		key;
-
-	IAttributeType<?>	_attribute_type;
+	private Item				item;
+	@OperParameter(constructorPosition = 1, type = ParameterKind.attribute_ref)
+	private IAttributeType<?>	key;
 
 	@OperParameter(constructorPosition = 2, type = ParameterKind.object_value)
-	private Object		value;
-
-	public WSOSetAttribute(Item item, String key, Object value) {
-		this.item = item;
-		this.key = key;
-
-		this.value = value;
-	}
+	private Object				value;
 
 	public WSOSetAttribute(Item item, IAttributeType<?> key, Object value) {
 		this.item = item;
-		this.key = key.getName();
-		_attribute_type = key;
+		this.key = key;
 		this.value = value;
 	}
 
 	@Override
 	protected void excecuteImpl() throws Throwable {
-		if (_attribute_type != null) {
-			item.setAttribute(_attribute_type, value);
-		} else {
-			item.setAttribute(key, value);
-		}
+		item.setAttribute(key, value);
 	}
 
 	@Override
@@ -69,7 +55,7 @@ public class WSOSetAttribute extends WSOperation {
 		return item;
 	}
 
-	public String getKey() {
+	public IAttributeType<?> getKey() {
 		return key;
 	}
 

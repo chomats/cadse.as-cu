@@ -29,34 +29,35 @@ import java.util.Set;
 
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGCST;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.DerivedLinkDescription;
 import fr.imag.adele.cadse.core.ItemDescriptionRef;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 
 public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, ITeamChangeObject {
 
 	/** The id. */
-	private CompactUUID									id;
+	private UUID												id;
 
 	/** The type. */
-	private CompactUUID									type;
+	private UUID												type;
 
 	/** The links. */
-	final List<LinkRevisionDelta>						links;
+	final List<LinkRevisionDelta>									links;
 
 	/** The attributes. */
-	private final Map<String, AttributeRevisionDelta>	attributes;
+	private final Map<IAttributeType<?>, AttributeRevisionDelta<?>>	attributes;
 
 	/** The derived. */
-	private final HashSet<DerivedLinkDescription>		derived;
+	private final HashSet<DerivedLinkDescription>					derived;
 
 	/** The composants. */
-	private final HashSet<ItemDescriptionRef>			composants;
+	private final HashSet<ItemDescriptionRef>						composants;
 
-	private WorkspaceLogiqueRevisionDelta				parent;
+	private WorkspaceLogiqueRevisionDelta							parent;
 
 	/**
 	 * Instantiates a new item description.
@@ -70,10 +71,10 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	 * @param shortname
 	 *            the shortname
 	 */
-	ItemRevisionDelta(WorkspaceLogiqueRevisionDelta parent, CompactUUID id, CompactUUID type) {
+	ItemRevisionDelta(WorkspaceLogiqueRevisionDelta parent, UUID id, UUID type) {
 		this.id = id;
 		this.type = type;
-		attributes = new HashMap<String, AttributeRevisionDelta>();
+		attributes = new HashMap<IAttributeType<?>, AttributeRevisionDelta<?>>();
 		derived = new HashSet<DerivedLinkDescription>();
 		composants = new HashSet<ItemDescriptionRef>();
 		links = new ArrayList<LinkRevisionDelta>();
@@ -172,7 +173,7 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 		return type.toString();
 	}
 
-	public CompactUUID getHeadParentID() {
+	public UUID getHeadParentID() {
 		return null;
 	}
 
@@ -180,7 +181,7 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 		return null;
 	}
 
-	public CompactUUID getLocalParentID() {
+	public UUID getLocalParentID() {
 		return null;
 	}
 
@@ -202,7 +203,7 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	 * 
 	 * @return the type
 	 */
-	public CompactUUID getTypeId() {
+	public UUID getTypeId() {
 		return type;
 	}
 
@@ -211,7 +212,7 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	 * 
 	 * @return the id
 	 */
-	public CompactUUID getId() {
+	public UUID getId() {
 		return id;
 	}
 
@@ -221,7 +222,7 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	 * @param id
 	 *            the new id
 	 */
-	public void setId(CompactUUID id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
@@ -231,7 +232,7 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	 * @param type
 	 *            the new type
 	 */
-	public void setType(CompactUUID type) {
+	public void setType(UUID type) {
 		this.type = type;
 	}
 
@@ -331,8 +332,8 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	}
 
 	public ItemDescriptionRef toHeadDesc() {
-		ItemDescriptionRef ret = new ItemDescriptionRef(id, type);
-		String shortName = getHeadAttributeValue(String.class, CadseGCST.ITEM_at_NAME );
+		ItemDescriptionRef ret = new ItemDescriptionRef(id, getType());
+		String shortName = getHeadAttributeValue(String.class, CadseGCST.ITEM_at_NAME);
 		if (shortName != null) {
 			ret.setShortname(shortName);
 		}
@@ -362,8 +363,10 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fede.workspace.domain.delta.revision.ICommitable#commitAcceptHeadChanges(fede.workspace.domain.delta.revision.IRevisionService,
-	 *      fede.workspace.domain.IWorkspaceLogiqueCopy)
+	 * @see
+	 * fede.workspace.domain.delta.revision.ICommitable#commitAcceptHeadChanges
+	 * (fede.workspace.domain.delta.revision.IRevisionService,
+	 * fede.workspace.domain.IWorkspaceLogiqueCopy)
 	 */
 	public boolean commitAcceptHeadChanges(ITeamRevisionService ser, LogicalWorkspaceTransaction copy)
 			throws CadseException {
@@ -449,10 +452,10 @@ public class ItemRevisionDelta extends ObjectTeamChange implements ICommitable, 
 	}
 
 	public ItemDescriptionRef toDesc() {
-		return new ItemDescriptionRef(id, type, getUniqueName(), getShortName());
+		return new ItemDescriptionRef(id, getType(), getUniqueName(), getShortName());
 	}
 
-	public Collection<AttributeRevisionDelta> getAttributes() {
+	public Collection<AttributeRevisionDelta<?>> getAttributes() {
 		return this.attributes.values();
 	}
 

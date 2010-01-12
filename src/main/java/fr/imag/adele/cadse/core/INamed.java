@@ -25,9 +25,8 @@ package fr.imag.adele.cadse.core;
 public interface INamed {
 
 	/**
-	 * Returns the simple object name.
-	 * For example, the item short name is the last part of complete item name.
-	 * Unicity is not ensured.
+	 * Returns the simple object name. For example, the item short name is the
+	 * last part of complete item name. Unicity is not ensured.
 	 * 
 	 * @return the simple object name.
 	 */

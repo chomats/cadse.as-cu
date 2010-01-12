@@ -18,7 +18,7 @@
  */
 package fr.imag.adele.cadse.core.delta.revision;
 
-import fr.imag.adele.cadse.core.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 
 public interface ITeamItem {
 

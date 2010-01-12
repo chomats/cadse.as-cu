@@ -21,28 +21,34 @@ package fr.imag.adele.cadse.core;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
-import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
-import fr.imag.adele.cadse.core.internal.NotNull;
-import fr.imag.adele.cadse.core.internal.Nullable;
-import fr.imag.adele.cadse.core.key.ISpaceKey;
+import fr.imag.adele.cadse.core.key.FacetteLWKey;
+import fr.imag.adele.cadse.core.key.Key;
+import fr.imag.adele.cadse.core.transaction.FacetteLWTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
+import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
+import fr.imag.adele.cadse.core.ui.FacetteLWUI;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.util.NotNull;
+import fr.imag.adele.cadse.util.Nullable;
 
 /**
  * Represents the CADSE workspace. A CADSE workspace is IDE workspace extended
  * by model elements (with items and item types...). This interface allows you
  * to manipulate models managed by executed CADSEs.
+ * 
  */
-public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster {
-
+public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster, 
+        AdaptableObject, FacetteLWTransaction, FacetteLWKey, FacetteLWListener, FacetteLWUI {
+	
 	public NewContext[] getNewContextFrom(FilterContext context);
-
-	/**
+	
+/**
 	 * Returns item type with specified id. Returns null if no item type exists
 	 * in the logical workspace with this id.
 	 * 
@@ -51,7 +57,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * 
 	 * @return item type with specified id.
 	 */
-	public ItemType getItemType(CompactUUID itemTypeId);
+	public ItemType getItemType(UUID itemTypeId);
 
 	/**
 	 * Returns item type with specified short name. Returns null if no item type
@@ -100,7 +106,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 *             if Id is null or empty or this item type already exists.
 	 */
 	public ItemType createItemType(ItemType metaType, @NotNull CadseRuntime cadseName, @Nullable ItemType superType,
-			int intID, @NotNull CompactUUID id, @NotNull String shortName, @Nullable String displayName,
+			int intID, @NotNull UUID id, @NotNull String shortName, @Nullable String displayName,
 			boolean hasContent, boolean isAbstract, @NotNull IItemManager manager);
 
 	/**
@@ -126,7 +132,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * 
 	 * @return an item if found, null if not found.
 	 */
-	public Item getItem(CompactUUID id);
+	public Item getItem(UUID id);
 
 	/**
 	 * Get item by qualified name.
@@ -148,9 +154,9 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * 
 	 * @return the item or null if not found or if has an error
 	 */
-	public Item getItemByShortName(ItemType type, String name);
+	public Item getItemByName(TypeDefinition type, String name);
 
-	/**
+/**
 	 * Gets the item.
 	 * 
 	 * @param key
@@ -158,7 +164,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * 
 	 * @return the item
 	 */
-	public Item getItem(ISpaceKey key);
+	public Item getItem(Key key);
 
 	/**
 	 * Get the items by item type.
@@ -178,7 +184,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * 
 	 * @return a list of items.
 	 */
-	public List<Item> getItems(ItemType it);
+	public List<Item> getItems(TypeDefinition it);
 
 	/**
 	 * Get all items.
@@ -250,10 +256,10 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * @throws CadseException
 	 *             the melusine exception
 	 * @deprecated use
-	 *             {@link LogicalWorkspaceTransaction#createItem(ItemType, Item, LinkType, CompactUUID, String, String)}
+	 *             {@link LogicalWorkspaceTransaction#createItem(ItemType, Item, LinkType, UUID, String, String)}
 	 */
 	@Deprecated
-	public Item createItem(ItemType it, Item parent, LinkType lt, CompactUUID id, String uniqueName, String shortName)
+	public Item createItem(ItemType it, Item parent, LinkType lt, UUID id, String uniqueName, String shortName)
 			throws CadseException;
 
 	/**
@@ -310,7 +316,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * 
 	 * @return the unresolved link
 	 */
-	public List<Link> getUnresolvedLink(CompactUUID id);
+	public List<Link> getUnresolvedLink(UUID id);
 
 	/**
 	 * Get all destination ids of all unresolved links in workspace.
@@ -378,7 +384,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 *            the definition id
 	 * @return a new cadse runtime ...
 	 */
-	public CadseRuntime createCadseRuntime(String name, CompactUUID runtimeId, CompactUUID definitionId);
+	public CadseRuntime createCadseRuntime(String name, UUID runtimeId, UUID definitionId);
 
 	/**
 	 * 
@@ -400,12 +406,13 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 
 	public void setAttribute(Item item, IAttributeType<?> key, Object value) throws CadseException;
 
-	@Deprecated
-	public void setAttribute(Item item, String key, Object value) throws CadseException;
+	public LinkType findLinkType(ItemType sourceType, ItemType destType, UUID ltId, String ltName, boolean createUnresolvedObject);
+	
+	public LinkType createUnresolvedLinkType(UUID id, String linkTypeName, TypeDefinition sourceType,
+			TypeDefinition destType);
 
-	public LinkType createUnresolvedLinkType(String linkTypeName, ItemType sourceType, ItemType destType);
-
-	public <T> T getAttribute(Item source, String key, boolean ownerOnly);
+	public IAttributeType<?> createUnresolvedAttributeType(TypeDefinition sourceType, ItemType attrType,
+			UUID attrID, String attName);
 
 	public <T> T getAttribute(Item source, IAttributeType<T> type, boolean ownerOnly);
 

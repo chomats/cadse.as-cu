@@ -26,10 +26,14 @@ import java.io.File;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
-import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
+import fr.imag.adele.cadse.core.build.Exporter;
+import fr.imag.adele.cadse.core.build.FacetteBuild;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.internal.InternalItem;
-import fr.imag.adele.cadse.core.key.ISpaceKey;
+import fr.imag.adele.cadse.core.key.Key;
+import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.ui.Pages;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
@@ -42,7 +46,7 @@ import fr.imag.adele.cadse.core.ui.view.NewContext;
  * 
  */
 
-public interface Item extends IAttributable, INamedUUID, IItemAttributableType, InternalItem {
+public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributableType, InternalItem, FacetteBuild {
 
 	/**
 	 * TODO version dec 2009 remove this lines
@@ -82,7 +86,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 
 	public static final int		NATIF									= 0x00000010;
 	public static final int		TRANSIENT								= 0x00000020;
-	//free to other kind
+	// free to other kind
 	public static final int		FREE1									= 0x00000040;
 	public static final int		PERSISTENCE_CACHE						= 0x00000080;
 
@@ -93,7 +97,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 
 	public static final int		UNRESOLVED								= 0x00001000;
 	public static final int		READONLY								= 0x00002000;
-	public static final int		WORKING_COPY							= 0x00003000;
+	public static final int		WORKING_COPY							= 0x00004000;
 
 	// 1
 
@@ -125,7 +129,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return an immutable universally unique identifier of this item.
 	 */
-	public CompactUUID getId();
+	public UUID getId();
 
 	/**
 	 * @deprecated use getName()
@@ -142,6 +146,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return item name.
 	 */
+	@Override
 	public String getName();
 
 	/**
@@ -169,26 +174,6 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public String getQualifiedName(boolean recompute) throws CadseException;
 
 	/**
-	 * @deprecated use getQualifiedName()
-	 * @return item qualified name.
-	 */
-	@Deprecated
-	public String getUniqueName();
-
-	/**
-	 * @deprecated use getQualifiedName()
-	 * 
-	 * 
-	 * @param recompute
-	 *            if true, force computation of unique name from unique name
-	 *            pattern
-	 * @return item qualified name.
-	 * @throws CadseException
-	 */
-	@Deprecated
-	public String getUniqueName(boolean recompute) throws CadseException;
-
-	/**
 	 * Returns display name. Display name is the item name (human readable)
 	 * shown in CADSE views. It is used to differentiate this item from all
 	 * items of same type. Default implementation returns short name.
@@ -207,31 +192,6 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public String getQualifiedDisplayName();
 
 	/**
-	 * Sets qualified name.
-	 * 
-	 * @deprecated use setQualifiedName
-	 * 
-	 * @param qualifiedName
-	 *            item qualified name
-	 * 
-	 * @throws CadseException
-	 */
-	@Deprecated
-	public void setUniqueName(String qualifiedName) throws CadseException;
-
-	/**
-	 * Sets name.
-	 * 
-	 * @deprecated use setName
-	 * 
-	 * @param name
-	 *            item name
-	 * @throws CadseException
-	 */
-	@Deprecated
-	public void setShortName(String name) throws CadseException;
-
-	/**
 	 * Sets qualified name. It is a symbolic name. It may change and it is not
 	 * unique. It should be unique inside a logical workspace.
 	 * 
@@ -240,7 +200,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @throws CadseException
 	 */
-	public void setQualifiedName(String qualifiedName) throws CadseException;
+	public void setQualifiedName(String qualifiedName) ;
 
 	/**
 	 * Sets name.
@@ -249,7 +209,26 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 *            item name
 	 * @throws CadseException
 	 */
-	public void setName(String name) throws CadseException;
+	public void setName(String name);
+
+	/**
+	 * Return the cadse where is stored this item. It's can be null. But for an
+	 * type definition (an item type or an extended type), it cannot be null. A
+	 * cadse is in it-self.
+	 * 
+	 * @return a cadse or null.
+	 */
+	public CadseRuntime getCadse();
+	
+
+	public UUID getCadseId();
+
+	/**
+	 * Set the cadse of this item
+	 * 
+	 * @param cr
+	 */
+	public void setCadse(CadseRuntime cr);
 
 	/**
 	 * Returns true if this item is associated to a content (one or many eclipse
@@ -267,7 +246,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return true if <code>it</code> is type or an ancestor type of this item.
 	 */
-	public boolean isInstanceOf(ItemType it);
+	public boolean isInstanceOf(TypeDefinition it);
 
 	/**
 	 * Returns item type.
@@ -344,7 +323,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return one of its outgoing links of specified type pointing to
 	 *         destination item.
 	 */
-	public Link getOutgoingLink(LinkType lt, CompactUUID destId);
+	public Link getOutgoingLink(LinkType lt, UUID destId);
 
 	/**
 	 * Returns destination of its outgoing links of specified type pointing to
@@ -358,7 +337,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return one of its outgoing links of specified type pointing to
 	 *         destination item.
 	 */
-	public Item getOutgoingItem(String linkTypeName, CompactUUID itemId, boolean resolvedOnly);
+	public Item getOutgoingItem(String linkTypeName, UUID itemId, boolean resolvedOnly);
 
 	/**
 	 * Gets the outgoing item.
@@ -522,7 +501,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return the link of <code>linkType</code> type coming from item with
 	 *         <code>srcId</code> Id and pointing to this item.
 	 */
-	public Link getIncomingLink(LinkType linkType, CompactUUID srcId);
+	public Link getIncomingLink(LinkType linkType, UUID srcId);
 
 	/**
 	 * Returns all source items of links of <code>linkType</code> type pointing
@@ -590,7 +569,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return true if specified link can be created.
 	 */
-	public boolean canCreateLink(LinkType linkType, CompactUUID destItemId);
+	public boolean canCreateLink(LinkType linkType, UUID destItemId);
 
 	/**
 	 * Deletes this item. This method deletes all <tt>incoming</tt> and
@@ -648,6 +627,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return if set <code>value</code> value for <code>attrName</code>
 	 *         attribute will not fail.
 	 */
+	@Deprecated
 	public boolean canSetAttribute(String attrName, Object value);
 
 	/**
@@ -680,12 +660,12 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 */
 	public void buildComposite() throws CadseException;
 
-	/**
-	 * Returns all items which have composition links pointing to this item.
-	 * 
-	 * @return all items which have composition links pointing to this item.
-	 */
-	public List<Item> getCompositeParent();
+//	/**
+//	 * Returns all items which have composition links pointing to this item.
+//	 * 
+//	 * @return all items which have composition links pointing to this item.
+//	 */
+//	public List<Item> getCompositeParent();
 
 	/**
 	 * Returns true if this item is an orphan. In this case, the logical
@@ -803,7 +783,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * @return destination item with <code>destItemId</code> Id of the part link
 	 *         coming from this item.
 	 */
-	public Item getPartChild(CompactUUID destItemId);
+	public Item getPartChild(UUID destItemId);
 
 	/**
 	 * Returns an unmodifiable list of all destination items of part links
@@ -931,48 +911,6 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public boolean isReadOnly();
 
 	/**
-	 * Returns all derived links. A derived link is a link which is not created
-	 * by user but by CADSE runtime.
-	 * 
-	 * @return all derived links.
-	 */
-	@Deprecated
-	public Set<DerivedLink> getDerivedLinks();
-
-	/**
-	 * Return the derived link description of this item.
-	 * 
-	 * @param source
-	 *            An description of this item.
-	 * 
-	 * @return A set of derived link description.
-	 */
-	@Deprecated
-	public Set<DerivedLinkDescription> getDerivedLinkDescriptions(ItemDescription source);
-
-	/**
-	 * Sets the derived links.
-	 * 
-	 * @param derivedLinks
-	 *            the new derived links
-	 * @Deprecated User workspace logique copy and ItemOperation
-	 */
-	@Deprecated
-	public void setDerivedLinks(Set<DerivedLinkDescription> derivedLinks);
-
-	/**
-	 * Sets the composants.
-	 * 
-	 * @param comp
-	 *            the new composants
-	 * 
-	 * @throws CadseException
-	 *             the melusine exception
-	 * @Deprecated User workspace logique copy and ItemOperation
-	 */
-	public void setComponents(Set<ItemDescriptionRef> comp) throws CadseException;
-
-	/**
 	 * Returns true if a way exists from this item to specified one by following
 	 * part and aggregation outgoing links.
 	 * 
@@ -998,47 +936,47 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 */
 	public CadseDomain getCadseDomain();
 
-	/**
-	 * Returns all destination items of outgoing composition links from this
-	 * item.
-	 * 
-	 * @return all destination items of outgoing composition links from this
-	 *         item.
-	 */
-	public Set<Item> getComponents();
-
-	/**
-	 * Returns all destination item ids of outgoing composition links from this
-	 * item.
-	 * 
-	 * @return all destination item ids of outgoing composition links from this
-	 *         item.
-	 */
-	public Set<CompactUUID> getComponentIds();
-
-	/**
-	 * Returns true if there is one destination item with same id of an outgoing
-	 * composition link from this item.
-	 * 
-	 * @param itemId
-	 *            a component item id
-	 * 
-	 * @return true if there is one destination item with same id of an outgoing
-	 *         composition link from this item.
-	 */
-	public boolean containsComponent(CompactUUID itemId);
-
-	/**
-	 * Returns destination item with same id of an outgoing composition link
-	 * from this item if it exists else returns null.
-	 * 
-	 * @param itemId
-	 *            a component item id
-	 * 
-	 * @return destination item with same id of an outgoing composition link
-	 *         from this item if it exists else returns null.
-	 */
-	public Item getComponentInfo(CompactUUID itemId);
+//	/**
+//	 * Returns all destination items of outgoing composition links from this
+//	 * item.
+//	 * 
+//	 * @return all destination items of outgoing composition links from this
+//	 *         item.
+//	 */
+//	public Set<Item> getComponents();
+//
+//	/**
+//	 * Returns all destination item ids of outgoing composition links from this
+//	 * item.
+//	 * 
+//	 * @return all destination item ids of outgoing composition links from this
+//	 *         item.
+//	 */
+//	public Set<UUID> getComponentIds();
+//
+//	/**
+//	 * Returns true if there is one destination item with same id of an outgoing
+//	 * composition link from this item.
+//	 * 
+//	 * @param itemId
+//	 *            a component item id
+//	 * 
+//	 * @return true if there is one destination item with same id of an outgoing
+//	 *         composition link from this item.
+//	 */
+//	public boolean containsComponent(UUID itemId);
+//
+//	/**
+//	 * Returns destination item with same id of an outgoing composition link
+//	 * from this item if it exists else returns null.
+//	 * 
+//	 * @param itemId
+//	 *            a component item id
+//	 * 
+//	 * @return destination item with same id of an outgoing composition link
+//	 *         from this item if it exists else returns null.
+//	 */
+//	public Item getComponentInfo(UUID itemId);
 
 	/**
 	 * Returns current logical workspace.
@@ -1134,7 +1072,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 * 
 	 * @return the key
 	 */
-	public ISpaceKey getKey();
+	public Key getKey();
 
 	/**
 	 * Adds a listener for modification, deletion about this item.
@@ -1205,7 +1143,7 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	 *            new item key.
 	 * @throws CadseException
 	 */
-	public void setKey(ISpaceKey newkey) throws CadseException;
+	public void setKey(Key newkey) throws CadseException;
 
 	/**
 	 * Returns order number of specified link. Outgoing links of a same type are
@@ -1279,5 +1217,22 @@ public interface Item extends IAttributable, INamedUUID, IItemAttributableType, 
 	public Pages getCreationPages(NewContext context) throws CadseException;
 	
 	public Pages getModificationPages(FilterContext context);
+
+	// PackageFacette
+	
+	int getIdInPackage();
+	
+	void setIdInPackage(int idInPackage);
+
+	public Exporter[] getExporter(String exporterType);
+
+	public boolean containsComponent(UUID itemIdentification);
+
+	Set<Item> getComponents();
+
+	Set<UUID> getComponentIds();
+
+	Item getComponentInfo(UUID id);
+
 
 }

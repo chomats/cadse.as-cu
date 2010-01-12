@@ -22,6 +22,9 @@
  */
 package fr.imag.adele.cadse.core;
 
+import java.util.UUID;
+
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.internal.InternalLink;
 
 /**
@@ -30,7 +33,7 @@ import fr.imag.adele.cadse.core.internal.InternalLink;
  * 
  * @author nguyent
  */
-public interface Link extends InternalLink {
+public interface Link extends InternalLink, INamedUUID, AdaptableObject {
 
 	/**
 	 * Returns the destination type (an Item type). It is inherited from its
@@ -38,7 +41,7 @@ public interface Link extends InternalLink {
 	 * 
 	 * @return the destination type.
 	 */
-	public ItemType getDestinationType();
+	public TypeDefinition getDestinationType();
 
 	/**
 	 * Returns the link type. Link Type is never null.
@@ -55,11 +58,26 @@ public interface Link extends InternalLink {
 	public Item getSource();
 
 	/**
+	 * 
+	 * @return true if getSourceCadseId() not equal to getDestinationCadseId()
+	 */
+	public boolean isInterCadseLink();
+
+	
+
+	/**
+	 * Returns source cadse id. It can be null.
+	 * 
+	 * @return source cadse id.
+	 */
+	public UUID getSourceCadseId();
+
+	/**
 	 * Returns source item id. It is never null.
 	 * 
 	 * @return source item id.
 	 */
-	public CompactUUID getSourceId();
+	public UUID getSourceId();
 
 	/**
 	 * Returns the resolved destination (an Item). Destination may not exist in
@@ -104,23 +122,23 @@ public interface Link extends InternalLink {
 	 * Returns destination short name.
 	 * 
 	 * @return destination short name.
-	 * @deprecated Use {@link #getDestinationName()} instead
-	 */
-	public String getDestinationShortName();
-
-	/**
-	 * Returns destination short name.
-	 * 
-	 * @return destination short name.
 	 */
 	public String getDestinationName();
+
+	/**
+	 * Returns destination cadse id. It can be null.
+	 * 
+	 * @return destination cadse id.
+	 */
+	public UUID getDestinationId();
 
 	/**
 	 * Returns destination item id. It is never null.
 	 * 
 	 * @return destination item id.
 	 */
-	public CompactUUID getDestinationId();
+	public UUID getDestinationCadseId();
+
 
 	/**
 	 * Set read only flag. A read only link cannot be modified (delete and set
@@ -184,17 +202,6 @@ public interface Link extends InternalLink {
 	@Deprecated
 	public boolean isAggregation();
 
-//	/**
-//	 * Returns true if it is a part link. This flag is inherited from its link
-//	 * type. If a source of a part link is deleted, then link destination is
-//	 * also deleted.
-//	 * 
-//	 * @return true if it is a part link.
-//	* @deprecated use getLinkType().isPart()
-//	 */
-//	@Deprecated
-//	public boolean isLinkPart();
-
 	/**
 	 * Returns true if it is a composition link. This flag is inherited from its
 	 * link type. Composition annotations are used to transfer data from
@@ -242,14 +249,6 @@ public interface Link extends InternalLink {
 	public boolean isStatic();
 
 	/**
-	 * Restore this link from the cache.
-	 * 
-	 * @throws CadseException
-	 */
-	@Deprecated
-	public void restore() throws CadseException;
-
-	/**
 	 * Returns order index of this link from its source. Considered links are
 	 * only ones with same link type.
 	 * 
@@ -262,6 +261,7 @@ public interface Link extends InternalLink {
 	 * 
 	 * @return destination version.
 	 */
+	@Deprecated
 	public int getVersion();
 
 	/**
@@ -271,6 +271,7 @@ public interface Link extends InternalLink {
 	 * @param version
 	 *            destination version.
 	 */
+	@Deprecated
 	public void setVersion(int version);
 
 	/**
@@ -300,5 +301,7 @@ public interface Link extends InternalLink {
 	 *            destination versions considered compatible with source item
 	 */
 	public void addCompatibleVersions(int... versions);
+
+	public <T> T getLinkAttributeOwner(IAttributeType<T> attDef);
 
 }

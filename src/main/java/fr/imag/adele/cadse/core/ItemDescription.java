@@ -25,12 +25,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.util.Convert;
+import java.util.UUID;
 
 /**
  * Represents an item. From this description, this item can be loaded (restored)
@@ -57,13 +57,7 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 	final List<LinkDescription>						links;
 
 	/** The attributes. */
-	private final Map<String, Object>				attributes;
-
-	/** The derived. */
-	private final HashSet<DerivedLinkDescription>	derived;
-
-	/** The composants. */
-	private final HashSet<ItemDescriptionRef>		composants;
+	private final Map<IAttributeType<?>, Object>	attributes;
 
 	/** The is valid. */
 	private boolean									isValid				= true;					// by
@@ -92,11 +86,9 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 	 * @param shortname
 	 *            the shortname
 	 */
-	public ItemDescription(CompactUUID id, CompactUUID type, String uniquename, String shortname) {
+	public ItemDescription(UUID id, ItemType type, String uniquename, String shortname) {
 		super(id, type, uniquename, shortname);
-		attributes = new HashMap<String, Object>();
-		derived = new HashSet<DerivedLinkDescription>();
-		composants = new HashSet<ItemDescriptionRef>();
+		attributes = new HashMap<IAttributeType<?>, Object>();
 		links = new ArrayList<LinkDescription>();
 	}
 
@@ -108,11 +100,9 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 	 * @param type
 	 *            the type
 	 */
-	public ItemDescription(CompactUUID id, CompactUUID type) {
+	public ItemDescription(UUID id, ItemType type) {
 		super(id, type);
-		attributes = new HashMap<String, Object>();
-		derived = new HashSet<DerivedLinkDescription>();
-		composants = new HashSet<ItemDescriptionRef>();
+		attributes = new HashMap<IAttributeType<?>, Object>();
 		links = new ArrayList<LinkDescription>();
 	}
 
@@ -124,11 +114,11 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 	 */
 	public ItemDescription(Item item) {
 		super(item);
-		attributes = new HashMap<String, Object>();
+		attributes = new HashMap<IAttributeType<?>, Object>();
 		links = new ArrayList<LinkDescription>();
-		String[] keys = item.getAttributeKeys();
+		IAttributeType<?>[] keys = item.getLocalAllAttributeTypes();
 		for (int i = 0; i < keys.length; i++) {
-			String k = keys[i];
+			IAttributeType<?> k = keys[i];
 
 			Object value = item.getAttribute(k);
 			if (value == null) {
@@ -136,14 +126,6 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 			}
 			value = clone(value);
 			attributes.put(k, value);
-		}
-		derived = new HashSet<DerivedLinkDescription>(item.getDerivedLinkDescriptions(this));
-		composants = new HashSet<ItemDescriptionRef>();
-		Set<Item> itemcomposants = item.getComponents();
-		if (itemcomposants != null) {
-			for (Item citem : itemcomposants) {
-				composants.add(new ItemDescriptionRef(citem));
-			}
 		}
 
 		for (Link l : item.getOutgoingLinks()) {
@@ -162,11 +144,11 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 	 * @param item
 	 *            the item
 	 */
-	public ItemDescription(CompactUUID newid, ItemDescription item) {
+	public ItemDescription(UUID newid, ItemDescription item) {
 		super(newid, item);
-		attributes = new HashMap<String, Object>();
+		attributes = new HashMap<IAttributeType<?>, Object>();
 		links = new ArrayList<LinkDescription>();
-		for (Map.Entry<String, Object> e : item.attributes.entrySet()) {
+		for (Map.Entry<IAttributeType<?>, Object> e : item.attributes.entrySet()) {
 			Object value = e.getValue();
 			if (value == null) {
 				continue;
@@ -174,12 +156,6 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 			value = clone(value);
 			attributes.put(e.getKey(), value);
 		}
-		derived = new HashSet<DerivedLinkDescription>();
-		for (DerivedLinkDescription desc : item.derived) {
-			derived.add(new DerivedLinkDescription(this, desc));
-			;
-		}
-		composants = new HashSet<ItemDescriptionRef>(item.composants);
 
 		for (LinkDescription ld : item.getLinks()) {
 			if (ld instanceof DerivedLinkDescription) {
@@ -235,26 +211,8 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 	 * 
 	 * @return the attributes
 	 */
-	public Map<String, Object> getAttributes() {
+	public Map<IAttributeType<?>, Object> getAttributes() {
 		return attributes;
-	}
-
-	/**
-	 * Gets the composants.
-	 * 
-	 * @return the composants
-	 */
-	public Set<ItemDescriptionRef> getComponents() {
-		return composants;
-	}
-
-	/**
-	 * Gets the derived.
-	 * 
-	 * @return the derived
-	 */
-	public Set<DerivedLinkDescription> getDerived() {
-		return derived;
 	}
 
 	/**
@@ -265,28 +223,8 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 	 * @param value
 	 *            the value
 	 */
-	public void addAttribute(String key, Object value) {
+	public void addAttribute(IAttributeType<?> key, Object value) {
 		attributes.put(key, value);
-	}
-
-	/**
-	 * Adds the derived link.
-	 * 
-	 * @param l
-	 *            the l
-	 */
-	public void addDerivedLink(DerivedLinkDescription l) {
-		derived.add(l);
-	}
-
-	/**
-	 * Adds the componants link.
-	 * 
-	 * @param ref
-	 *            the ref
-	 */
-	public void addComponantsLink(ItemDescriptionRef ref) {
-		composants.add(ref);
 	}
 
 	/**
@@ -376,7 +314,7 @@ public class ItemDescription extends ItemDescriptionRef implements Serializable 
 		}
 		if (attributes != null && attributes.size() > 0) {
 			sb.append("attributes:\n");
-			for (String k : attributes.keySet()) {
+			for (IAttributeType<?> k : attributes.keySet()) {
 				sb.append(" - ").append(k).append("=").append(attributes.get(k));
 				sb.append("\n");
 			}

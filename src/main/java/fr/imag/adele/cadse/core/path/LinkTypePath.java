@@ -23,26 +23,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
-
+import fr.imag.adele.cadse.core.TypeDefinition;
 
 /**
  * The Class LinkTypePath.
+ * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public class LinkTypePath extends ElementPath {
-	
+
 	/** The destination. */
-	public final ItemType fDestination;
-	
+	public final TypeDefinition	fDestination;
+
 	/** The link type. */
-	public final LinkType fLinkType;
-	
+	public final LinkType		fLinkType;
+
 	/** The closure. */
-	public final boolean  fClosure;
-	
+	public final boolean		fClosure;
+
 	/**
 	 * Instantiates a new link type path.
 	 * 
@@ -57,14 +57,16 @@ public class LinkTypePath extends ElementPath {
 		fClosure = closure;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getItemType()
 	 */
 	@Override
-	public ItemType getItemType() {
+	public TypeDefinition getItemType() {
 		return fDestination;
 	}
-	
+
 	/**
 	 * Checks if is closure.
 	 * 
@@ -74,15 +76,19 @@ public class LinkTypePath extends ElementPath {
 		return fClosure;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getText()
 	 */
 	@Override
 	public String getText() {
-		return "."+fLinkType.getName()+(fClosure?"*":"");
+		return "." + fLinkType.getName() + (fClosure ? "*" : "");
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#evaluate(java.util.Set)
 	 */
 	@Override
@@ -91,7 +97,7 @@ public class LinkTypePath extends ElementPath {
 		if (fClosure) {
 			ret.addAll(sources);
 			Set<Item> secondpass = sources;
-			while (secondpass.size()>0) {
+			while (secondpass.size() > 0) {
 				Set<Item> newsecondpass = new HashSet<Item>();
 				for (Item source : secondpass) {
 					for (Link l : source.getOutgoingLinks()) {
@@ -116,7 +122,7 @@ public class LinkTypePath extends ElementPath {
 				}
 			}
 		}
-		
+
 		return ret;
 	}
 }

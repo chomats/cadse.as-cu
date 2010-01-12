@@ -23,7 +23,7 @@
 package fr.imag.adele.cadse.core.build;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
 
@@ -58,7 +58,7 @@ public interface IExportedContent {
 	 * 
 	 * @return the item identification
 	 */
-	public CompactUUID getItemIdentification();
+	public UUID getItemIdentification();
 
 	/**
 	 * Gets the item.

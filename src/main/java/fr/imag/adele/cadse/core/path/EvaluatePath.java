@@ -26,34 +26,36 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import fr.imag.adele.cadse.core.LogicalWorkspace;
+
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
-
+import fr.imag.adele.cadse.core.LogicalWorkspace;
+import fr.imag.adele.cadse.core.TypeDefinition;
 
 /**
  * The Class EvaluatePath.
+ * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public class EvaluatePath extends AbstractParsePath {
-	
+
 	/** The source. */
-	private final Item source;
-	
+	private final Item			source;
+
 	/** The dest. */
-	private ItemType dest;
-	
+	private TypeDefinition		dest;
+
 	/** The result. */
-	private Set<Item> result;
-	
+	private Set<Item>			result;
+
 	/** The model type. */
-	private LogicalWorkspace modelType;
-	
+	private LogicalWorkspace	modelType;
+
 	/** The find type. */
-	private ItemType findType;
-	
+	private TypeDefinition		findType;
+
 	/**
 	 * Instantiates a new evaluate path.
 	 * 
@@ -70,9 +72,9 @@ public class EvaluatePath extends AbstractParsePath {
 		this.source = source;
 		this.modelType = source.getLogicalWorkspace();
 		this.error = null;
-		parse(path,false);
+		parse(path, false);
 	}
-	
+
 	/**
 	 * Gets the source.
 	 * 
@@ -81,16 +83,16 @@ public class EvaluatePath extends AbstractParsePath {
 	public Item getSource() {
 		return source;
 	}
-	
+
 	/**
 	 * Gets the destination.
 	 * 
 	 * @return the destination
 	 */
-	public ItemType getDestination() {
+	public TypeDefinition getDestination() {
 		return dest;
 	}
-	
+
 	/**
 	 * Gets the result.
 	 * 
@@ -100,54 +102,66 @@ public class EvaluatePath extends AbstractParsePath {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.AbstractParsePath#beginParse()
 	 */
 	@Override
 	protected void beginParse() {
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.AbstractParsePath#endParse(boolean)
 	 */
 	@Override
 	protected void endParse(boolean partiel) {
 	}
 
-	/* (non-Javadoc)
-	 * @see fede.workspace.domain.path.AbstractParsePath#parseIncomingLink(java.lang.String, boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fede.workspace.domain.path.AbstractParsePath#parseIncomingLink(java.lang
+	 * .String, boolean)
 	 */
 	@Override
 	protected void parseIncomingLink(String s, boolean closure) {
 		LinkType fLinkType = findType.getIncomingLinkType(s);
 		if (fLinkType == null) {
-			error = "Cannot find link type "+s;
+			error = "Cannot find link type " + s;
 			return;
 		}
-		result = getIncomingItems(result,fLinkType);
+		result = getIncomingItems(result, fLinkType);
 		if (result.size() == 0) {
 			error = "Empty set";
 		}
 		findType = fLinkType.getSource();
 	}
 
-	/* (non-Javadoc)
-	 * @see fede.workspace.domain.path.AbstractParsePath#parseOutgoingLink(java.lang.String, boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fede.workspace.domain.path.AbstractParsePath#parseOutgoingLink(java.lang
+	 * .String, boolean)
 	 */
 	@Override
 	protected void parseOutgoingLink(String s, boolean closure) {
-		
-		LinkType fLinkType =  findType.getOutgoingLinkType(s);
+
+		LinkType fLinkType = findType.getOutgoingLinkType(s);
 		if (fLinkType == null) {
-			error = "Cannot find link type "+s;
+			error = "Cannot find link type " + s;
 			return;
 		}
-		
+
 		HashSet<Item> ret = new HashSet<Item>();
 		if (closure) {
 			ret.addAll(result);
 			Set<Item> secondpass = result;
-			while (secondpass.size()>0) {
+			while (secondpass.size() > 0) {
 				Set<Item> newsecondpass = new HashSet<Item>();
 				for (Item source : secondpass) {
 					for (Link l : source.getOutgoingLinks()) {
@@ -179,60 +193,66 @@ public class EvaluatePath extends AbstractParsePath {
 		findType = fLinkType.getDestination();
 	}
 
-	/* (non-Javadoc)
-	 * @see fede.workspace.domain.path.AbstractParsePath#parseParent(java.lang.String, boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fede.workspace.domain.path.AbstractParsePath#parseParent(java.lang.String
+	 * , boolean)
 	 */
 	@Override
 	protected void parseParent(String s, boolean closure) {
 		ItemType fParentType = modelType.getItemTypeByName(s);
 		if (fParentType == null) {
-			error = "Cannot find type "+s;
-			return ;
+			error = "Cannot find type " + s;
+			return;
 		}
 		findType = fParentType;
 		if (closure) {
 			if (result.size() == 1) {
 				Item parent = result.iterator().next().getPartParentByName(fParentType.getName());
-				if (parent!=null) {
+				if (parent != null) {
 					result = Collections.singleton(parent);
 					return;
 				}
-				error ="Empty set";
+				error = "Empty set";
 				return;
 			}
 			HashSet<Item> ret = new HashSet<Item>();
 			for (Item source : result) {
-				Item parent = source.getPartParent(findType);
-				if (parent!=null)
+				Item parent = source.getPartParent((ItemType) findType);
+				if (parent != null)
 					ret.add(parent);
 			}
 			result = ret;
-			
+
 		} else {
 			if (result.size() == 1) {
 				Item parent = result.iterator().next().getPartParent();
-				if (parent!=null && parent.getType() == fParentType) {
+				if (parent != null && parent.getType() == fParentType) {
 					result = Collections.singleton(parent);
 					return;
 				}
-				error ="Empty set";
+				error = "Empty set";
 				return;
 			}
 			HashSet<Item> ret = new HashSet<Item>();
 			for (Item source : result) {
 				Item parent = source.getPartParent();
-				if (parent!=null && parent.getType() == fParentType)
+				if (parent != null && parent.getType() == fParentType)
 					ret.add(parent);
 			}
 			result = ret;
 		}
-		
+
 		if (result.size() == 0) {
 			error = "Empty set";
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.AbstractParsePath#parseSelf()
 	 */
 	@Override
@@ -240,19 +260,23 @@ public class EvaluatePath extends AbstractParsePath {
 		result = Collections.singleton(source);
 	}
 
-	/* (non-Javadoc)
-	 * @see fede.workspace.domain.path.AbstractParsePath#parseType(java.lang.String, boolean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fede.workspace.domain.path.AbstractParsePath#parseType(java.lang.String,
+	 * boolean)
 	 */
 	@Override
 	protected void parseType(String s, boolean closure) {
 		findType = modelType.getItemTypeByName(s);
 		if (findType == null) {
-			error = "Cannot find type "+s;
-			return ;
+			error = "Cannot find type " + s;
+			return;
 		}
 		HashSet<Item> ret = new HashSet<Item>();
 		if (closure) {
-			evaluateSubType(findType,ret);
+			evaluateSubType((ItemType) findType, ret);
 		} else
 			ret.addAll(findType.getItems());
 		result = ret;
@@ -276,7 +300,7 @@ public class EvaluatePath extends AbstractParsePath {
 			evaluateSubType(subit2,ret);
 		}
 	}
-	
+
 	/**
 	 * Gets the incoming items.
 	 * 
@@ -287,8 +311,8 @@ public class EvaluatePath extends AbstractParsePath {
 	 * 
 	 * @return the incoming items
 	 */
-	private static HashSet<Item> getIncomingItems(Set<Item> sources, LinkType fLinkType ) {
-		//source est de type fLinkType.getDestination()
+	private static HashSet<Item> getIncomingItems(Set<Item> sources, LinkType fLinkType) {
+		// source est de type fLinkType.getDestination()
 		HashSet<Item> ret = new HashSet<Item>();
 		for (Item source : sources) {
 			for (Link l : source.getIncomingLinks()) {
@@ -299,7 +323,7 @@ public class EvaluatePath extends AbstractParsePath {
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * Incoming closure.
 	 * 
@@ -315,8 +339,9 @@ public class EvaluatePath extends AbstractParsePath {
 		List<Item> stack = new ArrayList<Item>();
 		stack.addAll(sources);
 		while (stack.size() != 0) {
-			Item theItem = stack.remove(stack.size()-1);
-			if (closure.contains(theItem)) continue;
+			Item theItem = stack.remove(stack.size() - 1);
+			if (closure.contains(theItem))
+				continue;
 			closure.add(theItem);
 			for (Link l : theItem.getIncomingLinks()) {
 				if (!l.getLinkType().getName().equals(linkId))

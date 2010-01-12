@@ -19,25 +19,24 @@
 
 package fr.imag.adele.cadse.core.path;
 
-
 import java.util.Set;
 
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 
-
 /**
  * The Class SelfPath.
+ * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public class SelfPath extends ElementPath {
-	
+
 	/** The Constant BEGIN_PATH. */
-	public static final String BEGIN_PATH = "self";
-	
+	public static final String	BEGIN_PATH	= "self";
+
 	/** The source. */
-	public final ItemType fSource;
-	
+	public final ItemType		fSource;
+
 	/**
 	 * Instantiates a new self path.
 	 * 
@@ -48,28 +47,34 @@ public class SelfPath extends ElementPath {
 		fSource = source;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getItemType()
 	 */
 	@Override
 	public ItemType getItemType() {
 		return fSource;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getText()
 	 */
 	@Override
 	public String getText() {
 		return BEGIN_PATH;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#evaluate(java.util.Set)
 	 */
 	@Override
 	Set<Item> evaluate(Set<Item> sources) {
 		return sources;
 	}
-	
+
 }

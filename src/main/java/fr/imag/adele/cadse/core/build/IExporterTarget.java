@@ -26,13 +26,11 @@ import java.util.List;
 
 import fr.imag.adele.cadse.core.CadseException;
 
-
-
 /**
  * The Interface IExporterTarget.
  */
 public interface IExporterTarget {
-	
+
 	/**
 	 * Gets the repository components.
 	 * 

@@ -18,46 +18,46 @@
  */
 package fr.imag.adele.cadse.core.oper;
 
-
 import fr.imag.adele.cadse.core.ItemDescription;
 import fr.imag.adele.cadse.core.oper.annotation.OperParameter;
 import fr.imag.adele.cadse.core.oper.annotation.OperTest;
 import fr.imag.adele.cadse.core.oper.annotation.ParameterKind;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 
-@OperTest(testMustBeStopped=true, name="WSCreateItem")
+@OperTest(testMustBeStopped = true, name = "WSCreateItem")
 public class WSOCommitItem extends WSOperation {
-	private LogicalWorkspaceTransaction copy;
-	
-	@OperParameter(constructorPosition=0, type = ParameterKind.item_desc)
-	private ItemDescription desc;
-	
+	private LogicalWorkspaceTransaction	copy;
+
+	@OperParameter(constructorPosition = 0, type = ParameterKind.item_desc)
+	private ItemDescription				desc;
+
 	public WSOCommitItem(LogicalWorkspaceTransaction copy) {
 		this.copy = copy;
-	//	copy.getite
-	//	this.desc = new ItemDescription(anItem);
+		// copy.getite
+		// this.desc = new ItemDescription(anItem);
 	}
-	
+
 	@Override
 	protected void excecuteImpl() throws Throwable {
 		copy.commit();
 	}
-	
+
 	public ItemDescription getItem() {
 		return desc;
 	}
-	
+
 	public ItemDescription getDesc() {
 		return desc;
 	}
-	
+
 	public Class<?> getType() {
 		return WSOCommitItem.class;
 	}
-	
+
 	@Override
 	public String getDiplayComment() {
 		return "an modification of wokspace";
-		//return "create item "+anItem.getShortName()+" of "+anItem.getType().getShortName();
+		// return
+		// "create item "+anItem.getShortName()+" of "+anItem.getType().getShortName();
 	}
 }

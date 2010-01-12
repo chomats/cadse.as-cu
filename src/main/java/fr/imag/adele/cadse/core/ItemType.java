@@ -16,24 +16,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-/*
- * Adele/LIG/ Grenoble University, France
- * 2006-2008
- */
+
 package fr.imag.adele.cadse.core;
 
 import java.net.URL;
 import java.util.List;
+import java.util.UUID;
 
+import fr.imag.adele.cadse.core.attribute.BooleanAttributeType;
 import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.internal.ItemTypeInternal;
-import fr.imag.adele.cadse.core.key.SpaceKeyType;
+import fr.imag.adele.cadse.core.key.FacetteItemTypeKey;
+import fr.imag.adele.cadse.core.key.KeyDefinition;
+import fr.imag.adele.cadse.core.transaction.FacetteItemTypeTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
+import fr.imag.adele.cadse.core.ui.FacetteItemTypeAction;
 import fr.imag.adele.cadse.core.ui.IActionContributor;
 import fr.imag.adele.cadse.core.ui.IActionPage;
 import fr.imag.adele.cadse.core.ui.IPage;
-import fr.imag.adele.cadse.core.ui.IPageFactory;
-import fr.imag.adele.cadse.core.ui.Pages;
 import fr.imag.adele.cadse.core.ui.UIField;
 import fr.imag.adele.cadse.core.ui.UIValidator;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
@@ -49,9 +50,10 @@ import fr.imag.adele.cadse.core.ui.view.NewContext;
  * @version 6
  * @date 26/09/05
  */
-
-public interface ItemType extends Item, IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster,
-		ItemTypeInternal, GroupType {
+public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinition, FacetteItemTypeAction,
+		FacetteItemTypeCanCreate, FacetteItemTypeFactory, FacetteItemTypeKey,
+		FacetteItemTypeTransaction, 
+		IAttributable, IAttributableType, LogicalWorkspaceTransactionBroadcaster {
 
 	/** The Constant PART. */
 	public static final int	PART			= 0x0002;
@@ -109,6 +111,8 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public boolean isSuperTypeOf(ItemType it);
 
+	public ExtendedType[] getExtendedType();
+
 	/**
 	 * Returns the item manager.
 	 * 
@@ -123,154 +127,10 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public String getCadseName();
 
-	/**
-	 * Create a link type. <br/>
-	 * <br/>
-	 * 
-	 * Pr�conditions: <br/>
-	 * - 1. <tt>name</tt> cannot be null.<br/>
-	 * - 2. <tt>name</tt> cannot be empty. - 3. <tt>destination</tt> cannot be
-	 * null.<br/>
-	 * - 4. <tt>name</tt> muqt be unique.<br/>
-	 * - 5. <tt>destination</tt> cannot be type workspace.<br/>
-	 * - 6. <tt>min</tt> must greater or equal 0; <tt>max</tt> either equal -1
-	 * (means the instance's number of this link type is undefined), or either
-	 * greater than <tt>min</tt>.
-	 * 
-	 * @param id
-	 *            runtime id define in cadseg
-	 * @param intID
-	 *            the int id
-	 * @param name
-	 *            the name
-	 * @param kind
-	 *            : kind of link type, can be a Aggregation, or a Contaiment, or
-	 *            Other.
-	 * @param min
-	 *            : the minimum instances of this link type that we want create.
-	 * @param max
-	 *            : the maximum instances of this link type that we want create.
-	 * @param selection
-	 *            the selection
-	 * @param inverse
-	 *            the inverse
-	 * 
-	 * @return the link type
-	 * @throws CadseException
-	 * 
-	 * @OCL: pre: name <> null pre: id <> '' pre: destination <> null pre:
-	 *       self.to->forAll(rt | rt.name <> id) -- id must be unique. pre: not
-	 *       destination.oclIsTypeOf(WorkspaceType) -- destination cannot be a
-	 *       Workspace Type. pre: ((max>=min)||(max==-1))&&(min>=0)) <br/>
-	 * @exception IllegalArgumentException
-	 *                : Invalid assignment, <tt>name</tt> can not be null.<br/>
-	 *                IllegalArgumentException: Invalid assignment,
-	 *                <tt>name</tt> can not be empty.<br/>
-	 *                IllegalArgumentException: Invalid assignment, item type
-	 *                <tt>$name</tt> can not be null.<br/>
-	 *                IllegalArgumentException: Invalid assignment, this link
-	 *                type <tt>destination</tt> already exist.<br/>
-	 *                IllegalArgumentException: Invalid assignment, you can not
-	 *                create a link type whose destination is an object of
-	 *                WorkspaceType.<br/>
-	 *                IllegalArgumentException: Invalid assignment, verify the
-	 *                values min and max.<br/>
-	 * <br/>
-	 */
-	public abstract LinkType createLinkType(CompactUUID id, int intID, String name, int kind, int min, int max,
-			String selection, LinkType inverse) throws CadseException;
+	
 
-	/**
-	 * Creates the link type.
-	 * 
-	 * @param id
-	 *            runtime id define in cadseg
-	 * @param intID
-	 *            the int id (not used) gave 0
-	 * @param name
-	 *            the name
-	 * @param kind
-	 *            the kind
-	 * @param min
-	 *            the min
-	 * @param max
-	 *            the max
-	 * @param selection
-	 *            the selection
-	 * @param destination
-	 *            the destination
-	 * 
-	 * @return the link type
-	 * @throws CadseException
-	 */
-	public abstract LinkType createLinkType(CompactUUID id, int intID, String name, int kind, int min, int max,
-			String selection, ItemType destination) throws CadseException;
-
-	/**
-	 * Get an outgoing link type by id.
-	 * 
-	 * @param name
-	 *            the name
-	 * 
-	 * @return a link type if found; null if not found.
-	 */
-	public abstract LinkType getOutgoingLinkType(String name);
-
-	/**
-	 * Gets the outgoing link type.
-	 * 
-	 * @param destination
-	 *            the destination
-	 * @param name
-	 *            the name
-	 * 
-	 * @return the outgoing link type
-	 */
-	public abstract LinkType getOutgoingLinkType(ItemType destination, String name);
-
-	/**
-	 * Gets the outgoing link type.
-	 * 
-	 * @param destination
-	 *            the destination
-	 * @param kind
-	 *            the kind
-	 * 
-	 * @return the outgoing link type
-	 */
-	public abstract LinkType getOutgoingLinkType(ItemType destination, int kind);
-
-	/**
-	 * Get an incoming link type by id.
-	 * 
-	 * @param name
-	 *            the name
-	 * 
-	 * @return a link type if found; null if not found.
-	 */
-	public abstract LinkType getIncomingLinkType(String name);
-
-	/**
-	 * Get all hierarchical outgoing link types.
-	 * 
-	 * @return an unmodifiable list all hierarchical outgoing link types.
-	 */
-	public abstract List<LinkType> getOutgoingLinkTypes();
-
-	/**
-	 * Get all owned outgoing link types, not hierarchical.
-	 * 
-	 * @return an unmodifiable list all owned outgoing link types.
-	 */
-	public List<LinkType> getOwnerOutgoingLinkTypes();
-
-	/**
-	 * Get all incoming link types.
-	 * 
-	 * @return an unmodifiable list all incoming link types.
-	 */
-	public abstract List<LinkType> getIncomingLinkTypes();
-
+	
+	
 	/**
 	 * Return true si ce type a un contenu (file, folder, project, ...).
 	 * 
@@ -300,6 +160,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * 
 	 * @see fede.workspace.domain.Item#isComposite()
 	 */
+	@Override
 	public boolean isComposite();
 
 	/**
@@ -363,19 +224,6 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 */
 	public LinkType getIncomingPart(ItemType typeParent);
 
-	/**
-	 * Gets the items.
-	 * 
-	 * @return the items
-	 */
-	public abstract List<Item> getItems();
-
-	/**
-	 * Checks for incoming parts.
-	 * 
-	 * @return true, if successful
-	 */
-	public boolean hasIncomingParts();
 
 	/**
 	 * Gets the incoming one.
@@ -528,14 +376,14 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	 * @param spaceKeytype
 	 *            the new space key type
 	 */
-	public void setSpaceKeyType(SpaceKeyType spaceKeytype);
+	public void setKeyDefinition(KeyDefinition spaceKeytype);
 
 	/**
 	 * Gets the space key type.
 	 * 
 	 * @return the space key type
 	 */
-	public SpaceKeyType getSpaceKeyType();
+	public KeyDefinition getKeyDefinition();
 
 	public <T> T getApdapter(Item instance, Class<T> clazz);
 
@@ -580,6 +428,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 
 	public boolean isMemberType();
 
+	@Override
 	public boolean isGroupHead();
 
 	public boolean canCreateItem(NewContext newContext);
@@ -593,4 +442,7 @@ public interface ItemType extends Item, IAttributable, IAttributableType, Logica
 	public void addGroupOfAttributes( GroupOfAttributes g);
 	
 	public GroupOfAttributes[] getGroupOfAttributes();
+
+	public CPackage getPackage();
+
 }

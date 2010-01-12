@@ -22,6 +22,7 @@ package fr.imag.adele.cadse.core;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 
@@ -46,6 +47,18 @@ public interface IItemAttributableType {
 	 */
 	public IAttributeType<?> getLocalAttributeType(String attrName);
 
+	/**
+	 * Returns attribute definition of local attribute with specified name.
+	 * Attribute definitions defined by item type (and its super types) are called local.
+	 * If there is no local attribute with specified name, returns null.
+	 * 
+	 * @param attrName attribute name
+	 * 
+	 * @return attribute definition of local attribute with specified name.
+	 */
+	public IAttributeType<?> getLocalAttributeType(UUID attrName);
+
+	
 	/**
 	 * Adds all local attribute definitions to specified list.
 	 * Attribute definitions defined by item type (and its super types) are called local.

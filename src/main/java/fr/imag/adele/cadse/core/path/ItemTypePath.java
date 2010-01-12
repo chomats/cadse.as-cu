@@ -25,19 +25,19 @@ import java.util.Set;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 
-
 /**
  * The Class ItemTypePath.
+ * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public class ItemTypePath extends ElementPath {
-	
+
 	/** The source. */
-	public final ItemType fSource;
-	
+	public final ItemType	fSource;
+
 	/** The closure. */
-	public final boolean  fClosure;
-	
+	public final boolean	fClosure;
+
 	/**
 	 * Instantiates a new item type path.
 	 * 
@@ -51,14 +51,16 @@ public class ItemTypePath extends ElementPath {
 		fClosure = closure;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getItemType()
 	 */
 	@Override
 	public ItemType getItemType() {
 		return fSource;
 	}
-	
+
 	/**
 	 * Checks if is closure.
 	 * 
@@ -68,22 +70,26 @@ public class ItemTypePath extends ElementPath {
 		return fClosure;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#getText()
 	 */
 	@Override
 	public String getText() {
-		return fSource.getId()+(fClosure?"*":"");
+		return fSource.getId() + (fClosure ? "*" : "");
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fede.workspace.domain.path.ElementPath#evaluate(java.util.Set)
 	 */
 	@Override
 	Set<Item> evaluate(Set<Item> sources) {
 		HashSet<Item> ret = new HashSet<Item>();
 		if (fClosure) {
-			evaluate(fSource,ret);
+			evaluate(fSource, ret);
 		} else
 			ret.addAll(fSource.getItems());
 		return ret;

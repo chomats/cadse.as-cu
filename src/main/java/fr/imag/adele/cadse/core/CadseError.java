@@ -1,8 +1,6 @@
 package fr.imag.adele.cadse.core;
 
-import java.text.MessageFormat;
-
-import fr.imag.adele.cadse.core.util.NLS;
+import fr.imag.adele.cadse.util.NLS;
 
 /**
  * Represents an exception thrown by CADSE runtime.
@@ -12,15 +10,12 @@ import fr.imag.adele.cadse.core.util.NLS;
  */
 public class CadseError {
 
-	private String				_msg;
-	private Object[]			_args;
+	private String		_msg;
+	private Object[]	_args;
 
-	/* 
-	 * type : 
-	 * warning (can commit)
-	 * error (can commit)
-	 * fail (cannot commit)
-	 * */
+	/*
+	 * type : warning (can commit) error (can commit) fail (cannot commit)
+	 */
 
 	/**
 	 * Creates a CADSE error.
@@ -42,7 +37,7 @@ public class CadseError {
 	public String getMsg() {
 		return _msg;
 	}
-	
+
 	public String getMessage() {
 		return NLS.bind(_msg, _args);
 	}

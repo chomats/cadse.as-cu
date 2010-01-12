@@ -18,7 +18,7 @@
  */
 package fr.imag.adele.cadse.core;
 
-import fr.imag.adele.cadse.core.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 
 /**
  * All items are created thanks to an item factory. Each item type defines what

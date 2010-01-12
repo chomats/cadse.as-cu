@@ -1,3 +1,7 @@
+package fr.imag.adele.cadse.core.oper;
+
+import fr.imag.adele.cadse.core.CadseException;
+
 /* 
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,13 +20,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package fr.imag.adele.cadse.core.oper;
-
-import fr.imag.adele.cadse.core.CadseException;
 
 public abstract class WSOperation {
-	private Throwable ex;
-	
+	private Throwable	ex;
+
 	public final void execute() {
 		try {
 			excecuteImpl();
@@ -31,15 +32,13 @@ public abstract class WSOperation {
 		}
 	}
 
-	protected abstract void excecuteImpl() throws Throwable ;
-	
-	
+	protected abstract void excecuteImpl() throws Throwable;
+
 	public Throwable getEx() {
 		return ex;
 	}
-	
-	
-	protected boolean equals(Object v1, Object v2) {
+
+	static protected boolean equals(Object v1, Object v2) {
 		if (v1 == null && v2 == null)
 			return true;
 		if (v1 != null && v2 != null) {
@@ -49,12 +48,12 @@ public abstract class WSOperation {
 		}
 		return false;
 	}
-	
-	public abstract String getDiplayComment() ;
-	
-	
+
+	public abstract String getDiplayComment();
+
 	public void throwCadseException() throws CadseException {
-		if (ex == null) return;
+		if (ex == null)
+			return;
 		if (ex instanceof CadseException) {
 			throw (CadseException) ex;
 		}

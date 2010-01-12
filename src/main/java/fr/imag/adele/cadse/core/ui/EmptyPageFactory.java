@@ -19,7 +19,7 @@
 
 package fr.imag.adele.cadse.core.ui;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.IItemNode;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
@@ -37,7 +37,7 @@ public class EmptyPageFactory extends PageFactory {
 	 * @param id
 	 *            the id
 	 */
-	public EmptyPageFactory(CompactUUID id, String name) {
+	public EmptyPageFactory(UUID id, String name) {
 		super(id, name);
 	}
 
@@ -55,9 +55,9 @@ public class EmptyPageFactory extends PageFactory {
 	 * (non-Javadoc)
 	 * 
 	 * @see fede.workspace.domain.ui.PageFactory#createPage(int,
-	 *      fede.workspace.domain.Link, fede.workspace.domain.Item,
-	 *      fede.workspace.domain.IItemNode, fede.workspace.domain.ItemType,
-	 *      fede.workspace.domain.LinkType)
+	 * fede.workspace.domain.Link, fede.workspace.domain.Item,
+	 * fede.workspace.domain.IItemNode, fede.workspace.domain.ItemType,
+	 * fede.workspace.domain.LinkType)
 	 */
 	@Override
 	public IPage createPage(int cas, Link l, Item item, IItemNode node, ItemType type, LinkType lt) {

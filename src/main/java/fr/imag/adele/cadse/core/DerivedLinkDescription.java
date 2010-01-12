@@ -19,6 +19,8 @@
 
 package fr.imag.adele.cadse.core;
 
+import java.util.UUID;
+
 /**
  * The Class DerivedLinkDescription.
  * 
@@ -33,10 +35,10 @@ public class DerivedLinkDescription extends LinkDescription {
 	private String				originLinkTypeID;
 
 	/** The origin link destination type id. */
-	private CompactUUID			originLinkDestinationTypeID;
+	private UUID			originLinkDestinationTypeID;
 
 	/** The origin link source type id. */
-	private CompactUUID			originLinkSourceTypeID;
+	private UUID			originLinkSourceTypeID;
 
 	/**
 	 * Instantiates a new derived link description.
@@ -62,10 +64,10 @@ public class DerivedLinkDescription extends LinkDescription {
 	 * @param version
 	 *            the version
 	 */
-	public DerivedLinkDescription(ItemDescriptionRef source, String type, ItemDescriptionRef destination,
+	public DerivedLinkDescription(ItemDescriptionRef source, LinkType type, ItemDescriptionRef destination,
 			boolean _isAggregation, boolean _isRequire, String info, String originLinkTypeID,
-			CompactUUID originLinkSourceTypeID, CompactUUID originLinkDestinationTypeID, int version) {
-		super(source, gootName(type, originLinkSourceTypeID, originLinkTypeID), destination, _isAggregation, false,
+			UUID originLinkSourceTypeID, UUID originLinkDestinationTypeID, int version) {
+		super(source, type, destination, _isAggregation, false,
 				false, false, _isRequire, false, true, false, false, false, info, version);
 		this.originLinkTypeID = originLinkTypeID;
 		this.originLinkDestinationTypeID = originLinkDestinationTypeID;
@@ -87,33 +89,6 @@ public class DerivedLinkDescription extends LinkDescription {
 	}
 
 	/**
-	 * If the type is not null, return type.<br>
-	 * If originLinkTypeID starts with '#' return '#' + originLinkTypeID<br>
-	 * Otherwise return '#' + originLinkSourceTypeID2 + '_' + originLinkTypeID
-	 * 
-	 * @param type
-	 *            the name of the dirived link
-	 * @param originLinkSourceTypeID2
-	 *            the origin item type name
-	 * @param originLinkTypeID
-	 *            the origin link type name
-	 * 
-	 * @return the name of the dirived link
-	 * 
-	 * @see {fede.workspace.domain.internal.ItemImpl#getDerivedType(LinkType)}
-	 */
-	private static String gootName(String type, CompactUUID originLinkSourceTypeID2, String originLinkTypeID) {
-		if (type != null) {
-			return type;
-		}
-		String ln = originLinkTypeID;
-		if (originLinkTypeID.startsWith("#")) {
-			return "#" + ln;
-		}
-		return "#" + originLinkSourceTypeID2 + "_" + originLinkTypeID;
-	}
-
-	/**
 	 * Instantiates a new derived link description.
 	 * 
 	 * @param source
@@ -122,7 +97,7 @@ public class DerivedLinkDescription extends LinkDescription {
 	 *            the dl
 	 */
 	public DerivedLinkDescription(ItemDescription source, DerivedLink dl) {
-		this(source, dl.getLinkType().getName(), new ItemDescriptionRef(dl.getDestination()), dl.isAggregation(),
+		this(source, dl.getLinkType(), new ItemDescriptionRef(dl.getDestination()), dl.isAggregation(),
 				dl.isRequire(), null, dl.getDerivedType().getOriginLinkType().getName(), dl.getDerivedType()
 						.getOriginLinkType().getSource().getId(), dl.getDerivedType().getOriginLinkType()
 						.getDestination().getId(), dl.getVersion());
@@ -149,7 +124,7 @@ public class DerivedLinkDescription extends LinkDescription {
 	 * 
 	 * @return the origin link destination type id
 	 */
-	public CompactUUID getOriginLinkDestinationTypeID() {
+	public UUID getOriginLinkDestinationTypeID() {
 		return originLinkDestinationTypeID;
 	}
 
@@ -158,7 +133,7 @@ public class DerivedLinkDescription extends LinkDescription {
 	 * 
 	 * @return the origin link source type id
 	 */
-	public CompactUUID getOriginLinkSourceTypeID() {
+	public UUID getOriginLinkSourceTypeID() {
 		return originLinkSourceTypeID;
 	}
 

@@ -18,25 +18,28 @@
  */
 package fr.imag.adele.cadse.core;
 
-import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
+import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
 
 /**
  * A filter is used to ignore workspace events.
  * 
  * @author Thomas
- *
+ * 
  */
 public interface EventFilter {
 
 	/**
-	 * If returns false, the event is not performed by related listener
-	 * else return true. 
+	 * If returns false, the event is not performed by related listener else
+	 * return true.
 	 * 
 	 * @see fr.imag.adele.cadse.core.ChangeID
 	 * 
-	 * @param eventsMask a bit set representing performed operation kind union 
-	 * @param delta      delta which represents differences between two workspace states.
-	 * @return false if the event is not performed by related listener. 
+	 * @param eventsMask
+	 *            a bit set representing performed operation kind union
+	 * @param delta
+	 *            delta which represents differences between two workspace
+	 *            states.
+	 * @return false if the event is not performed by related listener.
 	 */
 	public boolean accept(int eventsMask, ImmutableWorkspaceDelta delta);
 }

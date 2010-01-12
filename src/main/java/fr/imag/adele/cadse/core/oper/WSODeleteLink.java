@@ -22,6 +22,7 @@ import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.oper.annotation.OperParameter;
 import fr.imag.adele.cadse.core.oper.annotation.OperTest;
 import fr.imag.adele.cadse.core.oper.annotation.ParameterKind;
+import fr.imag.adele.cadse.core.transaction.FacetteLWTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 
 @OperTest(testMustBeStopped = true)
@@ -35,7 +36,8 @@ public class WSODeleteLink extends WSOperation {
 
 	@Override
 	protected void excecuteImpl() throws Throwable {
-		LogicalWorkspaceTransaction t = link.getSource().getLogicalWorkspace().createTransaction();
+		LogicalWorkspaceTransaction t = link.getSource().getLogicalWorkspace()
+				.createTransaction();
 		t.getLink(link).delete();
 		t.commit();
 	}

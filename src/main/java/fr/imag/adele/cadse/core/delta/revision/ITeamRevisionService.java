@@ -21,30 +21,31 @@ package fr.imag.adele.cadse.core.delta.revision;
 import java.util.Collection;
 import java.util.List;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
-import fr.imag.adele.cadse.core.delta.ItemDelta;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
+import fr.imag.adele.cadse.util.IProgressMonitor;
 
 public interface ITeamRevisionService {
 
-	public void getDeltaFromItemId(WorkspaceLogiqueRevisionDelta delta, LogicalWorkspace wl, List<CompactUUID> ids,
+	public void getDeltaFromItemId(WorkspaceLogiqueRevisionDelta delta, LogicalWorkspace wl, List<UUID> ids,
 			LinkDescriptionFilter filter, boolean trace, IProgressMonitor monitor, boolean all, boolean noOptimization,
 			boolean useinforemote);
 
 	public ITeamItem[] getTeamItems(WorkspaceLogiqueRevisionDelta delta, boolean trace, IProgressMonitor monitor);
 
-	public CompactUUID[] getIds(IProgressMonitor monitor);
+	public UUID[] getIds(IProgressMonitor monitor);
 
-	public CompactUUID[] getHeadIds(IProgressMonitor monitor);
+	public UUID[] getHeadIds(IProgressMonitor monitor);
 
-	public CompactUUID[] getLocalIds(IProgressMonitor monitor);
+	public UUID[] getLocalIds(IProgressMonitor monitor);
 
-	public ItemDelta getBase(LogicalWorkspaceTransaction t, CompactUUID id, IProgressMonitor monitor);
+	public ItemDelta getBase(LogicalWorkspaceTransaction t, UUID id, IProgressMonitor monitor);
 
-	public ItemDelta getHead(LogicalWorkspaceTransaction t, CompactUUID id, IProgressMonitor monitor);
+	public ItemDelta getHead(LogicalWorkspaceTransaction t, UUID id, IProgressMonitor monitor);
 
-	public ItemDelta getLocal(LogicalWorkspaceTransaction t, CompactUUID id, IProgressMonitor monitor);
+	public ItemDelta getLocal(LogicalWorkspaceTransaction t, UUID id, IProgressMonitor monitor);
 
 	void teamRevert(List<ItemRevisionDelta> ids, IProgressMonitor monitor);
 
