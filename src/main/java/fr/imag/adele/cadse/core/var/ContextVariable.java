@@ -19,10 +19,6 @@
 
 package fr.imag.adele.cadse.core.var;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 
@@ -32,25 +28,7 @@ import fr.imag.adele.cadse.core.attribute.IAttributeType;
  * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
-public class ContextVariable {
-
-	/** The Constant DEFAULT. */
-	public static final ContextVariable	DEFAULT	= new ContextVariable() {
-													@Override
-													public void putValue(Item item, String key, String value) {
-														throw new IllegalArgumentException("It's a readonly context");
-													};
-												};
-
-	/** The values. */
-	protected Map<String, String>		_values	= new HashMap<String, String>();
-
-	public ContextVariable(boolean b) {
-		_generated = b;
-	}
-	
-	public ContextVariable() {
-	}
+public interface ContextVariable {
 
 	/**
 	 * Returns <code>att</code> attribute value of <code>item</code> item
@@ -65,49 +43,22 @@ public class ContextVariable {
 	 * @return <code>att</code> attribute value of <code>item</code> item
 	 *         defined in this context.
 	 */
-	public String getAttribute(Item item, IAttributeType<String> att) {
-		String ret = _values.get(item.getId().toString() + att.getName());
-		if (ret != null) {
-			return ret;
-		}
-		return item.getAttribute(att);
-	}
+	public String getAttribute(Item item, IAttributeType<String> att);
 
 	/**
-	 * Returns <code>attrName</code> attribute value of <code>item</code>
-	 * item defined in this context. If it is not defined in this context,
-	 * return <code>attrName</code> attribute value of <code>item</code>
-	 * item in corresponding logical workspace.
+	 * Returns <code>attrName</code> attribute value of <code>item</code> item
+	 * defined in this context. If it is not defined in this context, return
+	 * <code>attrName</code> attribute value of <code>item</code> item in
+	 * corresponding logical workspace.
 	 * 
 	 * @param item
 	 *            an item
 	 * @param attrName
 	 *            name of an item attribute
-	 * @return <code>attrName</code> attribute value of <code>item</code>
-	 *         item defined in this context.
+	 * @return <code>attrName</code> attribute value of <code>item</code> item
+	 *         defined in this context.
 	 */
-	public String getValue(Item item, String attrName) {
-		String ret = _values.get(item.getId().toString() + attrName);
-		if (ret != null) {
-			return ret;
-		}
-		return item.getAttribute(attrName);
-	}
-
-	/**
-	 * Defines <code>attrName</code> attribute value of <code>item</code>
-	 * item.
-	 * 
-	 * @param item
-	 *            an item
-	 * @param attrName
-	 *            name of an item attribute
-	 * @param value
-	 *            attribute value
-	 */
-	public void putValue(Item item, String attrName, String value) {
-		_values.put(item.getId() + attrName, value);
-	}
+	public String getValue(Item item, IAttributeType<String> key);
 
 	/**
 	 * Defines <code>attr</code> attribute value of <code>item</code> item.
@@ -119,61 +70,22 @@ public class ContextVariable {
 	 * @param value
 	 *            attribute value
 	 */
-	public void putValue(Item item, IAttributeType<String> attr, String value) {
-		_values.put(item.getId() + attr.getName(), value);
-	}
+	public void putValue(Item item, IAttributeType<String> attr, String value);
 
 	/**
-	 * Returns short name of <code>item</code> item defined in this context.
-	 * If it is not defined in this context, return short name of
-	 * <code>item</code> item in corresponding logical workspace.
-	 * 
-	 * @param item
-	 *            an item
-	 * @return short name of <code>item</code> item defined in this context.
-	 * @deprecated Use {@link #getName(Item)} instead
-	 */
-	@Deprecated
-	public String getShortName(Item item) {
-		return getName(item);
-	}
-
-	/**
-	 * Returns short name of <code>item</code> item defined in this context.
-	 * If it is not defined in this context, return short name of
-	 * <code>item</code> item in corresponding logical workspace.
+	 * Returns short name of <code>item</code> item defined in this context. If
+	 * it is not defined in this context, return short name of <code>item</code>
+	 * item in corresponding logical workspace.
 	 * 
 	 * @param item
 	 *            an item
 	 * @return short name of <code>item</code> item defined in this context.
 	 */
-	public String getName(Item item) {
-		String ret = _values.get(item.getId().toString() + CadseGCST.ITEM_at_NAME);
-		if (ret != null) {
-			return ret;
-		}
-		return item.getName();
-	}
+	public String getName(Item item);
 
 	/**
-	 * Returns unique name of <code>item</code> item defined in this context.
-	 * If it is not defined in this context, return unique name of
-	 * <code>item</code> item in corresponding logical workspace.
-	 * 
-	 * @param item
-	 *            an item
-	 * @return unique name of <code>item</code> item defined in this context.
-	 * @deprecated Use {@link #getQualifiedName(Item)} instead
-	 */
-
-	@Deprecated
-	public String getUniqueName(Item item) {
-		return getQualifiedName(item);
-	}
-
-	/**
-	 * Returns unique name of <code>item</code> item defined in this context.
-	 * If it is not defined in this context, return unique name of
+	 * Returns unique name of <code>item</code> item defined in this context. If
+	 * it is not defined in this context, return unique name of
 	 * <code>item</code> item in corresponding logical workspace.
 	 * 
 	 * @param item
@@ -181,22 +93,10 @@ public class ContextVariable {
 	 * @return unique name of <code>item</code> item defined in this context.
 	 */
 
-	public String getQualifiedName(Item item) {
-		String ret = _values.get(item.getId().toString() + CadseGCST.ITEM_at_NAME);
-		if (ret != null) {
-			return ret;
-		}
-		return item.getQualifiedName();
-	}
-	
-	boolean _generated = true;
-	
-	public boolean isGenerated() {
-		return _generated;
-	}
-	
-	public void setGenerated(boolean generated) {
-		_generated = generated;
-	}
+	public String getQualifiedName(Item item);
+
+	public boolean isGenerated();
+
+	public void setGenerated(boolean generated);
 
 }

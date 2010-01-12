@@ -22,13 +22,16 @@ public interface ILoadDependenciesManager {
 
 	/**
 	 * 
-	 * Avant d'essayer de creer un contenu ou de recharcher le contenu
-	 * Cette metthod est appeler pour charget les classes qui pourrai bloquer la creation du contenu.
-	 * C'est le cas actuellment d'aspectj. Il se passe que pour lors du chargement d'une class du bundl aspectje (ui) le bundle est demarrer.
-	 * Un autre thread essayer egalement de charger une classe aspectj() et nous avons un interblocage.
-	 * l'action de charger tout les contenus est preceder de l'appel de cet method. (en dehors d'un begin /end operation pour ne pas avoir d'interblocage
+	 * Avant d'essayer de creer un contenu ou de recharcher le contenu Cette
+	 * metthod est appeler pour charget les classes qui pourrai bloquer la
+	 * creation du contenu. C'est le cas actuellment d'aspectj. Il se passe que
+	 * pour lors du chargement d'une class du bundl aspectje (ui) le bundle est
+	 * demarrer. Un autre thread essayer egalement de charger une classe
+	 * aspectj() et nous avons un interblocage. l'action de charger tout les
+	 * contenus est preceder de l'appel de cet method. (en dehors d'un begin
+	 * /end operation pour ne pas avoir d'interblocage
 	 * 
 	 */
-	
-	public void loadDependencies() ;
+
+	public void loadDependencies();
 }

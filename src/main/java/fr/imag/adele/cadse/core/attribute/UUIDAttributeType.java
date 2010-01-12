@@ -1,7 +1,7 @@
 package fr.imag.adele.cadse.core.attribute;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 
-public interface UUIDAttributeType extends IAttributeType<CompactUUID> {
+public interface UUIDAttributeType extends IAttributeType<UUID> {
 
 }

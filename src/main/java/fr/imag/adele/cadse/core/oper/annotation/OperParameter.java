@@ -25,34 +25,34 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-@Retention(RUNTIME) 
-@Target({FIELD, METHOD})
+@Retention(RUNTIME)
+@Target( { FIELD, METHOD })
 public @interface OperParameter {
-	public static final String DEFAULT_VALUE = "##default";
-    /**
-     * Name of the XML Schema attribute. By default, the XML Schema
-     * attribute name is derived from the JavaBean property name.
-     *
-     */
-    String name() default DEFAULT_VALUE;
- 
-    /**
-     * Specifies if the XML Schema attribute is optional or
-     * required. If true, then the JavaBean property is mapped to a
-     * XML Schema attribute that is required. Otherwise it is mapped
-     * to a XML Schema attribute that is optional.
-     *
-     */
-     boolean required() default true;
+	public static final String	DEFAULT_VALUE	= "##default";
 
-    /**
-     * Specifies the XML target namespace of the XML Schema
-     * attribute.
-     * 
-     */
-    String namespace() default DEFAULT_VALUE ;
-    
-    ParameterKind type();
-    
-    int constructorPosition() ;
+	/**
+	 * Name of the XML Schema attribute. By default, the XML Schema attribute
+	 * name is derived from the JavaBean property name.
+	 * 
+	 */
+	String name() default DEFAULT_VALUE;
+
+	/**
+	 * Specifies if the XML Schema attribute is optional or required. If true,
+	 * then the JavaBean property is mapped to a XML Schema attribute that is
+	 * required. Otherwise it is mapped to a XML Schema attribute that is
+	 * optional.
+	 * 
+	 */
+	boolean required() default true;
+
+	/**
+	 * Specifies the XML target namespace of the XML Schema attribute.
+	 * 
+	 */
+	String namespace() default DEFAULT_VALUE;
+
+	ParameterKind type();
+
+	int constructorPosition();
 }

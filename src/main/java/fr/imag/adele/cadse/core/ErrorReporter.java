@@ -22,9 +22,6 @@
  */
 package fr.imag.adele.cadse.core;
 
-
-
-
 /**
  * The Interface ErrorReporter.
  * 
@@ -33,8 +30,8 @@ package fr.imag.adele.cadse.core;
 public interface ErrorReporter {
 
 	/** The Constant CODE_OK. */
-	public static final int CODE_OK = 0;
-	
+	public static final int	CODE_OK	= 0;
+
 	/**
 	 * Report error.
 	 * 
@@ -49,9 +46,9 @@ public interface ErrorReporter {
 	 * @param parameters
 	 *            the parameters
 	 */
-	public void reportError(Item item, int errorCode, Throwable exception, String description, Object ... parameters);
-    
-    /**
+	public void reportError(Item item, int errorCode, Throwable exception, String description, Object... parameters);
+
+	/**
 	 * Report info.
 	 * 
 	 * @param item
@@ -65,9 +62,9 @@ public interface ErrorReporter {
 	 * @param parameters
 	 *            the parameters
 	 */
-    public void reportInfo(Item item, int errorCode, Throwable exception, String description, Object ... parameters);
-    
-    /**
+	public void reportInfo(Item item, int errorCode, Throwable exception, String description, Object... parameters);
+
+	/**
 	 * Report problem.
 	 * 
 	 * @param item
@@ -81,10 +78,10 @@ public interface ErrorReporter {
 	 * @param parameters
 	 *            the parameters
 	 */
-    public void reportProblem(Item item, int errorCode, Throwable exception, String description, Object ... parameters);
-    
-    /**
+	public void reportProblem(Item item, int errorCode, Throwable exception, String description, Object... parameters);
+
+	/**
 	 * Cancel.
 	 */
-    public void cancel();
+	public void cancel();
 }

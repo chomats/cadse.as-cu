@@ -19,7 +19,7 @@
 
 package fr.imag.adele.cadse.core;
 
-import fr.imag.adele.cadse.core.util.NLS;
+import fr.imag.adele.cadse.util.NLS;
 
 /**
  * The Class Messages.

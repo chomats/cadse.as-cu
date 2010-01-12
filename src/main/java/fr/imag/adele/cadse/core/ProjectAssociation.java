@@ -21,6 +21,7 @@ package fr.imag.adele.cadse.core;
 
 import java.net.URL;
 import java.util.HashMap;
+import java.util.UUID;
 
 
 /**
@@ -31,7 +32,7 @@ import java.util.HashMap;
 public class ProjectAssociation {
 
 	/** The item reference. */
-	private final CompactUUID _itemRef;
+	private final UUID _itemRef;
 	
 	/** The project name. */
 	private final String _projectName;
@@ -45,7 +46,7 @@ public class ProjectAssociation {
 	 * @param itemRef     item id which references the item to attach to a project
 	 * @param projectName the project name
 	 */
-	public ProjectAssociation(CompactUUID itemRef, String projectName) {
+	public ProjectAssociation(UUID itemRef, String projectName) {
 		super();
 		this._itemRef = itemRef;
 		this._projectName = projectName;
@@ -56,7 +57,7 @@ public class ProjectAssociation {
 	 * 
 	 * @return the item reference (its Id).
 	 */
-	public CompactUUID getItemref() {
+	public UUID getItemref() {
 		return _itemRef;
 	}
 	

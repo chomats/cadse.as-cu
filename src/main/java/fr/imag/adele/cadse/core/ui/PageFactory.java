@@ -19,7 +19,7 @@
 
 package fr.imag.adele.cadse.core.ui;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.IItemNode;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
@@ -41,7 +41,7 @@ public abstract class PageFactory implements IPageFactory {
 	 * @param id
 	 *            the id
 	 */
-	public PageFactory(CompactUUID id, String shortname) {
+	public PageFactory(UUID id, String shortname) {
 		// super(id);
 		shortName = shortname;
 	}
@@ -54,7 +54,7 @@ public abstract class PageFactory implements IPageFactory {
 	 * 
 	 */
 	public PageFactory(String shortname) {
-		// super(CompactUUID.randomUUID());
+		// super(UUID.randomUUID());
 		shortName = shortname;
 	}
 

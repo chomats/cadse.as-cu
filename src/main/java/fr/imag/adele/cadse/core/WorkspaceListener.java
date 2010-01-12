@@ -20,7 +20,7 @@ package fr.imag.adele.cadse.core;
 
 import java.util.EventListener;
 
-import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
+import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
 
 /**
  * This class should be extended to implement a listener which does not modify

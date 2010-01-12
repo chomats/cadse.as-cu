@@ -24,8 +24,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
+import fr.imag.adele.cadse.core.TypeDefinition;
 
 /**
  * The Class Path.
@@ -203,13 +203,13 @@ public class Path implements IPath {
 	static class ExpValue {
 
 		/** The items. */
-		Set<Item>	items;
+		Set<Item>		items;
 
 		/** The itemtype. */
-		ItemType	itemtype;
+		TypeDefinition	itemtype;
 
 		/** The singleton. */
-		boolean		singleton;
+		boolean			singleton;
 	}
 
 	/*
@@ -297,7 +297,8 @@ public class Path implements IPath {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fede.workspace.domain.path.IPath#getItems(fede.workspace.domain.Item)
+	 * @see
+	 * fede.workspace.domain.path.IPath#getItems(fede.workspace.domain.Item)
 	 */
 	public Set<Item> getItems(Item from) throws UnsupportedOperationException {
 		if (segments == NO_SEGMENTS) {

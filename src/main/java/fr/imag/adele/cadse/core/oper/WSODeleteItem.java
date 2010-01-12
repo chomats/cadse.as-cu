@@ -23,29 +23,27 @@ import fr.imag.adele.cadse.core.oper.annotation.OperParameter;
 import fr.imag.adele.cadse.core.oper.annotation.OperTest;
 import fr.imag.adele.cadse.core.oper.annotation.ParameterKind;
 
-@OperTest(testMustBeStopped=true)
+@OperTest(testMustBeStopped = true)
 public class WSODeleteItem extends WSOperation {
-	@OperParameter(constructorPosition=0, type = ParameterKind.item_ref)
-	private Item item;
-	@OperParameter(constructorPosition=1, type = ParameterKind.boolean_value)
-	private boolean deleteContent;
-	
+	@OperParameter(constructorPosition = 0, type = ParameterKind.item_ref)
+	private Item	item;
+	@OperParameter(constructorPosition = 1, type = ParameterKind.boolean_value)
+	private boolean	deleteContent;
+
 	public WSODeleteItem(Item item, boolean deleteContent) {
 		this.item = item;
 		this.deleteContent = deleteContent;
 	}
-	
-	
 
 	@Override
 	protected void excecuteImpl() throws Throwable {
 		item.delete(this.deleteContent);
 	}
-	
+
 	public Item getItem() {
 		return item;
 	}
-	
+
 	public boolean isDeleteContent() {
 		return deleteContent;
 	}
@@ -53,8 +51,9 @@ public class WSODeleteItem extends WSOperation {
 	public Class<?> getType() {
 		return WSODeleteItem.class;
 	}
+
 	@Override
 	public String getDiplayComment() {
-		return "delete item "+item.getDisplayName()+" of type "+item.getType();
+		return "delete item " + item.getDisplayName() + " of type " + item.getType();
 	}
 }

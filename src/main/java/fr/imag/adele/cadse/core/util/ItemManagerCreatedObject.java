@@ -10,7 +10,7 @@ final public class ItemManagerCreatedObject implements CreatedObject {
 	
 	@Override
 	public <T> T create(Item desc) {
-		return findManager(desc).create(desc);
+		return (T) findManager(desc).create(desc);
 	}
 
 	private CreatedObject findManager(Item desc) {

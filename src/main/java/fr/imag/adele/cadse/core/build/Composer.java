@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import fr.imag.adele.cadse.core.AdaptableObjectImpl;
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
 
@@ -41,10 +41,10 @@ import fr.imag.adele.cadse.core.Link;
 public abstract class Composer {
 
 	/** The content manager. */
-	final private ContentItem	contentManager;
+	final private Item			_owerItem;
 
 	/** The exporter types. */
-	final private String[]		exporterTypes;
+	final private String[]		_exporterTypes;
 
 	protected IExporterTarget	currentTarget;
 
@@ -56,9 +56,9 @@ public abstract class Composer {
 	 * @param exporterTypes
 	 *            the exporter types
 	 */
-	protected Composer(ContentItem contentManager, String... exporterTypes) {
-		this.contentManager = contentManager;
-		this.exporterTypes = exporterTypes;
+	protected Composer(Item owerItem, String... exporterTypes) {
+		this._owerItem = owerItem;
+		this._exporterTypes = exporterTypes;
 	}
 
 	/**
@@ -67,16 +67,7 @@ public abstract class Composer {
 	 * @return the item
 	 */
 	final public Item getItem() {
-		return contentManager.getItem();
-	}
-
-	/**
-	 * Gets the content manager.
-	 * 
-	 * @return the content manager
-	 */
-	final public ContentItem getContentItem() {
-		return contentManager;
+		return _owerItem;
 	}
 
 	/**
@@ -85,7 +76,7 @@ public abstract class Composer {
 	 * @return the exporter types
 	 */
 	final public String[] getExporterTypes() {
-		return exporterTypes;
+		return _exporterTypes;
 	}
 
 	public IExporterTarget getCurrentTarget() {
@@ -99,9 +90,7 @@ public abstract class Composer {
 	 * @param context
 	 *            the context
 	 * 
-	 * @throws CadseException *
 	 * @throws CadseException
-	 *             the melusine exception
 	 */
 	final public void compose(IBuildingContext context) throws CadseException {
 		Item item = getItem();
@@ -113,12 +102,10 @@ public abstract class Composer {
 		preComposer(context, currentTarget);
 
 		List<IExportedContent> listExportedContent = new ArrayList<IExportedContent>();
-		for (String exporterType : exporterTypes) {
+		for (String exporterType : _exporterTypes) {
 			List<Link> outgoingLinks = new ArrayList<Link>(item.getOutgoingLinks());
 			for (Link l : outgoingLinks) {
-				if (!l.isComposition()) {
-					continue;
-				}
+
 				if (!l.isLinkResolved()) {
 					context.report("not resolveed link to item {0}", l.getDestinationId());// error...
 					continue;
@@ -128,12 +115,7 @@ public abstract class Composer {
 				}
 
 				Item composant = l.getResolvedDestination();
-				if (!composant.itemHasContent()) {
-					continue;
-				}
-				ContentItem cm = composant.getContentItem();
-
-				Exporter[] ex = cm.getExporter(exporterType);
+				Exporter[] ex = composant.getExporter(exporterType);
 				if (ex == null) {
 					continue;
 				}
@@ -178,7 +160,7 @@ public abstract class Composer {
 	 * @return true if the link is managed by the composer
 	 */
 	protected boolean accepts(Link l) {
-		return true;
+		return l.getLinkType().isComposition();
 	}
 
 	/**
@@ -224,7 +206,7 @@ public abstract class Composer {
 		for (IExportedContent component : repositoryComponents) {
 			context.subTask("verifiying " + component.getItemDisplayName());
 
-			if (getItem().containsComponent(component.getItemIdentification())) {
+			if (containsComponent(component)) {
 				continue;
 			}
 
@@ -232,6 +214,10 @@ public abstract class Composer {
 			context.worked(1);
 		}
 		context.endTask();
+	}
+
+	protected boolean containsComponent(IExportedContent component) {
+		return getItem().containsComponent(component.getItemIdentification());
 	}
 
 	/**
@@ -278,7 +264,7 @@ public abstract class Composer {
 			return;
 		}
 		preClean(context, currentTarget);
-		for (String exporterType : exporterTypes) {
+		for (String exporterType : _exporterTypes) {
 			try {
 				List<IExportedContent> repositoryComponents = currentTarget.getRepositoryComponents(exporterType);
 

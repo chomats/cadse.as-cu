@@ -44,20 +44,20 @@ public interface IAttributableType {
 	 */
 	public IAttributeType<?> getAttributeType(String name);
 
-	/**
-	 * Gets an attribute definition by its name. If the attribute definition is
-	 * not found, a new attribute definition set as unresolved can be created.
-	 * 
-	 * @param name
-	 *            the name of the attribute definition
-	 * @param createUnresolvedDefinition
-	 *            if true, create an unresolved definition if the attribute
-	 *            definition is not found
-	 * @return the attribute definition, or null if createUnresolvedDefinition
-	 *         is false and the attribute definition is not found
-	 * @since 2.2.1
-	 */
-	public IAttributeType<?> getAttributeType(String name, boolean createUnresolvedDefinition);
+//	/**
+//	 * Gets an attribute definition by its name. If the attribute definition is
+//	 * not found, a new attribute definition set as unresolved can be created.
+//	 * 
+//	 * @param name
+//	 *            the name of the attribute definition
+//	 * @param createUnresolvedDefinition
+//	 *            if true, create an unresolved definition if the attribute
+//	 *            definition is not found
+//	 * @return the attribute definition, or null if createUnresolvedDefinition
+//	 *         is false and the attribute definition is not found
+//	 * @since 2.2.1
+//	 */
+//	public IAttributeType<?> getAttributeType(String name, boolean createUnresolvedDefinition);
 
 	/**
 	 * Adds all the attribute definition into the list given into parameter.

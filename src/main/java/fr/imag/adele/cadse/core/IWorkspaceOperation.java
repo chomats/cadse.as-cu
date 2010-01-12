@@ -19,7 +19,7 @@
 
 package fr.imag.adele.cadse.core;
 
-import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
+import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
 
 
 

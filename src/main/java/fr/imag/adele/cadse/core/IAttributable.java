@@ -22,7 +22,8 @@ package fr.imag.adele.cadse.core;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 
 /**
- * Can get and set attribute value for an object. An {@link Item} is IAttributable.
+ * Can get and set attribute value for an object. An {@link Item} is
+ * IAttributable.
  */
 public interface IAttributable {
 
@@ -83,66 +84,5 @@ public interface IAttributable {
 	 * @throws CadseException
 	 */
 	public abstract void setAttribute(IAttributeType<?> att, Object value) throws CadseException;
-
-	/**
-	 * Gets an attribute value by its type (definition).
-	 * 
-	 * @param att
-	 *            the attribute name we want to search
-	 * @param defaultValue
-	 *            returned value if the value of the attribute definition we
-	 *            want to search is null
-	 * 
-	 * @return the value of the attribute definition or the defaultValue, if
-	 *         null
-	 */
-	@Deprecated
-	public abstract <T> T getAttributeWithDefaultValue(String att, T defaultValue);
-
-	/**
-	 * Gets an attribute value by its type (definition).
-	 * 
-	 * @param att
-	 *            the attribute name we want to search
-	 * 
-	 * @return the value of the attribute definition or null, if no value
-	 */
-	@Deprecated
-	public abstract <T> T getAttribute(String att);
-
-	/**
-	 * Gets all the attribute definition names.
-	 * 
-	 * @return all the attribute definition names
-	 */
-	@Deprecated
-	public abstract String[] getAttributeKeys();
-
-	/**
-	 * Sets a value into this object for the attribute definition given into
-	 * parameter.
-	 * 
-	 * @param att
-	 *            the attribute name we want to set
-	 * @param value
-	 *            the new value
-	 * @throws CadseException
-	 */
-	@Deprecated
-	public abstract void setAttribute(String att, Object value) throws CadseException;
-
-	/**
-	 * Get an attribute value by att.
-	 * 
-	 * @param att :
-	 *            att of attribute we want search.
-	 * @param fromSuperIfNull :
-	 *            if the attribute value doesn't exist in this item, try to get
-	 *            form "super items"
-	 * 
-	 * @return attribute value.
-	 */
-	@Deprecated
-	public abstract <T> T getAttributeH(String att, boolean fromSuperIfNull);
 
 }

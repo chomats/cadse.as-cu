@@ -23,23 +23,23 @@ import java.util.List;
 import java.util.Set;
 
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
-
+import fr.imag.adele.cadse.core.TypeDefinition;
 
 /**
  * The Class ElementPath.
+ * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public abstract class ElementPath {
-	
+
 	/**
 	 * Gets the item type.
 	 * 
 	 * @return the item type
 	 */
-	public abstract ItemType getItemType();
-	
+	public abstract TypeDefinition getItemType();
+
 	/**
 	 * Available.
 	 * 
@@ -52,23 +52,23 @@ public abstract class ElementPath {
 			if (lt.getDestination().equals(getItemType()))
 				closure++;
 		}
-		ElementPath[] ret = new ElementPath[lts.size()+closure];
+		ElementPath[] ret = new ElementPath[lts.size() + closure];
 		for (int i = 0, j = 0; i < lts.size(); i++) {
 			LinkType lt = lts.get(i);
-			ret[j++] = new LinkTypePath(lt,false);
+			ret[j++] = new LinkTypePath(lt, false);
 			if (lt.getDestination().equals(getItemType()))
-				ret[j++] = new LinkTypePath(lt,true);
+				ret[j++] = new LinkTypePath(lt, true);
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * Gets the text.
 	 * 
 	 * @return the text
 	 */
 	public abstract String getText();
-	
+
 	/**
 	 * Evaluate.
 	 * 
@@ -78,5 +78,5 @@ public abstract class ElementPath {
 	 * @return the set< item>
 	 */
 	abstract Set<Item> evaluate(Set<Item> sources);
-	
+
 }

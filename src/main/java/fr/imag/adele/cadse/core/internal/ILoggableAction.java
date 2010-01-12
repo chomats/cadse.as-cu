@@ -19,35 +19,36 @@
 package fr.imag.adele.cadse.core.internal;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.ItemDescriptionRef;
 import fr.imag.adele.cadse.core.LinkDescription;
-import fr.imag.adele.cadse.core.delta.WLWCOperationImpl;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
+import fr.imag.adele.cadse.core.transaction.delta.WLWCOperationImpl;
 
 public interface ILoggableAction {
 
-	
 	void actionAddItem(ItemDescriptionRef itemDescriptionRef) throws CadseException;
-	
+
 	void actionRemoveItem(ItemDescriptionRef itemDescriptionRef) throws CadseException;
-	
+
 	void actionAddLink(LinkDescription linkDescription) throws CadseException;
+
 	void actionRemoveLink(LinkDescription linkDescription) throws CadseException;
-	
-	void actionAddAttribute(CompactUUID itemId, String key, Object value) throws CadseException;
-	//<T> void actionAddAttribute(CompactUUID itemId, IAttributeType<T> key, T value) throws CadseException;
-	void actionChangeAttribute(CompactUUID itemId, String key, Object value) throws CadseException;
-	//<T> void actionChangeAttribute(CompactUUID itemId, IAttributeType<T> key, T value) throws CadseException;
-	void actionRemoveAttribute(CompactUUID itemId, String key) throws CadseException;
-	//<T> void actionRemoveAttribute(CompactUUID itemId, IAttributeType<T> key) throws CadseException;
-	
-	void actionAddAttribute(LinkDescription linkDescription, String key, Object value) throws CadseException;
-	//<T> void actionAddAttribute(LinkDescription linkDescription, IAttributeType<T> key, T value) throws CadseException;
-	void actionChangeAttribute(LinkDescription linkDescription, String key, Object value) throws CadseException;
-	//<T> void actionChangeAttribute(LinkDescription linkDescription, IAttributeType<T> key, T value) throws CadseException;
-	void actionRemoveAttribute(LinkDescription linkDescription, String key) throws CadseException;
-	//<T> void actionRemoveAttribute(LinkDescription linkDescription, IAttributeType<T> key) throws CadseException;
+
+	<T> void actionAddAttribute(UUID itemId, IAttributeType<T> key, T value) throws CadseException;
+
+	<T> void actionChangeAttribute(UUID itemId, IAttributeType<T> key, T value) throws CadseException;
+
+	<T> void actionRemoveAttribute(UUID itemId, IAttributeType<T> key) throws CadseException;
+
+	<T> void actionAddAttribute(LinkDescription linkDescription, IAttributeType<T> key, T value) throws CadseException;
+
+	<T> void actionChangeAttribute(LinkDescription linkDescription, IAttributeType<T> key, T value)
+			throws CadseException;
+
+	<T> void actionRemoveAttribute(LinkDescription linkDescription, IAttributeType<T> key) throws CadseException;
 
 	void actionRemoveOperation(WLWCOperationImpl operation);
+
 	void actionAddOperation(WLWCOperationImpl operation);
 }

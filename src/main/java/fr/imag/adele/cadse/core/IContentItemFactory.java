@@ -1,5 +1,9 @@
 package fr.imag.adele.cadse.core;
 
+import java.util.UUID;
+
+import fr.imag.adele.cadse.core.content.ContentItem;
+
 
 public interface IContentItemFactory  {
 
@@ -16,5 +20,5 @@ public interface IContentItemFactory  {
 	 * @throws CadseException
 	 *             a CADSE exception.
 	 */
-	public ContentItem createContentItem(CompactUUID id) throws CadseException;
+	public ContentItem createContentItem(UUID id) throws CadseException;
 }

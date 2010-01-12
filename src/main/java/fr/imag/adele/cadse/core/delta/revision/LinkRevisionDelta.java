@@ -28,26 +28,27 @@ import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkDescription;
 import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
-import fr.imag.adele.cadse.core.delta.ItemDelta;
-import fr.imag.adele.cadse.core.delta.LinkDelta;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
+import fr.imag.adele.cadse.core.transaction.delta.LinkDelta;
 
 public class LinkRevisionDelta extends ObjectTeamChange implements ITeamChangeObject {
-	final private ItemRevisionDelta				parent;
+	final private ItemRevisionDelta								parent;
 
 	/** The type. */
-	private String								type;
+	private String												type;
 
-	private LinkType							typeObject;
+	private LinkType											typeObject;
 
 	/** The destination. */
-	private ItemDelta							destination;
+	private ItemDelta											destination;
 
 	/** The state. */
-	private int									state;
+	private int													state;
 
 	/** The attributes. */
-	private Map<String, AttributeRevisionDelta>	attributes;
+	private Map<IAttributeType<?>, AttributeRevisionDelta<?>>	attributes;
 
 	// int change;
 
@@ -128,9 +129,10 @@ public class LinkRevisionDelta extends ObjectTeamChange implements ITeamChangeOb
 		destination = null;// new ItemDescriptionRef(l.getDestination());
 		state = (l.isAggregation() ? LinkDescription.AGGREGATION : 0)
 				+ (l.isComposition() ? LinkDescription.ANNOTATION : 0)
-				+ (l.isAnnotation() ? LinkDescription.COMPOSITION : 0) + (l.getLinkType().isPart() ? LinkDescription.PART : 0)
-				+ (l.isRequire() ? LinkDescription.REQUIRE : 0) + (l.isDerived() ? LinkDescription.DERIBED : 0)
-				+ (l.isHidden() ? LinkDescription.HIDDEN : 0) + (l.isReadOnly() ? LinkDescription.READ_ONLY : 0);
+				+ (l.isAnnotation() ? LinkDescription.COMPOSITION : 0)
+				+ (l.getLinkType().isPart() ? LinkDescription.PART : 0) + (l.isRequire() ? LinkDescription.REQUIRE : 0)
+				+ (l.isDerived() ? LinkDescription.DERIBED : 0) + (l.isHidden() ? LinkDescription.HIDDEN : 0)
+				+ (l.isReadOnly() ? LinkDescription.READ_ONLY : 0);
 
 	}
 
@@ -240,9 +242,9 @@ public class LinkRevisionDelta extends ObjectTeamChange implements ITeamChangeOb
 	 * @param value
 	 *            the value
 	 */
-	public void addAttribute(AttributeRevisionDelta value) {
+	public void addAttribute(AttributeRevisionDelta<?> value) {
 		if (attributes == null) {
-			attributes = new HashMap<String, AttributeRevisionDelta>();
+			attributes = new HashMap<IAttributeType<?>, AttributeRevisionDelta<?>>();
 		}
 		attributes.put(value.getKey(), value);
 	}
@@ -252,7 +254,7 @@ public class LinkRevisionDelta extends ObjectTeamChange implements ITeamChangeOb
 	 * 
 	 * @return the attributes
 	 */
-	public Map<String, AttributeRevisionDelta> getAttributes() {
+	public Map<IAttributeType<?>, AttributeRevisionDelta<?>> getAttributes() {
 		if (attributes == null) {
 			return Collections.emptyMap();
 		}

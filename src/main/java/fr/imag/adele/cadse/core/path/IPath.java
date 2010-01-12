@@ -19,18 +19,15 @@
 
 package fr.imag.adele.cadse.core.path;
 
-
 import java.util.Set;
 
 import fr.imag.adele.cadse.core.Item;
-
-
 
 /**
  * The Interface IPath.
  */
 public interface IPath {
-	
+
 	/**
 	 * Gets the item.
 	 * 
@@ -43,7 +40,7 @@ public interface IPath {
 	 *             the unsupported operation exception
 	 */
 	Item getItem(Item from) throws UnsupportedOperationException;
-	
+
 	/**
 	 * Gets the items.
 	 * 

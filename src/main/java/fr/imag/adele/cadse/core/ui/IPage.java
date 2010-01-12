@@ -1,14 +1,11 @@
 package fr.imag.adele.cadse.core.ui;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
-import fr.imag.adele.cadse.core.ui.view.IContextReference;
 
 /**
  * The Class IPage. Represente une page graphique. Elle contient UIField,
@@ -22,7 +19,6 @@ public interface IPage extends Item {
 
 	IPage[] getOverwritePage();
 
-	
 	/**
 	 * Gets owner the fields.
 	 * 
@@ -31,9 +27,9 @@ public interface IPage extends Item {
 	abstract IAttributeType<?>[] getAttributes();
 
 	abstract void addLast(IAttributeType<?>... attr);
-	
+
 	void addLast(List<IAttributeType> attrs);
-	
+
 	abstract void addBefore(IAttributeType<?> beforeAttr, IAttributeType<?> attributeToInsert);
 
 	abstract void addAfter(IAttributeType<?> afterAttr, IAttributeType<?> attributeToInsert);
@@ -44,8 +40,6 @@ public interface IPage extends Item {
 	 * @return the action page
 	 */
 	abstract IActionPage getActionPage();
-
-	
 
 	/**
 	 * Gets the label.
@@ -75,17 +69,13 @@ public interface IPage extends Item {
 	 */
 	abstract boolean isPageComplete();
 
-
 	abstract ItemType getParentItemType();
 
 	abstract boolean isModificationPage();
 
-
 	boolean isEmptyPage();
 
-
 	boolean isLast(IAttributeType<?> attributeDefinition);
-
 
 	void getAllAttributes(HashSet<IAttributeType<?>> allAttributes);
 

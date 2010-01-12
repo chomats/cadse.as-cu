@@ -20,6 +20,4 @@ package fr.imag.adele.cadse.core.oper;
 
 public abstract class WSCheckOperation extends WSOperation {
 
-	
-	
 }
