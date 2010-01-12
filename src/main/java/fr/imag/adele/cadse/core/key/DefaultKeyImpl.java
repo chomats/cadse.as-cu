@@ -125,7 +125,7 @@ public class DefaultKeyImpl implements Key {
 
 	protected UUID					_uuid;
 	protected int					_objectid;
-	protected Object[]				_values;
+	protected final Object[]		_values;
 	private int						_h;
 
 	/** The Constant NO_INIT_KEY. */
@@ -136,7 +136,7 @@ public class DefaultKeyImpl implements Key {
 	public DefaultKeyImpl(KeyDefinition keydefinition, Key parentKey, Object... values) {
 		this._keydefinition = keydefinition;
 		this._parentKey = parentKey;
-
+		this._values = values;
 	}
 
 	public final KeyDefinition getType() {
