@@ -43,6 +43,7 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 	private final int				_objectId;
 	private String					_name;
 	protected IAttributeType<?>[]	_elts	= null;
+	private ItemType _itemType;
 
 	/**
 	 * Instantiates a new space key type.
@@ -52,12 +53,13 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 	 * @param parentItemType
 	 *            the space key type
 	 */
-	public DefaultKeyDefinitionImpl(UUID uuid, int objectId, KeyDefinition parentKeyDef,
+	public DefaultKeyDefinitionImpl(ItemType childType, UUID uuid, int objectId, KeyDefinition parentKeyDef,
 			IAttributeType<?>... elts) {
 		_uuid = uuid;
 		_objectId = objectId;
 		_parentKeyDefinition = parentKeyDef;
 		_elts = elts;
+		_itemType = childType;
 	}
 	
 	public DefaultKeyDefinitionImpl(ItemType childType, ItemType parentType) {
@@ -65,7 +67,7 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 	}
 	
 	public DefaultKeyDefinitionImpl(ItemType childType, ItemType parentType, IAttributeType<?>... elts) {
-		this(null, -1, parentType == null ? null : parentType.getKeyDefinition(), elts);
+		this(childType, null, -1, parentType == null ? null : parentType.getKeyDefinition(), elts);
 	}
 
 	/**
@@ -265,7 +267,7 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 
 	@Override
 	public ItemType getItemType() {
-		throw new UnsupportedOperationException("Not yet implemented");
+		return _itemType;
 	}
 
 	@Override
