@@ -14,11 +14,12 @@ public interface IContentItemFactory  {
 	 * 
 	 * @param id
 	 *            the id of the loaded item
+	 * @param owerItem TODO
 	 * 
 	 * @return content item associated to specified item.
 	 * 
 	 * @throws CadseException
 	 *             a CADSE exception.
 	 */
-	public ContentItem createContentItem(UUID id) throws CadseException;
+	public ContentItem createContentItem(UUID id, Item owerItem) throws CadseException;
 }
