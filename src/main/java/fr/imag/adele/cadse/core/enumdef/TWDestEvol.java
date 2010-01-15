@@ -23,9 +23,42 @@ package fr.imag.adele.cadse.core.enumdef;
 */
 public enum TWDestEvol  {
 	
-	mutable,
-	immutable,
-	effective,
-	finalDest,
-	branch,
+	mutable("Update current revision"),
+	immutable("Create new revision"),
+	effective("Extends compatibilities"),
+	finalDest("Error"),
+	branch("None");
+	
+	
+
+	
+	
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private TWDestEvol(String literal) {
+		this.literal = literal;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
+
+	
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
 }

@@ -23,7 +23,40 @@ package fr.imag.adele.cadse.core.enumdef;
 */
 public enum TWUpdateKind  {
 	
-	none,
-	merge,
-	compute,
+	none("Reset value"),
+	merge("Generic merge values"),
+	compute("Specific merge values");
+	
+	
+	
+	
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private TWUpdateKind(String literal) {
+		this.literal = literal;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
+
+	
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
+
 }

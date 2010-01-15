@@ -23,8 +23,39 @@ package fr.imag.adele.cadse.core.enumdef;
 */
 public enum TWEvol  {
 	
-	twFinal,
-	twTransient,
-	twMutable,
-	twImmutable,
+	twFinal("Error"),
+	twTransient("Not saved"),
+	twMutable("Update current revision"),
+	twImmutable("Create new revision");
+	
+	
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private TWEvol(String literal) {
+		this.literal = literal;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
+
+	
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
+
 }
