@@ -118,7 +118,7 @@ public abstract class IMenuAction {
 	 * 
 	 * @return the action image.
 	 */
-	public abstract URL getImage();
+	public abstract String getImage();
 
 	/**
 	 * Returns the action description show in a tool tip.
@@ -247,7 +247,7 @@ public abstract class IMenuAction {
 	 * @param icon
 	 *            the icon
 	 */
-	public void init(String id, String label, String path, int forNb, URL icon) {
+	public void init(String id, String label, String path, int forNb, String icon) {
 
 	}
 

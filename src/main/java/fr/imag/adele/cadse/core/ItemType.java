@@ -340,20 +340,7 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 */
 	public void addActionContributeur(IActionContributor contributor);
 
-	/**
-	 * Sets the icon.
-	 * 
-	 * @param url
-	 *            the new icon
-	 */
-	public void setIcon(URL url);
-
-	/**
-	 * Gets the icon.
-	 * 
-	 * @return the icon
-	 */
-	public URL getImage();
+	
 
 	/**
 	 * set the package attribute

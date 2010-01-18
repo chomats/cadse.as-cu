@@ -184,7 +184,7 @@ public interface IItemManager extends ContributionToMenuAction {
 	 *            an item (must not be null)
 	 * @return URL of image of <code>item</code> item.
 	 */
-	public URL getImage(Item item);
+	public String getImage(Item item);
 
 	/**
 	 * Returns an error message if specified short name cannot be set to

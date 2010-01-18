@@ -35,7 +35,7 @@ public abstract class MenuAction extends IMenuAction {
 	private String	label;
 
 	/** The icon. */
-	private URL		icon;
+	private String	icon;
 
 	/** The id. */
 	String			id;
@@ -52,7 +52,7 @@ public abstract class MenuAction extends IMenuAction {
 	 * @see fede.workspace.domain.IMenuAction#getIcon()
 	 */
 	@Override
-	public URL getImage() {
+	public String getImage() {
 		return icon;
 	}
 
@@ -73,7 +73,7 @@ public abstract class MenuAction extends IMenuAction {
 	 *      java.lang.String, java.lang.String, int, java.net.URL)
 	 */
 	@Override
-	public void init(String id, String label, String path, int forNb, URL icon) {
+	public void init(String id, String label, String path, int forNb, String icon) {
 		this.id = id;
 		this.menupath = path;
 		this.icon = icon;

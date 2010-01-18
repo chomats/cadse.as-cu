@@ -52,7 +52,7 @@ public class GenericActionContributor implements IActionContributor {
 		 * @param icon
 		 *            the icon
 		 */
-		public DescriptionMenu(String id, String label, String path, URL icon) {
+		public DescriptionMenu(String id, String label, String path, String icon) {
 			super(id, label, icon);
 			this.path = path;
 		}
@@ -112,7 +112,7 @@ public class GenericActionContributor implements IActionContributor {
 	 * 
 	 * @return the i menu action
 	 */
-	public static IMenuAction createMenu(String id, String label, String path, URL icon) {
+	public static IMenuAction createMenu(String id, String label, String path, String icon) {
 		return new DescriptionMenu(id, label, path, icon);
 	}
 

@@ -1,5 +1,6 @@
 package fr.imag.adele.cadse.core;
 
+import java.net.URL;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -313,5 +314,20 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 	 */
 	public abstract LinkType createLinkType(UUID id, int intID, String name, int kind, int min, int max,
 			String selection, LinkType inverse) throws CadseException;
+	
+	/**
+	 * Sets the icon.
+	 * 
+	 * @param url
+	 *            the new icon
+	 */
+	public void setIcon(String uri);
+
+	/**
+	 * Gets the icon.
+	 * 
+	 * @return the icon
+	 */
+	public String getImage();
 	
 }
