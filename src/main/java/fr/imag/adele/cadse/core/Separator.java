@@ -15,7 +15,7 @@ final public class Separator extends IMenuAction {
 	 * @see fede.workspace.domain.IMenuAction#getIcon()
 	 */
 	@Override
-	public URL getImage() {
+	public String getImage() {
 		return null;
 	}
 

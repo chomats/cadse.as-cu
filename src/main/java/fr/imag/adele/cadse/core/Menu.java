@@ -23,7 +23,7 @@ public class Menu extends IMenuAction {
 	private String				_label;
 
 	/** The icon. */
-	private URL					_icon;
+	private String				_icon;
 
 	/**
 	 * Instantiates a new menu.
@@ -37,7 +37,7 @@ public class Menu extends IMenuAction {
 	 * @param children
 	 *            the children
 	 */
-	public Menu(String id, String label, URL icon, List<IMenuAction> children) {
+	public Menu(String id, String label, String icon, List<IMenuAction> children) {
 		this._menuid = id;
 		this._children = children;
 		this._label = label;
@@ -54,7 +54,7 @@ public class Menu extends IMenuAction {
 	 * @param icon
 	 *            the icon
 	 */
-	public Menu(String id, String label, URL icon) {
+	public Menu(String id, String label, String icon) {
 		this._menuid = id;
 		this._children = new ArrayList<IMenuAction>();
 		this._label = label;
@@ -83,7 +83,7 @@ public class Menu extends IMenuAction {
 	 * @param children
 	 *            the children
 	 */
-	public Menu(String id, String label, URL icon, IMenuAction[] children) {
+	public Menu(String id, String label, String icon, IMenuAction[] children) {
 		this._menuid = id;
 		this._children = new ArrayList(Arrays.asList(children));
 		this._label = label;
@@ -203,7 +203,7 @@ public class Menu extends IMenuAction {
 	 * @see fede.workspace.domain.IMenuAction#getIcon()
 	 */
 	@Override
-	public URL getImage() {
+	public String getImage() {
 		return _icon;
 	}
 

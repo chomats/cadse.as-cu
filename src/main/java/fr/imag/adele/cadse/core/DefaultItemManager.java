@@ -255,7 +255,7 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 		return null;
 	}
 
-	public URL getImage(Item item) {
+	public String getImage(Item item) {
 		return null;
 	}
 
