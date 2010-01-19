@@ -1031,6 +1031,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String ITEM_at_TWLAST_COMMENT="TWLastComment";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType ITEM_at_TWLAST_COMMENT_;
+	/**
+	    @generated
+	*/
 	public final static String ITEM_at_COMMITTED_BY="committedBy";
 	/**
 	    @generated
