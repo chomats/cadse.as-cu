@@ -76,6 +76,13 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * @return all item types available in this logical workspace.
 	 */
 	public Collection<ItemType> getItemTypes();
+	
+	/**
+	 * Returns all item types available in this logical workspace.
+	 * 
+	 * @return all item types available in this logical workspace.
+	 */
+	public Collection<ExtendedType> getExtendedTypes();
 
 	/**
 	 * Creates and returns an item type. If <code>itemTypeType</code> is null,
@@ -109,6 +116,8 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 			int intID, @NotNull UUID id, @NotNull String shortName, @Nullable String displayName,
 			boolean hasContent, boolean isAbstract, @NotNull IItemManager manager);
 
+	public ExtendedType createExtendedType(ItemType metaType, @NotNull CadseRuntime cadse,
+			UUID uuid, String qualifiedName, String name);
 	/**
 	 * Returns state of this logical workspace.
 	 * 
@@ -417,5 +426,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	public <T> T getAttribute(Item source, IAttributeType<T> type, boolean ownerOnly);
 
 	public ContextVariable getContext();
+
+	
 
 }

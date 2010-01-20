@@ -112,6 +112,10 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	public boolean isSuperTypeOf(ItemType it);
 
 	public ExtendedType[] getExtendedType();
+	
+	public void addExtendedType(ExtendedType et);
+	
+	public void removeExtendedType(ExtendedType et);
 
 	/**
 	 * Returns the item manager.
@@ -342,20 +346,7 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 
 	
 
-	/**
-	 * set the package attribute
-	 * 
-	 * @param packageName
-	 *            the java qualified string or empty string for no package
-	 */
-	public void setPackageName(String packageName);
-
-	/**
-	 * get the package attribute
-	 * 
-	 * @return the package name attribute
-	 */
-	public String getPackageName();
+	
 
 	/**
 	 * Sets the space key type.

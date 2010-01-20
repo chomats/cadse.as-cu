@@ -330,4 +330,22 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 	 */
 	public String getImage();
 	
+	
+	public abstract void setCSTName(String cstName);
+	
+	/**
+	 * set the package attribute
+	 * 
+	 * @param packageName
+	 *            the java qualified string or empty string for no package
+	 */
+	public void setPackageName(String packageName);
+
+	/**
+	 * get the package attribute
+	 * 
+	 * @return the package name attribute
+	 */
+	public String getPackageName();
+	
 }
