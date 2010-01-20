@@ -12,6 +12,11 @@ import fr.imag.adele.cadse.core.ui.view.DefineNewContext;
  * @author CADSE team
  */
 public interface CadseRuntime extends Item, InternalCadseRuntime, FacetteCadseRuntimeView {
+	
+	public static class Binding {
+		public UUID it;
+		public UUID ext;
+	}
 
 	/** The Constant RESOURCE_SUFFIX. */
 	public final static String	CADSE_NAME_SUFFIX	= "Model.Workspace.";
@@ -85,5 +90,23 @@ public interface CadseRuntime extends Item, InternalCadseRuntime, FacetteCadseRu
 	public void removeDefineNewContext(DefineNewContext d);
 
 	public DefineNewContext[] getDefineNewContexts();
+
+	public void addExtendedType(ExtendedType et);
+	
+	public void removeExtendedType(ExtendedType et);
+	
+	/**
+	 * If no elements return an null array.
+	 * @return can be null, if no elements
+	 */
+	public ExtendedType[] getExtendedType();
+	
+	public void addBinding(Binding b);
+	public void removeBinding(Binding b);
+	
+	public Binding[] getBinding();
+	
+	public ItemType[] getItemTypes();
+	
 
 }
