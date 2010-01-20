@@ -2,6 +2,7 @@
 package fr.imag.adele.cadse.core;
 
 
+import fr.imag.adele.cadse.core.ExtendedType;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.attribute.BooleanAttributeType;
@@ -40,6 +41,14 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static BooleanAttributeType AJPROJECT_COMPOSER_at_SKIP_WEAVING_;
+	/**
+	    @generated
+	*/
+	public static ExtendedType ACTION_EXT_ITEM_TYPE;
+	/**
+	    @generated
+	*/
+	public static LinkType ACTION_EXT_ITEM_TYPE_lt_ACTIONS_MODEL;
 	/**
 	    @generated
 	*/
@@ -332,14 +341,6 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static StringAttributeType CADSE_DEFINITION_at_ID_RUNTIME_;
-	/**
-	    @generated
-	*/
-	public final static String CADSE_DEFINITION_at_IMPORTS="imports";
-	/**
-	    @generated
-	*/
-	public static ListAttributeType<String> CADSE_DEFINITION_at_IMPORTS_;
 	/**
 	    @generated
 	*/
@@ -848,6 +849,30 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static StringAttributeType FOLDER_EXPORTER_at_PATH_;
+	/**
+	    @generated
+	*/
+	public static ExtendedType GENERATE_INFORMATION;
+	/**
+	    @generated
+	*/
+	public final static String GENERATE_INFORMATION_at_CSTNAME="CSTName";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType GENERATE_INFORMATION_at_CSTNAME_;
+	/**
+	    @generated
+	*/
+	public static ExtendedType GROUP_EXT_ITEM;
+	/**
+	    @generated
+	*/
+	public static LinkType GROUP_EXT_ITEM_lt_MEMBER_OF;
+	/**
+	    @generated
+	*/
+	public static LinkType GROUP_EXT_ITEM_lt_MEMBERS;
 	/**
 	    @generated
 	*/
@@ -2176,27 +2201,7 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType WCLISTENER_lt_LISTEN_ITEM_TYPES;
-	/**
-	    @generated
-	*/
-	public static LinkType ACTION_EXT_ITEM_TYPE_lt_ACTIONS_MODEL;
-	/**
-	    @generated
-	*/
-	public final static String GENERATE_INFORMATION_at_CSTNAME="CSTName";
-	/**
-	    @generated
-	*/
-	public static StringAttributeType GENERATE_INFORMATION_at_CSTNAME_;
-	/**
-	    @generated
-	*/
-	public static LinkType GROUP_EXT_ITEM_lt_MEMBER_OF;
-	/**
-	    @generated
-	*/
-	public static LinkType GROUP_EXT_ITEM_lt_MEMBERS;
-
+	
 	/**
 	    @generated
 	*/
