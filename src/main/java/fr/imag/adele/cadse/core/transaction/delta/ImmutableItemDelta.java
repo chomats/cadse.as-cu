@@ -703,7 +703,7 @@ public class ImmutableItemDelta {
 	 * 
 	 * @return true, if successful
 	 */
-	public boolean hasSetAttributes(String attributeKey) {
+	public boolean hasSetAttributes(IAttributeType<?> attributeKey) {
 		return attributes != null && attributes.containsKey(attributeKey);
 	}
 
@@ -729,7 +729,7 @@ public class ImmutableItemDelta {
 	}
 
 	public boolean hasModifiedAttribute(IAttributeType<?> att) {
-		return hasSetAttributes(att.getName());
+		return hasSetAttributes(att);
 
 	}
 
