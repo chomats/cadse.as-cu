@@ -344,6 +344,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String CADSE_DEFINITION_at_IMPORTS="imports";
+	/**
+	    @generated
+	*/
+	public static ListAttributeType<String> CADSE_DEFINITION_at_IMPORTS_;
+	/**
+	    @generated
+	*/
 	public static LinkType CADSE_DEFINITION_lt_MAPPING;
 	/**
 	    @generated
