@@ -272,7 +272,7 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 * @param creationPages
 	 *            the creation pages
 	 */
-	public void addCreationPages(List<IPage> creationPages);
+	public void addCreationPages(IPage... creationPages);
 
 	/**
 	 * Adds the modification pages.
@@ -280,7 +280,7 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 * @param modificationPages
 	 *            the modification pages
 	 */
-	public void addModificationPages(List<IPage> modificationPages);
+	public void addModificationPages(IPage ... modificationPages);
 
 	public String getDefaultInstanceName() ;
 

@@ -200,6 +200,7 @@ public interface UIPlatform {
 	public Object getValueForVisual(UIField field);
 
 	public Object getModelValue(UIField uiField);
+	public Object getVisualValue(UIField uiField);
 
 	public boolean isDisposed();
 

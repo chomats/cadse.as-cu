@@ -251,7 +251,7 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 		public abstract void computeGenericPage(FilterContext context, HierarchicPage genericPage,
 				HashSet<IAttributeType<?>> inSpecificPages, Set<IAttributeType<?>> ro, IAttributeType<?>... firstAttributes);
 		
-		public abstract void recurcifComputeCreationPage(FilterContext context, List<IPage> list, Set<IAttributeType<?>> ro);
+		public abstract void recurcifComputeCreationPage(FilterContext context, List<IPage> list);
 
 
 		public Link addOutgoingLinkType(LinkType ret);

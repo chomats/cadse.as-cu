@@ -19,13 +19,30 @@ public interface IPage extends Item {
 
 	IPage[] getOverwritePage();
 
+	
+	abstract IAttributeType<?>[] getHiddenAttributes();
+	
+	abstract void addHiddenAttributes(IAttributeType<?>... attr);
+	
+	/**
+	 * Return the attributs which be readonly in this pages and other pages
+	 * @return a not null array. If no attribut, return an empty array.
+	 */
+	abstract IAttributeType<?>[]  getReadOnlyAttributes();
+
+	/**
+	 * Add readonly attributes
+	 * @param attr
+	 */
+	abstract void addReadOnlyAttributes(IAttributeType<?>... attr);
+	
 	/**
 	 * Gets owner the fields.
 	 * 
 	 * @return the fields
 	 */
 	abstract IAttributeType<?>[] getAttributes();
-
+	 
 	abstract void addLast(IAttributeType<?>... attr);
 
 	void addLast(List<IAttributeType> attrs);
@@ -79,4 +96,5 @@ public interface IPage extends Item {
 
 	void getAllAttributes(HashSet<IAttributeType<?>> allAttributes);
 
+	
 }

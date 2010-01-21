@@ -35,7 +35,7 @@ public interface FacetteTypeDefinitionUI {
 	 * @param creationPages
 	 *            the creation pages
 	 */
-	public void addCreationPages(List<IPage> creationPages);
+	public void addCreationPages(IPage... creationPages);
 
 	/**
 	 * Adds the modification pages.
@@ -43,7 +43,7 @@ public interface FacetteTypeDefinitionUI {
 	 * @param modificationPages
 	 *            the modification pages
 	 */
-	public void addModificationPages(List<IPage> modificationPages);
+	public void addModificationPages(IPage... modificationPages);
 
 	public abstract UIField findField(IAttributeType<?> att);
 
