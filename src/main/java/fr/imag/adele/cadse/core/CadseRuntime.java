@@ -14,6 +14,10 @@ import fr.imag.adele.cadse.core.ui.view.DefineNewContext;
 public interface CadseRuntime extends Item, InternalCadseRuntime, FacetteCadseRuntimeView {
 	
 	public static class Binding {
+		public Binding(ItemType it, ExtendedType et) {
+			this.it = it.getId();
+			this.ext = et.getId();
+		}
 		public UUID it;
 		public UUID ext;
 	}
