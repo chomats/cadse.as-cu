@@ -13,5 +13,9 @@ public interface GroupOfAttributes extends IAttributeType<Object> {
 	public abstract String getLabel();
 
 	public abstract int getColumn();
+	
+	public boolean isHasBoxGroup();
+	
+	public void setHasBoxGroup(boolean hasBoxGroup);
 
 }
