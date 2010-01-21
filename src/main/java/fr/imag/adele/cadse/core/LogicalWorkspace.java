@@ -117,7 +117,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 			boolean hasContent, boolean isAbstract, @NotNull IItemManager manager);
 
 	public ExtendedType createExtendedType(ItemType metaType, @NotNull CadseRuntime cadse,
-			UUID uuid, String qualifiedName, String name);
+			UUID uuid, String qualifiedName, String name) throws CadseException;
 	/**
 	 * Returns state of this logical workspace.
 	 * 
