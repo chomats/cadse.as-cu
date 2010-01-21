@@ -427,6 +427,8 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 
 	public ContextVariable getContext();
 
+	public void addBinding(CadseRuntime cadse, ItemType it, ExtendedType et);
+
 	
 
 }
