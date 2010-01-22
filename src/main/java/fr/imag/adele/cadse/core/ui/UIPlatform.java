@@ -25,6 +25,7 @@ import java.util.List;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.WorkspaceListener;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
+import fr.imag.adele.cadse.core.attribute.ListAttributeType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionListener;
 
@@ -215,6 +216,12 @@ public interface UIPlatform {
 
 
 	public void setEnabled(UIField uiField, boolean b);
+	
+	public void setEnabled(IAttributeType<?> att, boolean b);
+	
+	public void setEditable(UIField uiField, boolean b);
+	
+	public void setEditable(IAttributeType<?> att, boolean b);
 
 	/**
 	 * Sets the message for this page with an indication of what type of message
@@ -265,7 +272,9 @@ public interface UIPlatform {
 
 	public boolean validateValueChanged(UIField field, Object visualValue);
 
-	public void setEditable(UIField uiField, boolean b);
+	
 
 	public UIField getField(IAttributeType<?> att);
+
+	
 }
