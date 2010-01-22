@@ -1,8 +1,10 @@
 package fr.imag.adele.cadse.core;
 
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.internal.InternalCadseRuntime;
 import fr.imag.adele.cadse.core.ui.view.FacetteCadseRuntimeView;
 
+import java.util.Properties;
 import java.util.UUID;
 import fr.imag.adele.cadse.core.ui.view.DefineNewContext;
 
@@ -111,6 +113,9 @@ public interface CadseRuntime extends Item, InternalCadseRuntime, FacetteCadseRu
 	public Binding[] getBinding();
 	
 	public ItemType[] getItemTypes();
+
+	public abstract String getLocalizedLabel(IAttributeType<?> attr);
 	
+	public void setLocalizedLabels(Properties localizedLabels);
 
 }
