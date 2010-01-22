@@ -23,6 +23,7 @@ import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
+import fr.imag.adele.cadse.core.TypeDefinition;
 
 /**
  * This factory can create a IPage object when it's necessary
@@ -78,7 +79,7 @@ public interface IPageFactory {
 	 * 
 	 * @return the i page
 	 */
-	public abstract IPage createPage(int cas, Link l, Item item, IItemNode node, ItemType type, LinkType lt);
+	public abstract IPage createPage(int cas, Link l, Item item, IItemNode node, TypeDefinition type, LinkType lt);
 
 	/**
 	 * Checks if is empty page.

@@ -25,6 +25,7 @@ import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
+import fr.imag.adele.cadse.core.TypeDefinition;
 
 /**
  * A factory for creating Page objects.
@@ -71,7 +72,7 @@ public abstract class PageFactory implements IPageFactory {
 	 *      fr.imag.adele.cadse.core.IItemNode, fr.imag.adele.cadse.core.ItemType,
 	 *      fr.imag.adele.cadse.core.LinkType)
 	 */
-	public abstract IPage createPage(int cas, Link l, Item item, IItemNode node, ItemType type, LinkType lt);
+	public abstract IPage createPage(int cas, Link l, Item item, IItemNode node, TypeDefinition type, LinkType lt);
 
 	/**
 	 * @see fr.imag.adele.cadse.core.ui.IPageFactory#isEmptyPage()

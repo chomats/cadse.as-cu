@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
+import fr.imag.adele.cadse.core.TypeDefinition;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 
 /**
@@ -86,7 +87,7 @@ public interface IPage extends Item {
 	 */
 	abstract boolean isPageComplete();
 
-	abstract ItemType getParentItemType();
+	abstract TypeDefinition getParentItemType();
 
 	abstract boolean isModificationPage();
 
