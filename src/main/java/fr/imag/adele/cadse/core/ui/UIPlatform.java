@@ -165,7 +165,8 @@ public interface UIPlatform {
 
 	public Item getItem();
 
-
+	public void setItem(Item item);
+	
 	/**
 	 * Gets the next page index.
 	 * 
