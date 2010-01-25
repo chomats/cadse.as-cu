@@ -488,6 +488,10 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static ItemType DCHOOSE_FILE;
+	/**
+	    @generated
+	*/
 	public static ItemType DCOMBO;
 	/**
 	    @generated
@@ -2209,7 +2213,7 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType WCLISTENER_lt_LISTEN_ITEM_TYPES;
-	
+
 	/**
 	    @generated
 	*/
