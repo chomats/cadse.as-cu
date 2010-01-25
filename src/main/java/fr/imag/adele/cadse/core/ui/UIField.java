@@ -61,7 +61,8 @@ public interface UIField extends Item {
 	 */
 	abstract int getHSpan();
 
-
+	abstract void setHSpan(int h);
+	
 	abstract void setEditable(boolean editable);
 	
 	/**
