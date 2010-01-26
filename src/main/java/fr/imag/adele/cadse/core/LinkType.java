@@ -96,10 +96,14 @@ LogicalWorkspaceTransactionBroadcaster {
 	public static final int	CONTENT						= 0x0800;
 
 	/**
-	 * Bit mask to determine content flag.
+	 * Bit mask to determine group flag.
 	 */
 	public static final int	GROUP						= 0x1000;
 
+	/**
+	 * Bit mask to determine group flag.
+	 */
+	public static final int	MAPPING						= 0x2000;
 	/**
 	 * Bit mask to determine modified flag.
 	 */

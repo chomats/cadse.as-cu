@@ -58,6 +58,17 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * @return item type with specified id.
 	 */
 	public ItemType getItemType(UUID itemTypeId);
+	
+	/**
+	 * Returns ext type with specified id. Returns null if no ext type exists
+	 * in the logical workspace with this id.
+	 * 
+	 * @param extUUID
+	 *            ext type id
+	 * 
+	 * @return ext type with specified id.
+	 */
+	public ExtendedType getExtendedType(UUID extUUID);
 
 	/**
 	 * Returns item type with specified short name. Returns null if no item type
@@ -428,6 +439,8 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	public ContextVariable getContext();
 
 	public void addBinding(CadseRuntime cadse, ItemType it, ExtendedType et);
+
+	
 
 	
 
