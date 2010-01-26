@@ -201,7 +201,12 @@ public class DefaultKeyImpl implements Key {
         _values[index] = name;
     }
 
-
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Key)
+			return equals((Key) obj);
+		return false;
+	}
 
 	@Override
 	public boolean equals(Key k) {
@@ -245,7 +250,7 @@ public class DefaultKeyImpl implements Key {
 		if (_parentKey != null)
 			_h = _parentKey.hashCode();
 		for (int i = 0; i < _values.length; i++) {
-			_h = _h ^ (_values[i] == null ? -1 : _values[i].hashCode());
+			_h = 31*_h + (_values[i] == null ? -1 : _values[i].hashCode());
 
 		}
 		return _h;
