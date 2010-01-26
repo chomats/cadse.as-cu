@@ -21,11 +21,5 @@ public interface FacetteItemTypeAction {
 	 */
 	public void setCreationAction(Class<? extends IActionPage> clazz, String defaultShortName);
 
-	/**
-	 * Gets the all action contribution.
-	 * 
-	 * @return the all action contribution
-	 */
-	public IActionContributor[] getAllActionContribution();
 
 }

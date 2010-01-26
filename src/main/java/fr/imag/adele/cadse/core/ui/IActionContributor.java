@@ -29,6 +29,8 @@ import fr.imag.adele.cadse.core.ui.view.ViewDescription;
  */
 public interface IActionContributor {
 	
+	IActionContributor[] getOverwriteActionContributor();
+	
 	/**
 	 * Contribute menu action.
 	 * 

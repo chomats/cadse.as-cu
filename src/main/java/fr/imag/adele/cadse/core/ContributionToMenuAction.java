@@ -20,13 +20,5 @@ public interface ContributionToMenuAction {
 	 */
 	public void contributeMenuNewAction(Menu menu, Item parent);
 	
-	/**
-	 * Contribute menu action.
-	 * 
-	 * @param menu
-	 *            the menu
-	 * @param selection
-	 *            the selection
-	 */
-	public void contributeMenuAction(Menu menu, IItemNode[] selection);
+	
 }
