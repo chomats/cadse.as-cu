@@ -68,9 +68,6 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 		this._itemType = it;
 	}
 
-	public void init() {
-	}
-
 	public String getQualifiedDisplayName(Item item) {
 		return item.getType().getDisplayName() + " " + item.getDisplayName();
 	}
