@@ -203,6 +203,8 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 * @return true, if is abstract
 	 */
 	public boolean isAbstract();
+	
+	public void setIsAbstract(boolean b);
 
 	/**
 	 * Get domain.
