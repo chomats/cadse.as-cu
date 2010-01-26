@@ -36,4 +36,12 @@ public abstract class CreatedObjectManager {
 			DEFAULTObjectMANAGER.register(item, clazz);
 		return item;
 	}
+	
+	public static Item register(CreatedObject platform, ItemType item, Class<?> clazz) {
+		if (platform != null)
+			platform.register(item, clazz);
+		else
+			DEFAULTObjectMANAGER.register(item, clazz);
+		return item;
+	}
 }
