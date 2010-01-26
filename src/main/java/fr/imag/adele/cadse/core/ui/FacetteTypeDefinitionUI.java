@@ -5,8 +5,6 @@
 
 package fr.imag.adele.cadse.core.ui;
 
-import java.util.List;
-
 import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 

@@ -5,6 +5,8 @@
 
 package fr.imag.adele.cadse.core;
 
+import java.util.Set;
+
 import fr.imag.adele.cadse.core.ui.IActionContributor;
 
 /**
@@ -27,5 +29,12 @@ public interface FacetteTypeDefinitionAction {
 	 *            the contributor
 	 */
 	public void addActionContributeur(IActionContributor contributor);
+	
+	/**
+	 * Gets the all action contribution.
+	 * 
+	 * @return the all action contribution
+	 */
+	public Set<IActionContributor> getAllActionContribution();
 
 }

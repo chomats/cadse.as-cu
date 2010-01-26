@@ -31,7 +31,7 @@ import fr.imag.adele.cadse.core.ui.view.ViewDescription;
  * The Class GenericActionContributor.
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
-public class GenericActionContributor implements IActionContributor {
+public class GenericActionContributor extends AbstractActionContributor {
 	
 	/**
 	 * The Class DescriptionMenu.

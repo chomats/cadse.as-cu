@@ -306,14 +306,7 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 
 	public ContentItem createContentItem(UUID id, Item owerItem) throws CadseException {
 		return ContentItem.NO_CONTENT;
-	}
-
-	@Override
-	@Deprecated
-	public void contributeMenuAction(Menu menu, IItemNode[] selection) {
-		
-	}
-	
+	}	
 	
 	/*
 	 * (non-Javadoc)

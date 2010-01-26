@@ -12,8 +12,6 @@ public interface ItemTypeInternal {
 
 	public void removeSubItemType(ItemType itemType);
 
-	public void resetContributions();
-
 	public void setCSTName(String cst);
 	
 	public Link addOutgoingLinkType(LinkType ret);
