@@ -345,7 +345,7 @@ class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
-	public GroupType getGroup() {
+	public ItemType getGroup() {
 		// TODO Auto-generated method stub
 		return null;
 	}
