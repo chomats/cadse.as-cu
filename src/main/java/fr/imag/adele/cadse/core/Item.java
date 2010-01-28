@@ -924,7 +924,7 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 
 	public boolean isMemberOf(Item item);
 
-	public GroupType getGroup();
+	public ItemType getGroup();
 
 	public boolean isMember();
 
