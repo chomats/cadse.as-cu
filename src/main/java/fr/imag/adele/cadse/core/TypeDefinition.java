@@ -242,16 +242,16 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 		public IActionPage createDefaultCreationAction(NewContext context) throws CadseException;
 		
 		public IActionPage createDefaultModificationAction(FilterContext context) ;
-		public void computeGroup(Set<GroupOfAttributes> groups);
-		public abstract void computeValidators(FilterContext context, List<UIValidator> validators);
+		public void computeGroup(Set<GroupOfAttributes> groups, Set<TypeDefinition> visited);
+		public abstract void computeValidators(FilterContext context, List<UIValidator> validators, Set<TypeDefinition> visited);
 
 		public abstract void recurcifComputeModificationPage(FilterContext context, List<IPage> list,
-				Set<IAttributeType<?>> ro);
+				Set<IAttributeType<?>> ro, Set<TypeDefinition> visited);
 
 		public abstract void computeGenericPage(FilterContext context, HierarchicPage genericPage,
-				HashSet<IAttributeType<?>> inSpecificPages, Set<IAttributeType<?>> ro, IAttributeType<?>... firstAttributes);
+				HashSet<IAttributeType<?>> inSpecificPages, Set<IAttributeType<?>> ro, Set<TypeDefinition> visited, IAttributeType<?>... firstAttributes);
 		
-		public abstract void recurcifComputeCreationPage(FilterContext context, List<IPage> list);
+		public abstract void recurcifComputeCreationPage(FilterContext context, List<IPage> list, Set<TypeDefinition> visited);
 
 
 		public Link addOutgoingLinkType(LinkType ret);
