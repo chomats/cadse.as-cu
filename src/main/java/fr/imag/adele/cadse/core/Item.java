@@ -256,6 +256,13 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	public ItemType getType();
 
 	/**
+	 * Returns item type.
+	 * 
+	 * @return item type.
+	 */
+	public ItemType[] getTypes();
+
+	/**
 	 * Returns state of this item.
 	 * 
 	 * @return state of this item.
@@ -269,6 +276,13 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	 * @return an unmodifiable list of all <tt>outgoing</tt> links.
 	 */
 	public List<Link> getOutgoingLinks();
+	
+	/**
+	 * Returns the link types defined in this types and all hierarchical
+	 * @return not null list of all LinkType can accept this instance
+	 */
+	public List<LinkType> getLocalOutgoingLinkTypes();
+	
 
 	/**
 	 * Returns an unmodifiable list of all <tt>outgoing</tt> links of

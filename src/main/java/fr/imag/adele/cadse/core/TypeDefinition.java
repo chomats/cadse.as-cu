@@ -168,7 +168,7 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 	public abstract LinkType getIncomingLinkType(String name);
 	
 	/**
-	 * Get all hierarchical outgoing link types.
+	 * Get all hierarchical outgoing link types. It 's better to use {@link Item#getLocalOutgoingLinkTypes()}
 	 * 
 	 * @return an unmodifiable list all hierarchical outgoing link types.
 	 */
@@ -255,6 +255,15 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 
 
 		public Link addOutgoingLinkType(LinkType ret);
+		
+		public void computeIncomingLinkTypes(List<LinkType> ret, Set<TypeDefinition> visited) ;
+
+		/**
+		 * List<LinkType> ret = new ArrayList<LinkType>(); Compute ougoing link
+		 * types.
+		 */
+		public void computeOutgoingLinkTypes(List<LinkType> ret, Set<TypeDefinition> visited) ;
+		
 
 	}
 
