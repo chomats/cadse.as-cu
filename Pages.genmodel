@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.imag.adele.cadse.runtime.emf.model/src"
+    editDirectory="/fr.imag.adele.cadse.runtime.emf.edit/src" editorDirectory="fr.imag.adele.cadse.runtime.emf.editor/src"
+    modelPluginID="fr.imag.adele.cadse.runtime.emf.model" modelName="Cadse Runtime"
+    modelPluginClass="" editPluginClass="fr.imag.adele.cadse.runtime.emf.edit.cadseRuntime.provider.CadseRuntimeEditPlugin"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    editPluginID="fr.imag.adele.cadse.runtime.emf.edit" editorPluginID="fr.imag.adele.cadse.runtime.emf.editor"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>Pages.ecore</foreignModel>
+  <genPackages prefix="CadseRuntime" basePackage="fr.imag.adele.cadse.runtime.emf"
+      disposableProviderFactory="true" generateExampleClass="false" fileExtensions="cadse"
+      ecorePackage="Pages.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Pages.ecore#//EPosLabel">
+      <genEnumLiterals ecoreEnumLiteral="Pages.ecore#//EPosLabel/left"/>
+      <genEnumLiterals ecoreEnumLiteral="Pages.ecore#//EPosLabel/top"/>
+      <genEnumLiterals ecoreEnumLiteral="Pages.ecore#//EPosLabel/none"/>
+      <genEnumLiterals ecoreEnumLiteral="Pages.ecore#//EPosLabel/defaultpos"/>
+    </genEnums>
+    <genClasses ecoreClass="Pages.ecore#//Page">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//Page/overwrite"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//Page/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Page/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Page/description"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//Page/readonlyAttributes"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//UIField">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//UIField/refAttribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//UIField/editable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//UIField/enable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//UIField/label"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//UIField/ic"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//UIField/mc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//UIField/position_label"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//Item">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/qualifiedName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/displayName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/itemHidden"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/itemReadonly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/committedDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/committedBy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/requireNewRev"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/revModified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Item/twVersion"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//Item/instanceOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//Item/parent"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//ItemType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//ItemType/superType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//ItemType/delegate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//ItemType/icon"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//ItemType/extendedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//AttributeDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//AttributeDefinition/cannot_be_undefinded"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//AttributeDefinition/finalValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//AttributeDefinition/mustBeInitialized"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//AttributeDefinition/noField"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//UIValidateur">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//UIValidateur/listenAttributes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//UIValidateur/overwrite"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//InteractionController"/>
+    <genClasses ecoreClass="Pages.ecore#//ModelController"/>
+    <genClasses ecoreClass="Pages.ecore#//Script">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Script/code"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Script/langage"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//ExtItemType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//ExtItemType/extends"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//TypeDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pages.ecore#//TypeDefinition/fields"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pages.ecore#//TypeDefinition/validators"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pages.ecore#//TypeDefinition/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pages.ecore#//TypeDefinition/creationPages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pages.ecore#//TypeDefinition/modificationPages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//TypeDefinition/defintionID"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pages.ecore#//TypeDefinition/cadse"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//TypeDefinition/refEClass"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//Cadse">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pages.ecore#//Cadse/definitions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pages.ecore#//Cadse/extends_explicite"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Cadse/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Cadse/executed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Cadse/definitionID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Cadse/defaultContentRepoURL"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Cadse/itemRepoLogin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Cadse/itemRepoPasswd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pages.ecore#//Cadse/itemRepoURL"/>
+    </genClasses>
+    <genClasses ecoreClass="Pages.ecore#//HierachicalPage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pages.ecore#//HierachicalPage/bloc"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
