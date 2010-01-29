@@ -1179,7 +1179,7 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	 *         that commit this item will create a new revision of it in the
 	 *         repository.
 	 */
-	public boolean isRequierNewRev();
+	public boolean isRequireNewRev();
 
 	/**
 	 * Returns true if it is considered as modified by versionning system.

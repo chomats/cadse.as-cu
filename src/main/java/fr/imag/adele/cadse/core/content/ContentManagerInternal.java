@@ -708,7 +708,7 @@ class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
-	public boolean isRequierNewRev() {
+	public boolean isRequireNewRev() {
 		// TODO Auto-generated method stub
 		return false;
 	}
