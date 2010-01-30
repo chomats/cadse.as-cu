@@ -1211,7 +1211,6 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 
 	public boolean exists();
 
-	public List<LinkType> getInstanceOutgoingLinkTypes();
 
 	/**
 	 * Gets the good creation page.

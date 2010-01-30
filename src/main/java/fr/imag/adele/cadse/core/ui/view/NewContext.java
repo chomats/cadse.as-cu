@@ -168,6 +168,7 @@ public class NewContext extends FilterContext {
 	public void setGroupHead(ItemType gh, LinkType glt) {
 		addOutgoingLink(CadseGCST.GROUP_EXT_ITEM_lt_MEMBER_OF, gh);
 		addIncomingLink(glt, gh);
+		addIncomingLink(CadseGCST.GROUP_EXT_ITEM_lt_MEMBERS, gh);
 		_gh = gh;
 		_glt = glt;
 	}

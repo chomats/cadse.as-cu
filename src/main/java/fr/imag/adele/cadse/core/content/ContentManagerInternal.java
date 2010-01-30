@@ -399,12 +399,6 @@ class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
-	public List<LinkType> getInstanceOutgoingLinkTypes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Key getKey() {
 		// TODO Auto-generated method stub
 		return null;
