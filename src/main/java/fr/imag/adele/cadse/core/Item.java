@@ -28,6 +28,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import fr.imag.adele.cadse.core.attribute.DelegateValue;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.build.Exporter;
 import fr.imag.adele.cadse.core.build.FacetteBuild;
 import fr.imag.adele.cadse.core.content.ContentItem;
@@ -1247,5 +1249,11 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 
 	Item getComponentInfo(UUID id);
 
+	// Delegation value
+	
+	DelegateValue getDelegateValue(IAttributeType<?> attr);
+	
+	boolean canInstantiateValue(IAttributeType<?> attr);
+	
 
 }
