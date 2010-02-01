@@ -360,5 +360,14 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	public GroupOfAttributes[] getGroupOfAttributes();
 
 	public CPackage getPackage();
+	
+	
+	
+	//Attribute Definiition delegation
+	boolean canBeDelegatedAttribute(IAttributeType<?> attr);
+	
+	boolean isDelegatedAttribute(IAttributeType<?> attr);
+	
+	void	setDelegatedAttribute(IAttributeType<?> attr, boolean val);
 
 }
