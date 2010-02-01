@@ -339,4 +339,6 @@ public interface ItemDelta extends Item, ItemOrLinkDelta, InternalItemDelta {
 	public LinkDelta loadLink(int linkId, LinkType lt, ItemDelta dest)
 			throws CadseException;
 
+	public Item getRealItem();
+
 }
