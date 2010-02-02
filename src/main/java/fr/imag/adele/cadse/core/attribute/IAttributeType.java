@@ -252,5 +252,11 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	
 	
 	public boolean isAttributeHead();
+	
+	/** 
+	 * source.isGroup
+	 * @return
+	 */
+	public boolean isAttributeMember();
 
 }
