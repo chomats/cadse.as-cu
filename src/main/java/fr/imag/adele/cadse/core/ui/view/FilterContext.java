@@ -51,6 +51,7 @@ public class FilterContext {
 	protected GroupType			_gt;
 	protected GroupType			_gh;
 	protected LinkType			_glt;
+	private Item _item;
 
 	protected FilterContext() {
 
@@ -205,7 +206,11 @@ public class FilterContext {
 		return result;
 	}
 
-	public void setItemSource(Item item) {
-		_itemSource = item;
+	public void setItem(Item item) {
+		_item = item;
+	}
+	
+	public Item getItem() {
+		return _item;
 	}
 }
