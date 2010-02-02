@@ -249,5 +249,8 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	public IAttributeType<?>[] getChildren();
 
 	public TypeDefinition getSource();
+	
+	
+	public boolean isAttributeHead();
 
 }

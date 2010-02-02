@@ -204,4 +204,8 @@ public class FilterContext {
 		}
 		return result;
 	}
+
+	public void setItemSource(Item item) {
+		_itemSource = item;
+	}
 }
