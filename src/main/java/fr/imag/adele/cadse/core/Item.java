@@ -89,7 +89,7 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	public static final int		NATIF									= 0x00000010;
 	public static final int		TRANSIENT								= 0x00000020;
 	// free to other kind
-	public static final int		FREE1									= 0x00000040;
+	public static final int		ATTRIBUTE_HEAD							= 0x00000040;
 	public static final int		PERSISTENCE_CACHE						= 0x00000080;
 
 	public static final int		NOT_EMPTY								= 0x00000100;
@@ -1254,6 +1254,8 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	DelegateValue getDelegateValue(IAttributeType<?> attr);
 	
 	boolean canInstantiateValue(IAttributeType<?> attr);
+
+	public boolean isDelegatedValue(IAttributeType<?> attr);
 	
 
 }

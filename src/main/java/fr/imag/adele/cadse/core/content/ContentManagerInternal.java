@@ -1161,4 +1161,10 @@ class ContentManagerInternal implements ContentItem {
 	public DelegateValue getDelegateValue(IAttributeType<?> attr) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean isDelegatedValue(IAttributeType<?> attr) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not implemented method");
 	}}

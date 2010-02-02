@@ -57,5 +57,7 @@ public interface Pages {
 
 	public Set<GroupOfAttributes> getGroupOfAttributes();
 	
+	public Set<IAttributeType<?>> getReadOnlyAttributes();
+	
 	public ItemType getMainType();
 }

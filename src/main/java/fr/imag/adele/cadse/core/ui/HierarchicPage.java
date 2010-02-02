@@ -5,4 +5,6 @@ public interface HierarchicPage extends IPage {
 	IPage[] getBlocks();
 
 	IPage insertNewBloc(String displayName);
+
+	boolean isGroupPage();
 }
