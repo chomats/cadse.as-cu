@@ -234,7 +234,7 @@ public interface Link extends InternalLink, INamedUUID, AdaptableObject {
 
 	/**
 	 * Returns true if destination is resolved (destination exists in the
-	 * logical wrokspace).
+	 * logical workspace).
 	 * 
 	 * @return true if destination is resolved.
 	 */
