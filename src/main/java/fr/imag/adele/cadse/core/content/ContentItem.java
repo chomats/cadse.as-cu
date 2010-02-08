@@ -321,5 +321,13 @@ public interface ContentItem extends Item, FacetteGenerate {
 	public void addChild(ContentItem contentItem);
 	
 	public void removeChild(ContentItem contentItem);
+	
+	public void setSCMRevision(String rev);
+	
+	public String getSCMRevisision();
+	
+	public void setSCMModified(boolean modified);
+	
+	public boolean isSCMModified();
 
 }
