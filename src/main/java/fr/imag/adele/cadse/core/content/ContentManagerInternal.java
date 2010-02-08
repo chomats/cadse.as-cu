@@ -1167,4 +1167,28 @@ class ContentManagerInternal implements ContentItem {
 	public boolean isDelegatedValue(IAttributeType<?> attr) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Not implemented method");
+	}
+
+	@Override
+	public String getSCMRevisision() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isSCMModified() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setSCMModified(boolean modified) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSCMRevision(String rev) {
+		// TODO Auto-generated method stub
+		
 	}}
