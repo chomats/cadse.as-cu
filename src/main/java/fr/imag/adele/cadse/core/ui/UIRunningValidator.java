@@ -16,7 +16,9 @@ public interface UIRunningValidator {
 	 */
 	public void init(UIPlatform uiPlatform) throws CadseException;
 
-
+/**
+ * init after ui
+ */
 	public void initAfterUI();
 	
 
