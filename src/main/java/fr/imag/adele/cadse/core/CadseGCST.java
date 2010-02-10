@@ -468,14 +468,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String CONTENT_ITEM_at_SCM_MODIFIED="scmModified";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType CONTENT_ITEM_at_SCM_MODIFIED_;
-	/**
-	    @generated
-	*/
 	public final static String CONTENT_ITEM_at_SCM_REVISION="scmRevision";
 	/**
 	    @generated
