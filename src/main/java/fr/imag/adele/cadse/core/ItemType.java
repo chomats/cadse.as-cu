@@ -318,12 +318,6 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	 */
 	public void setItemFactory(IItemFactory factory);
 
-	
-
-	/**
-	 * @deprecated Use {@link #getCadse()} instead
-	 */
-	public CadseRuntime getCadseRuntime();
 
 	public CadseRuntime getCadse();
 

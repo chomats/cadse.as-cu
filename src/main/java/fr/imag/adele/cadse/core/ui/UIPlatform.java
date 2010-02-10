@@ -277,5 +277,6 @@ public interface UIPlatform {
 
 	public UIField getField(IAttributeType<?> att);
 
+	public void dispose();
 	
 }
