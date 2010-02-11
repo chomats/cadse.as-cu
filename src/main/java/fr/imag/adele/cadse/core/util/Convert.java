@@ -221,6 +221,9 @@ public class Convert {
 		if (value instanceof Number) {
 			return ((Number) (value)).longValue();
 		}
+		if (value instanceof Date) {
+			return ((Date) (value)).getTime();
+		}
 		throw new ClassCastException("Can't convert to Long value the type " + value.getClass());
 
 	}
