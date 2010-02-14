@@ -1199,6 +1199,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String ITEM_TYPE_at_DEFAULT_INSTANCE_NAME="defaultInstanceName";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType ITEM_TYPE_at_DEFAULT_INSTANCE_NAME_;
+	/**
+	    @generated
+	*/
 	public final static String ITEM_TYPE_at_DISPLAY_NAME_TEMPLATE="display-name-template";
 	/**
 	    @generated
