@@ -467,6 +467,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String CONTENT_ITEM_at_SCM_REPO_URL="scmRepoURL";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType CONTENT_ITEM_at_SCM_REPO_URL_;
+	/**
+	    @generated
+	*/
 	public final static String CONTENT_ITEM_at_SCM_REVISION="scmRevision";
 	/**
 	    @generated
@@ -484,6 +492,14 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static BooleanAttributeType CONTENT_ITEM_TYPE_at_EXTENDS_CLASS_;
+	/**
+	    @generated
+	*/
+	public static ItemType CONTENT_LINK_TYPE;
+	/**
+	    @generated
+	*/
+	public static LinkType CONTENT_LINK_TYPE_lt_CONTENT_DEFINITION;
 	/**
 	    @generated
 	*/
