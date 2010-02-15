@@ -1170,7 +1170,7 @@ class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
-	public String getSCMRevisision() {
+	public String getSCMRevision() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -1189,6 +1189,18 @@ class ContentManagerInternal implements ContentItem {
 
 	@Override
 	public void setSCMRevision(String rev) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getSCMRepoUrl() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setSCMRepoUrl(String repoUrl) {
 		// TODO Auto-generated method stub
 		
 	}}

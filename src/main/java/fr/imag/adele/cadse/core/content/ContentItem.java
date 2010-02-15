@@ -324,7 +324,11 @@ public interface ContentItem extends Item, FacetteGenerate {
 	
 	public void setSCMRevision(String rev);
 	
-	public String getSCMRevisision();
+	public String getSCMRevision();
+	
+	public void setSCMRepoUrl(String repoUrl);
+	
+	public String getSCMRepoUrl();
 	
 	public void setSCMModified(boolean modified);
 	
