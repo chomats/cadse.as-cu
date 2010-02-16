@@ -22,7 +22,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import java.util.UUID;
@@ -37,6 +40,18 @@ import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 
 public class Convert {
 
+	public static int[] toArray(List<Integer> value) {
+		if (value == null || value.size() ==0)
+			return null;
+		int[] ret = new int[value.size()];
+		int j = 0;
+		for (int i : ret) {
+			ret[j++] = i;
+		}
+		return ret;
+	}
+	
+	
 	public static boolean toBoolean(Object value) {
 		if (value == null || "".equals(value)) {
 			throw new NullPointerException("A boolean value is null : can't convert to primive boolean value");
@@ -345,6 +360,17 @@ public class Convert {
 			return true;
 		}
 		return false;
+	}
+
+
+	public static List<Integer> toArray(int[] compatibleVersions) {
+		if (compatibleVersions == null)
+			return Collections.emptyList();
+		ArrayList<Integer> ret = new ArrayList<Integer>(compatibleVersions.length);
+		for (int i = 0; i < compatibleVersions.length; i++) {
+			ret.add(compatibleVersions[i]);
+		}
+		return ret;
 	}
 
 	

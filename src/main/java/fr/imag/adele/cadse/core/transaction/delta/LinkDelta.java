@@ -110,6 +110,8 @@ public interface LinkDelta extends Link, ItemOrLinkDelta, InternalWLWCOperation 
 
 	void setInfo(String info, boolean loaded);
 
+	void setAttribute(IAttributeType<?> key, Object v);
+	
 	void setAttribute(IAttributeType<?> key, Object v, Object oldValue, boolean loaded);
 
 	void setReadOnly(boolean readOnly);
