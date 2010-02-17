@@ -1207,7 +1207,7 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public static LinkType ITEM_TYPE_lt_CREATE_NEW_REVISION;
+	public static LinkType ITEM_TYPE_lt_CONTENT_MODEL;
 	/**
 	    @generated
 	*/
