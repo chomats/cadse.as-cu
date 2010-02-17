@@ -708,8 +708,9 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	public boolean isPartItem();
 
 	/**
-	 * Returns true if this item can not be modified anymore. Static items are
-	 * items (mostly ItemTypes) which are defined in a CADSE definition model.
+	 * Returns true if this item can not be modified anymore. Runtime items are
+	 * items (mostly ItemTypes) which are defined in a CADSE definition model. 
+	 * There are no content.
 	 * 
 	 * @return true if this item can not be modified anymore.
 	 */
