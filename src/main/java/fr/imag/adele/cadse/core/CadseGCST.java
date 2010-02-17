@@ -495,6 +495,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String CONTENT_ITEM_TYPE_at_ID_RUNTIME="id-runtime";
+	/**
+	    @generated
+	*/
+	public static StringAttributeType CONTENT_ITEM_TYPE_at_ID_RUNTIME_;
+	/**
+	    @generated
+	*/
 	public static ItemType CONTENT_LINK_TYPE;
 	/**
 	    @generated
