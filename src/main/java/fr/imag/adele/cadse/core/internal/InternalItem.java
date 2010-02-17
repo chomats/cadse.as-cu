@@ -106,13 +106,13 @@ public interface InternalItem {
 	public void refresh();
 
 	/**
-	 * If <code>isStatic</code> is equal to true, this item becomes read only
-	 * until this item becomes not static.
+	 * If <code>isRuntime</code> is equal to true, this item becomes read only
+	 * until this item becomes not in runtime. No contents object.
 	 * 
-	 * @param isStatic
-	 *            static flag
+	 * @param isRuntime
+	 *            runtime flag
 	 */
-	public void setIsStatic(boolean isStatic);
+	public void setIsRuntime(boolean isRuntime);
 
 	/**
 	 * Compute attribute.

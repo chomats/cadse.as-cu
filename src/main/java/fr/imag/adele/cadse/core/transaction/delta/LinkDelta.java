@@ -155,7 +155,7 @@ public interface LinkDelta extends Link, ItemOrLinkDelta, InternalWLWCOperation 
 	// return the link in the workspace logique
 	Link getBaseLink();
 
-	boolean isStatic();
+	boolean isRuntime();
 
 	void changeDestination(Item att);
 
