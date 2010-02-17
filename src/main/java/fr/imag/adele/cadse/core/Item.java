@@ -120,7 +120,7 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 
 	public static final int		IS_MODIFIED								= 0x10000000;
 	public static final int		IS_HIDDEN								= 0x20000000;
-	public static final int		IS_STATIC								= 0x40000000;
+	public static final int		IS_RUNTIME								= 0x40000000;
 	public static final int		DEFAULT_FLAG							= 0x80000000;
 
 	public static final int		DEFAULT_FLAG_VALUE						= EVOL_REQUIRER_NEW_REV | DEFAULT_FLAG;
@@ -713,7 +713,7 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	 * 
 	 * @return true if this item can not be modified anymore.
 	 */
-	public boolean isStatic();
+	public boolean isRuntime();
 
 	/**
 	 * Returns its parent item. An item has at most one parent. The parent item

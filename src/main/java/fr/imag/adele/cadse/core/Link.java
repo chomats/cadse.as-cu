@@ -246,7 +246,7 @@ public interface Link extends InternalLink, INamedUUID, AdaptableObject {
 	 * 
 	 * @return true if this link is static.
 	 */
-	public boolean isStatic();
+	public boolean isRuntime();
 
 	/**
 	 * Returns order index of this link from its source. Considered links are
