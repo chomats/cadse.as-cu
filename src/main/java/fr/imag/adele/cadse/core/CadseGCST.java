@@ -1207,6 +1207,10 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static LinkType ITEM_TYPE_lt_CREATE_NEW_REVISION;
+	/**
+	    @generated
+	*/
 	public final static String ITEM_TYPE_at_CUSTOM_MANAGER="custom-manager";
 	/**
 	    @generated
