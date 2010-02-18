@@ -199,19 +199,21 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	 * 
 	 * @param qualifiedName
 	 *            item qualified name
+	 * @throws CadseException 
 	 * 
 	 * @throws CadseException
 	 */
-	public void setQualifiedName(String qualifiedName) ;
+	public void setQualifiedName(String qualifiedName) throws CadseException ;
 
 	/**
 	 * Sets name.
 	 * 
 	 * @param name
 	 *            item name
+	 * @throws CadseException 
 	 * @throws CadseException
 	 */
-	public void setName(String name);
+	public void setName(String name) throws CadseException;
 
 	/**
 	 * Return the cadse where is stored this item. It's can be null. But for an

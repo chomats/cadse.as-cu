@@ -2,6 +2,7 @@
 package fr.imag.adele.cadse.core.internal;
 
 import fr.imag.adele.cadse.core.CPackage;
+import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGPackage;
 import fr.imag.adele.cadse.core.ExtendedType;
 import fr.imag.adele.cadse.core.ItemType;
@@ -31,7 +32,7 @@ public class CadseGPackageImpl extends CPackageImpl implements CadseGPackage {
 
 		public static CadseGPackage init(String name, String qname, int version,
 				UUID uuid, String description, String displayName,
-				String classCst, String classImplName, Class<?> clazzItf) {
+				String classCst, String classImplName, Class<?> clazzItf)  {
 			
 			 	if (isInited) 
 			 		return (CadseGPackage) CPackage.CRegistry.INSTANCE.getCPackage(uuid);
@@ -44,7 +45,12 @@ public class CadseGPackageImpl extends CPackageImpl implements CadseGPackage {
 			    isInited = true;
 
 			    // Create package meta-data objects
-			    theEcorePackage.createPackageContents();
+			    try {
+					theEcorePackage.createPackageContents();
+				} catch (CadseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			    // Initialize created meta-data
 			    theEcorePackage.initializePackageContents();
@@ -3345,9 +3351,10 @@ public class CadseGPackageImpl extends CPackageImpl implements CadseGPackage {
 	private boolean	isCreated	= false;
 
 	/**
+	 * @throws CadseException 
 	 * @generated
 	 */
-	public void createPackageContents() {
+	public void createPackageContents() throws CadseException {
 		if (isCreated)
 			return;
 		isCreated = true;
