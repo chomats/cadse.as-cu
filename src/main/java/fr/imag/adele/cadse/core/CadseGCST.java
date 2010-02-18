@@ -391,6 +391,10 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static LinkType COMPOSER_lt_CONTENTS;
+	/**
+	    @generated
+	*/
 	public final static String COMPOSER_at_TYPES="types";
 	/**
 	    @generated
@@ -687,6 +691,10 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static LinkType DISPLAY_lt_CONTENTS;
+	/**
+	    @generated
+	*/
 	public final static String DISPLAY_at_EXTENDS_IC="extendsIC";
 	/**
 	    @generated
@@ -719,6 +727,10 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static LinkType DYNAMIC_ACTIONS_lt_CONTENTS;
+	/**
+	    @generated
+	*/
 	public static ItemType ECLIPSE_COMPOSER;
 	/**
 	    @generated
@@ -728,6 +740,10 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType ECLIPSE_EXPORTER;
+	/**
+	    @generated
+	*/
+	public static LinkType ECLIPSE_EXPORTER_lt_CONTENTS;
 	/**
 	    @generated
 	*/
@@ -791,6 +807,10 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static LinkType EXPORTER_lt_CONTENTS;
+	/**
+	    @generated
+	*/
 	public final static String EXPORTER_at_TYPES="types";
 	/**
 	    @generated
@@ -804,6 +824,10 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType EXT_ITEM_TYPE;
+	/**
+	    @generated
+	*/
+	public static LinkType EXT_ITEM_TYPE_lt_CONTENTS;
 	/**
 	    @generated
 	*/
@@ -1084,6 +1108,10 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType INTERACTION_CONTROLLER;
+	/**
+	    @generated
+	*/
+	public static LinkType INTERACTION_CONTROLLER_lt_CONTENTS;
 	/**
 	    @generated
 	*/
@@ -1671,6 +1699,10 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static LinkType MC_DEST_LINK_lt_CONTENTS;
+	/**
+	    @generated
+	*/
 	public static ItemType MC_ENUM;
 	/**
 	    @generated
@@ -1720,6 +1752,10 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType MC_LINK;
+	/**
+	    @generated
+	*/
+	public static LinkType MC_LINK_lt_CONTENTS;
 	/**
 	    @generated
 	*/
@@ -1879,11 +1915,19 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public static LinkType MENU_ACTION_lt_CONTENTS;
+	/**
+	    @generated
+	*/
 	public static ItemType MENU_GROUP;
 	/**
 	    @generated
 	*/
 	public static ItemType MODEL_CONTROLLER;
+	/**
+	    @generated
+	*/
+	public static LinkType MODEL_CONTROLLER_lt_CONTENTS;
 	/**
 	    @generated
 	*/
@@ -2116,6 +2160,10 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static ItemType UILISTENER;
+	/**
+	    @generated
+	*/
+	public static LinkType UILISTENER_lt_CONTENTS;
 	/**
 	    @generated
 	*/
