@@ -89,7 +89,7 @@ public interface InternalItem {
 
 	public boolean setFlag(int f, boolean flag);
 
-	public void setVersion(int version);
+	public void setVersion(int version) throws CadseException;
 
 	/**
 	 * change the state of this item. Be carreful !!!

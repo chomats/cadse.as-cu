@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import fr.imag.adele.cadse.core.CFactory;
 import fr.imag.adele.cadse.core.CPackage;
+import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.ExtendedType;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.LinkType;
@@ -81,25 +82,25 @@ public class CPackageImpl  implements CPackage {
 
 	public TypeDefinition createEClass(ItemType type, int idInPackage,
                         long itemMsb, long itemLsb, String qname,
-			String name) {
+			String name) throws CadseException {
 		CFactory f = type.getPackage().getCFactory();
 		return f.createEClass(type.getIdInPackage(), this, idInPackage, itemMsb, itemLsb, qname, name);
 	}
 	
 	public TypeDefinition createEClass(CFactory f, int typeInPage, int idInPackage, long itemMsb, long itemLsb, String qname,
-			String name)  {
+			String name) throws CadseException  {
 		return f.createEClass(typeInPage, this, idInPackage,itemMsb, itemLsb, qname, name);
 	}
 	
 	public TypeDefinition createEClass(int typeInPage, int idInPackage, long itemMsb, long itemLsb, String qname,
-			String name) {
+			String name) throws CadseException {
 		return getCFactory().createEClass(typeInPage, this, idInPackage, itemMsb, itemLsb, qname, name);
 	}
 	
 	public IAttributeType<?> createEAttribute(TypeDefinition ownerTypeDefintion,
 			int idInPackage, long itemMsb, long itemLsb, 
 			String name, int attributeTypeId,
-			IAttributeType<?> ...attributeTypes) {
+			IAttributeType<?> ...attributeTypes) throws CadseException {
 		IAttributeType<?> ret = (IAttributeType<?>) getCFactory().create(attributeTypeId);
 		ret.setName(name);
 		ret.setUUID(itemMsb, itemLsb);
@@ -112,7 +113,7 @@ public class CPackageImpl  implements CPackage {
 	public IAttributeType<?> createEAttribute(TypeDefinition ownerTypeDefintion,
 			int idInPackage, long itemMsb, long itemLsb, 
 			String name, int attributeTypeId,
-			int attributeTypeId2) {
+			int attributeTypeId2) throws CadseException {
 		IAttributeType<?> ret = (IAttributeType<?>) getCFactory().create(attributeTypeId);
 		ret.setName(name);
 		ret.setUUID(itemMsb, itemLsb);
