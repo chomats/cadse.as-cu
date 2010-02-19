@@ -25,6 +25,8 @@ public interface IPage extends Item {
 	
 	abstract void addHiddenAttributes(IAttributeType<?>... attr);
 	
+	public void addOverridePage(IPage... pages) ;
+	
 	/**
 	 * Return the attributs which be readonly in this pages and other pages
 	 * @return a not null array. If no attribut, return an empty array.
