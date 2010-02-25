@@ -1257,7 +1257,10 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	DelegateValue getDelegateValue(IAttributeType<?> attr);
 	
 	boolean canInstantiateValue(IAttributeType<?> attr);
-
+	
+	/**
+	 * La valeur est délégué au group. Elle ne peut pas etre instancié dans le membre.
+	 */
 	public boolean isDelegatedValue(IAttributeType<?> attr);
 	
 
