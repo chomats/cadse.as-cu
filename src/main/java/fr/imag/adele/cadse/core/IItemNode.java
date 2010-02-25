@@ -179,6 +179,9 @@ public interface IItemNode {
 	 * @return
 	 */
 	public boolean isOpen();
+	
+	public void close();
+	public void open();
 
 	/**
 	 * Return select state of this node. By default, return
@@ -203,4 +206,6 @@ public interface IItemNode {
 	 * 
 	 */
 	public void delete();
+
+	public boolean hasChildren();
 }
