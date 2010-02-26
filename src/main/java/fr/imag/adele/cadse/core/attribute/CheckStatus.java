@@ -18,26 +18,25 @@
  */
 package fr.imag.adele.cadse.core.attribute;
 
+import fr.imag.adele.cadse.core.ui.UIPlatform;
 import fr.imag.adele.cadse.util.NLS;
 
 /**
- * Represents errors attached to an object.
+ * Represents errors attached to an object.<br/>
  * 
- * @author chomats
- * 
- *         <b>IPageController.NONE = 0</b> : Typically this indicates that the
- *         message should be shown without an icon and no check
+ *         <b>{@link UIPlatform#NONE}</b> : Typically this indicates that the
+ *         message should be shown without an icon and no check (value 0).
  *         <p/>
- *         <b>IPageController.INFORMATION</b> : Constant for an info message
+ *         <b>{@link UIPlatform#INFORMATION}</b> : Constant for an info message
  *         (value 1).
  *         <p/>
- *         <b>IPageController.WARNING</b> : Constant for a warning message
+ *         <b>{@link UIPlatform#WARNING}</b> : Constant for a warning message
  *         (value 2).
  *         <p/>
- *         <b>IPageController.ERROR</b> : Constant for an error message (value
+ *         <b>{@link UIPlatform#ERROR}</b> : Constant for an error message (value
  *         3). (cannot finish transaction or dialog process)
  *         <p/>
- * 
+ * @author chomats
  */
 public class CheckStatus {
 
@@ -49,7 +48,7 @@ public class CheckStatus {
 	 * Create an object status representing errors attached to an object.
 	 * 
 	 * @param type
-	 *            IPageController.* error types
+	 *            UIPlatform.* error types
 	 * @param msg
 	 *            message explaining this status
 	 */
@@ -71,6 +70,21 @@ public class CheckStatus {
 		return NLS.bind(_message, _args);
 	}
 
+	/**
+	 * Return the error type :<br/>
+	 *   <b>{@link UIPlatform#NONE}</b> : Typically this indicates that the
+ *         message should be shown without an icon and no check (value 0).
+ *         <p/>
+ *         <b>{@link UIPlatform#INFORMATION}</b> : Constant for an info message
+ *         (value 1).
+ *         <p/>
+ *         <b>{@link UIPlatform#WARNING}</b> : Constant for a warning message
+ *         (value 2).
+ *         <p/>
+ *         <b>{@link UIPlatform#ERROR}</b> : Constant for an error message (value
+ *         3). (cannot finish transaction or dialog process)
+	 * @return {@link UIPlatform#ERROR}, {@link UIPlatform#WARNING}, {@link UIPlatform#INFORMATION}, or {@link UIPlatform#NONE}
+	 */
 	public int getType() {
 		return _type;
 	}
