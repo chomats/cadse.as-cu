@@ -82,13 +82,6 @@ public interface IPage extends Item {
 	 */
 	abstract String getDescription();
 
-	/**
-	 * Checks if is page complete.
-	 * 
-	 * @return true, if is page complete
-	 */
-	abstract boolean isPageComplete();
-
 	abstract TypeDefinition getParentItemType();
 
 	abstract boolean isModificationPage();
