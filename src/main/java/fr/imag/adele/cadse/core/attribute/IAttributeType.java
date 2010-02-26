@@ -36,7 +36,12 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	/**
 	 * undefined value
 	 */
-	public static final Object	NULL	= null;
+	public static final Object	VALUE_NOT_DEFINED	= null;
+	
+	/**
+	 * undefined value
+	 */
+	public static final Object	VALUE_NOT_INIT	= new Object();
 
 	/**
 	 * TODO soit ItemType soit IAttributeType pour les types composer get
