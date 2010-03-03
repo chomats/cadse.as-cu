@@ -188,6 +188,20 @@ public class Convert {
 		throw new ClassCastException("Can't convert to Double value the type " + value.getClass());
 
 	}
+	
+	public static Double toDouble(Object value, Double defaultValue) {
+		if (value == null || "".equals(value)) {
+			return defaultValue;
+		}
+		if (value instanceof String) {
+			return Double.valueOf((String) value);
+		}
+		if (value instanceof Number) {
+			return ((Number) (value)).doubleValue();
+		}
+		throw new ClassCastException("Can't convert to Double value the type " + value.getClass());
+
+	}
 
 	public static double toDouble(Object value, DoubleAttributeType type, double defaultValue) {
 		if (value == null || "".equals(value)) {
@@ -207,6 +221,23 @@ public class Convert {
 	}
 
 	public static long toLong(Object value, long defaultValue) {
+		if (value == null || "".equals(value)) {
+			return defaultValue;
+		}
+		if (value instanceof String) {
+			return Long.valueOf((String) value);
+		}
+		if (value instanceof Number) {
+			return ((Number) (value)).longValue();
+		}
+		if (value instanceof Date) {
+			return ((Date) (value)).getTime();
+		}
+		throw new ClassCastException("Can't convert to Long value the type " + value.getClass());
+
+	}
+	
+	public static Long toLong(Object value, Long defaultValue) {
 		if (value == null || "".equals(value)) {
 			return defaultValue;
 		}
