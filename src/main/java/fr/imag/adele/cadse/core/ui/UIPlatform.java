@@ -273,7 +273,7 @@ public interface UIPlatform {
 
 	public boolean validateValueChanged(UIField field, Object visualValue);
 
-	
+	public boolean contains(IAttributeType<?> att);
 
 	public UIField getField(IAttributeType<?> att);
 
