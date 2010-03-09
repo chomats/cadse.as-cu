@@ -25,7 +25,6 @@ import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.TypeDefinition;
 import fr.imag.adele.cadse.core.internal.InternalIAttributeType;
 import fr.imag.adele.cadse.core.ui.FacetteAttributeUI;
-import fr.imag.adele.cadse.core.ui.IPage;
 import fr.imag.adele.cadse.core.ui.UIField;
 
 /**
@@ -36,12 +35,12 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	/**
 	 * undefined value
 	 */
-	public static final Object	VALUE_NOT_DEFINED	= null;
-	
+	public static final Object VALUE_NOT_DEFINED = null;
+
 	/**
 	 * undefined value
 	 */
-	public static final Object	VALUE_NOT_INIT	= new Object();
+	public static final Object VALUE_NOT_INIT = new Object();
 
 	/**
 	 * TODO soit ItemType soit IAttributeType pour les types composer get
@@ -58,28 +57,16 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	public Class<T> getAttributeType();
 
 	/**
-	 * Returns true if attribute value must be not equal to <code>NULL</code> at
-	 * creation time. Attribute value must be set at the end of related item
-	 * creation wizard and .
+	 * If returns true, method createNewValueFor(Item) is called to set value of this attribute of a just created item.
 	 * 
-	 * @return true if attribute value must be not equal to <code>NULL</code> at
-	 *         creation time.
-	 */
-	public boolean mustBeInitializedAtCreationTime();
-
-	/**
-	 * If returns true, method createNewValueFor(Item) is called to set value of
-	 * this attribute of a just created item.
-	 * 
-	 * @return true, if createNewValueFor(Item) need to be called when an item
-	 *         which has an attribute of this definition is created.
+	 * @return true, if createNewValueFor(Item) need to be called when an item which has an attribute of this definition
+	 *         is created.
 	 */
 	public boolean mustBeCreateNewValueAtCreationTimeOfItem();
 
 	/**
-	 * Returns computed value for this attribute of specified item. This method
-	 * is called only if mustBeCreateNewValueAtCreationTimeOfItem() method
-	 * returns true.
+	 * Returns computed value for this attribute of specified item. This method is called only if
+	 * mustBeCreateNewValueAtCreationTimeOfItem() method returns true.
 	 * 
 	 * @param createdItem
 	 *            a just created item
@@ -95,35 +82,29 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	public T getDefaultValue();
 
 	/**
-	 * Returns maximum number of values. It is useful for attribute collection
-	 * value.
+	 * Returns maximum number of values. It is useful for attribute collection value.
 	 * 
 	 * @return maximum number of values.
 	 */
 	public int getMax();
 
 	/**
-	 * Returns minimum number of values. It is useful for attribute collection
-	 * value.
+	 * Returns minimum number of values. It is useful for attribute collection value.
 	 * 
 	 * @return minimum number of values.
 	 */
 	public int getMin();
 
 	/**
-	 * Returns true if attribute value set and get operations are managed by
-	 * user code.
+	 * Returns true if attribute value set and get operations are managed by user code. TODO add methods necessary to
+	 * implement
 	 * 
-	 * TODO add methods necessary to implement
-	 * 
-	 * @return true if attribute value set and get operations are managed by
-	 *         user code.
+	 * @return true if attribute value set and get operations are managed by user code.
 	 */
 	public boolean isNatif();
 
 	/**
-	 * Set flag which determines if attribute value set and get operations are
-	 * managed by user code.
+	 * Set flag which determines if attribute value set and get operations are managed by user code.
 	 * 
 	 * @param isNatif
 	 *            isNatif flag
@@ -132,41 +113,54 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	public boolean setIsNatif(boolean isNatif);
 
 	/**
-	 * Returns true if attribute value is not persisted. It should be used for
-	 * derived or computed values.
+	 * Returns true if attribute value is not persisted. It should be used for derived or computed values.
 	 * 
 	 * @return true if attribute value is not persisted.
 	 */
 	public boolean isTransient();
 
 	/**
-	 * Returns true if attribute value can be undefined. An undefined attribute
-	 * value is equal to <code>NULL</code>..
+	 * Returns true if attribute value can be undefined. An undefined attribute value is equal to <code>NULL</code>..
 	 * 
 	 * @return true if attribute value is not persisted.
 	 */
 	public boolean canBeUndefined();
 
 	/**
-	 * Returns true if attribute value cannot be undefined. An undefined
-	 * attribute value is equal to <code>NULL</code>. The value attribute cannot
-	 * be to <code>NULL</code>.
+	 * Returns true if attribute value cannot be undefined. An undefined attribute value is equal to <code>NULL</code>.
+	 * The value attribute cannot be to <code>NULL</code>.
 	 * 
 	 * @return true if attribute value cannot not be undefined.
 	 */
 	public boolean cannotBeUndefined();
 
 	/**
-	 * TODO
+	 * Returns true if the attribute should be displayed in the default modification page. If the attribute is displayed
+	 * in a user defined modification page, the attribute in not displayed in the default modification page.
 	 * 
 	 * @return
 	 */
-	public boolean isHiddenInComputedPages();
+	public boolean isShowInDefaultMP();
 
 	/**
-	 * TODO
+	 * Sets if the attribute should be displayed in the default modification page. If the attribute is displayed in a
+	 * user defined modification page, the attribute in not displayed in the default modification page.
 	 */
-	public void setHiddenInComputedPages(boolean flag);
+	public void setShowInDefaultMP(boolean flag);
+
+	/**
+	 * Returns true if the attribute should be displayed in the default creation page. If the attribute is displayed in
+	 * a user defined creation page, the attribute in not displayed in the default creation page.
+	 * 
+	 * @return
+	 */
+	public boolean isShowInDefaultCP();
+
+	/**
+	 * Sets if the attribute should be displayed in the default creation page. If the attribute is displayed in a user
+	 * defined creation page, the attribute in not displayed in the default creation page.
+	 */
+	public void setShowInDefaultCP(boolean flag);
 
 	/**
 	 * TODO
@@ -190,57 +184,48 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	public T convertTo(Object value);
 
 	/**
-	 * Returns the errors related if we set specified attribute value to
-	 * specified item.
+	 * Returns the errors related if we set specified attribute value to specified item.
 	 * 
 	 * @param item
 	 *            item on which the attribute value will be set
 	 * @param value
 	 *            attribute value to try to set
-	 * @return the errors related if we set specified attribute value to
-	 *         specified item.
+	 * @return the errors related if we set specified attribute value to specified item.
 	 */
 	public CheckStatus check(Item item, Object value);
 
 	/**
-	 * Returns true if modification of value of an attribute of this type from
-	 * oldValue to newValue is considered as modified for version control
-	 * system.
+	 * Returns true if modification of value of an attribute of this type from oldValue to newValue is considered as
+	 * modified for version control system.
 	 * 
 	 * @param oldValue
 	 *            old attribute value
 	 * @param newValue
 	 *            new attribute value
-	 * @return true if modification of value of an attribute of this type from
-	 *         oldValue to newValue is considered as modified for version
-	 *         control system.
+	 * @return true if modification of value of an attribute of this type from oldValue to newValue is considered as
+	 *         modified for version control system.
 	 */
 	public boolean isTWValueModified(Object oldValue, Object newValue);
 
 	/**
-	 * Returns false if modification of value of an attribute of this type from
-	 * oldValue to newValue is considered as no modified. In this case, newValue
-	 * is not set and no set attribute event is thrown.
-	 * 
-	 * This method is called by CADSE runtime when setting attribute.
+	 * Returns false if modification of value of an attribute of this type from oldValue to newValue is considered as no
+	 * modified. In this case, newValue is not set and no set attribute event is thrown. This method is called by CADSE
+	 * runtime when setting attribute.
 	 * 
 	 * @param oldValue
 	 *            old attribute value
 	 * @param newValue
 	 *            new attribute value
-	 * @return true if modification of value of an attribute of this type from
-	 *         oldValue to newValue is considered as modified for version
-	 *         control system.
+	 * @return true if modification of value of an attribute of this type from oldValue to newValue is considered as
+	 *         modified for version control system.
 	 */
 	public boolean isValueModified(Object oldValue, Object newValue);
 
 	/**
-	 * Returns true if all versions (revisions) of an item has same value for
-	 * this attribute. If the attribute value is modified on an item version,
-	 * all others versions of the same item has their attribute value updated.
+	 * Returns true if all versions (revisions) of an item has same value for this attribute. If the attribute value is
+	 * modified on an item version, all others versions of the same item has their attribute value updated.
 	 * 
-	 * @return true if all versions (revisions) of an item has same value for
-	 *         this attribute.
+	 * @return true if all versions (revisions) of an item has same value for this attribute.
 	 */
 	public boolean isTWRevSpecific();
 
@@ -250,16 +235,16 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	public String getCSTName();
 
 	public UIField generateDefaultField();
-	
+
 	public IAttributeType<?>[] getChildren();
 
 	public TypeDefinition getSource();
-	
-	
+
 	public boolean isAttributeHead();
-	
-	/** 
+
+	/**
 	 * source.isGroup
+	 * 
 	 * @return
 	 */
 	public boolean isAttributeMember();
