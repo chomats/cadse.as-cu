@@ -220,7 +220,7 @@ public class DefaultKeyDefinitionImpl implements KeyDefinition {
 		return new DefaultKeyImpl(this, parentKey, values);
 	}
 
-	protected String convertName(String name) {
+	public String convertName(String name) {
 		return name;
 	}
 

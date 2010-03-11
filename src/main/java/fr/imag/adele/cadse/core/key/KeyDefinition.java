@@ -33,4 +33,6 @@ public interface KeyDefinition extends INamedUUID, INamed {
 	public String getName(Key key);
 
     public int hashNameAttribute();
+    
+    public String convertName(String name);
 }
