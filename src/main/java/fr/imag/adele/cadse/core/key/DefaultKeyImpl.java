@@ -198,7 +198,8 @@ public class DefaultKeyImpl implements Key {
     public void setName(String name) {
         int index = _keydefinition.hashNameAttribute();
         if (index == -1) throw  new CadseIllegalArgumentException("Cannot set name : not supported.");
-        _values[index] = name;
+        _values[index] = _keydefinition.convertName(name);
+        _h = 0;
     }
 
 	@Override
