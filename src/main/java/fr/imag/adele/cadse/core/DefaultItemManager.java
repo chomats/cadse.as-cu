@@ -308,7 +308,7 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fr.imag.adele.cadse.core.ContentItem#getParentPartContentManager(boolean)
+	 * @see fr.imag.adele.cadse.core.content.ContentItem#getParentPartContentManager(boolean)
 	 */
 	public ContentItem getParentContentItemWherePutMyContent(ContentItem cm) {
 		
