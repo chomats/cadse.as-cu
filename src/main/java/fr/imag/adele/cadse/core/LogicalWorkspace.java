@@ -440,6 +440,8 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 
 	public void addBinding(CadseRuntime cadse, ItemType it, ExtendedType et);
 
+	public void waitStart();
+
 	
 
 	
