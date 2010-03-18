@@ -294,6 +294,7 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 	}
 
 	
+	@Deprecated
 	public void contributeMenuNewAction(Menu menu, Item parent) {
 	}
 
