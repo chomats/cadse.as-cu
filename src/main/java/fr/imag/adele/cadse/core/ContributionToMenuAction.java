@@ -18,6 +18,7 @@ public interface ContributionToMenuAction {
 	 * @param parent
 	 *            the parent
 	 */
+	@Deprecated
 	public void contributeMenuNewAction(Menu menu, Item parent);
 	
 	
