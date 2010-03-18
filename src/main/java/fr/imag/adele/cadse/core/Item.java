@@ -101,8 +101,7 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	public static final int UNRESOLVED = 0x00001000;
 	public static final int READONLY = 0x00002000;
 	public static final int WORKING_COPY = 0x00004000;
-
-	// 1
+	public static final int DERIVED = 0x00008000;
 
 	public static final int EVOL_REQUIRER_NEW_REV = 0x00010000;
 	public static final int EVOL_REV_MODIFIED = 0x00020000;
@@ -126,6 +125,7 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 
 	public static final int DEFAULT_FLAG_VALUE = EVOL_REQUIRER_NEW_REV | DEFAULT_FLAG;
 
+	
 	/**
 	 * Returns the immutable universally unique identifier of this item. Item has same Id for all its life.
 	 * 
