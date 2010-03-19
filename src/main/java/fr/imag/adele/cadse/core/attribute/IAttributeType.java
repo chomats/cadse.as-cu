@@ -161,6 +161,21 @@ public interface IAttributeType<T> extends Item, INamed, InternalIAttributeType,
 	 * defined creation page, the attribute in not displayed in the default creation page.
 	 */
 	public void setShowInDefaultCP(boolean flag);
+	
+	
+	/**
+	 * Returns true if the attribute should be editable in modification pages.
+	 * 
+	 * @return
+	 */
+	public boolean isNotEditableInMP();
+
+	/**
+	 * Returns true if the attribute should be editable in creation pages.
+	 * 
+	 * @return
+	 */
+	public boolean isNotEditableInCP();
 
 	/**
 	 * TODO
