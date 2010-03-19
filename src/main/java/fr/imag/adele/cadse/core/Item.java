@@ -111,7 +111,9 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 
 	public static final int UI_VSCROLL = 0x00100000;
 	public static final int UI_HSCROLL = 0x00200000;
-	// 3
+	public static final int NOT_EDITABLE_IN_DEFAULT_MP = 0x00400000;
+	public static final int NOT_EDITABLE_IN_DEFAULT_CP = 0x00800000;
+	
 
 	public static final int UI_TEXT_MULTI_LINE = 0x01000000;
 	public static final int UI_TEXT_WRAP_LINE = 0x02000000;
