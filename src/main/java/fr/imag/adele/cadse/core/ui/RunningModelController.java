@@ -59,6 +59,9 @@ public interface RunningModelController extends UIRunningValidator {
 	 * @return the value
 	 */
 	Object getValue();
+	
+	
+	Object getHeritableValue();
 
 	/**
 	 * Default value.

@@ -107,7 +107,8 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	public static final int EVOL_REV_MODIFIED = 0x00020000;
 	public static final int EVOL_LINK_TYPE_COUPLED = 0x00040000;
 
-	// 1
+	public static final int HERITABLE = 0x00080000;
+
 
 	public static final int UI_VSCROLL = 0x00100000;
 	public static final int UI_HSCROLL = 0x00200000;
