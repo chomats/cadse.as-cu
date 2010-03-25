@@ -49,7 +49,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	
 	public NewContext[] getNewContextFrom(FilterContext context);
 	
-/**
+	/**
 	 * Returns item type with specified id. Returns null if no item type exists
 	 * in the logical workspace with this id.
 	 * 
@@ -60,6 +60,17 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 */
 	public ItemType getItemType(UUID itemTypeId);
 	
+	/**
+	 * Returns item type with specified id. Returns null if no item type exists
+	 * in the logical workspace with this id.
+	 * 
+	 * @param itemTypeId
+	 *            item type id
+	 * 
+	 * @return item type with specified id.
+	 */
+	public TypeDefinition getTypeDefinition(UUID itemTypeId);
+
 	/**
 	 * Returns ext type with specified id. Returns null if no ext type exists
 	 * in the logical workspace with this id.
