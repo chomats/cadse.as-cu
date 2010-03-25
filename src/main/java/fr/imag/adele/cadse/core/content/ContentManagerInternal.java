@@ -1203,4 +1203,10 @@ class ContentManagerInternal implements ContentItem {
 	public void setSCMRepoUrl(String repoUrl) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Composer[] getComposers() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not implemented method");
 	}}
