@@ -124,6 +124,12 @@ public class NewContext extends FilterContext {
 		_itemSource = s;
 		_lt = lt;
 	}
+	
+	public void setAggregation(Item s, LinkType lt) {
+		addIncomingLink(lt, s);
+		_itemSource = s;
+		_lt = lt;
+	}
 
 	public Item getPartParent() {
 		return _itemSource;
