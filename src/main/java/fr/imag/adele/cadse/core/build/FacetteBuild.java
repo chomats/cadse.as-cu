@@ -66,6 +66,7 @@ public interface FacetteBuild {
 	 */
 	public Exporter[] getExporter(String exportedContentType);
 
+	
 	/**
 	 * Sets the exporters.
 	 * 
@@ -82,4 +83,6 @@ public interface FacetteBuild {
 	 *            composers
 	 */
 	public void setComposers(Composer... composers);
+	
+	public Composer[] getComposers();
 }
