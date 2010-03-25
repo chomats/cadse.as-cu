@@ -24,7 +24,7 @@ package fr.imag.adele.cadse.core;
  * 
  * 
  */
-public interface ItemFilter {
+public interface ItemFilter<T> {
 	
 	/**
 	 * Tests whether or not the specified item is ignored.
@@ -35,7 +35,7 @@ public interface ItemFilter {
 	 * 
 	 * @return <code>true</code> if and only if <code>item</code> will be performed by related actions.
 	 */
-	public boolean accept(Item item);
+	public boolean accept(T item);
     
     /**
 	 * Returns <code>true</code> if TODO.
