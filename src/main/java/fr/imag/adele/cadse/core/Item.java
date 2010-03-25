@@ -107,7 +107,8 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	public static final int EVOL_REV_MODIFIED = 0x00020000;
 	public static final int EVOL_LINK_TYPE_COUPLED = 0x00040000;
 
-	public static final int HERITABLE = 0x00080000;
+	//FIXME  not used
+	public static final int INHERITANCABLE = 0x00080000;
 
 
 	public static final int UI_VSCROLL = 0x00100000;
@@ -127,6 +128,13 @@ public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributab
 	public static final int DEFAULT_FLAG = 0x80000000;
 
 	public static final int DEFAULT_FLAG_VALUE = EVOL_REQUIRER_NEW_REV | DEFAULT_FLAG;
+
+	public static final int OWNER_ATTRIBUTES = 1;
+	public static final int GROUP_ATTRIBUTES = 2;
+	public static final int INHERITANCE_ATTRIBUTES = 4;
+	public static final int EXTENDED_ATTRIBUTES = 8;
+	
+	public static final int ALL_ATTRIBUTES = OWNER_ATTRIBUTES+GROUP_ATTRIBUTES+INHERITANCE_ATTRIBUTES+EXTENDED_ATTRIBUTES;
 
 	
 	/**

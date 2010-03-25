@@ -173,6 +173,16 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 	 * @return an unmodifiable list all hierarchical outgoing link types.
 	 */
 	public abstract List<LinkType> getOutgoingLinkTypes();
+	
+	/**
+	 * Get all hierarchical outgoing link types. It 's better to use {@link Item#getLocalOutgoingLinkTypes()}
+	 * @param flag indicate which linktype we want get in return parameter : bit-wise or of update flag constants
+	 *   ({@link Item#OWNER_ATTRIBUTES}, {@link Item#GROUP_ATTRIBUTES}, {@link Item#INHERITANCE_ATTRIBUTES}, {@link Item#EXTENDED_ATTRIBUTES}
+	 *   and {@link Item#ALL_ATTRIBUTES}).
+	 * @param filter filter for filter which linkType we want or null for all
+	 * @return an list all hierarchical outgoing link types.
+	 */
+	public abstract List<LinkType> getOutgoingLinkTypes(int flag, ItemFilter<LinkType> filter);
 
 	/**
 	 * Get all owned outgoing link types, not hierarchical.
@@ -262,7 +272,7 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 		 * List<LinkType> ret = new ArrayList<LinkType>(); Compute ougoing link
 		 * types.
 		 */
-		public void computeOutgoingLinkTypes(List<LinkType> ret, Set<TypeDefinition> visited) ;
+		public List<LinkType> computeOutgoingLinkTypes(int flag, ItemFilter<LinkType> filter, List<LinkType> ret, Set<TypeDefinition> visited) ;
 		
 
 	}
