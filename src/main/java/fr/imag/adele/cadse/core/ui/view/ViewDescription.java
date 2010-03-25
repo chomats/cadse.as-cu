@@ -19,6 +19,7 @@
 package fr.imag.adele.cadse.core.ui.view;
 
 import fr.imag.adele.cadse.core.ItemType;
+import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
 
@@ -75,4 +76,6 @@ public interface ViewDescription {
 	public boolean canCreateDestination(LinkType lt);
 
 	public ItemType[] getCreatableItemType();
+	
+	public abstract boolean isAggregationLink(Link link);
 }
