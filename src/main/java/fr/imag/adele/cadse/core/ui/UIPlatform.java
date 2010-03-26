@@ -223,6 +223,8 @@ public interface UIPlatform {
 	public void setEditable(UIField uiField, boolean b);
 	
 	public void setEditable(IAttributeType<?> att, boolean b);
+	
+	public void setHidden(IAttributeType<?> att, boolean b);
 
 	/**
 	 * Sets the message for this page with an indication of what type of message
