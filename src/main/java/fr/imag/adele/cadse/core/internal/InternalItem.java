@@ -70,6 +70,12 @@ public interface InternalItem {
 
 	public <T> T internalGetGenericOwnerAttribute(IAttributeType<T> type);
 
+	/**
+	 * Commit the attribute.
+	 * @param type the attribute definition
+	 * @param value the new value
+	 * @return true if attribute is changed
+	 */
 	public boolean commitSetAttribute(IAttributeType<?> type, Object value);
 
 	public Link commitLoadCreateLink(LinkType lt, Item destination) throws CadseException;
