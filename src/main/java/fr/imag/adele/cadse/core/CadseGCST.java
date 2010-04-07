@@ -135,14 +135,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String ATTRIBUTE_at_HIDDEN_IN_COMPUTED_PAGES="hidden-in-computed-pages";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType ATTRIBUTE_at_HIDDEN_IN_COMPUTED_PAGES_;
-	/**
-	    @generated
-	*/
 	public final static String ATTRIBUTE_at_ID_RUNTIME="id-runtime";
 	/**
 	    @generated
@@ -159,14 +151,6 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
-	public final static String ATTRIBUTE_at_MUST_BE_INITIALIZED="must-be-initialized";
-	/**
-	    @generated
-	*/
-	public static BooleanAttributeType ATTRIBUTE_at_MUST_BE_INITIALIZED_;
-	/**
-	    @generated
-	*/
 	public final static String ATTRIBUTE_at_NATIF="natif";
 	/**
 	    @generated
@@ -180,6 +164,22 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static BooleanAttributeType ATTRIBUTE_at_REQUIRE_;
+	/**
+	    @generated
+	*/
+	public final static String ATTRIBUTE_at_SHOW_IN_DEFAULT_CP="show-in-default-cp";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType ATTRIBUTE_at_SHOW_IN_DEFAULT_CP_;
+	/**
+	    @generated
+	*/
+	public final static String ATTRIBUTE_at_SHOW_IN_DEFAULT_MP="show-in-default-mp";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType ATTRIBUTE_at_SHOW_IN_DEFAULT_MP_;
 	/**
 	    @generated
 	*/
