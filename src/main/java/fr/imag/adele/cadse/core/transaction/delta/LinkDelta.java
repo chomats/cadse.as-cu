@@ -52,8 +52,6 @@ public interface LinkDelta extends Link, ItemOrLinkDelta, InternalWLWCOperation 
 
 	void setIndex(int index, boolean loaded);
 
-	String getInfo();
-
 	ItemDelta getResolvedDestination();
 
 	ItemDelta getSource();
