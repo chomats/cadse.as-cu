@@ -907,6 +907,14 @@ public class CadseGCST {
 	/**
 	    @generated
 	*/
+	public final static String FOLDER_CONTENT_MODEL_at_REQUIRE_FOLDER="requireFolder";
+	/**
+	    @generated
+	*/
+	public static BooleanAttributeType FOLDER_CONTENT_MODEL_at_REQUIRE_FOLDER_;
+	/**
+	    @generated
+	*/
 	public static ItemType FOLDER_EXPORTER;
 	/**
 	    @generated
