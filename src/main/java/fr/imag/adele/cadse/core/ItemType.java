@@ -364,4 +364,6 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	
 	void	setDelegatedAttribute(IAttributeType<?> attr, boolean val);
 
+	public IContentItemFactory getContentFactory();
+
 }

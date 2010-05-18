@@ -1209,4 +1209,5 @@ class ContentManagerInternal implements ContentItem {
 	public Composer[] getComposers() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Not implemented method");
-	}}
+	}
+}
