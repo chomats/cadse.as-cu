@@ -323,28 +323,6 @@ public interface IItemManager extends ContributionToMenuAction {
 	 */
 	public String canDeleteLink(Link link);
 
-	/**
-	 * This method should not be override by a user.
-	 * 
-	 * Returns set of items for which any modification can impact the validation
-	 * of specified item. Default validation checks:
-	 * <ul>
-	 * <li>If it has a parent, he must be present.</li>
-	 * <li>If it requires other items (require outgoing links exist), they must
-	 * be present.</li>
-	 * <li>Cardinality for each outgoing relationships must be conformed.</li>
-	 * </ul>
-	 * All errors are published in specified reporter.
-	 * 
-	 * @param item
-	 *            item to validate
-	 * @param reporter
-	 *            issue reporter
-	 * 
-	 * @return set of items for which any modification can impact the validation
-	 *         of specified item.
-	 */
-	public List<Item> validate(Item item, ProblemReporter reporter);
 
 	/**
 	 * DON'T USE IT, always return true.
@@ -359,15 +337,6 @@ public interface IItemManager extends ContributionToMenuAction {
 	@Deprecated
 	public boolean hasContent(Item item);
 
-	/**
-	 * Don't call it, it is called automatically by CADSE runtime.
-	 * 
-	 * Create a factory to create a content item.
-	 * 
-	 * @return a content item factory.
-	 * 
-	 */
-	public IContentItemFactory getContentItemFactory();
 
 	/**
 	 * DON'T USE IT, always return true.
@@ -428,6 +397,4 @@ public interface IItemManager extends ContributionToMenuAction {
 	@Deprecated
 	public void doubleClick(Item item);
 	
-	
-	public ContentItem getParentContentItemWherePutMyContent(ContentItem cm) ;
 }
