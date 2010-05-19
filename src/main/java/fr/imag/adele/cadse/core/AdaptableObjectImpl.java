@@ -12,25 +12,43 @@ import fr.imag.adele.cadse.util.ArraysUtil;
  * @author chomats
  */
 public class AdaptableObjectImpl implements AdaptableObject {
-	Object[]	_facettes	= null;
+	ObjectAdapter<?>[]	_adaptObjects	= null;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T adapt(Class<T> clazz) {
-		if (clazz.isInstance(this))
-			return (T) this;
-		if (_facettes != null)
-			for (int i = 0; i < _facettes.length;) {
-				if (_facettes[i++] == clazz)
-					return (T) _facettes[i];
-				i++;
+		if (_adaptObjects != null)
+			for (int i = 0; i < _adaptObjects.length; i++) {
+				if (_adaptObjects[i].getClassAdapt() == clazz)
+					return (T) _adaptObjects[i];
 			}
 
-		throw new UnsupportedOperationException("Facette " + clazz + " for " + this);
+		return null;
 	}
 
-	public <T> void addFacette(Class<T> clazz, T f) {
-		_facettes = ArraysUtil.add(Object.class, _facettes, clazz);
-		_facettes = ArraysUtil.add(Object.class, _facettes, f);
+	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T[] adapts(Class<T> clazz) {
+		T[] ret = null;
+		if (_adaptObjects != null)
+			for (int i = 0; i < _adaptObjects.length; i++) {
+				if (_adaptObjects[i].getClassAdapt() == clazz)
+					ret = ArraysUtil.add(clazz, ret, (T) _adaptObjects[i]);
+			}
+
+		return ret;
+	}
+
+	@Override
+	public <T> void addAdater(ObjectAdapter<T> adapt) {
+		_adaptObjects = ArraysUtil.add(ObjectAdapter.class, _adaptObjects, adapt);
+	}
+
+	@Override
+	public <T> void removeAdater(ObjectAdapter<T> adapt) {
+		_adaptObjects = ArraysUtil.remove(ObjectAdapter.class, _adaptObjects, adapt);
 	}
 
 }

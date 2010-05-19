@@ -26,6 +26,7 @@ import java.util.UUID;
 import fr.imag.adele.cadse.core.attribute.BooleanAttributeType;
 import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.internal.ItemTypeInternal;
 import fr.imag.adele.cadse.core.key.FacetteItemTypeKey;
 import fr.imag.adele.cadse.core.key.KeyDefinition;
@@ -364,6 +365,9 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	
 	void	setDelegatedAttribute(IAttributeType<?> attr, boolean val);
 
-	public IContentItemFactory getContentFactory();
+	public Class<? extends ContentItem> getContentItemClass();
+	
+	public void setContentItemClass(Class<? extends ContentItem> cf);
+	
 
 }
