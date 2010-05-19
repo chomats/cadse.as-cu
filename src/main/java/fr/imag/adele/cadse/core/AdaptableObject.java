@@ -12,4 +12,10 @@ package fr.imag.adele.cadse.core;
 public interface AdaptableObject {
 
 	public <T> T adapt(Class<T> clazz);
+	
+	public <T> T[] adapts(Class<T> clazz);
+	
+	public <T> void addAdater(ObjectAdapter<T> adapt);
+	
+	public <T> void removeAdater(ObjectAdapter<T> adapt);
 }
