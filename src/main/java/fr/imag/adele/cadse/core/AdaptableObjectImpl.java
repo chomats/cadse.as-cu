@@ -42,12 +42,12 @@ public class AdaptableObjectImpl implements AdaptableObject {
 	}
 
 	@Override
-	public <T> void addAdater(ObjectAdapter<T> adapt) {
+	public <T> void addAdapter(ObjectAdapter<T> adapt) {
 		_adaptObjects = ArraysUtil.add(ObjectAdapter.class, _adaptObjects, adapt);
 	}
 
 	@Override
-	public <T> void removeAdater(ObjectAdapter<T> adapt) {
+	public <T> void removeAdapter(ObjectAdapter<T> adapt) {
 		_adaptObjects = ArraysUtil.remove(ObjectAdapter.class, _adaptObjects, adapt);
 	}
 
