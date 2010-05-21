@@ -107,7 +107,7 @@ public class DefaultItemManager implements IItemManager {
 			link_type_name = lt.getName();
 		}
 		if (_id_pattern == null) {
-			throw new NullPointerException("The long name template is null for " + item.getType().getDisplayName());
+			throw new NullPointerException("The qualified name template is null for " + item.getType().getDisplayName());
 		}
 		return MessageFormat.format(_id_pattern, shortid, parent_id, parent_name, parent_type, item.getType()
 				.getDisplayName(), link_type_name);
