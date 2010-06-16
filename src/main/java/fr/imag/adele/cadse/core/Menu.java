@@ -321,4 +321,14 @@ public class Menu extends IMenuAction {
 		return sb.toString();
 	}
 
+	public Menu getMenu(String newMenuId) {
+		for (IMenuAction ma : _children) {
+			if (ma instanceof Menu) {
+				if (ma.getId().equals(newMenuId))
+					return (Menu) ma;
+			} 
+		}
+		return null;
+	}
+
 }
