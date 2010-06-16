@@ -95,7 +95,7 @@ public interface IAttributableType {
 	 *            A filter to select attribute definition
 	 * @since 2.0
 	 */
-	public void getAllAttributeTypes(List<IAttributeType<?>> all, ItemFilter filter);
+	public void getAllAttributeTypes(List<IAttributeType<?>> all, ItemFilter<IAttributeType<?>>  filter);
 
 	/**
 	 * Returns all the attribute definition. Follows the hierarchy links and
@@ -121,7 +121,7 @@ public interface IAttributableType {
 	 * @since 2.0
 	 */
 	public void getAllAttributeTypes(Map<String, IAttributeType<?>> all, boolean keepLastAttribute,
-			ItemFilter filter);
+			ItemFilter<IAttributeType<?>> filter);
 
 	/**
 	 * Add all the attribute definition names to the Set given into parameter.
@@ -132,7 +132,7 @@ public interface IAttributableType {
 	 * @param filter
 	 *            A filter to select attribute definition
 	 */
-	public void getAllAttributeTypesKeys(Set<String> all, ItemFilter filter);
+	public void getAllAttributeTypesKeys(Set<String> all, ItemFilter<IAttributeType<?>> filter);
 
 	/**
 	 * Returns a list with all the attribute definition names.
