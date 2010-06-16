@@ -28,12 +28,13 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.imag.adele.cadse.core.Validator.ProblemReporter;
 import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 
-public class DefaultItemManager implements IItemManager, IContentItemFactory {
+public class DefaultItemManager implements IItemManager {
 	public static final String	CANNOT_RENAME		= "Cannot rename";
 	public static final String	CANNOT_DELETE		= "Cannot delete";
 
@@ -141,85 +142,7 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 			return "cannot change static item";
 		return null;
 	}
-
-	// validation...
-
-	public static final int	CODE_OK						= ProblemReporter.CODE_OK;
-
-	public static final int	FIRST_ERROR_CODE			= 10000;
-	public static final int	ERROR_CODE_RANGE			= 10000;
-	public static final int	LAST_ERROR_CODE				= FIRST_ERROR_CODE + ERROR_CODE_RANGE;
-
-	public static final int	CODE_MISSING_REQUIRED_ITEM	= FIRST_ERROR_CODE + 1;
-	public static final int	CODE_CARDINALITY_PROBLEM	= FIRST_ERROR_CODE + 2;
-	public static final int	CODE_MISSING_PARENT			= FIRST_ERROR_CODE + 3;
-
-	/**
-	 * /** This methods validates an item and report all errors found using the
-	 * provided reporter.
-	 * 
-	 * The method should return the list of related items required to validate
-	 * this item. This is needed so that when one of the related items changes
-	 * the item gets revalidated.
-	 * 
-	 * TODO: REFACTORING TO GENERALIZE TO ANY WORKSPACE MODEL
-	 * 
-	 * The general validations performed in this method should be done by the
-	 * validation builder and should not be done in a model specific manager.
-	 */
-	public List<Item> validate(Item item, ProblemReporter reporter) {
-
-		Item parentItem = item.getPartParent();
-		if (parentItem == null && item.isPartItem()) {
-			reporter.report(item, CODE_MISSING_PARENT, "Parent item of {0} is missing", item.getDisplayName());
-		}
-		// validate required items
-		for (Link link : item.getOutgoingLinks()) {
-			if (link.isRequire() && !link.isLinkResolved()) {
-				reporter.report(item, CODE_MISSING_REQUIRED_ITEM, "{1} requires {0} not in workspace", link
-						.getDestinationName(), item.getQualifiedDisplayName());
-			}
-		}
-
-		// validate Cardinalities
-		for (LinkType linkType : item.getType().getOutgoingLinkTypes()) {
-			List<Link> links = filterDerived(item.getOutgoingLinks(linkType));
-			if (links.size() < linkType.getMin()) {
-				reporter.report(item, CODE_CARDINALITY_PROBLEM, "{2}::{0} : Minimum {1} link required  ", linkType
-						.getName(), linkType.getMin(), item.getQualifiedDisplayName());
-			}
-			if ((linkType.getMax() != -1) && links.size() > linkType.getMax()) {
-				reporter.report(item, CODE_CARDINALITY_PROBLEM, "{2}::{0} : Maximum {1} link allowed ", linkType
-						.getName(), linkType.getMax(), item.getQualifiedDisplayName());
-			}
-		}
-
-		return Collections.emptyList();
-	}
-
-	private List<Link> filterDerived(List<Link> outgoingLinks) {
-		ArrayList<Link> ret =new ArrayList<Link>();
-		for (Link link : outgoingLinks) {
-			if (link.isDerived()) continue;
-			ret.add(link);
-		}
-		return ret;
-	}
-
-//	public Pages createCreationPages(Item theItemParent, LinkType theLinkType, ItemType desType) {
-//		try {
-//			return desType.getGoodCreationPage(theItemParent, desType, theLinkType);
-//		} catch (CadseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-
-//	public Pages createModificationPage(Item item) {
-//		return item.getType().getGoodModificationPage(item);
-//	}
-
+	
 	public boolean hasImageByItem() {
 		return false;
 	}
@@ -241,10 +164,6 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 
 	public void setPatternValidId(String pattern_valid_id) {
 		this._valid_pattern = Pattern.compile(pattern_valid_id).matcher("");
-	}
-
-	public IContentItemFactory getContentItemFactory() {
-		return this;
 	}
 
 	@Deprecated
@@ -301,34 +220,4 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 	public String getDisplayCreate(LinkType lt, ItemType destItemType) {
 		return null; // the default value (is itemDestType.getDsiplayName();
 	}
-
-	public ContentItem createContentItem(UUID id, Item owerItem) throws CadseException {
-		return ContentItem.NO_CONTENT;
-	}	
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.imag.adele.cadse.core.content.ContentItem#getParentPartContentManager(boolean)
-	 */
-	public ContentItem getParentContentItemWherePutMyContent(ContentItem cm) {
-		
-		Item ownerItem = cm.getOwnerItem();
-		Item parentItem =ownerItem.getPartParent(false);
-		if (parentItem == null) {
-			return null;
-		}
-		if (parentItem.getContentItem() != null) {
-			return parentItem.getContentItem();
-		}
-
-		cm = null;
-		while (cm == null && parentItem != null) {
-			cm = parentItem.getContentItem();
-			parentItem = parentItem.getPartParent(false);
-		}
-		return cm;
-	}
-	
-
 }
