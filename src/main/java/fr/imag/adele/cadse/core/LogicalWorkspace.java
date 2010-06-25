@@ -46,6 +46,7 @@ import fr.imag.adele.cadse.util.Nullable;
 public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster, 
         AdaptableObject, FacetteLWTransaction, FacetteLWKey, FacetteLWListener, FacetteLWUI {
 	public static final String	CADSES_TO_EXECUTE	= "fr.imag.adele.cadse.execute";
+	public static final String   CADSE_AUTOSAVE     = "fr.imag.adele.cadse.autosave";
 	
 	public NewContext[] getNewContextFrom(FilterContext context);
 	
