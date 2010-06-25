@@ -43,6 +43,10 @@ public interface GroupType {
 
 	public boolean isGroupOf(GroupType groupType);
 
+	/**
+	 * Return the members of this group...
+	 * @return
+	 */
 	public List<Item> getMembers();
 
 	/**
