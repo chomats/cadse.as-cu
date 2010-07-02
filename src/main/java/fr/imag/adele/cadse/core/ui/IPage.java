@@ -48,7 +48,7 @@ public interface IPage extends Item {
 	 
 	abstract void addLast(IAttributeType<?>... attr);
 
-	void addLast(List<IAttributeType> attrs);
+	void addLast(List<IAttributeType<?>> attrs);
 
 	abstract void addBefore(IAttributeType<?> beforeAttr, IAttributeType<?> attributeToInsert);
 

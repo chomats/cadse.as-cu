@@ -29,6 +29,7 @@ import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
+import fr.imag.adele.cadse.core.ObjectAdapter;
 import fr.imag.adele.cadse.core.TypeDefinition;
 import fr.imag.adele.cadse.core.WorkspaceListener;
 import fr.imag.adele.cadse.core.attribute.DelegateValue;
@@ -1209,5 +1210,29 @@ class ContentManagerInternal implements ContentItem {
 	public Composer[] getComposers() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Not implemented method");
+	}
+
+	@Override
+	public <T> T adapt(Class<T> clazz) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> T[] adapts(Class<T> clazz) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> void addAdapter(ObjectAdapter<T> adapt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T> void removeAdapter(ObjectAdapter<T> adapt) {
+		// TODO Auto-generated method stub
+		
 	}
 }

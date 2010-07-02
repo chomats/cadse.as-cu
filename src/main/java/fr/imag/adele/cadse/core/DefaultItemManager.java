@@ -33,7 +33,7 @@ import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 
-public class DefaultItemManager implements IItemManager {
+public class DefaultItemManager implements IItemManager, IContentItemFactory {
 	public static final String	CANNOT_RENAME		= "Cannot rename";
 	public static final String	CANNOT_DELETE		= "Cannot delete";
 
@@ -106,7 +106,7 @@ public class DefaultItemManager implements IItemManager {
 			link_type_name = lt.getName();
 		}
 		if (_id_pattern == null) {
-			throw new NullPointerException("The long name template is null for " + item.getType().getDisplayName());
+			throw new NullPointerException("The qualified name template is null for " + item.getType().getDisplayName());
 		}
 		return MessageFormat.format(_id_pattern, shortid, parent_id, parent_name, parent_type, item.getType()
 				.getDisplayName(), link_type_name);
@@ -243,6 +243,10 @@ public class DefaultItemManager implements IItemManager {
 		this._valid_pattern = Pattern.compile(pattern_valid_id).matcher("");
 	}
 
+	public IContentItemFactory getContentItemFactory() {
+		return this;
+	}
+
 	@Deprecated
 	public String getDefaultShortName() {
 		return null;
@@ -297,4 +301,34 @@ public class DefaultItemManager implements IItemManager {
 	public String getDisplayCreate(LinkType lt, ItemType destItemType) {
 		return null; // the default value (is itemDestType.getDsiplayName();
 	}
+
+	public ContentItem createContentItem(UUID id, Item owerItem) throws CadseException {
+		return ContentItem.NO_CONTENT;
+	}	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.imag.adele.cadse.core.content.ContentItem#getParentPartContentManager(boolean)
+	 */
+	public ContentItem getParentContentItemWherePutMyContent(ContentItem cm) {
+		
+		Item ownerItem = cm.getOwnerItem();
+		Item parentItem =ownerItem.getPartParent(false);
+		if (parentItem == null) {
+			return null;
+		}
+		if (parentItem.getContentItem() != null) {
+			return parentItem.getContentItem();
+		}
+
+		cm = null;
+		while (cm == null && parentItem != null) {
+			cm = parentItem.getContentItem();
+			parentItem = parentItem.getPartParent(false);
+		}
+		return cm;
+	}
+	
+
 }

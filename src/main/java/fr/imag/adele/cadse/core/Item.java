@@ -46,7 +46,7 @@ import fr.imag.adele.cadse.core.ui.view.NewContext;
  * ItemType. Item has outgoing and incoming links to others items.
  */
 
-public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributableType, InternalItem, FacetteBuild {
+public interface Item extends IAttributable, INamedUUID, INamed, IItemAttributableType, InternalItem, FacetteBuild, AdaptableObject {
 
 	/**
 	 * TODO version dec 2009 remove this lines

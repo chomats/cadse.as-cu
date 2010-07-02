@@ -258,8 +258,14 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 */
 	public ItemDelta loadItem(UUID id, UUID type) throws CadseException;
 
-	// TODO
-	public void loadItems(Collection<URL> itemdescription) throws CadseException, IOException;
+	/**
+	 * Load some items from url as serialization inputstream.
+	 * @param itemdescription
+	 * @return
+	 * @throws CadseException
+	 * @throws IOException
+	 */
+	public List<ItemDelta> loadItems(Collection<URL> itemdescription) throws CadseException, IOException;
 
 	/**
 	 * Commits this transaction and returns all items loaded in it. This method
