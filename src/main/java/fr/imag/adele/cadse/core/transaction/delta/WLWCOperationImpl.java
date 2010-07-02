@@ -18,13 +18,14 @@
  */
 package fr.imag.adele.cadse.core.transaction.delta;
 
+import fr.imag.adele.cadse.core.AdaptableObjectImpl;
 import fr.imag.adele.cadse.core.CadseError;
 import java.util.UUID;
 import fr.imag.adele.cadse.core.internal.delta.InternalWLWCOperation;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.util.ArraysUtil;
 
-public abstract class WLWCOperationImpl implements InternalWLWCOperation, WLWCOperation {
+public abstract class WLWCOperationImpl extends AdaptableObjectImpl implements InternalWLWCOperation, WLWCOperation {
 	UUID						_operationId					= UUID.randomUUID();
 	private final OperationType		_type;
 	protected final WLWCOperation	_parent;
