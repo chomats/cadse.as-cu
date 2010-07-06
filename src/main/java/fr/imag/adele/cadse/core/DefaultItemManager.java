@@ -220,4 +220,7 @@ public class DefaultItemManager implements IItemManager {
 	public String getDisplayCreate(LinkType lt, ItemType destItemType) {
 		return null; // the default value (is itemDestType.getDsiplayName();
 	}
+
+	
+
 }
