@@ -31,7 +31,10 @@ import fr.imag.adele.cadse.core.internal.InternalLink;
  * A link is a relation between two items. Each link has a type called a
  * LinkType.
  * 
- * @author nguyent
+ * 
+ * 
+ * 
+ * @author adele team
  */
 public interface Link extends InternalLink, INamedUUID, AdaptableObject {
 
