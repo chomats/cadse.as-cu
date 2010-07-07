@@ -220,6 +220,13 @@ public class NewContext extends FilterContext {
 		_newItem = _transaction.createItem(this);
 	}
 
+	public void initTransaction(LogicalWorkspaceTransaction	 t) throws CadseException {
+		_transaction = t;
+		_newItem = _transaction.createItem(this);
+	}
+
+	
+	
 	public LogicalWorkspaceTransaction getTransaction() {
 		return _transaction;
 	}

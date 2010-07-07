@@ -3,6 +3,7 @@ package fr.imag.adele.cadse.core;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.UUID;
 
 import fr.imag.adele.cadse.core.attribute.GroupOfAttributes;
@@ -273,6 +274,13 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 		 */
 		public List<LinkType> computeOutgoingLinkTypes(int flag, ItemFilter<LinkType> filter, List<LinkType> ret, Set<TypeDefinition> visited) ;
 		
+		
+		/**
+		 * Compute the concrete type which can be instantiate item.
+		 * @param set the result set.
+		 * @param visiteur the visiteur stack.
+		 */
+		public void computeAllContcreteType(TreeSet<ItemType> set, HashSet<TypeDefinition> visiteur);
 
 	}
 
@@ -365,5 +373,11 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 	 * @return the package name attribute
 	 */
 	public String getPackageName();
+
+	/**
+	 * Return all type can be instantiate.
+	 * @return an array or an empty array if no type found.
+	 */
+	ItemType[] getAllConcreteType();
 	
 }
