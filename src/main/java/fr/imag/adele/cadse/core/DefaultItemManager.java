@@ -36,6 +36,7 @@ import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 public class DefaultItemManager implements IItemManager, IContentItemFactory {
 	public static final String	CANNOT_RENAME		= "Cannot rename";
 	public static final String	CANNOT_DELETE		= "Cannot delete";
+	public static final String	CANNOT_CREATE		= "Cannot create";
 
 	private ItemType			_itemType;
 	private String				_id_pattern;
