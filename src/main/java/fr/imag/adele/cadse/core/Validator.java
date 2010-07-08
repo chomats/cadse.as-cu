@@ -4,7 +4,7 @@ import java.util.List;
 
 
 
-public interface Validator extends ObjectAdapter<Validator>{
+public abstract class Validator extends ObjectAdapter<Validator>{
 	/**
 	 * Represents errors on items.
 	 */
@@ -91,6 +91,12 @@ public interface Validator extends ObjectAdapter<Validator>{
 	 * @return set of items for which any modification can impact the validation
 	 *         of specified item.
 	 */
-	public List<Item> validate(Item item, ProblemReporter reporter);
+	public abstract List<Item> validate(Item item, ProblemReporter reporter);
+
+
+	@Override
+	public Class<Validator> getClassAdapt() {
+		return Validator.class;
+	}
 
 }

@@ -1213,13 +1213,13 @@ class ContentManagerInternal implements ContentItem {
 	}
 
 	@Override
-	public <T> T adapt(Class<T> clazz) {
+	public <T extends ObjectAdapter<T>> T adapt(Class<T> clazz) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <T> T[] adapts(Class<T> clazz) {
+	public <T extends ObjectAdapter<T>> T[] adapts(Class<T> clazz) {
 		// TODO Auto-generated method stub
 		return null;
 	}

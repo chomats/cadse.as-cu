@@ -3,7 +3,7 @@ package fr.imag.adele.cadse.core;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DefaultValidator implements Validator {
+public class DefaultValidator extends Validator {
 
 	// validation...
 
@@ -69,8 +69,4 @@ public class DefaultValidator implements Validator {
 		return ret;
 	}
 
-	@Override
-	public Class<Validator> getClassAdapt() {
-		return Validator.class;
-	}
 }
