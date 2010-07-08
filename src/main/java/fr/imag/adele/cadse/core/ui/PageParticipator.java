@@ -7,6 +7,7 @@ import java.util.Set;
 import fr.imag.adele.cadse.core.*;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
+import fr.imag.adele.cadse.objectadapter.ObjectAdapter;
 
 
 public class PageParticipator extends ObjectAdapter<PageParticipator> {

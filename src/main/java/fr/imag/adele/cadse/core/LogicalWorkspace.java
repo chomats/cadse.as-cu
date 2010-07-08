@@ -34,6 +34,7 @@ import fr.imag.adele.cadse.core.ui.FacetteLWUI;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.objectadapter.AdaptableObject;
 import fr.imag.adele.cadse.util.NotNull;
 import fr.imag.adele.cadse.util.Nullable;
 

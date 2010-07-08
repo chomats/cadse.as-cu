@@ -2,6 +2,8 @@ package fr.imag.adele.cadse.core;
 
 import java.util.List;
 
+import fr.imag.adele.cadse.objectadapter.ObjectAdapter;
+
 
 
 public abstract class Validator extends ObjectAdapter<Validator>{
