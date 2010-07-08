@@ -26,6 +26,7 @@ import java.util.UUID;
 
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.internal.InternalLink;
+import fr.imag.adele.cadse.objectadapter.AdaptableObject;
 
 /**
  * A link is a relation between two items. Each link has a type called a

@@ -39,6 +39,7 @@ import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.ui.Pages;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
+import fr.imag.adele.cadse.objectadapter.AdaptableObject;
 
 /**
  * An item is an object of logical workspace. It has attributes composed by a pair of attribute type and of value.
