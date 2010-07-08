@@ -16,7 +16,7 @@ public class AdaptableObjectImpl implements AdaptableObject {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T adapt(Class<T> clazz) {
+	public <T extends ObjectAdapter<T>> T adapt(Class<T> clazz) {
 		if (_adaptObjects != null)
 			for (int i = 0; i < _adaptObjects.length; i++) {
 				if (_adaptObjects[i].getClassAdapt() == clazz)
@@ -30,7 +30,7 @@ public class AdaptableObjectImpl implements AdaptableObject {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T[] adapts(Class<T> clazz) {
+	public <T extends ObjectAdapter<T>> T[] adapts(Class<T> clazz) {
 		T[] ret = null;
 		if (_adaptObjects != null)
 			for (int i = 0; i < _adaptObjects.length; i++) {

@@ -52,6 +52,7 @@ public class FilterContext {
 	protected GroupType			_gh;
 	protected LinkType			_glt;
 	private Item _item;
+	private boolean _modificationPages;
 
 	protected FilterContext() {
 
@@ -213,4 +214,13 @@ public class FilterContext {
 	public Item getItem() {
 		return _item;
 	}
+
+	public void setModificationPages(boolean b) {
+		_modificationPages = b;
+	}
+	
+	public boolean isModificationPages() {
+		return _modificationPages;
+	}
+	
 }

@@ -1,6 +1,17 @@
 package fr.imag.adele.cadse.core;
 
-public interface ObjectAdapter<T> {
+public abstract class ObjectAdapter<T> {
 
-	public Class<T> getClassAdapt();
+	
+	private T[] _ow;
+
+	public abstract Class<T> getClassAdapt();
+	
+	final public T[] getOverrideObject(){
+		return _ow;
+	}
+	
+	final public void setOverrideObject(T... ow) {
+		this._ow = ow;
+	}
 }
