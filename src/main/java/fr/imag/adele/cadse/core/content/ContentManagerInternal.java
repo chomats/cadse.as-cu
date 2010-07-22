@@ -79,33 +79,33 @@ class ContentManagerInternal implements ContentItem {
 		
 	}
 
-	@Override
-	public void generate(GenStringBuilder sb, String type, String kind,
-			Set<String> imports, GenContext context) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void generatePart(String linkTypeName, GenStringBuilder sb,
-			String type, String kind, Set<String> imports, GenContext context) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void generateParts(GenStringBuilder sb, String type, String kind,
-			Set<String> imports, GenContext context) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void generateParts(String linkTypeName, GenStringBuilder sb,
-			String type, String kind, Set<String> imports, GenContext context) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void generate(GenStringBuilder sb, String type, String kind,
+//			Set<String> imports, GenContext context) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void generatePart(String linkTypeName, GenStringBuilder sb,
+//			String type, String kind, Set<String> imports, GenContext context) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void generateParts(GenStringBuilder sb, String type, String kind,
+//			Set<String> imports, GenContext context) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void generateParts(String linkTypeName, GenStringBuilder sb,
+//			String type, String kind, Set<String> imports, GenContext context) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	@Override
 	public String[] getKindsResource() {
