@@ -17,6 +17,7 @@ import fr.imag.adele.cadse.core.enumdef.TWUpdateKind;
 import fr.imag.adele.cadse.core.ui.EPosLabel;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.UUID;
 
 
 
@@ -2312,6 +2313,8 @@ public class CadseGCST {
 	    @generated
 	*/
 	public static LinkType WCLISTENER_lt_LISTEN_ITEM_TYPES;
+	
+	public static UUID _CADSE_ID = java.util.UUID.fromString("2b50360d-d835-4e98-80a8-bc55fe5421e7");
 
 	/**
 	    @generated
