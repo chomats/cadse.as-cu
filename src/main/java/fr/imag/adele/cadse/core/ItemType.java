@@ -368,6 +368,7 @@ public interface ItemType extends Item, ItemTypeInternal, GroupType, TypeDefinit
 	public Class<? extends ContentItem> getContentItemClass();
 	
 	public void setContentItemClass(Class<? extends ContentItem> cf);
-	
+
+		
 
 }

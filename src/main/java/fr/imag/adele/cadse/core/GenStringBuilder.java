@@ -50,15 +50,15 @@ public class GenStringBuilder {
 	}
 
 	/** The sb. */
-	private StringBuilder	_sb;
+	protected StringBuilder	_sb;
 
 	/** The tabs. */
-	int						tabs		= 0;
+	protected int						tabs		= 0;
 
 	/** The DEBUG. */
 	public boolean			DEBUG		= false;
 
-	private boolean			_appenTab	= false;
+	protected boolean			_appenTab	= false;
 
 	/**
 	 * Begin.
@@ -1033,7 +1033,7 @@ public class GenStringBuilder {
 	 */
 	public GenStringBuilder appendGeneratedTag() {
 		newline().append("/**");
-		newline().append("    @generated");
+		newline().append("\t@generated");
 		newline().append("*/");
 		return this;
 	}
