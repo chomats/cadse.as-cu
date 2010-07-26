@@ -30,6 +30,7 @@ import fr.imag.adele.cadse.core.transaction.FacetteLWTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
 import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 import fr.imag.adele.cadse.core.ui.FacetteLWUI;
 import fr.imag.adele.cadse.core.ui.view.FilterContext;
 import fr.imag.adele.cadse.core.ui.view.NewContext;
@@ -197,7 +198,7 @@ public interface LogicalWorkspace extends LogicalWorkspaceTransactionBroadcaster
 	 * @return the item or null if not found or if has an error
 	 */
 	public Item getItemByName(TypeDefinition type, String name);
-
+	
 /**
 	 * Gets the item.
 	 * 

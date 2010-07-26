@@ -31,6 +31,13 @@ public interface FacetteTypeDefinitionAction {
 	public void addActionContributeur(IActionContributor contributor);
 	
 	/**
+	 * Remove action contributor
+	 * 
+	 * @param contributor
+	 */
+	public void removeActionContributeur(IActionContributor contributor);
+
+	/**
 	 * Gets the all action contribution.
 	 * 
 	 * @return the all action contribution
