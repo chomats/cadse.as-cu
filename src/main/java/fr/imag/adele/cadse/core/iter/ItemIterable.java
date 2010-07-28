@@ -2,6 +2,8 @@ package fr.imag.adele.cadse.core.iter;
 
 import java.util.Iterator;
 
+import fr.imag.adele.cadse.core.CadseError;
+import fr.imag.adele.cadse.core.CadseIllegalArgumentException;
 import fr.imag.adele.cadse.core.GenContext;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.var.ContextVariable;
@@ -44,6 +46,17 @@ public class ItemIterable extends ObjectAdapter<ItemIterable> implements Iterabl
 	@Override
 	public Class<ItemIterable> getClassAdapt() {
 		return ItemIterable.class;
+	}
+
+
+	public ItemIterable cloneIter() {
+		try {
+			return this.getClass().newInstance();
+		} catch (InstantiationException e) {
+			throw new CadseIllegalArgumentException("Cannot clone iter "+getClass(), e);
+		} catch (IllegalAccessException e) {
+			throw new CadseIllegalArgumentException("Cannot clone iter "+getClass(), e);
+		}
 	}
 
 }
