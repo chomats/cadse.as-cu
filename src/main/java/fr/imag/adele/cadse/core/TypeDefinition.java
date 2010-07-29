@@ -11,7 +11,7 @@ import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionBroadcaster;
 import fr.imag.adele.cadse.core.ui.FacetteTypeDefinitionUI;
 import fr.imag.adele.cadse.core.ui.FacetteTypeDefinitionUIInternal;
-import fr.imag.adele.cadse.core.ui.HierarchicPage;
+import fr.imag.adele.cadse.core.ui.HierarchicalPage;
 import fr.imag.adele.cadse.core.ui.IActionPage;
 import fr.imag.adele.cadse.core.ui.IPage;
 import fr.imag.adele.cadse.core.ui.UIField;
@@ -258,7 +258,7 @@ FacetteTypeDefinitionUI, LogicalWorkspaceTransactionBroadcaster {
 		public abstract void recurcifComputeModificationPage(FilterContext context, List<IPage> list,
 				Set<IAttributeType<?>> ro, Set<TypeDefinition> visited);
 
-		public abstract void computeGenericPage(FilterContext context, HierarchicPage genericPage,
+		public abstract void computeGenericPage(FilterContext context, HierarchicalPage genericPage,
 				HashSet<IAttributeType<?>> inSpecificPages, Set<IAttributeType<?>> ro, Set<TypeDefinition> visited, IAttributeType<?>... firstAttributes);
 		
 		public abstract void recurcifComputeCreationPage(FilterContext context, List<IPage> list, Set<TypeDefinition> visited);
