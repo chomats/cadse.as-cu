@@ -32,7 +32,7 @@ public interface FacetteTypeDefinitionUIInternal {
 	public abstract void recurcifComputeModificationPage(FilterContext context, List<IPage> list,
 			Set<IAttributeType<?>> ro, Set<TypeDefinition> visited);
 
-	public abstract void computeGenericPage(FilterContext context, HierarchicPage genericPage,
+	public abstract void computeGenericPage(FilterContext context, HierarchicalPage genericPage,
 			HashSet<IAttributeType<?>> inSpecificPages, Set<IAttributeType<?>> ro, Set<TypeDefinition> visited, IAttributeType<?>... firstAttributes);
 
 	public abstract void recurcifComputeCreationPage(FilterContext context, List<IPage> list, Set<TypeDefinition> visited);
