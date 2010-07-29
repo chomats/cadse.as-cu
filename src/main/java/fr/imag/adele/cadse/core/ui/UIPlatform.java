@@ -256,12 +256,15 @@ public interface UIPlatform {
 
 	public void setVisible(UIField uiField, boolean b);
 
-	public void setVisualField(IAttributeType<?> attr, Object visualValue);
-
-
-
+	/**
+	 * Find the field corresponding to attributeDefinition. If no field found, do nothing.
+	 * Force to change the visual value and send a notification if send is true.
+	 * @param attributeDefinition the attribute definition to find.
+	 * @param currentValue the new value
+	 * @param send if or not send an notification.
+	 */
 	public void setVisualValue(IAttributeType<?> attributeDefinition,
-			Object currentValue, boolean b);
+			Object currentValue, boolean send);
 
 	
 
