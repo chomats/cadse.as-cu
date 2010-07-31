@@ -5,7 +5,7 @@
     <groupId>fr.imag.adele.cadse</groupId>
     <artifactId>as.cu</artifactId>
     <name>fr.imag.adele.cadse.as.cu</name>
-    <version>2.3.1-SNAPSHOT</version>
+    <version>2.3.1</version>
     <description>Cadse Core CU</description>   
     <parent>
 		<artifactId>fr.imag.adele.cadse.parent.osgi</artifactId>
