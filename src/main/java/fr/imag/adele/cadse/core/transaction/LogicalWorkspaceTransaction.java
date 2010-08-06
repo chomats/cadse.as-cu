@@ -542,4 +542,10 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
     public void notifyCommitTransaction();
 
     public void notifyAbortTransaction();
+    
+    /**
+     * Return all the item delta of this transaction.
+     * @return
+     */
+    	public Collection<ItemDelta> getItemsDelta();
 }
