@@ -226,29 +226,7 @@ public class DefaultItemManager implements IItemManager {
 		return ContentItem.NO_CONTENT;
 	}	
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.imag.adele.cadse.core.content.ContentItem#getParentPartContentManager(boolean)
-	 */
-	public ContentItem getParentContentItemWherePutMyContent(ContentItem cm) {
-		
-		Item ownerItem = cm.getOwnerItem();
-		Item parentItem =ownerItem.getPartParent(false);
-		if (parentItem == null) {
-			return null;
-		}
-		if (parentItem.getContentItem() != null) {
-			return parentItem.getContentItem();
-		}
-
-		cm = null;
-		while (cm == null && parentItem != null) {
-			cm = parentItem.getContentItem();
-			parentItem = parentItem.getPartParent(false);
-		}
-		return cm;
-	}
+	
 	
 
 }
