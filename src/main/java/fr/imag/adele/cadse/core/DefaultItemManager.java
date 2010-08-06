@@ -34,7 +34,7 @@ import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 
-public class DefaultItemManager implements IItemManager, IContentItemFactory {
+public class DefaultItemManager implements IItemManager {
 	public static final String	CANNOT_RENAME		= "Cannot rename";
 	public static final String	CANNOT_DELETE		= "Cannot delete";
 	public static final String	CANNOT_CREATE		= "Cannot create";
@@ -165,10 +165,6 @@ public class DefaultItemManager implements IItemManager, IContentItemFactory {
 
 	public void setPatternValidId(String pattern_valid_id) {
 		this._valid_pattern = Pattern.compile(pattern_valid_id).matcher("");
-	}
-
-	public IContentItemFactory getContentItemFactory() {
-		return this;
 	}
 
 	@Deprecated
