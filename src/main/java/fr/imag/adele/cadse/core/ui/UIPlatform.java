@@ -22,12 +22,16 @@ package fr.imag.adele.cadse.core.ui;
 import java.util.List;
 
 
+import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.ItemType;
+import fr.imag.adele.cadse.core.LinkType;
 import fr.imag.adele.cadse.core.WorkspaceListener;
 import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.attribute.ListAttributeType;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransaction;
 import fr.imag.adele.cadse.core.transaction.LogicalWorkspaceTransactionListener;
+import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 
 /**
  * The Interface IPageController.
@@ -252,12 +256,15 @@ public interface UIPlatform {
 
 	public void setVisible(UIField uiField, boolean b);
 
-	public void setVisualField(IAttributeType<?> attr, Object visualValue);
-
-
-
+	/**
+	 * Find the field corresponding to attributeDefinition. If no field found, do nothing.
+	 * Force to change the visual value and send a notification if send is true.
+	 * @param attributeDefinition the attribute definition to find.
+	 * @param currentValue the new value
+	 * @param send if or not send an notification.
+	 */
 	public void setVisualValue(IAttributeType<?> attributeDefinition,
-			Object currentValue, boolean b);
+			Object currentValue, boolean send);
 
 	
 
@@ -280,5 +287,8 @@ public interface UIPlatform {
 	public UIField getField(IAttributeType<?> att);
 
 	public void dispose();
+
+	public ItemDelta openInTransactionDialog(String defaultName, Item parent, LinkType lt, ItemType destItemType,
+			IAttributeType<?>... hiddenAttributes) throws CadseException;
 	
 }

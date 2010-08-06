@@ -67,14 +67,28 @@ public interface IPage extends Item {
 	 * @return the label
 	 */
 	abstract String getLabel();
-
+	
+	/**
+	 * Change the label of this page
+	 * 
+	 * @param label
+	 */
+	void setLabel(String label);
+	
 	/**
 	 * Gets the title.
 	 * 
 	 * @return the title
 	 */
 	abstract String getTitle();
-
+	
+	/**
+	 * change the title of this page.
+	 * 
+	 * @param title
+	 */
+	public void setTitle(String title);
+	
 	/**
 	 * Gets the description.
 	 * 
@@ -91,6 +105,9 @@ public interface IPage extends Item {
 	boolean isLast(IAttributeType<?> attributeDefinition);
 
 	void getAllAttributes(HashSet<IAttributeType<?>> allAttributes);
+
+
+	
 
 	
 }

@@ -1,6 +1,6 @@
 package fr.imag.adele.cadse.core.ui;
 
-public interface HierarchicPage extends IPage {
+public interface HierarchicalPage extends IPage {
 
 	IPage[] getBlocks();
 
