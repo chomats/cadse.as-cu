@@ -48,8 +48,8 @@ public abstract class Exporter {
 	 * @param exporterTypes
 	 *            the exporter types
 	 */
-	protected Exporter(Item contentManager, String... exporterTypes) {
-		this._owerItem = contentManager;
+	protected Exporter(Item owerItem, String... exporterTypes) {
+		this._owerItem = owerItem;
 		this.exporterTypes = exporterTypes;
 	}
 
