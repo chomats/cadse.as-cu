@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseRuntime;
@@ -265,7 +266,7 @@ public interface LogicalWorkspaceTransaction extends LogicalWorkspace, InternalL
 	 * @throws CadseException
 	 * @throws IOException
 	 */
-	public List<ItemDelta> loadItems(Collection<URL> itemdescription) throws CadseException, IOException;
+	public List<ItemDelta> loadItems(Map<UUID, URL> itemdescription) throws CadseException, IOException;
 
 	/**
 	 * Commits this transaction and returns all items loaded in it. This method
