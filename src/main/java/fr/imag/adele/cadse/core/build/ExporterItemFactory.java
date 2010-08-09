@@ -12,6 +12,4 @@ public abstract class ExporterItemFactory  extends ItemFactoryObjecterAdapter<Ex
 	public Class<Exporter> getSubClassAdapt() {
 		return Exporter.class;
 	}
-
-
 }
