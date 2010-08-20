@@ -188,7 +188,7 @@ public class DefaultItemManager implements IItemManager {
 	}
 
 	@Deprecated
-	public void doubleClick(Item item) {
+	final public void doubleClick(Item item) {
 		LogicalWorkspaceTransaction copy = item.getLogicalWorkspace().createTransaction();
 		ItemDelta oper = copy.getItem(item.getId());
 		if (oper == null) {
@@ -221,12 +221,5 @@ public class DefaultItemManager implements IItemManager {
 	public String getDisplayCreate(LinkType lt, ItemType destItemType) {
 		return null; // the default value (is itemDestType.getDsiplayName();
 	}
-
-	public ContentItem createContentItem(UUID id, Item owerItem) throws CadseException {
-		return ContentItem.NO_CONTENT;
-	}	
-	
-	
-	
 
 }
